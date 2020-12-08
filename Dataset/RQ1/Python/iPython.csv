@@ -1,0 +1,2144 @@
+fileName,className,classComment,commentStart,commentEnd,classCommentSymbolLength,classCommentLineLength
+C:\Users\vaano\python_projects\ipython\setupbase.py,build_scripts_entrypt,"
+Build the command line scripts
+
+Parse setuptools style entry points and write simple scripts to run the
+target functions.
+
+On Windows, this also creates .cmd wrappers for the scripts so that you can
+easily launch them from a command line.
+",249,256,238,7
+C:\Users\vaano\python_projects\ipython\setupbase.py,install_lib_symlink,,,,,
+C:\Users\vaano\python_projects\ipython\setupbase.py,unsymlink,,,,,
+C:\Users\vaano\python_projects\ipython\setupbase.py,install_symlinked,,,,,
+C:\Users\vaano\python_projects\ipython\setupbase.py,install_scripts_for_symlink,"
+Redefined to get options from 'symlink' instead of 'install'.
+
+I love distutils almost as much as I love setuptools.
+",334,337,116,3
+C:\Users\vaano\python_projects\ipython\setupbase.py,DecoratedCommand,,,,,
+C:\Users\vaano\python_projects\ipython\setupbase.py,MyBuildPy,"
+Subclass to write commit data into installation tree 
+",361,362,52,1
+C:\Users\vaano\python_projects\ipython\docs\autogen_shortcuts.py,_DummyTerminal,"
+Used as a buffer to get prompt_toolkit bindings
+    
+",45,46,47,1
+C:\Users\vaano\python_projects\ipython\docs\sphinxext\apigen.py,Obj,"
+Namespace to hold arbitrary information.
+",30,31,40,1
+C:\Users\vaano\python_projects\ipython\docs\sphinxext\apigen.py,FuncClsScanner,"
+Scan a module for top-level functions and classes.
+
+Skips objects with an @undoc decorator, or a name starting with '_'.
+",36,39,120,3
+C:\Users\vaano\python_projects\ipython\docs\sphinxext\apigen.py,ApiDocWriter,"
+Class for automatic detection and parsing of API docs
+    to Sphinx-parsable reST format
+",79,81,84,2
+C:\Users\vaano\python_projects\ipython\docs\sphinxext\magics.py,LineMagicRole,"
+Cross reference role displayed with a % prefix
+",17,18,46,1
+C:\Users\vaano\python_projects\ipython\docs\sphinxext\magics.py,CellMagicRole,"
+Cross reference role displayed with a %% prefix
+",35,36,47,1
+C:\Users\vaano\python_projects\ipython\examples\Embedding\embed_class_long.py,CustomPrompt,,,,,
+C:\Users\vaano\python_projects\ipython\examples\IPython Kernel\gui\gui-qt.py,SimpleWindow,,,,,
+C:\Users\vaano\python_projects\ipython\examples\IPython Kernel\gui\gui-tk.py,MyApp,,,,,
+C:\Users\vaano\python_projects\ipython\examples\IPython Kernel\gui\gui-wx.py,MyFrame,"
+This is MyFrame.  It just shows a few controls on a wxPanel,
+and has a simple menu.
+",18,20,83,2
+C:\Users\vaano\python_projects\ipython\examples\IPython Kernel\gui\gui-wx.py,MyApp,,,,,
+C:\Users\vaano\python_projects\ipython\examples\utils\cwd_prompt.py,MyPrompt,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\alias.py,AliasError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\alias.py,InvalidAliasError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\alias.py,Alias,"
+Callable object storing the details of one alias.
+
+Instances are registered as magic functions to allow use of aliases.
+",121,124,119,3
+C:\Users\vaano\python_projects\ipython\IPython\core\alias.py,AliasManager,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\application.py,ProfileAwareConfigLoader,"
+A Python file config loader that is aware of IPython profiles.
+",89,90,62,1
+C:\Users\vaano\python_projects\ipython\IPython\core\application.py,BaseIPythonApplication,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\async_helpers.py,_AsyncIORunner,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\async_helpers.py,_AsyncSyntaxErrorVisitor,"
+Find syntax errors that would be an error in an async repl, but because
+the implementation involves wrapping the repl in an async function, it
+is erroneously allowed (e.g. yield or return at the top level)
+",96,99,205,3
+C:\Users\vaano\python_projects\ipython\IPython\core\autocall.py,IPyAutocall,"
+Instances of this class are always autocalled
+
+This happens regardless of 'autocall' variable state. Use this to
+develop macro-like mechanisms.
+",32,36,143,4
+C:\Users\vaano\python_projects\ipython\IPython\core\autocall.py,ExitAutocall,"
+An autocallable object which will be added to the user namespace so that
+exit, exit(), quit or quit() are all valid ways to close the shell.
+",52,54,140,2
+C:\Users\vaano\python_projects\ipython\IPython\core\autocall.py,ZMQExitAutocall,"
+Exit IPython. Autocallable, so it needn't be explicitly called.
+
+Parameters
+----------
+keep_kernel : bool
+  If True, leave the kernel alive. Otherwise, tell the kernel to exit too
+  (default).
+",60,67,192,7
+C:\Users\vaano\python_projects\ipython\IPython\core\builtin_trap.py,__BuiltinUndefined,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\builtin_trap.py,__HideBuiltin,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\builtin_trap.py,BuiltinTrap,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\compilerop.py,CachingCompiler,"
+A compiler that caches code compiled from interactive statements.
+    
+",70,71,65,1
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,ProvisionalCompleterWarning,"
+Exception raise by an experimental feature in this module.
+
+Wrap code in :any:`provisionalcompleter` context manager if you
+are certain you want to use an unstable feature.
+",173,177,172,4
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,_FakeJediCompletion,"
+This is a workaround to communicate to the UI that Jedi has crashed and to
+report a bug. Will be used only id :any:`IPCompleter.debug` is set to true.
+
+Added in IPython 6.0 so should likely be removed for 7.0
+",326,330,208,4
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,Completion,"
+Completion object used and return by IPython completers.
+
+.. warning:: Unstable
+
+    This function is unstable, API may change without warning.
+    It will also raise unless use in proper context manager.
+
+This act as a middle ground :any:`Completion` object between the
+:any:`jedi.api.classes.Completion` object and the Prompt Toolkit completion
+object. While Jedi need a lot of information about evaluator and how the
+code should be ran/inspected, PromptToolkit (and other frontend) mostly
+need user facing information.
+
+- Which range should be replaced replaced by what.
+- Some metadata (like completion type), or meta information to displayed to
+  the use user.
+
+For debugging purpose we can also store the origin of the completion (``jedi``,
+``IPython.python_matches``, ``IPython.magics_matches``...).
+",348,367,806,19
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,CompletionSplitter,"
+An object to split an input line in a manner similar to readline.
+
+By having our own implementation, we can expose readline-like completion in
+a uniform manner to all frontends.  This object only needs to be given the
+line of text to be split and the cursor position on said line, and it
+returns the 'word' to be completed on at the cursor after splitting the
+entire line.
+
+What characters are used as splitting delimiters can be controlled by
+setting the ``delims`` attribute (this is a property that internally
+automatically builds the necessary regular expression)
+Private Interface
+",516,527,567,11
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,Completer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\completer.py,IPCompleter,"
+Extension of the completer class with IPython-specific features
+",992,993,63,1
+C:\Users\vaano\python_projects\ipython\IPython\core\crashhandler.py,CrashHandler,"
+Customizable crash handlers for IPython applications.
+
+Instances of this class provide a :meth:`__call__` method which can be
+used as a ``sys.excepthook``.  The :meth:`__call__` signature is::
+
+    def __call__(self, etype, evalue, etb)
+",86,92,236,6
+C:\Users\vaano\python_projects\ipython\IPython\core\debugger.py,Tracer,"
+DEPRECATED
+
+Class for local debugging, similar to pdb.set_trace.
+
+Instances of this class, when called, behave like pdb.set_trace, but
+providing IPython's enhanced capabilities.
+
+This is implemented as a class which must be initialized in your own code
+and not as a standalone function because we need to detect at runtime
+whether IPython is already active or not.  That detection is done in the
+constructor, ensuring that this code plays nicely with a running IPython,
+while functioning acceptably (though with limitations) if outside of it.
+",87,99,542,12
+C:\Users\vaano\python_projects\ipython\IPython\core\debugger.py,Pdb,"
+Modified Pdb class, does not load readline.
+
+for a standalone version that uses prompt_toolkit, see
+`IPython.terminal.debugger.TerminalPdb` and
+`IPython.terminal.debugger.set_trace()`
+",196,201,183,5
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,DisplayHandle,"
+A handle on an updatable display
+
+Call `.update(obj)` to display a new object.
+
+Call `.display(obj`) to add a new instance of this display,
+and update existing instances.
+
+See Also
+--------
+
+    :func:`display`, :func:`update_display`
+",347,358,234,11
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,DisplayObject,"
+An object that wraps data to be displayed.
+",578,579,42,1
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,TextDisplayObject,"
+Validate that display data is text
+",674,675,34,1
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Pretty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,HTML,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Markdown,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Math,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Latex,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,SVG,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,ProgressBar,"
+Progressbar supports displaying a progressbar like element 
+    
+",772,773,58,1
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,JSON,"
+JSON expects a JSON-able dict or list
+not an already-serialized JSON string.
+Scalar types (None, number, string) are not allowed, only dict or list containers.
+",830,835,161,5
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,GeoJSON,"
+GeoJSON expects JSON-able dict
+
+not an already-serialized JSON string.
+
+Scalar types (None, number, string) are not allowed, only dict containers.
+",913,918,146,5
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Javascript,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Image,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\display.py,Video,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\displayhook.py,DisplayHook,"
+The custom IPython displayhook to replace sys.displayhook.
+
+This class does many things, but the basic idea is that it is a callable
+that gets called anytime user code returns a value.
+",24,28,184,4
+C:\Users\vaano\python_projects\ipython\IPython\core\displayhook.py,CapturingDisplayHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\displaypub.py,DisplayPublisher,"
+A traited class that publishes display data to frontends.
+
+Instances of this class are created by the main IPython object and should
+be accessed there.
+",33,37,151,4
+C:\Users\vaano\python_projects\ipython\IPython\core\displaypub.py,CapturingDisplayPublisher,"
+A DisplayPublisher that stores
+",127,128,30,1
+C:\Users\vaano\python_projects\ipython\IPython\core\display_trap.py,DisplayTrap,"
+Object to manage sys.displayhook.
+
+This came from IPython.core.kernel.display_hook, but is simplified
+(no callbacks or formatters) until more of the core is refactored.
+",33,37,168,4
+C:\Users\vaano\python_projects\ipython\IPython\core\error.py,IPythonCoreError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\error.py,TryNext,"
+Try next hook exception.
+
+Raise this in your hook function to indicate that the next hook handler
+should be used to handle the operation.
+",35,39,137,4
+C:\Users\vaano\python_projects\ipython\IPython\core\error.py,UsageError,"
+Error in magic function arguments, etc.
+
+Something that probably won't warrant a full traceback, but should
+nevertheless interrupt a macro / batch file.
+",42,46,152,4
+C:\Users\vaano\python_projects\ipython\IPython\core\error.py,StdinNotImplementedError,"
+raw_input was requested in a context where it is not supported
+
+For use in IPython kernels, where only some frontends may support
+stdin requests.
+",49,53,145,4
+C:\Users\vaano\python_projects\ipython\IPython\core\error.py,InputRejected,"
+Input rejected by ast transformer.
+
+Raise this in your NodeTransformer to indicate that InteractiveShell should
+not execute the supplied input.
+",56,60,143,4
+C:\Users\vaano\python_projects\ipython\IPython\core\events.py,EventManager,"
+Manage a collection of events and a sequence of callbacks for each.
+
+This is attached to :class:`~IPython.core.interactiveshell.InteractiveShell`
+instances as an ``events`` attribute.
+
+.. note::
+
+   This API is experimental in IPython 2.0, and may be revised in future versions.
+",20,28,278,8
+C:\Users\vaano\python_projects\ipython\IPython\core\excolors.py,Deprec,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\extensions.py,ExtensionManager,"
+A class to manage IPython extensions.
+
+An IPython extension is an importable Python module that has
+a function with the signature::
+
+    def load_ipython_extension(ipython):
+        # Do things with ipython
+
+This function is called after your extension is imported and the
+currently active :class:`InteractiveShell` instance is passed as
+the only argument.  You can do anything you want with IPython at
+that point, including defining new magic and aliases, adding new
+components, etc.
+
+You can also optionally define an :func:`unload_ipython_extension(ipython)`
+function, which will be called if the user unloads or reloads the extension.
+The extension manager will only call :func:`load_ipython_extension` again
+if the extension is reloaded.
+
+You can put your extension modules anywhere you want, as long as
+they can be imported by Python's standard import mechanism.  However,
+to make it easy to write extensions, you can also put your extensions
+in ``os.path.join(self.ipython_dir, 'extensions')``.  This directory
+is added to ``sys.path`` automatically.
+",23,47,1057,24
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,DisplayFormatter,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,FormatterWarning,"
+Warning class for errors in formatters
+",218,219,38,1
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,FormatterABC,"
+Abstract base class for Formatters.
+
+A formatter is a callable class that is responsible for computing the
+raw format data for a particular format type (MIME type). For example,
+an HTML formatter would have a format type of `text/html` and would return
+the HTML representation of the object when called.
+",240,246,303,6
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,BaseFormatter,"
+A base formatter class that is configurable.
+
+This formatter should usually be used as the base class of all formatters.
+It is a traited :class:`Configurable` class and includes an extensible
+API for users to determine how their objects are formatted. The following
+logic is used to find a function to format an given object.
+
+1. The object is introspected to see if it has a method with the name
+   :attr:`print_method`. If is does, that object is passed to that method
+   for formatting.
+2. If no print method is found, three internal dictionaries are consulted
+   to find print method: :attr:`singleton_printers`, :attr:`type_printers`
+   and :attr:`deferred_printers`.
+
+Users should use these dictionaries to register functions that will be
+used to compute the format data for their objects (if those objects don't
+have the special print methods). The easiest way of using these
+dictionaries is through the :meth:`for_type` and :meth:`for_type_by_name`
+methods.
+
+If no function/callable is found to compute the format data, ``None`` is
+returned and this format type is not used.
+",288,310,1082,22
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,PlainTextFormatter,"
+The default pretty-printer.
+
+This uses :mod:`IPython.lib.pretty` to compute the format data of
+the object. If the object cannot be pretty printed, :func:`repr` is used.
+See the documentation of :mod:`IPython.lib.pretty` for details on
+how to write pretty printers.  Here is a simple example::
+
+    def dtype_pprinter(obj, p, cycle):
+        if cycle:
+            return p.text('dtype(...)')
+        if hasattr(obj, 'fields'):
+            if obj.fields is None:
+                p.text(repr(obj))
+            else:
+                p.begin_group(7, 'dtype([')
+                for i, field in enumerate(obj.descr):
+                    if i > 0:
+                        p.text(',')
+                        p.breakable()
+                    p.pretty(field)
+                p.end_group(7, '])')
+",568,589,787,21
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,HTMLFormatter,"
+An HTML formatter.
+
+To define the callables that compute the HTML representation of your
+objects, define a :meth:`_repr_html_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be a valid HTML snippet that
+could be injected into an existing DOM. It should *not* include the
+```<html>`` or ```<body>`` tags.
+",708,718,410,10
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,MarkdownFormatter,"
+A Markdown formatter.
+
+To define the callables that compute the Markdown representation of your
+objects, define a :meth:`_repr_markdown_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be a valid Markdown.
+",725,733,312,8
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,SVGFormatter,"
+An SVG formatter.
+
+To define the callables that compute the SVG representation of your
+objects, define a :meth:`_repr_svg_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be valid SVG enclosed in
+```<svg>``` tags, that could be injected into an existing DOM. It should
+*not* include the ```<html>`` or ```<body>`` tags.
+",739,749,426,10
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,PNGFormatter,"
+A PNG formatter.
+
+To define the callables that compute the PNG representation of your
+objects, define a :meth:`_repr_png_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be raw PNG data, *not*
+base64 encoded.
+",756,765,315,9
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,JPEGFormatter,"
+A JPEG formatter.
+
+To define the callables that compute the JPEG representation of your
+objects, define a :meth:`_repr_jpeg_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be raw JPEG data, *not*
+base64 encoded.
+",774,783,319,9
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,LatexFormatter,"
+A LaTeX formatter.
+
+To define the callables that compute the LaTeX representation of your
+objects, define a :meth:`_repr_latex_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be a valid LaTeX equation,
+enclosed in either ```$```, ```$$``` or another LaTeX equation
+environment.
+",792,802,385,10
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,JSONFormatter,"
+A JSON string formatter.
+
+To define the callables that compute the JSONable representation of
+your objects, define a :meth:`_repr_json_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be a JSONable list or dict.
+JSON scalars (None, number, string) are not allowed, only dict or list containers.
+",809,818,401,9
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,JavascriptFormatter,"
+A Javascript formatter.
+
+To define the callables that compute the Javascript representation of
+your objects, define a :meth:`_repr_javascript_` method or use the
+:meth:`for_type` or :meth:`for_type_by_name` methods to register functions
+that handle this.
+
+The return value of this formatter should be valid Javascript code and
+should *not* be enclosed in ```<script>``` tags.
+",849,858,375,9
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,PDFFormatter,"
+A PDF formatter.
+
+To define the callables that compute the PDF representation of your
+objects, define a :meth:`_repr_pdf_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+The return value of this formatter should be raw PDF data, *not*
+base64 encoded.
+",865,874,315,9
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,IPythonDisplayFormatter,"
+An escape-hatch Formatter for objects that know how to display themselves.
+
+To define the callables that compute the representation of your
+objects, define a :meth:`_ipython_display_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this. Unlike mime-type displays, this method should not return anything,
+instead calling any appropriate display methods itself.
+
+This display formatter has highest priority.
+If it fires, no other display formatter will be called.
+
+Prior to IPython 6.1, `_ipython_display_` was the only way to display custom mime-types
+without registering a new Formatter.
+
+IPython 6.1 introduces `_repr_mimebundle_` for displaying custom mime-types,
+so `_ipython_display_` should only be used for objects that require unusual
+display patterns, such as multiple display calls.
+",882,899,849,17
+C:\Users\vaano\python_projects\ipython\IPython\core\formatters.py,MimeBundleFormatter,"
+A Formatter for arbitrary mime-types.
+
+Unlike other `_repr_<mimetype>_` methods,
+`_repr_mimebundle_` should return mime-bundle data,
+either the mime-keyed `data` dictionary or the tuple `(data, metadata)`.
+Any mime-type is valid.
+
+To define the callables that compute the mime-bundle representation of your
+objects, define a :meth:`_repr_mimebundle_` method or use the :meth:`for_type`
+or :meth:`for_type_by_name` methods to register functions that handle
+this.
+
+.. versionadded:: 6.1
+",923,936,484,13
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,DummyDB,"
+Dummy DB that will act as a black hole for history.
+
+Only used in the absence of sqlite
+",35,38,87,3
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,HistoryAccessorBase,"
+An abstract class for History Accessors 
+",122,123,39,1
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,HistoryAccessor,"
+Access the history database without adding to it.
+
+This is intended for use by standalone history tools. IPython shells use
+HistoryManager, below, which is a subclass of this.
+",139,143,175,4
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,HistoryManager,"
+A class to organize all history-related functionality in one place.
+
+Public interface
+",473,474,67,1
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,HistorySavingThread,"
+This thread takes care of writing history to the database, so that
+the UI isn't held up while that happens.
+
+It waits for the HistoryManager's save_flag to be set, then writes out
+the history cache. The main thread is responsible for setting the flag when
+the cache size reaches a defined threshold.
+",806,812,299,6
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,DatabaseError,"
+Dummy exception when sqlite could not be imported. Should never occur.
+",66,67,70,1
+C:\Users\vaano\python_projects\ipython\IPython\core\history.py,OperationalError,"
+Dummy exception when sqlite could not be imported. Should never occur.
+",70,71,70,1
+C:\Users\vaano\python_projects\ipython\IPython\core\historyapp.py,HistoryTrim,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\historyapp.py,HistoryClear,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\historyapp.py,HistoryApp,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\hooks.py,CommandChainDispatcher,"
+Dispatch calls to a chain of commands until some func can handle it
+
+Usage: instantiate, execute ""add"" to add commands (with optional
+priority), execute normally via f() calling mechanism.
+",129,133,188,4
+C:\Users\vaano\python_projects\ipython\IPython\core\inputsplitter.py,IncompleteString,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\inputsplitter.py,InMultilineStatement,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\inputsplitter.py,InputSplitter,"
+An object that can accumulate lines of Python source before execution.
+
+This object is designed to be fed python source line-by-line, using
+:meth:`push`. It will return on each push whether the currently pushed
+code could be executed already. In addition, it provides a method called
+:meth:`push_accepts_more` that can be used to query whether more input
+can be pushed into a single interactive block.
+
+This is a simple example of how an interactive terminal-based client can use
+this tool::
+
+    isp = InputSplitter()
+    while isp.push_accepts_more():
+        indent = ' '*isp.indent_spaces
+        prompt = '>>> ' + indent
+        line = indent + raw_input(prompt)
+        isp.push(line)
+    print 'Input source was:\n', isp.source_reset(),
+",280,298,743,18
+C:\Users\vaano\python_projects\ipython\IPython\core\inputsplitter.py,IPythonInputSplitter,"
+An input splitter that recognizes all of IPython's special syntax.
+",534,535,66,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer.py,InputTransformer,"
+Abstract base class for line-based input transformers.
+",43,44,54,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer.py,StatelessInputTransformer,"
+Wrapper for a stateless input transformer implemented as a function.
+",78,79,68,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer.py,CoroutineInputTransformer,"
+Wrapper for an input transformer implemented as a coroutine.
+",95,96,60,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer.py,TokenInputTransformer,"
+Wrapper for a token-based input transformer.
+
+func should accept a list of tokens (5-tuples, see tokenize docs), and
+return an iterable which can be passed to tokenize.untokenize().
+",118,122,181,4
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer.py,assemble_python_lines,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,PromptStripper,"
+Remove matching input prompts from a block of input.
+
+Parameters
+----------
+prompt_re : regular expression
+    A regular expression matching any input prompt (including continuation,
+    e.g. ``...``)
+initial_re : regular expression, optional
+    A regular expression matching only the initial prompt, but not continuation.
+    If no initial expression is given, prompt_re will be used everywhere.
+    Used mainly for plain Python prompts (``>>>``), where the continuation prompt
+    ``...`` is a valid Python expression in Python 3, so shouldn't be stripped.
+
+If initial_re and prompt_re differ,
+only initial_re will be tested against the first line.
+If any prompt is found on the first two lines,
+prompts will be stripped from the rest of the block.
+",51,68,751,17
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,TokenTransformBase,"
+Base class for transformations which examine tokens.
+
+Special syntax should not be transformed when it occurs inside strings or
+comments. This is hard to reliably avoid with regexes. The solution is to
+tokenise the code as Python, and recognise the special syntax in the tokens.
+
+IPython's special syntax is not valid Python syntax, so tokenising may go
+wrong after the special syntax starts. These classes therefore find and
+transform *one* instance of special syntax at a time into regular Python
+syntax. After each transformation, tokens are regenerated to find the next
+piece of special syntax.
+
+Subclasses need to implement one class method (find)
+and one regular method (transform).
+
+The priority attribute can select which transformation to apply if multiple
+transformers match in the same place. Lower numbers have higher priority.
+This allows ""%magic?"" to be turned into a help call rather than a magic call.
+",159,177,917,18
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,MagicAssign,"
+Transformer for assignments from magics (a = %foo)
+",210,211,50,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,SystemAssign,"
+Transformer for assignments from system commands (a = !foo)
+",242,243,59,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,EscapedCommand,"
+Transformer for escaped commands like %foo, !foo, or /foo
+",365,366,57,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,HelpEnd,"
+Transformer for help syntax: obj? and obj??
+",416,417,43,1
+C:\Users\vaano\python_projects\ipython\IPython\core\inputtransformer2.py,TransformerManager,"
+Applies various transformations to a cell or code block.
+
+The key methods for external use are ``transform_cell()``
+and ``check_complete()``.
+",519,523,141,4
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,ProvisionalWarning,"
+Warning class for unstable features
+",106,107,35,1
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,SpaceInInput,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,SeparateUnicode,"
+A Unicode subclass to validate separate_in, separate_out, etc.
+
+This is a Unicode based trait that converts '0'->'' and ``'\\n'->'\n'``.
+",266,269,136,3
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,DummyMod,"
+A dummy module used for IPython's interactive module when
+a namespace must be assigned to the module's __dict__.
+",278,280,112,2
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,ExecutionInfo,"
+The arguments used for a call to :meth:`InteractiveShell.run_cell`
+
+Stores information about what is going to happen.
+",285,288,117,3
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,ExecutionResult,"
+The result of a call to :meth:`InteractiveShell.run_cell`
+
+Stores information about what took place.
+",309,312,100,3
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,InteractiveShell,"
+An enhanced, interactive shell for Python.
+",340,341,42,1
+C:\Users\vaano\python_projects\ipython\IPython\core\interactiveshell.py,InteractiveShellABC,"
+An abstract base class for InteractiveShell.
+",3699,3700,44,1
+C:\Users\vaano\python_projects\ipython\IPython\core\logger.py,Logger,"
+A Logfile class with different policies for file creation
+",27,28,57,1
+C:\Users\vaano\python_projects\ipython\IPython\core\macro.py,Macro,"
+Simple class to store the value of macros as strings.
+
+Macro is just a callable that executes a string of IPython
+input when called.
+",17,21,132,4
+C:\Users\vaano\python_projects\ipython\IPython\core\magic.py,Bunch,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magic.py,MagicsManager,"
+Object that handles all magic-related functionality for IPython.
+    
+",305,306,64,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magic.py,Magics,"
+Base class for implementing magic functions.
+
+Shell functions which can be reached as %function_name. All magic
+functions should accept a string, which they can parse for their own
+needs. This can make some functions easier to type, eg `%cd ../`
+vs. `%cd(""../"")`
+
+Classes providing magic functions need to subclass this class, and they
+MUST:
+
+- Use the method decorators `@line_magic` and `@cell_magic` to decorate
+  individual methods as magic functions, AND
+
+- Use the class decorator `@magics_class` to ensure that the magic
+  methods are properly registered at the instance level upon instance
+  initialization.
+
+See :mod:`magic_functions` for examples of actual implementation classes.
+",481,499,690,18
+C:\Users\vaano\python_projects\ipython\IPython\core\magic.py,MagicAlias,"
+An alias to another magic function.
+
+An alias is determined by its magic name and magic kind. Lookup
+is done at call time, so if the underlying magic changes the alias
+will call the new function.
+
+Use the :meth:`MagicsManager.register_alias` method or the
+`%alias_magic` magic function to create and register a new alias.
+",665,673,321,8
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,MagicHelpFormatter,"
+A HelpFormatter with a couple of changes to meet our needs.
+",65,66,59,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,MagicArgumentParser,"
+An ArgumentParser tweaked for use by IPython magics.
+    
+",106,107,52,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,ArgDecorator,"
+Base class for decorators to add ArgumentParser information to a method.
+    
+",177,178,72,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,magic_arguments,"
+Mark the magic as having argparse arguments and possibly adjust the
+name.
+",194,196,73,2
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,ArgMethodWrapper,"
+Base class to define a wrapper for ArgumentParser method.
+
+Child class must define either `_method_name` or `add_to_parser`.
+",214,217,124,3
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,argument,"
+Store arguments and keywords to pass to add_argument().
+
+Instances also serve to decorate command methods.
+",238,241,106,3
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,defaults,"
+Store arguments and keywords to pass to set_defaults().
+
+Instances also serve to decorate command methods.
+",246,249,106,3
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,argument_group,"
+Store arguments and keywords to pass to add_argument_group().
+
+Instances also serve to decorate command methods.
+",254,257,112,3
+C:\Users\vaano\python_projects\ipython\IPython\core\magic_arguments.py,kwds,"
+Provide other keywords to the sub-parser constructor.
+    
+",266,267,53,1
+C:\Users\vaano\python_projects\ipython\IPython\core\oinspect.py,Inspector,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\payload.py,PayloadManager,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PrefilterError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PrefilterManager,"
+Main prefilter component.
+
+The IPython prefilter is run on all user input before it is run.  The
+prefilter consumes lines of input and produces transformed lines of
+input.
+
+The implementation consists of two phases:
+
+1. Transformers
+2. Checkers and handlers
+
+Over time, we plan on deprecating the checkers and handlers and doing
+everything in the transformers.
+
+The transformers are instances of :class:`PrefilterTransformer` and have
+a single method :meth:`transform` that takes a line and returns a
+transformed line.  The transformation can be accomplished using any
+tool, but our current ones use regular expressions for speed.
+
+After all the transformers have been run, the line is fed to the checkers,
+which are instances of :class:`PrefilterChecker`.  The line is passed to
+the :meth:`check` method, which either returns `None` or a
+:class:`PrefilterHandler` instance.  If `None` is returned, the other
+checkers are tried.  If an :class:`PrefilterHandler` instance is returned,
+the line is passed to the :meth:`handle` method of the returned
+handler and no further checkers are tried.
+
+Both transformers and checkers have a `priority` attribute, that determines
+the order in which they are called.  Smaller priorities are tried first.
+
+Both transformers and checkers also have `enabled` attribute, which is
+a boolean that determines if the instance is used.
+
+Users or developers can change the priority or enabled attribute of
+transformers or checkers, but they must call the :meth:`sort_checkers`
+or :meth:`sort_transformers` method after changing the priority.
+",79,115,1568,36
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PrefilterTransformer,"
+Transform a line of user input.
+",345,346,31,1
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PrefilterChecker,"
+Inspect an input line and return a handler for that line.
+",375,376,57,1
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,EmacsChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,MacroChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,IPyAutocallChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,AssignmentChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,AutoMagicChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PythonOpsChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,AutocallChecker,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,PrefilterHandler,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,MacroHandler,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,MagicHandler,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,AutoHandler,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\prefilter.py,EmacsHandler,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profileapp.py,ProfileLocate,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profileapp.py,ProfileList,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profileapp.py,ProfileCreate,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profileapp.py,ProfileApp,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profiledir.py,ProfileDirError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\profiledir.py,ProfileDir,"
+An object to manage the profile directory and its resources.
+
+The profile directory is used by all IPython applications, to manage
+configuration, logging and security.
+
+This object knows how to find, create and manage these directories. This
+should be used by any code that wants to handle profiles.
+",29,36,299,7
+C:\Users\vaano\python_projects\ipython\IPython\core\prompts.py,LazyEvaluate,"
+This is used for formatting strings with values that need to be updated
+at that time, such as the current time or working directory.
+",6,8,132,2
+C:\Users\vaano\python_projects\ipython\IPython\core\shellapp.py,InteractiveShellApp,"
+A Mixin for applications that start InteractiveShell instances.
+
+Provides configurables for loading extensions and executing files
+as part of configuring a Shell environment.
+
+The following methods should be called by the :meth:`initialize` method
+of the subclass:
+
+  - :meth:`init_path`
+  - :meth:`init_shell` (to be implemented by the subclass)
+  - :meth:`init_gui_pylab`
+  - :meth:`init_extensions`
+  - :meth:`init_code`
+",100,113,423,13
+C:\Users\vaano\python_projects\ipython\IPython\core\splitinput.py,LineInfo,"
+A single line of input and associated info.
+
+Includes the following as properties:
+
+line
+  The original, raw line
+
+continue_prompt
+  Is this line a continuation in a sequence of multiline input?
+
+pre
+  Any leading whitespace.
+
+esc
+  The escape character(s) in pre or the empty string if there isn't one.
+  Note that '!!' and '??' are possible values for esc. Otherwise it will
+  always be a single character.
+
+ifun
+  The 'function part', which is basically the maximal initial sequence
+  of valid python identifiers and the '.' character. This is what is
+  checked for alias and magic transformations, used for auto-calling,
+  etc. In contrast to Python identifiers, it may start with ""%"" and contain
+  ""*"".
+
+the_rest
+  Everything else on the line.
+",82,109,748,27
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,TBTools,"
+Basic tools used by all traceback printer classes.
+",483,484,50,1
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,ListTB,"
+Print traceback information from a traceback list, with optional color.
+
+Calling requires 3 arguments: (etype, evalue, elist)
+as would be obtained by::
+
+  etype, evalue, tb = sys.exc_info()
+  if tb:
+    elist = traceback.extract_tb(tb)
+  else:
+    elist = None
+
+It can thus be used by programs which need to process the traceback before
+printing (such as console replacements based on the code module from the
+standard library).
+
+Because they are meant to be called without a full traceback (only a
+list), instances of this class can't call the interactive pdb debugger.
+",603,620,570,17
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,VerboseTB,"
+A port of Ka-Ping Yee's cgitb.py module that outputs color text instead
+of HTML.  Requires inspect and pydoc.  Crazy, man.
+
+Modified version which optionally strips the topmost entries from the
+traceback, to be used with alternate interpreters (because their own code
+would appear in the traceback).
+",853,859,299,6
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,FormattedTB,"
+Subclass ListTB but allow calling with a traceback.
+
+It can thus be used as a sys.excepthook for Python > 2.1.
+
+Also adds 'Context' and 'Verbose' modes, not available in ListTB.
+
+Allows a tb_offset to be specified. This is useful for situations where
+one needs to remove a number of topmost frames from the traceback (such as
+occurs with python programs that themselves execute other python code,
+like Python shells).  
+",1278,1288,417,10
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,AutoFormattedTB,"
+A traceback printer which can be called on the fly.
+
+It will find out about exceptions by itself.
+
+A brief example::
+
+    AutoTB = AutoFormattedTB(mode = 'Verbose',color_scheme='Linux')
+    try:
+      ...
+    except:
+      AutoTB()  # or AutoTB(out=logfile) where logfile is an open file object
+",1371,1382,294,11
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,ColorTB,"
+Shorthand to initialize a FormattedTB in Linux colors mode.
+",1425,1426,59,1
+C:\Users\vaano\python_projects\ipython\IPython\core\ultratb.py,SyntaxTB,"
+Extension which holds some state: the last exception value
+",1433,1434,58,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\auto.py,AutoMagics,"
+Magics that control various autoX behaviors.
+",25,26,44,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\basic.py,MagicsDisplay,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\basic.py,BasicMagics,"
+Magics that provide central IPython functionality.
+
+These are various magics that don't fit into specific categories but that
+are all part of the base 'IPython experience'.
+",71,75,172,4
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\basic.py,AsyncMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\code.py,MacroToEdit,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\code.py,InteractivelyDefined,"
+Exception for interactively defined variable in magic_edit
+",168,169,58,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\code.py,CodeMagics,"
+Magics related to code management (loading, saving, editing, ...).
+",174,175,66,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\code.py,DataIsObject,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\config.py,ConfigMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\display.py,DisplayMagics,"
+Magics for displaying various output types with literals
+
+Defines javascript/latex/svg/html cell magics for writing
+blocks in those languages, to be rendered in the frontend.
+",27,31,174,4
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\execution.py,TimeitResult,"
+Object returned by the timeit magic with info about the run.
+
+Contains the following attributes :
+
+loops: (int) number of loops done per measurement
+repeat: (int) number of times the measurement has been repeated
+best: (float) best execution time / number
+all_runs: (list of float) execution time of each run (in s)
+compile_time: (float) time of statement compilation (s)
+",67,76,371,9
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\execution.py,TimeitTemplateFiller,"
+Fill in the AST template for timing execution.
+
+This is quite closely tied to the template definition, which is in
+:meth:`ExecutionMagics.timeit`.
+",124,128,146,4
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\execution.py,Timer,"
+Timer class that explicitly uses self.inner
+
+which is an undocumented implementation detail of CPython,
+not shared by PyPy.",149,153,123,4
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\execution.py,ExecutionMagics,"
+Magics related to code execution, debugging, profiling, etc.
+
+    
+",177,178,60,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\extension.py,ExtensionMagics,"
+Magics to manage the IPython extensions system.
+",25,26,47,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\history.py,HistoryMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\logging.py,LoggingMagics,"
+Magics related to all logging machinery.
+",29,30,40,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\namespace.py,NamespaceMagics,"
+Magics to manage various aspects of the user's namespace.
+
+These include listing variables, introspecting into them, etc.
+",34,37,121,3
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\osm.py,OSMagics,"
+Magics to interact with the underlying OS (shell-type functionality).
+    
+",31,32,69,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\packaging.py,PackagingMagics,"
+Magics related to packaging & installation
+",58,59,42,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\pylab.py,PylabMagics,"
+Magics related to matplotlib's pylab support
+",38,39,44,1
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\script.py,ScriptMagics,"
+Magics for talking to scripts
+
+This defines a base `%%script` cell magic for running a cell
+with a program in a subprocess, and registers a few top-level
+magics that call %%script with common interpreters.
+",69,74,205,5
+C:\Users\vaano\python_projects\ipython\IPython\core\magics\__init__.py,UserMagics,"
+Placeholder for user-defined magics to be added at runtime.
+
+All magics are eventually merged into a single namespace at runtime, but we
+use this class to isolate the magics defined dynamically by the user into
+their own class.
+",36,41,227,5
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\tclass.py,C,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_application.py,TestApp,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_async_helpers.py,AsyncTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,NamedInstanceMetaclass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,NamedInstanceClass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,KeyCompletable,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,TestCompleter,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,CompletionSplitterTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completer.py,C,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completerlib.py,MockEvent,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completerlib.py,Test_magic_run_completer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_completerlib.py,Test_magic_run_completer_nonascii,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_debugger.py,_FakeInput,"
+A fake input stream for pdb's interactive debugger.  Whenever a
+line is read, print it (to simulate the user typing it), and then
+return it.  The set of lines to return is specified in the
+constructor; they should not have trailing newlines.
+",19,23,241,4
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_debugger.py,PdbTestInput,"
+Context manager that makes testing Pdb in doctests easier.
+",34,35,58,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_events.py,CallbackTests,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,B,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,C,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadRepr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadPretty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,GoodPretty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,MakePDF,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadHTML,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,HTMLNotImplemented,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadPretty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,MyHTML,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,TextMagicHat,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,CallableMagicHat,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadReprArgs,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,SelfDisplaying,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,NotSelfDisplaying,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,JSONString,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,HasReprMime,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,Tester,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,HasReprMimeMeta,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_formatters.py,BadReprMime,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_handlers.py,CallableIndexable,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_handlers.py,Autocallable,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_hooks.py,Okay,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_hooks.py,Fail,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,NoInputEncodingTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,InputSplitterTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,InteractiveLoopTestCase,"
+Tests for an interactive loop like a python shell.
+    
+",351,352,50,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,IPythonInputTestCase,"
+By just creating a new class whose .isp is a different instance, we
+re-run the same test battery on the new input splitter.
+
+In addition, this runs the tests over the syntax and syntax_ml dicts that
+were tested by individual functions, as part of the OO interface.
+
+It also makes some checks on the raw buffer storage.
+",386,393,318,7
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,CellMagicsCommon,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,CellModeCellMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,LineModeCellMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,X,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputsplitter.py,CommentTransformer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_inputtransformer2.py,Tk,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,DerivedInterrupt,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,InteractiveShellTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestSafeExecfileNonAsciiPath,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,ExitCodeChecks,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestSystemRaw,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestSystemPipedExitCode,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestModules,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,Negator,"
+Negates all number literals in an AST.",620,621,38,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestAstTransform,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,IntegerWrapper,"
+Wraps all integers in a call to Integer()",693,694,41,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestAstTransform2,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,ErrorTransformer,"
+Throws an error when it sees a number.",750,751,38,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestAstTransformError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,StringRejector,"
+Throws an InputRejected when it sees a string literal.
+
+Used to verify that NodeTransformers can signal that a piece of code should
+not be executed by throwing an InputRejected.",776,780,177,4
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestAstTransformInputRejection,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,DummyRepr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestSyntaxErrorTransformer,"
+Check that SyntaxError raised by an input transformer is handled by run_cell()
+",887,888,78,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestWarningSuppression,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,TestImportNoDeprecate,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,Spam,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_interactiveshell.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,DummyMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,TestResetErrors,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,TestXdel,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,TestEnv,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,CellMagicTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,FooFoo,"
+class with both %foo and %%foo magics
+",999,1000,37,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,KernelMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,MyMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic.py,MyMagics2,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_magic_terminal.py,PasteTestCase,"
+Multiple tests for clipboard pasting
+",80,81,36,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,Test,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,Call,"
+This is the class docstring.
+",106,107,28,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,HasSignature,"
+This is the class docstring.
+",118,119,28,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,SimpleClass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,Awkward,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,NoBoolCall,"
+callable with `__bool__` raising should still be inspect-able.
+",135,136,62,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,SerialLiar,"
+Attribute accesses always get another copy of the same class.
+
+unittest.mock.call does something similar, but it's not ideal for testing
+as the failure mode is to eat all your RAM. This gives up after 10k levels.
+",149,153,212,4
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,A,"
+standard docstring
+",239,240,18,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,B,"
+standard docstring
+",243,244,18,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,C,"
+standard docstring
+",248,249,18,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_oinspect.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_prefilter.py,X,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_profile.py,ProfileStartupTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_prompts.py,PromptTests,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_pylabtools.py,TestPylabSwitch,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_pylabtools.py,Shell,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_run.py,TestMagicRunPass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_run.py,TestMagicRunSimple,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_run.py,TestMagicRunWithPackage,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_shellapp.py,TestFileToRun,"
+Test the behavior of the file_to_run parameter.
+",28,29,47,1
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,ChangedPyFileTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,NonAsciiTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,NestedGenExprTestCase,"
+Regression test for the following issues:
+https://github.com/ipython/ipython/issues/8293
+https://github.com/ipython/ipython/issues/8205
+",145,148,135,3
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,IndentationErrorTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,SyntaxErrorTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,Python3ChainedExceptionsTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,RecursionTest,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\core\tests\test_ultratb.py,TokenizeFailureTest,"
+Tests related to https://github.com/ipython/ipython/issues/6864.",432,433,64,1
+C:\Users\vaano\python_projects\ipython\IPython\extensions\autoreload.py,ModuleReloader,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\extensions\autoreload.py,StrongRef,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\extensions\autoreload.py,AutoreloadMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\extensions\storemagic.py,StoreMagics,"
+Lightweight persistence for python variables.
+
+Provides the %store magic.
+",60,63,73,3
+C:\Users\vaano\python_projects\ipython\IPython\extensions\tests\test_autoreload.py,FakeShell,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\extensions\tests\test_autoreload.py,Fixture,"
+Fixture for creating test module files
+",67,68,38,1
+C:\Users\vaano\python_projects\ipython\IPython\extensions\tests\test_autoreload.py,TestAutoreload,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\external\qt_loaders.py,ImportDenier,"
+Import Hook that will guard against bad Qt imports
+once IPython commits to a specific binding
+",36,38,93,2
+C:\Users\vaano\python_projects\ipython\IPython\external\decorators\_numpy_testing_noseclasses.py,KnownFailureTest,"
+Raise this exception to mark a test as a known failing test.
+",11,12,60,1
+C:\Users\vaano\python_projects\ipython\IPython\external\decorators\_numpy_testing_noseclasses.py,KnownFailure,"
+Plugin that installs a KNOWNFAIL error class for the
+KnownFailureClass exception.  When KnownFailureTest is raised,
+the exception will be logged in the knownfail attribute of the
+result, 'K' or 'KNOWNFAIL' (verbose) will be output, and the
+exception will not be counted as an error or failure.
+",16,21,293,5
+C:\Users\vaano\python_projects\ipython\IPython\lib\backgroundjobs.py,BackgroundJobManager,"
+Class to manage a pool of backgrounded threaded jobs.
+
+Below, we assume that 'jobs' is a BackgroundJobManager instance.
+
+Usage summary (see the method docstrings for details):
+
+  jobs.new(...) -> start a new job
+  
+  jobs() or jobs.status() -> print status summary of all jobs
+
+  jobs[N] -> returns job number N.
+
+  foo = jobs[N].result -> assign to variable foo the result of job N
+
+  jobs[N].traceback() -> print the traceback of dead job N
+
+  jobs.remove(N) -> remove (finished) job N
+
+  jobs.flush() -> remove all finished jobs
+  
+As a convenience feature, BackgroundJobManager instances provide the
+utility result and traceback methods which retrieve the corresponding
+information from the jobs list:
+
+  jobs.result(N) <--> jobs[N].result
+  jobs.traceback(N) <--> jobs[N].traceback()
+
+While this appears minor, it allows you to use tab completion
+interactively on the job manager instance.
+",42,71,894,29
+C:\Users\vaano\python_projects\ipython\IPython\lib\backgroundjobs.py,BackgroundJobBase,"
+Base class to build BackgroundJob classes.
+
+The derived classes must implement:
+
+- Their own __init__, since the one here raises NotImplementedError.  The
+  derived constructor must call self._init() at the end, to provide common
+  initialization.
+
+- A strform attribute used in calls to __str__.
+
+- A call() method, which will make the actual execution call and must
+  return a value to be held in the 'result' field of the job object.
+",358,370,436,12
+C:\Users\vaano\python_projects\ipython\IPython\lib\backgroundjobs.py,BackgroundJobExpr,"
+Evaluate an expression as a background job (uses a separate thread).
+",446,447,68,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\backgroundjobs.py,BackgroundJobFunc,"
+Run a function call as a background job (uses a separate thread).
+",469,470,65,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\clipboard.py,ClipboardEmpty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,DemoError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,Demo,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,IPythonDemo,"
+Class for interactive demos with IPython's input processing applied.
+
+This subclasses Demo, but instead of executing each block by the Python
+interpreter (via exec), it actually calls IPython on it, so that any input
+filters which may be in place are applied to the input block.
+
+If you have an interactive environment which exposes special input
+processing, you can use this class instead to write demo scripts which
+operate exactly as if you had typed them interactively.  The default Demo
+class requires the input to be valid, pure Python code.
+",543,553,547,10
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,LineDemo,"
+Demo where each line is executed as a separate block.
+
+The input script should be valid Python code.
+
+This class doesn't require any markup at all, and it's meant for simple
+scripts (with no nesting or any kind of indentation) which consist of
+multiple lines of input to be executed, one at a time, as if they had been
+typed in the interactive prompt.
+
+Note: the input can not have *any* indentation, which means that only
+single-lines of input are accepted, not even function definitions are
+valid.
+",561,573,499,12
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,IPythonLineDemo,"
+Variant of the LineDemo class whose input is processed by IPython.
+",596,597,66,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,ClearMixin,"
+Use this mixin to make Demo classes with less visual clutter.
+
+Demos using this mixin will clear the screen before every block and use
+blank marquees.
+
+Note that in order for the methods defined here to actually override those
+of the classes it's mixed with, it must go /first/ in the inheritance
+tree.  For example:
+
+    class ClearIPDemo(ClearMixin,IPythonDemo): pass
+
+will provide an IPythonDemo class with the mixin's features.
+",601,613,431,12
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,ClearDemo,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\demo.py,ClearIPDemo,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,Audio,"
+Create an audio object.
+
+When this object is returned by an input cell or passed to the
+display function, it will result in Audio controls being displayed
+in the frontend (only works in the notebook).
+
+Parameters
+----------
+data : numpy array, list, unicode, str or bytes
+    Can be one of
+
+      * Numpy 1d array containing the desired waveform (mono)
+      * Numpy 2d array containing waveforms for each channel.
+        Shape=(NCHAN, NSAMPLES). For the standard channel order, see
+        http://msdn.microsoft.com/en-us/library/windows/hardware/dn653308(v=vs.85).aspx
+      * List of float or integer representing the waveform (mono)
+      * String containing the filename
+      * Bytestring containing raw PCM data or
+      * URL pointing to a file on the web.
+
+    If the array option is used, the waveform will be normalized.
+
+    If a filename or url is used, the format support will be browser
+    dependent.
+url : unicode
+    A URL to download the data from.
+filename : unicode
+    Path to a local file to load the data from.
+embed : boolean
+    Should the audio data be embedded using a data URI (True) or should
+    the original source be referenced. Set this to True if you want the
+    audio to playable later with no internet connection in the notebook.
+
+    Default is `True`, unless the keyword argument `url` is set, then
+    default value is `False`.
+rate : integer
+    The sampling rate of the raw data.
+    Only required when data parameter is being used as an array
+autoplay : bool
+    Set to True if the audio should immediately start playing.
+    Default is `False`.
+normalize : bool
+    Whether audio should be normalized (rescaled) to the maximum possible
+    range. Default is `True`. When set to `False`, `data` must be between
+    -1 and 1 (inclusive), otherwise an error is raised.
+    Applies only when `data` is a list or array of samples; other types of
+    audio are never normalized.
+
+Examples
+--------
+::
+
+    # Generate a sound
+    import numpy as np
+    framerate = 44100
+    t = np.linspace(0,5,framerate*5)
+    data = np.sin(2*np.pi*220*t) + np.sin(2*np.pi*224*t)
+    Audio(data,rate=framerate)
+
+    # Can also do stereo or more channels
+    dataleft = np.sin(2*np.pi*220*t)
+    dataright = np.sin(2*np.pi*224*t)
+    Audio([dataleft, dataright],rate=framerate)
+
+    Audio(""http://www.nch.com.au/acm/8k16bitpcm.wav"")  # From URL
+    Audio(url=""http://www.w3schools.com/html/horse.ogg"")
+
+    Audio('/path/to/sound.wav')  # From file
+    Audio(filename='/path/to/sound.ogg')
+
+    Audio(b'RAW_WAV_DATA..)  # From bytes
+    Audio(data=b'RAW_WAV_DATA..)
+
+See Also
+--------
+
+See also the ``Audio`` widgets form the ``ipywidget`` package for more flexibility and options.
+",16,93,2703,77
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,IFrame,"
+Generic class to embed an iframe in an IPython notebook
+",240,241,55,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,YouTubeVideo,"
+Class for embedding a YouTube Video in an IPython session, based on its video id.
+
+e.g. to embed the video from https://www.youtube.com/watch?v=foo , you would
+do::
+
+    vid = YouTubeVideo(""foo"")
+    display(vid)
+
+To start from 30 seconds::
+
+    vid = YouTubeVideo(""abc"", start=30)
+    display(vid)
+
+To calculate seconds from time as hours, minutes, seconds use
+:class:`datetime.timedelta`::
+
+    start=int(timedelta(hours=1, minutes=46, seconds=40).total_seconds())
+
+Other parameters can be provided as documented at
+https://developers.google.com/youtube/player_parameters#Parameters
+
+When converting the notebook using nbconvert, a jpeg representation of the video
+will be inserted in the document.
+",276,299,700,23
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,VimeoVideo,"
+Class for embedding a Vimeo video in an IPython session, based on its video id.
+",316,317,79,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,ScribdDocument,"
+Class for embedding a Scribd document in an IPython session
+
+Use the start_page params to specify a starting point in the document
+Use the view_mode params to specify display type one off scroll | slideshow | book
+
+e.g to Display Wes' foundational paper about PANDAS in book mode from page 3
+
+ScribdDocument(71048089, width=800, height=400, start_page=3, view_mode=""book"")
+",325,333,372,8
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,FileLink,"
+Class for embedding a local file link in an IPython session, based on path
+
+e.g. to embed a link that was generated in the IPython notebook as my/data.txt
+
+you would do::
+
+    local_file = FileLink(""my/data.txt"")
+    display(local_file)
+
+or in the HTML notebook, just::
+
+    FileLink(""my/data.txt"")
+",341,353,298,12
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,FileLinks,"
+Class for embedding local file links in an IPython session, based on path
+
+e.g. to embed links to files that were generated in the IPython notebook
+under ``my/data``, you would do::
+
+    local_files = FileLinks(""my/data"")
+    display(local_files)
+
+or in the HTML notebook, just::
+
+    FileLinks(""my/data"")
+",407,418,305,11
+C:\Users\vaano\python_projects\ipython\IPython\lib\display.py,Code,"
+Display syntax-highlighted source code.
+
+This uses Pygments to highlight the code for HTML and Latex output.
+
+Parameters
+----------
+data : str
+    The code as a string
+url : str
+    A URL to fetch the code from
+filename : str
+    A local filename to load the code from
+language : str
+    The short name of a Pygments lexer to use for highlighting.
+    If not specified, it will guess the lexer based on the filename
+    or the code. Available lexers: http://pygments.org/docs/lexers/
+",603,619,483,16
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,InputHookManager,"
+DEPRECATED since IPython 5.0
+
+Manage PyOS_InputHook for different GUI toolkits.
+
+This class installs various hooks under ``PyOSInputHook`` to handle
+GUI event loop integration.
+",108,114,176,6
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,InputHookBase,"
+DEPRECATED since IPython 5.0
+
+Base class for input hooks for specific toolkits.
+
+Subclasses should define an :meth:`enable` method with one argument, ``app``,
+which will either be an instance of the toolkit's application class, or None.
+They may also define a :meth:`disable` method with no arguments.
+",311,318,301,7
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,NullInputHook,"
+DEPRECATED since IPython 5.0
+
+A null inputhook that doesn't need to do anything
+",328,331,79,3
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,WxInputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,Qt4InputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,Qt5InputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,GtkInputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,TkInputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,GlutInputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,PygletInputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhook.py,Gtk3InputHook,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhookwx.py,EventLoopTimer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\inputhookwx.py,EventLoopRunner,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\latextools.py,LaTeXTool,"
+An object to store configuration of the LaTeX tool.
+",23,24,51,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\lexers.py,IPythonPartialTracebackLexer,"
+Partial lexer for IPython tracebacks.
+
+Handles all the non-python output. This works for both Python 2.x and 3.x.
+",129,132,113,3
+C:\Users\vaano\python_projects\ipython\IPython\lib\lexers.py,IPythonTracebackLexer,"
+IPython traceback lexer.
+
+For doctests, the tracebacks can be snipped as much as desired with the
+exception to the lines that designate a traceback. For non-syntax error
+tracebacks, this is the line of hyphens. For syntax error tracebacks,
+this is the line which lists the File and line number.
+The lexer inherits from DelegatingLexer.  The "root" lexer is an
+appropriate IPython lexer, which depends on the value of the boolean
+`python3`.  First, we parse with the partial IPython traceback lexer.
+Then, any code marked with the "Other" token is delegated to the root
+lexer.
+",178,184,294,6
+C:\Users\vaano\python_projects\ipython\IPython\lib\lexers.py,IPythonConsoleLexer,"
+An IPython console lexer for IPython code-blocks and doctests, such as:
+
+.. code-block:: rst
+
+    .. code-block:: ipythonconsole
+
+        In [1]: a = 'foo'
+
+        In [2]: a
+        Out[2]: 'foo'
+
+        In [3]: print a
+        foo
+
+        In [4]: 1 / 0
+
+
+Support is also provided for IPython exceptions:
+
+.. code-block:: rst
+
+    .. code-block:: ipythonconsole
+
+        In [1]: raise Exception
+
+        ---------------------------------------------------------------------------
+        Exception                                 Traceback (most recent call last)
+        <ipython-input-1-fca2ab0ca76b> in <module>
+        ----> 1 raise Exception
+
+        Exception:
+",212,243,669,31
+C:\Users\vaano\python_projects\ipython\IPython\lib\lexers.py,IPyLexer,"
+Primary lexer for all IPython-like code.
+
+This is a simple helper lexer.  If the first line of the text begins with
+""In \[[0-9]+\]:"", then the entire text is parsed with an IPython console
+lexer. If not, then the entire text is parsed with an IPython lexer.
+
+The goal is to reduce the number of lexers that are registered
+with Pygments.
+",497,505,336,8
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,CUnicodeIO,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,_PrettyPrinterBase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,PrettyPrinter,"
+Baseclass for the `RepresentationPrinter` prettyprinter that is used to
+generate pretty reprs of objects.  Contrary to the `RepresentationPrinter`
+this printer knows nothing about the default pprinters or the `_repr_pretty_`
+callback method.
+",178,182,241,4
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,RepresentationPrinter,"
+Special pretty printer that has a `pretty` method that calls the pretty
+printer for a python object.
+
+This class stores processing data on `self` so you must *never* use
+this class in a threaded environment.  Always lock it or reinstanciate
+it.
+
+Instances also have a verbose flag callbacks can access to control their
+output.  For example the default instance repr prints all attributes and
+methods that are not prefixed by an underscore if the printer is in
+verbose mode.
+",330,341,473,11
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,Printable,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,Text,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,Breakable,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,Group,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,GroupQueue,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\pretty.py,Foo,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_display.py,TestAudioDataWithNumpy,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_display.py,TestAudioDataWithoutNumpy,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_lexers.py,TestLexers,"
+Collection of lexers tests
+",14,15,26,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MyList,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MyDict,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MyObj,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,Dummy1,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,Dummy2,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,NoModule,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,Breaking,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,BreakingRepr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,BreakingReprParent,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,BadRepr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,BadException,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,ReallyBadRepr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,SA,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,SB,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,TestsPretty,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MetaClass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,OrderedCounter,"
+Counter that remembers the order elements are first encountered
+",436,437,63,1
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MySet,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,C,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\lib\tests\test_pretty.py,MyCounter,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\sphinxext\ipython_directive.py,EmbeddedSphinxShell,"
+An embedded IPython instance to run inside Sphinx
+",331,332,49,1
+C:\Users\vaano\python_projects\ipython\IPython\sphinxext\ipython_directive.py,IPythonDirective,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\debugger.py,TerminalPdb,"
+Standalone IPython debugger.
+",26,27,28,1
+C:\Users\vaano\python_projects\ipython\IPython\terminal\embed.py,KillEmbedded,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\embed.py,EmbeddedMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\embed.py,InteractiveShellEmbed,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\interactiveshell.py,_NoStyle,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\interactiveshell.py,TerminalInteractiveShell,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\ipapp.py,IPAppCrashHandler,"
+sys.excepthook for IPython itself, leaves a detailed report on disk.
+",64,65,68,1
+C:\Users\vaano\python_projects\ipython\IPython\terminal\ipapp.py,LocateIPythonApp,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\ipapp.py,TerminalIPythonApp,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\magics.py,TerminalMagics,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\prompts.py,Prompts,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\prompts.py,ClassicPrompts,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\prompts.py,RichPromptDisplayHook,"
+Subclass of base display hook using coloured prompt
+",78,79,51,1
+C:\Users\vaano\python_projects\ipython\IPython\terminal\ptutils.py,IPythonPTCompleter,"
+Adaptor to provide IPython completions to prompt_toolkit
+",63,64,56,1
+C:\Users\vaano\python_projects\ipython\IPython\terminal\ptutils.py,IPythonPTLexer,"
+Wrapper around PythonLexer and BashLexer.
+",134,135,41,1
+C:\Users\vaano\python_projects\ipython\IPython\terminal\pt_inputhooks\wx.py,EventLoopTimer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\pt_inputhooks\wx.py,EventLoopRunner,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\pt_inputhooks\__init__.py,UnknownBackend,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,TestElide,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,TestContextAwareCompletion,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,mock_input_helper,"
+Machinery for tests of the main interact loop.
+
+Used by the mock_input decorator.
+",39,42,81,3
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,InteractiveShellTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,TerminalMagicsTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,Test,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\terminal\tests\test_interactivshell.py,Test2,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\decorators.py,Tester,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\globalipapp.py,StreamProxy,"
+Proxy for sys.stdout/err.  This will request the stream *at call time*
+allowing for nose's Capture plugin's redirection of sys.stdout/err.
+
+Parameters
+----------
+name : str
+    The name of the stream. This will be requested anew at every call
+",25,32,242,7
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptest.py,TestSection,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptest.py,ExclusionPlugin,"
+A nose plugin to effect our exclusions of files and directories.
+    
+",241,242,64,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptest.py,StreamCapturer,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptest.py,SubprocessStreamCapturePlugin,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptestcontroller.py,TestController,"
+Run tests in a subprocess
+    
+",32,33,25,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptestcontroller.py,PyTestController,"
+Run Python tests using IPython.testing.iptest
+",114,115,45,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\iptestcontroller.py,CustomHtmlReporter,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\ipunittest.py,IPython2PythonConverter,"
+Convert IPython 'syntax' to valid Python.
+
+Eventually this code may grow to be the full IPython syntax conversion
+implementation, but for now it only does prompt conversion.
+",56,60,173,4
+C:\Users\vaano\python_projects\ipython\IPython\testing\ipunittest.py,Doc2UnitTester,"
+Class whose instances act as a decorator for docstring testing.
+
+In practice we're only likely to need one instance ever, made below (though
+no attempt is made at turning it into a singleton, there is no need for
+that).
+",110,115,219,5
+C:\Users\vaano\python_projects\ipython\IPython\testing\ipunittest.py,Tester,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\tools.py,TempFileMixin,"
+Utility class to create temporary Python/IPython files.
+
+Meant as a mixin class for test cases.
+",267,270,95,3
+C:\Users\vaano\python_projects\ipython\IPython\testing\tools.py,AssertPrints,"
+Context manager for testing that code prints certain text.
+
+Examples
+--------
+>>> with AssertPrints(""abc"", suppress=False):
+...     print(""abcd"")
+...     print(""def"")
+...
+abcd
+def
+",340,350,179,10
+C:\Users\vaano\python_projects\ipython\IPython\testing\tools.py,AssertNotPrints,"
+Context manager for checking that certain output *isn't* produced.
+
+Counterpart of AssertPrints
+",388,391,95,3
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,DocTestSkip,"
+Object wrapper for doctests to be skipped.
+",69,70,42,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,DocTestFinder,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPDoctestOutputChecker,"
+Second-chance checker with support for random tests.
+
+If the default comparison doesn't pass, this checker looks in the expected
+output string for flags that tell us to ignore the output.
+",171,175,187,4
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,DocTestCase,"
+Proxy for DocTestCase: provides an address() method that
+returns the correct address for the doctest case. Otherwise
+acts as a proxy to the test case. To provide hints for address(),
+an obj may also be passed -- this will be used as the test object
+for purposes of determining the test address, if it is provided.
+Note: this method was taken from numpy's nosetester module.",197,202,313,5
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPExample,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPExternalExample,"
+Doctest examples to be run in an external process.
+",325,326,50,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPDocTestParser,"
+A class used to parse strings containing doctest examples.
+
+Note: This is a version modified to properly recognize IPython input and
+convert any IPython examples into valid Python ones.
+",337,341,185,4
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPDocTestRunner,"
+Test runner that synchronizes the IPython namespace with test globals.
+    
+",568,569,70,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,DocFileCase,"
+Overrides to provide filename
+    
+",591,592,29,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,ExtensionDoctest,"
+Nose Plugin that supports doctests in extension modules.
+    
+",598,599,56,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\ipdoctest.py,IPythonDoctest,"
+Nose Plugin that supports doctests in extension modules.
+    
+",704,705,56,1
+C:\Users\vaano\python_projects\ipython\IPython\testing\plugin\show_refs.py,C,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\tests\test_decorators.py,FooClass,"
+FooClass
+
+Example:
+
+>>> 1+1
+2
+",101,107,29,6
+C:\Users\vaano\python_projects\ipython\IPython\testing\tests\test_ipunittest.py,Foo,"
+For methods, the normal decorator doesn't work.
+
+But rewriting the docstring with ip2py does, *but only if using nose
+--with-doctest*.  Do we want to have that as a dependency?
+",102,106,176,4
+C:\Users\vaano\python_projects\ipython\IPython\testing\tests\test_tools.py,TestAssertPrints,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\testing\tests\test_tools.py,Test_ipexec_validate,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\capture.py,RichOutput,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\capture.py,CapturedIO,"
+Simple object for containing captured stdout/err and rich display StringIO objects
+
+Each instance `c` has three attributes:
+
+- ``c.stdout`` : standard output as a string
+- ``c.stderr`` : standard error as a string
+- ``c.outputs``: a list of rich display outputs
+
+Additionally, there's a ``c.show()`` method which will print all of the
+above in the same order, and can be invoked simply via ``c()``.
+",63,73,398,10
+C:\Users\vaano\python_projects\ipython\IPython\utils\capture.py,capture_output,"
+context manager for capturing stdout/err
+",125,126,40,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\colorable.py,Colorable,"
+A subclass of configurable for all the classes that have a `default_scheme`
+",21,22,75,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\coloransi.py,TermColors,"
+Color escape sequences.
+
+This class defines the escape sequences for all the standard (ANSI?)
+colors in terminals. Also defines a NoColor escape which is just the null
+string, suitable for defining 'dummy' color schemes in terminals which get
+confused by color escapes.
+
+This class should be used as a mixin for building color schemes.
+",58,66,335,8
+C:\Users\vaano\python_projects\ipython\IPython\utils\coloransi.py,InputTermColors,"
+Color escape sequences for input prompts.
+
+This class is similar to TermColors, but the escapes are wrapped in 
+and  so that readline can properly know the length of each line and
+can wrap lines accordingly.  Use this class for any colored text which
+needs to be used in input prompts, such as in calls to raw_input().
+
+This class defines the escape sequences for all the standard (ANSI?)
+colors in terminals. Also defines a NoColor escape which is just the null
+string, suitable for defining 'dummy' color schemes in terminals which get
+confused by color escapes.
+
+This class should be used as a mixin for building color schemes.
+",75,88,632,13
+C:\Users\vaano\python_projects\ipython\IPython\utils\coloransi.py,NoColors,"
+This defines all the same names as the colour classes, but maps them to
+empty strings, so it can easily be substituted to turn off colours.
+",103,105,139,2
+C:\Users\vaano\python_projects\ipython\IPython\utils\coloransi.py,ColorScheme,"
+Generic color scheme class. Just a name and a Struct.
+",112,113,53,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\coloransi.py,ColorSchemeTable,"
+General class to handle tables of color schemes.
+
+It's basically a dict of color schemes with a couple of shorthand
+attributes and some convenient methods.
+
+active_scheme_name -> obvious
+active_colors -> actual color table of the active scheme
+",127,134,243,7
+C:\Users\vaano\python_projects\ipython\IPython\utils\contexts.py,preserve_keys,"
+Preserve a set of keys in a dictionary.
+
+Upon entering the context manager the current values of the keys
+will be saved. Upon exiting, the dictionary will be updated to
+restore the original value of the preserved keys. Preserved keys
+which did not exist when entering the context manager will be
+deleted.
+
+Examples
+--------
+
+>>> d = {'a': 1, 'b': 2, 'c': 3}
+>>> with preserve_keys(d, 'b', 'c', 'd'):
+...     del d['a']
+...     del d['b']      # will be reset to 2
+...     d['c'] = None   # will be reset to 3
+...     d['d'] = 4      # will be deleted
+...     d['e'] = 5
+...     print(sorted(d.items()))
+...
+[('c', None), ('d', 4), ('e', 5)]
+>>> print(sorted(d.items()))
+[('b', 2), ('c', 3), ('e', 5)]
+",11,34,700,23
+C:\Users\vaano\python_projects\ipython\IPython\utils\contexts.py,NoOpContext,"
+Deprecated
+
+Context manager that does nothing.
+",64,67,46,3
+C:\Users\vaano\python_projects\ipython\IPython\utils\io.py,IOStream,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\io.py,Tee,"
+A class to duplicate an output stream to stdout/err.
+
+This works in a manner very similar to the Unix 'tee' command.
+
+When the object is closed or deleted, it closes the original file given to
+it for duplication.
+Inspired by:
+    http://mail.python.org/pipermail/python-list/2007-May/442737.html",99,105,212,6
+C:\Users\vaano\python_projects\ipython\IPython\utils\ipstruct.py,Struct,"
+A dict subclass with attribute style access.
+
+This dict subclass has a a few extra features:
+
+* Attribute style access.
+* Protection of class members (like keys, items) when using attribute
+  style access.
+* The ability to restrict assignment to only existing keys.
+* Intelligent merging.
+* Overloaded operators.
+",29,39,312,10
+C:\Users\vaano\python_projects\ipython\IPython\utils\path.py,HomeDirError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\process.py,FindCmdError,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\PyColorize.py,Parser,"
+Format colored Python source.
+    
+",177,178,29,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\sentinel.py,Sentinel,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\shimmodule.py,ShimWarning,"
+A warning to show when a module has moved, and a shim is in its place.
+",14,15,70,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\shimmodule.py,ShimImporter,"
+Import hook for a shim.
+
+This ensures that submodule imports return the real target module,
+not a clone that will confuse `is` and `isinstance` checks.
+",17,21,151,4
+C:\Users\vaano\python_projects\ipython\IPython\utils\shimmodule.py,ShimModule,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\strdispatch.py,StrDispatch,"
+Dispatch (lookup) a set of strings / regexps for match.
+
+Example:
+
+>>> dis = StrDispatch()
+>>> dis.add_s('hei',34, priority = 4)
+>>> dis.add_s('hei',123, priority = 2)
+>>> dis.add_re('h.i', 686)
+>>> print(list(dis.flat_matches('hei')))
+[123, 34, 686]
+",12,22,250,10
+C:\Users\vaano\python_projects\ipython\IPython\utils\syspathcontext.py,appended_to_syspath,"
+A context for appending a directory to sys.path for a second.
+",21,22,61,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\syspathcontext.py,prepended_to_syspath,"
+A context for prepending a directory to sys.path for a second.
+",43,44,62,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\tempdir.py,NamedFileInTemporaryDirectory,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tempdir.py,TemporaryWorkingDirectory,"
+Creates a temporary directory and sets the cwd to that directory.
+Automatically reverts to previous cwd upon cleanup.
+Usage example:
+
+    with TemporaryWorkingDirectory() as tmpdir:
+        ...
+",42,48,193,6
+C:\Users\vaano\python_projects\ipython\IPython\utils\text.py,LSString,"
+String derivative with a special access attributes.
+
+These are normal strings, but with the special attributes:
+
+    .l (or .list) : value as list (split on newlines).
+    .n (or .nlstr): original value (the string itself).
+    .s (or .spstr): value as whitespace-separated string.
+    .p (or .paths): list of path objects (requires path.py package)
+
+Any values which require transformations are computed only once and
+cached.
+
+Such strings are very useful to efficiently interact with the shell, which
+typically only understands whitespace-separated options for commands.
+",27,41,572,14
+C:\Users\vaano\python_projects\ipython\IPython\utils\text.py,SList,"
+List derivative with a special access attributes.
+
+These are normal lists, but with the special attributes:
+
+* .l (or .list) : value as list (the list itself).
+* .n (or .nlstr): value as a string, joined on newlines.
+* .s (or .spstr): value as a string, joined on spaces.
+* .p (or .paths): list of path objects (requires path.py package)
+
+Any values which require transformations are computed only once and
+cached.
+",88,99,414,11
+C:\Users\vaano\python_projects\ipython\IPython\utils\text.py,EvalFormatter,"
+A String Formatter that allows evaluation of simple expressions.
+
+Note that this version interprets a : as specifying a format string (as per
+standard string formatting), so if slicing is required, you must explicitly
+create a slice.
+
+This is to be used in templating cases, such as the parallel batch
+script templates, where simple arithmetic on arguments is useful.
+
+Examples
+--------
+::
+
+    In [1]: f = EvalFormatter()
+    In [2]: f.format('{n//4}', n=8)
+    Out[2]: '2'
+
+    In [3]: f.format(""{greeting[slice(2,4)]}"", greeting=""Hello"")
+    Out[3]: 'll'
+",488,507,557,19
+C:\Users\vaano\python_projects\ipython\IPython\utils\text.py,FullEvalFormatter,"
+A String Formatter that allows evaluation of simple expressions.
+
+Any time a format key is not found in the kwargs,
+it will be tried as an expression in the kwargs namespace.
+
+Note that this version allows slicing using [1:2], so you cannot specify
+a format string. Use :class:`EvalFormatter` to permit format strings.
+
+Examples
+--------
+::
+
+    In [1]: f = FullEvalFormatter()
+    In [2]: f.format('{n//4}', n=8)
+    Out[2]: '2'
+
+    In [3]: f.format('{list(range(5))[2:4]}')
+    Out[3]: '[2, 3]'
+
+    In [4]: f.format('{3*2}')
+    Out[4]: '6'",517,538,544,21
+C:\Users\vaano\python_projects\ipython\IPython\utils\text.py,DollarFormatter,"
+Formatter allowing Itpl style $foo replacement, for names and attribute
+access only. Standard {foo} replacement also works, and allows full
+evaluation of its arguments.
+
+Examples
+--------
+::
+
+    In [1]: f = DollarFormatter()
+    In [2]: f.format('{n//4}', n=8)
+    Out[2]: '2'
+
+    In [3]: f.format('23 * 76 is $result', result=23*76)
+    Out[3]: '23 * 76 is 1748'
+
+    In [4]: f.format('$a or {b}', a=1, b=2)
+    Out[4]: '1 or 2'
+",573,590,431,17
+C:\Users\vaano\python_projects\ipython\IPython\utils\tz.py,tzUTC,"
+tzinfo object for UTC (zero offset)
+",28,29,35,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_posix.py,ProcessHandler,"
+Execute subprocesses under the control of pexpect.
+    
+",43,44,50,1
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32.py,AvoidUNCPath,"
+A context manager to protect command execution from UNC paths.
+
+In the Win32 API, commands can't be invoked with the cwd being a UNC path.
+This context manager temporarily changes directory to the 'C:' drive on
+entering, and restores the original working directory on exit.
+
+The context manager returns the starting working directory *if* it made a
+change and None otherwise, so that users can apply the necessary adjustment
+to their system calls in the event of a change.
+
+Examples
+--------
+::
+    cmd = 'dir'
+    with AvoidUNCPath() as path:
+        if path is not None:
+            cmd = '""pushd %s &&""%s' % (path, cmd)
+        os.system(cmd)
+",36,54,645,18
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32_controller.py,SECURITY_ATTRIBUTES,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32_controller.py,STARTUPINFO,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32_controller.py,PROCESS_INFORMATION,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32_controller.py,AvoidUNCPath,"
+A context manager to protect command execution from UNC paths.
+
+In the Win32 API, commands can't be invoked with the cwd being a UNC path.
+This context manager temporarily changes directory to the 'C:' drive on
+entering, and restores the original working directory on exit.
+
+The context manager returns the starting working directory *if* it made a
+change and None otherwise, so that users can apply the necessary adjustment
+to their system calls in the event of a change.
+
+Examples
+--------
+::
+    cmd = 'dir'
+    with AvoidUNCPath() as path:
+        if path is not None:
+            cmd = '""pushd %s &&""%s' % (path, cmd)
+        os.system(cmd)
+",153,171,645,18
+C:\Users\vaano\python_projects\ipython\IPython\utils\_process_win32_controller.py,Win32ShellCommandController,"
+Runs a shell command in a 'with' context.
+
+This implementation is Win32-specific.
+
+Example:
+    # Runs the command interactively with default console stdin/stdout
+    with ShellCommandController('python -i') as scc:
+        scc.run()
+
+    # Runs the command using the provided functions for stdin/stdout
+    def my_stdout_func(s):
+        # print or save the string 's'
+        write_to_stdout(s)
+    def my_stdin_func():
+        # If input is available, return it as a string.
+        if input_available():
+            return get_input()
+        # If no input available, return None after a short delay to
+        # keep from blocking.
+        else:
+            time.sleep(0.01)
+            return None
+  
+    with ShellCommandController('python -i') as scc:
+        scc.run(my_stdout_func, my_stdin_func)
+",190,215,806,25
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_dir2.py,Base,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_dir2.py,SubClass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_dir2.py,SubClass,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_dir2.py,MisbehavingGetattr,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_dir2.py,SillierWithDir,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_io.py,TeeTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_io.py,TestIOStream,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_io.py,BadStringIO,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_path.py,TestRaiseDeprecation,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_path.py,TestShellGlob,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_path.py,TestLinkOrCopy,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_path.py,key,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_process.py,SubProcessTestCase,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_wildcard.py,obj_t,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_wildcard.py,Tests,,,,,
+C:\Users\vaano\python_projects\ipython\IPython\utils\tests\test_wildcard.py,A,,,,,
+C:\Users\vaano\python_projects\ipython\setupext\install_data_ext.py,install_data_ext,,,,,
+C:\Users\vaano\python_projects\ipython\tools\gh_api.py,Obj,"
+Dictionary with attribute access to names.
+",29,30,42,1

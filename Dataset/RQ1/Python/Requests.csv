@@ -1,0 +1,300 @@
+fileName,className,classComment,commentStart,commentEnd,classCommentSymbolLength,classCommentLineLength
+C:\Users\vaano\python_projects\requests\setup.py,PyTest,,,,,
+C:\Users\vaano\python_projects\requests\docs\_themes\flask_theme_support.py,FlaskyStyle,,,,,
+C:\Users\vaano\python_projects\requests\requests\adapters.py,BaseAdapter,"
+The Base Transport Adapter
+",56,57,26,1
+C:\Users\vaano\python_projects\requests\requests\adapters.py,HTTPAdapter,"
+The built-in HTTP Adapter for urllib3.
+
+Provides a general-case interface for Requests sessions to contact HTTP and
+HTTPS urls by implementing the Transport Adapter interface. This class will
+usually be created by the :class:`Session <Session>` class under the
+covers.
+
+:param pool_connections: The number of urllib3 connection pools to cache.
+:param pool_maxsize: The maximum number of connections to save in the pool.
+:param max_retries: The maximum number of retries each connection
+    should attempt. Note, this appliHes only to failed DNS lookups, socket
+    connections and connection timeouts, never to requests where data has
+    made it to the server. By default, Requests does not retry failed
+    connections. If you need granular control over the conditions under
+    which we retry a request, import urllib3's ``Retry`` class and pass
+    that instead.
+:param pool_block: Whether the connection pool should block for connections.
+
+Usage::
+
+  >>> import requests
+  >>> s = requests.Session()
+  >>> a = requests.adapters.HTTPAdapter(max_retries=3)
+  >>> s.mount('http://', a)
+",85,109,1086,24
+C:\Users\vaano\python_projects\requests\requests\auth.py,AuthBase,"
+Base class that all auth implementations derive from
+",73,74,52,1
+C:\Users\vaano\python_projects\requests\requests\auth.py,HTTPBasicAuth,"
+Attaches HTTP Basic Authentication to the given Request object.
+",80,81,63,1
+C:\Users\vaano\python_projects\requests\requests\auth.py,HTTPProxyAuth,"
+Attaches HTTP Proxy Authentication to a given Request object.
+",101,102,61,1
+C:\Users\vaano\python_projects\requests\requests\auth.py,HTTPDigestAuth,"
+Attaches HTTP Digest Authentication to the given Request object.
+",109,110,64,1
+C:\Users\vaano\python_projects\requests\requests\cookies.py,MockRequest,"
+Wraps a `requests.Request` to mimic a `urllib2.Request`.
+
+The code in `cookielib.CookieJar` expects this interface in order to correctly
+manage cookie policies, i.e., determine whether a cookie can be set, given the
+domains of the request and the cookie.
+
+The original request object is read-only. The client is responsible for collecting
+the new headers via `get_new_headers()` and interpreting them appropriately. You
+probably want `get_cookie_header`, defined below.
+",26,35,469,9
+C:\Users\vaano\python_projects\requests\requests\cookies.py,MockResponse,"
+Wraps a `httplib.HTTPMessage` to mimic a `urllib.addinfourl`.
+
+...what? Basically, expose the parsed HTTP headers from the server response
+the way `cookielib` expects to see them.
+",98,102,179,4
+C:\Users\vaano\python_projects\requests\requests\cookies.py,CookieConflictError,"
+There are two cookies that meet the criteria specified in the cookie jar.
+Use .get and .set and include domain and path args in order to be more specific.
+",166,168,154,2
+C:\Users\vaano\python_projects\requests\requests\cookies.py,RequestsCookieJar,"
+Compatibility class; is a cookielib.CookieJar, but exposes a dict
+interface.
+
+This is the CookieJar we create by default for requests and sessions that
+don't specify one, since some clients may expect response.cookies and
+session.cookies to support dict operations.
+
+Requests does not use the dict interface internally; it's just for
+compatibility with external client code. All requests code should work
+out of the box with externally provided instances of ``CookieJar``, e.g.
+``LWPCookieJar`` and ``FileCookieJar``.
+
+Unlike a regular CookieJar, this class is pickleable.
+
+.. warning:: dictionary operations that are normally O(1) may be O(n).
+",172,187,644,15
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,RequestException,"
+There was an ambiguous exception that occurred while handling your
+request.
+",13,15,75,2
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,HTTPError,"
+An HTTP error occurred.
+",29,30,23,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ConnectionError,"
+A Connection error occurred.
+",33,34,28,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ProxyError,"
+A proxy error occurred.
+",37,38,23,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,SSLError,"
+An SSL error occurred.
+",41,42,22,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,Timeout,"
+The request timed out.
+
+Catching this error will catch both
+:exc:`~requests.exceptions.ConnectTimeout` and
+:exc:`~requests.exceptions.ReadTimeout` errors.
+",45,50,154,5
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ConnectTimeout,"
+The request timed out while trying to connect to the remote server.
+
+Requests that produced this error are safe to retry.
+",54,57,121,3
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ReadTimeout,"
+The server did not send any data in the allotted amount of time.
+",61,62,64,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,URLRequired,"
+A valid URL is required to make a request.
+",65,66,42,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,TooManyRedirects,"
+Too many redirects.
+",69,70,19,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,MissingSchema,"
+The URL schema (e.g. http or https) is missing.
+",73,74,47,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,InvalidSchema,"
+See defaults.py for valid schemas.
+",77,78,34,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,InvalidURL,"
+The URL provided was somehow invalid.
+",81,82,37,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,InvalidHeader,"
+The header value provided was somehow invalid.
+",85,86,46,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,InvalidProxyURL,"
+The proxy URL provided is invalid.
+",89,90,34,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ChunkedEncodingError,"
+The server declared chunked encoding but sent an invalid chunk.
+",93,94,63,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,ContentDecodingError,"
+Failed to decode response content
+",97,98,33,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,StreamConsumedError,"
+The content for this response was already consumed
+",101,102,50,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,RetryError,"
+Custom retries logic failed
+",105,106,27,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,UnrewindableBodyError,"
+Requests encountered an error when trying to rewind a body",109,110,58,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,RequestsWarning,"
+Base warning for Requests.
+",115,116,26,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,FileModeWarning,"
+A file was opened in text mode, but Requests determined its binary length.
+",120,121,74,1
+C:\Users\vaano\python_projects\requests\requests\exceptions.py,RequestsDependencyWarning,"
+An imported dependency doesn't match the expected version range.
+",125,126,64,1
+C:\Users\vaano\python_projects\requests\requests\models.py,RequestEncodingMixin,,,,,
+C:\Users\vaano\python_projects\requests\requests\models.py,RequestHooksMixin,,,,,
+C:\Users\vaano\python_projects\requests\requests\models.py,Request,"
+A user-created :class:`Request <Request>` object.
+
+Used to prepare a :class:`PreparedRequest <PreparedRequest>`, which is sent to the server.
+
+:param method: HTTP method to use.
+:param url: URL to send.
+:param headers: dictionary of headers to send.
+:param files: dictionary of {filename: fileobject} files to multipart upload.
+:param data: the body to attach to the request. If a dictionary or
+    list of tuples ``[(key, value)]`` is provided, form-encoding will
+    take place.
+:param json: json for the body to attach to the request (if files or data is not specified).
+:param params: URL parameters to append to the URL. If a dictionary or
+    list of tuples ``[(key, value)]`` is provided, form-encoding will
+    take place.
+:param auth: Auth handler or (user, pass) tuple.
+:param cookies: dictionary or CookieJar of cookies to attach to this request.
+:param hooks: dictionary of callback hooks, for internal usage.
+
+Usage::
+
+  >>> import requests
+  >>> req = requests.Request('GET', 'https://httpbin.org/get')
+  >>> req.prepare()
+  <PreparedRequest [GET]>
+",199,224,1062,25
+C:\Users\vaano\python_projects\requests\requests\models.py,PreparedRequest,"
+The fully mutable :class:`PreparedRequest <PreparedRequest>` object,
+containing the exact bytes that will be sent to the server.
+
+Generated from either a :class:`Request <Request>` object or manually.
+
+Usage::
+
+  >>> import requests
+  >>> req = requests.Request('GET', 'https://httpbin.org/get')
+  >>> r = req.prepare()
+  >>> r
+  <PreparedRequest [GET]>
+
+  >>> s = requests.Session()
+  >>> s.send(r)
+  <Response [200]>
+",273,289,418,16
+C:\Users\vaano\python_projects\requests\requests\models.py,Response,"
+The :class:`Response <Response>` object, which contains a
+server's response to an HTTP request.
+",588,590,95,2
+C:\Users\vaano\python_projects\requests\requests\sessions.py,SessionRedirectMixin,,,,,
+C:\Users\vaano\python_projects\requests\requests\sessions.py,Session,"
+A Requests session.
+
+Provides cookie persistence, connection-pooling, and configuration.
+
+Basic Usage::
+
+  >>> import requests
+  >>> s = requests.Session()
+  >>> s.get('https://httpbin.org/get')
+  <Response [200]>
+
+Or as a context manager::
+
+  >>> with requests.Session() as s:
+  ...     s.get('https://httpbin.org/get')
+  <Response [200]>
+",338,354,339,16
+C:\Users\vaano\python_projects\requests\requests\structures.py,CaseInsensitiveDict,"
+A case-insensitive ``dict``-like object.
+
+Implements all methods and operations of
+``MutableMapping`` as well as dict's ``copy``. Also
+provides ``lower_items``.
+
+All keys are expected to be strings. The structure remembers the
+case of the last key to be set, and ``iter(instance)``,
+``keys()``, ``items()``, ``iterkeys()``, and ``iteritems()``
+will contain case-sensitive keys. However, querying and contains
+testing is case insensitive::
+
+    cid = CaseInsensitiveDict()
+    cid['Accept'] = 'application/json'
+    cid['aCCEPT'] == 'application/json'  # True
+    list(cid) == ['Accept']  # True
+
+For example, ``headers['content-encoding']`` will return the
+value of a ``'Content-Encoding'`` response header, regardless
+of how the header name was originally stored.
+
+If the constructor, ``.update``, or equality comparison
+operations are given keys that have equal ``.lower()``s, the
+behavior is undefined.
+",16,40,905,24
+C:\Users\vaano\python_projects\requests\requests\structures.py,LookupDict,"
+Dictionary lookup object.
+",90,91,25,1
+C:\Users\vaano\python_projects\requests\tests\test_help.py,VersionedPackage,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestRequests,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestCaseInsensitiveDict,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestMorselToCookieExpires,"
+Tests for morsel_to_cookie when morsel contains expires.
+",2090,2091,56,1
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestMorselToCookieMaxAge,"
+Tests for morsel_to_cookie when morsel contains max-age.
+",2122,2123,56,1
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestTimeout,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,RedirectSession,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestPreparingURLs,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,TestStream,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,CustomMapping,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,DummyAuth,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,MyCookiePolicy,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,BadFileObj,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,BadFileObj,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,BadFileObj,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_requests.py,CustomRedirectSession,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_structures.py,TestCaseInsensitiveDict,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_structures.py,TestLookupDict,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_testserver.py,TestTestServer,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestSuperLen,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestToKeyValList,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestUnquoteHeaderValue,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestGetEnvironProxies,"
+Ensures that IP addresses are correctly matches with ranges
+in no_proxy variable.
+",153,155,81,2
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestIsIPv4Address,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestIsValidCIDR,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestAddressInNetwork,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestGuessFilename,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestExtractZippedPaths,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestContentEncodingDetection,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,TestGuessJSONUTF,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,RegHandle,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,BoomFile,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,NoLenBoomFile,,,,,
+C:\Users\vaano\python_projects\requests\tests\test_utils.py,LenFile,,,,,
+C:\Users\vaano\python_projects\requests\tests\testserver\server.py,Server,"
+Dummy server using for unit testing
+",27,28,35,1

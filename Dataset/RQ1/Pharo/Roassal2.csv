@@ -1,0 +1,831 @@
+"class","comment"
+"RTUninterpolate","I am the basic uninterpolator, my subclasses areCAUninterpolateClampCAUninterpolateNumber"
+"RTTextLine","A RTTextLine contains RTTextWord instances and represents one line of a text."
+"RTInteractionBuilder","-=-=-=-=b := RTMondrian new.b interaction snapToGrid.b shape rectangle size: 20. b nodes: (1 to: 9).b layout grid.b-=-=-=-="
+"RTAbstractExample","I am the super class of all the roassal examples.Try to use this script to know the excecution of roassal examples | examples errors |examples := OrderedCollection new.errors := OrderedCollection new.(RTAbstractExample subclasses collect: #new) 	do: [ :example | 		example gtExamples do: [:met | | time builder |			time := DateAndTime now.			[builder := example perform: met selector.			(builder isKindOf: RTBuilder) 				ifTrue: [ builder build ].			time := DateAndTime now - time.			time > (1 asDuration)				ifTrue: [ examples add: met->time ]			] on: Error do: [ errors add: met ] ] ]	displayingProgress: 'Running examples'.examples->errors"
+"RTGrapherExample","RTGrapherDecorationExample new installTitle: 'RangeBelowXAxis' 		code:		'	| b d |	b := RTGrapher new.	d := RTData new.	d points: (1 to: 5).	d y: #yourself.	b add: d.	b addDecorator: (RTRangeBelowXAxis new startValue: 2.5; endValue: 4; label: ''A'').	b addDecorator: (RTRangeBelowXAxis new startValue: 0; endValue: 2; label: ''B'').	^ b'	"
+"RTSpectrographExample","RTSpectrographExample new installTitle: 'RoassalVisualization' 		code:		'| b now |	now := DateAndTime now.	b := RTSpectrograph new.	b objects: ((RTObject withAllSubclasses , TRObject withAllSubclasses) reverseSortedAs: #livingInDays).	b highlight: [ :cls :livingDay | cls inheritsFrom: TRObject ] color: Color lightGreen.	b highlight: [ :cls :livingDay | cls gotMethodOnDay: livingDay ].		b popupText: [ :cls :age | cls name, ''  '', age printString , '' days old'' ].	b lineBlock: [ :cls | 0 to: cls livingInDays ].		b open.	self halt.	b view canvas'	"
+"RTAbstractVerticalValuesDecorator",""
+"RTDevVarDecorator","Draw the deviation area around a curve.Here is an example:-=-=-=-=b := RTGrapher new.colors := Array with: Color red with: Color blue.points := OrderedCollection new.colors do: [ :c |	ds := RTData new.	pts := ((1 to: 100) collect: [ :i | 50 atRandom - 25 ]) cumsum.	points add: pts.	ds points: pts.	dec := RTDevVarDecorator new.	dec moveBehind;		deviation: 0.5;		color: (c alpha: 0.3);		points: pts.	ds connectUsing: (RTLine new color: (c alpha: 0.5); width: 1 ).	b add: ds.	b addDecorator: dec.	 ].b axisX; axisY.b build.lb := RTLegendBuilder new.lb view: b view.colors doWithIndex: [ :c :i | 	lb addColor: c text: 'Series  ', i printString ].lb build.b view @ RTZoomableView @ RTZoomableBoxView.^ b view-=-=-=-="
+"RTGraphVizLayoutPlugin",""
+"RTDependenciesBetweenPackagesScript",""
+"RTAbstractWorldMenu","Abstract class that can be used to produce a new set of Menu entries. See class side"
+"RTFocusAnimation","I am an animation that change the position and the zoom of the camera by the value returned from #step selector"
+"RTBounds","I am a class to help layout method of RTCircularTreeMapBuilder"
+"RTFlowerBuilder","I am an experimental builder based on codeflower page.http://www.redotheweb.com/CodeFlower/you can find examples of my instances in RTExperimentalExample"
+"RTLegendBuilder","I am an handy class to build legend in a visualization-=-=-=-=-=-=-=-=b := RTMondrian new.b shape rectangle	width: [ :c | c numberOfVariables * 5 ];	height: #numberOfMethods.b nodes: RTShape withAllSubclasses.b edges connectFrom: #superclass.b layout tree.b build.lb := RTLegendBuilder new.lb view: b view.lb addRectanglePolymetricWidth: 'number of methods' height: 'Line of code'.lb build.b-=-=-=-=-=-=-=-="
+"RTScatterplotMap",""
+"RTDataEvolver",""
+"RTDraggable","A RTDraggable is an interaction that make an element draggable using the mouse."
+"RTSelectableView","I am an iteraction for a RTView to select elementsthe default RTSelectableView provides a box shape to select the shapes in a view.b := RTMondrian new.b nodes: (1 to: 1000).b edges connectFrom: [ :v | v // 2 ].b layout grid.b build.b view @ RTSelectableView.b view"
+"RTLabelled","THIS CLASS IS OBSOLETE. PLEASE REFER TO RTLabeled"
+"RTDraggableChildren","A RTDraggableChildren makes an element draggable. When dragged, children of the elements are also being dragged.Here is an example:-=-=-=| v es |v := RTView new.v @ RTDraggableView.es := RTLabel elementsOn: (1 to: 40).v addAll: es.RTEdgeBuilder new	view: v;	elements: es;	connectFrom: [ :aValue | aValue // 2 ].RTClusterLayout on: es.es @ RTDraggableChildren.^ v-=-=-="
+"RTScrollpad","add a scroll pad to the view"
+"RTColorLegendItem",""
+"RTNExplicitIdentityNormalizer","A RONExplicitIdentityNormalizer is xxxxxxxxx.Instance Variables	colors:		<Object>	defaultColor:		<Object>colors	- xxxxxdefaultColor	- xxxxx"
+"RTRoute",""
+"RTScrollBarBuilderExamples","A RTScrollBarBuilderExamples shows some usable examples for the scroll bar."
+"RTXPPoint","I am an point with an offset"
+"RTTimelineSet","RTTimelineSet new a set of events for the timeline. It takes a list of objects, lineIdentifier, start and end.Consider the following example:[ [ [ 	data := #(#(c1 0 5) #(c1 6 8) #(c2 0 5) #(c2 8 10) #(c3 0 10) #(c4 5 10) #(c5 5 8)).	b := RTTimeline new.		s := RTTimelineSet new.	s objects: data.	s lineIdentifier: #first.	s start: #second.	s end: #third.	b add: s.		b axisX 		numberOfLabels: 5;		labelRotation: -45;		labelConversion: [ :v | Date year: 2015 day: v ]. 	b]]]"
+"RTText","I am a shape describing a possibly multiline text.If you need just a simple label, use RTLabel instead."
+"RTAMItem",""
+"RTAbstractStackedDataSet","A data set is a set of points intended to be charted. A data set has to be added to a RTGrapher.  Look at the class comment of my subclasses for detail."
+"RTGrapherBarChartExample","RTGrapherBarChartExample new installTitle: 'HorizontalClasses' 		code:		'| b ds hasTest |hasTest := [ :cls | Smalltalk hasClassNamed: cls name, ''Test'' ].b := RTGrapher new.b extent: 500@500.ds := RTHorizontalData new.ds points: RTShape withAllSubclasses.ds barShape 	color: Color purple trans;	if: hasTest color: Color green trans.ds interaction popupText: [ :cls | cls name, ''LOC: '', cls numberOfLinesOfCode asString ].ds x: [ :cls | cls numberOfLinesOfCode * 	( (hasTest value: cls) 		ifTrue: [ 1 ]		ifFalse: [ -1 ] ) ].b add: ds.b axisY decimalIfNecessary.b axisX numberOfTicks: 4.^ b'	"
+"RTSelectionExample","RTSelectionExample new installTitle: 'ElasticBoxZoom' 		code:'| v |v := RTGrapherExample new exampleDeviation.v @ RTZoomableBoxView.v'	"
+"RTHorizontalAllValuesDecorator",""
+"RTContinuousDecorator","I decorated a builder with a nice continuous popup"
+"RTExampleEventCollectorPlugin",""
+"RTVoronojPlugin",""
+"RTMultiLinearColorCached",""
+"RTAddElementAnimation","I am a simple animation when an element or group of elements is added to the a view"
+"RTAxisRenderer","A RTAxisRenderer is a renderer for axis. It simply render in a view an axis configuration"
+"RTAbstractTreeBuilder","I am a base class for some builders of roassal like:RTTreeMapBuilderRTCircularTreeMapBuilderRTBundleBuilderRTSunburstBuilder"
+"RTExploraBuilderLazy","An Explora builder that do not try to guess what is coming to step before "
+"RTRadar","An instance of RTRadar is an element to explore an see  in a small portion of the view the same visualization, with small elements.Check examples(in RTExperimentalExample) to learn how to use a RTRadar"
+"RTUnoptimizedComposer",""
+"RTAbstractDraggable",""
+"RTAbstractElasticBoxInteraction","I am a class to describe elastic boxes in view, this means that there is a shape in a view that allow you* select elements () then you can do something.* zoom in an zoom out in the view"
+"RTAbstractLabeled","Abstract class for labeled interaction. Maybe this abstract class is not necessary, since it has only one subclass"
+"RTDoubleScrollBar","add an horizontal and vertical scrollbar to the view, on the border of the view"
+"RTSBFadeInteraction","A RTFadeInteraction is a roassal2 interaction that allows to an element of sunburst  and its path to stand out, this works with the RTMouseEnter/RTMouseLeave events.Instance Variables	action:		a block closureaction	- When one element of sunburst is pointed, the fade action works over the other elements, when this happen, the action block is called with the element's model as an argument."
+"RTLegendItem",""
+"RTMultipleColorLinearNormalizer","A ROMultipleColorLinearNormalizer is xxxxxxxxx.Instance Variables	normalizers:		<Object>normalizers	- xxxxx"
+"RTResetAllShape","RTResetAllShape is an animation (in the Roassal sense) that reset all the trachel shapes in the canvas. "
+"RTLogTransformation",""
+"RTTextTokenizer","A RTTextTokenizer is responsible for splitting a text into lines and lines into words.Instance Variables	wordSeparators:		<Collection>wordSeparators	- collection of characters which are considered as word separators"
+"RTSelectiveShape","I am a shape to create a composite node, with:* A shape of background (box, circle, triangle, etc)* A shape with text"
+"RTEditableLabel","I am a class to create editable label shapes, but do not forget that roassal is for visualizations not to build morphs"
+"RTHorizontalData","RTData renders bars and dots in vertical way"
+"RTExploraBuilderExample","A ROExploraBuilderExample is xxxxxxxxx."
+"RTRoassalExample","RTRoassalExample new installTitle: 'GroupOfGroups' 		code:		'^ v'	"
+"RTAbstractValuesDecorator","The class RTAbstractValuesDecorator is the root of a class hierarchy made to labels some data points on the X and/or Y axis. Consider the following example:b := RTGrapher new.ds := RTDataSet new.ds points: #(0 1 2 3 4 5 6).b add: ds.deco :=  RTHorizontalAllValuesDecorator new.deco labelConversion: [ :value | '#', value asString ].b addDecorator: deco.deco :=  RTVerticalValuesDecorator new.deco addAll: #(2 3 4).deco labelConversion: [ :value | '#', value asString ].b addDecorator: deco.b axisX noTick; noLabel.b axisY noTick; noLabel.b "
+"RTVerticalTickLineDecorator",""
+"RTDataFramePlugin",""
+"RTUpdateRoassalPlugin",""
+"RTGrayLinearColor",""
+"RTZoomOutMove","I decrease camera's zoom by 20%"
+"RTXPSVGAnimation","I am a simple animation for the example stacks examples in RTExperimentalExample"
+"RTScrollBarBuilder","A RTScrollBarBuilder is a scroll bar that you can add to navigate in your view. More than a Draggable view, it allows to keep a mark about your position in the view and it scale for large views. It can be static, movable, using #isStatic or #isMovableaving an orientation #vertical or #horizontal.the default configuration is #isBasic and #isStatic,the bar shape is defined by #barShape: <#aBox or default value #anEllipse>the bar can have a specificity like #scalable, so it give an idea of the size of the view.Size or fixedPosition can be defined as blocks.width: to set a static size of width."
+"RTEdgeBuilder","RTEdgeBuilder offers an API to easily build edges.Here is an example:[ [ [ 	| v es |	v := RTView new.	es := (RTEllipse new size: 20) elementsOn: (1 to: 20).	v addAll: es.	RTEdgeBuilder new		view: v;		objects: (1 to: 20);		connectFrom: [ :value | value // 2 ].	es @ RTPopup @ RTDraggable.	RTTreeLayout on: es.	v ] ] ]"
+"RTObjectBrowser","I am a simple builder of interactive view that allows you to inspect and navigate an object.Here is an example:-=-=	| b v |	b := RTObjectBrowser new.	v := RTView new.	v addElement: RTBox element.	b object: v.	b-=-=-="
+"RTCPSequential","Sequential schemes are suited to ordered data that progress from low to high. Lightness steps dominate the look of these schemes, with light colors for low data values to dark colors for high data values.Check it out by executing:ColorPalette sequential showMore info: http://colorbrewer2.org/learnmore/schemes_full.html---Copyright:All colors, palettes and schemes are from www.ColorBrewer.org by Cynthia A. Brewer, Geography, Pennsylvania State University."
+"RTIcon",""
+"RTHorizontalDraggableView","I am an interaction to translate the view as my parent.The difference is that I only allow horizontal translations"
+"RTThresholdFilter","Add to the view a filter.Here are some examples:-=-=-=-=b := RTMondrian new.b shape box size: [ :cls | cls dependentClasses size ].b nodes: Collection withAllSubclasses.b shape line color: Color blue trans; withShorterDistanceAttachPoint .b edges connectToAll: #dependentClasses.b layout grid.b build.b view @ (RTThresholdFilter new ).b view-=-=-=-=Another simpler example:-=-=-=-=b := RTMondrian new.b shape box size: #yourself.b nodes: (1 to: 100).b layout grid.b build.b view @ (RTThresholdFilter new ).b view-=-=-=-="
+"RTCollision","Allow for avoiding collision between elements-=-=-=v := RTView new.box1 := RTBox new size: 30; color: Color blue trans; element.v add: box1.box2 := RTBox new size: 30; color: Color blue trans; element.v add: box2.box2 translateBy: 100 @ 15.draggable := RTBox new size: 10; color: Color red trans; element.v add: draggable.draggable translateBy: 100 @ 100.draggable @ RTDraggable.draggable @ (RTCollision new elementToCheckForCollision: {box1 . box2}).v-=-=-="
+"RTMouseHoverZoom",""
+"RTSimonExample",""
+"RTMondrianFrame","A RTMondrianFrame is an elementary unit in Mondrian.Instance Variables	childrenFrame:		<RTMondrianFrame>	depth:		<SmallInteger>	elements:		<RTGroup>	parent:		<RTMondrianFrame>	parentFrame:		<RTMondrianFrame>childrenFrame	- xxxxxdepth	- xxxxxelements	- xxxxxparent	- xxxxxparentFrame	- xxxxx"
+"RTNiceStepSizeGenerator","Nice numbers are just step sizes and used for tick spacing. We will use only niceStep tick spaces and place tick marks at multiples of tick spacing.    References:  	[1] An Extension of Wilkinson's Algorithm for positioning Tick Labels on Axes  		 				(Justin Talbot, Sharon Lin, Pat Hanrahan)   [2] Nice Numbers for Graph Labels (Paul S. Heckbert, Graphic Gems I)"
+"RTScaleTransformation",""
+"RTLabelGenerator","Reference: 	[1] An Extension of Wilkinson's Algorithm for positioning Tick Labels on Axes  (Justin Talbot, Sharon Lin, Pat Hanrahan)"
+"RTSelectionStart","I am called when the event with the elastic box start over the elements in one view"
+"RTTreeMapExampleTODELETE","Examples of RTTreeMap"
+"RTVerticalMultipleData","RTVerticalMultipleData represents a group of data points that are vertically located. Each group has the same X value.Negative data are not allowed.Here is an example:[[[| b d |			b := RTGrapher new.d := RTVerticalMultipleData new.d points: #( #('hello' 1 2 1) #('world' 2 4 2 ) #('bonjour' 3 5 4) #('bonjour' 3 5 4 ) #('bonjour' 3 5 4)).d addMetric: #second.d addMetric: #third.d addMetric: #fourth.d barChartWithBarTitle: #first rotation: -30.b add: d.b			]]] Here another example:[[[| b d classes |classes := (Collection withAllSubclasses reverseSortedAs: #numberOfMethods) first:	10.			b := RTGrapher new.d := RTVerticalMultipleData new.d points: classes.d addMetric: #numberOfLinesOfCode.d addMetric: #numberOfMethods.d barChartWithBarTitle: #name rotation: -30.b add: d.b]]]			"
+"RTDynamicStackerGrapherExample","RTDynamicStackerGrapherExample new installTitle: 'Basic' 		code:		'| b |b := RTDynamicStackedGrapher new.b numberOfBars: 10.b minY: -200; maxY: 200.b y: #yourself. b barShape color: (Color red alpha: 0.3).b view addMenu: ''+ 1'' callback: [ b add: 400 atRandom - 200 ].^ b view'	"
+"RTNameCloudExample","RTNameCloudExample new installTitle: 'SimpleExample' 		code:		'| b |b := RTNameCloud new 		addString: ''open		| v shape |		v := RTView new.		shape := RTLabel new height: [ :assoc | assoc value ]; text: #key.		v addAll: (shape elementsOn: table associations).		RTFlowLayout on: v elements.		v open''.b open.b  view canvas.		'	"
+"RTStandardDeviationDecorator","Display the standard deviation of the data-=-=-=-=b := RTGrapher new.ds := RTData new. ds dotShape color: Color red. ds points: #(5 1 20 8).b add: ds.b addDecorator: (RTAverageDecorator new withLabel; labelConvertion: [ :aValue | 'average = ', aValue asFloat asString ]).b addDecorator: (RTStandardDeviationDecorator new lineColor: Color blue) .b-=-=-=-="
+"RTAbstractTickLineDecorator",""
+"RTAvispaPlugin",""
+"RTScriptOfTheDayPlugin",""
+"RTAbstractNormalizer","A RONAbstractNormalizer is xxxxxxxxx.Instance Variables	command:		<Object>command	- xxxxx"
+"RTAbstractZoomMove","I shange zoom ratio of camera by the value returned form #step method"
+"RTResizeMove",""
+"RTTimeline","Define a time line, a bit like a Gantt diagram.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=	| b data |	data := #(#(WP1 0 5) #(WP2 5 8) #(WP3 7 10)).	b := RTTimeline new.		s := RTTimelineSet new.	s objects: data.	s lineIdentifier: #first.	s start: #second.	s end: #third.	b add: s.		b axisX 		numberOfLabels: 5;		labelRotation: -45;		labelConversion: [ :v | Date year: 2015 day: v ]. 	d := RTVerticalTickLineDecorator new.	d shape line color: Color white.	b addDecorator: d.	b  open-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTDoubleBarBuilder","A RTDoubleBarBuilder render a double bar chart"
+"RTMultiGrapher","RTMultiGrapher allows for supporting several graphs in the same physical location.Here is an example:-=-=-=|g g1 g2 ds1 ds2|g := RTMultiGrapher new.g1 := RTGrapher new.ds1 := RTData new.ds1 label: 'Red'.ds1 dotShape color: Color red.ds1 connectColor: Color red.ds1 points: ((1 to: 10) collect: [ :each | 20 atRandom ]).ds1 interaction highlightDataset: Color black.g1 add: ds1.g2 := RTGrapher new.ds2 := RTData new.ds2 label: 'Blue'.ds2 dotShape color: Color blue.ds2 connectColor: Color blue.ds2 points: ((1 to: 10) collect: [ :each | 1000 atRandom ]).ds2 interaction highlightDataset: Color purple.g2 add: ds2.g1 axisY	title: 'y 1';	color: Color red.	g2 axisY	title: 'y 2';	color: Color blue.g add: g1.g add: g2.g legend.^ g-=-=-="
+"RTCPDiverging","Diverging schemes put equal emphasis on mid-range critical values and extremes at both ends of the data range. The critical class or break in the middle of the legend is emphasized with light colors and low and high extremes are emphasized with dark colors that have contrasting hues.Check it out by executing:ColorPalette diverging showMore info:http://colorbrewer2.org/learnmore/schemes_full.html#diverging ---Copyright:All colors, palettes and schemes are from www.ColorBrewer.org by Cynthia A. Brewer, Geography, Pennsylvania State University."
+"RTGeneralExample","This class contains some examples. These examples are not accessible from the World menu."
+"RTAbstractDraggableView",""
+"RTRotableView","I am an interaction that makes a view rotable using the left button and draggable using the right mouse button.Here is an example[[[ 	| b v |	v := RTView new.	v @ RTRotableView.	b := RTMondrian new.	b view: v.	b nodes: (1 to: 300).	b edges connectFrom: [ :value | value // 2 ].	b layout cluster.	b.			]]]"
+"RTExpandable","Make an element clickable and expandable. When expanded, elements may be added inside.Consider the following example:[[[v := RTView new.s := RTShapeBuilder new		rectangle;		width: [ :c | c numberOfVariables * 5 ]; height: #numberOfMethods.		es := s elementsOn: RTShape withAllSubclasses.v add: es.es @ RTPopup @ (RTLabelled new setAsHighlightable).expand := (RTExpandable new				group: [ :group :element | 					methods := (RTBox new color: Color red) 										elementsOn: element model rtmethods.					RTGridLayout on: methods.					methods @ RTPopup.					group addAll: methods];				afterBlock: [ RTGridLayout on: es] ).es @ expand. RTGridLayout on: es.^ v]]]"
+"RTMenuActivable","A RTMenuActivable adds a menu to an element. The menu is activable by right-clicking on the node.For example:classes := RTObject withAllSubclasses.v := RTView new.v @ RTDraggableView.n := RTMultiLinearColorForIdentity new objects: classes.shape := RTEllipse new size: #numberOfMethods; color: n.es := shape elementsOn: classes.es @ (RTMenuActivable new action: #inspect; item: 'browse class' action: [ :e | e model browse ]).v addAll: es.RTFlowLayout on: es.v"
+"RTColorInterpolator","I am the interpolator  for colors"
+"RTMenuItem",""
+"RTSourceCodeDictionary",""
+"RTScalePolylinear","I can handle a several kind of values"
+"RTSunburstConstantWidthLayout","I am a layout for sunburst visualization,I put the arcs in a constant delta separation, you can define the center width."
+"RTSelectionChange","I am the event that is called when the elastic box changes over some elements"
+"RTSmoothResizeLayoutTranslator","I am a RTSmoothLayoutTranslator that also resizes the elements"
+"RTTabTable","RTTabTable is made to work with CSV file contents."
+"RTHorizontalMultipleData","RTHorizontalMultipleData handles multiple metrics per data points. It is rendered using bar chart.[[[ | b d |			b := RTGrapher new.d := RTHorizontalMultipleData new.d barShape color: Color blue.d points: #( #('hello' 1 2 1) #('world' 2 4 2) #('bonjour' 3 5 4) #('Gutten Morgen' -1 4 -5)).d addMetric: #second.d addMetric: #third.d addMetric: #fourth.""d barChartWithBarCenteredTitle: #first.""d barChartWithBarTitle: #first rotation: -30.b add: d.b ]]]"
+"RTComposerExample","RTComposerExample new installTitle: 'ClassAnalysis' 		code:		'| classesToAnalyze c b b2 b3 b4 es |classesToAnalyze := TRShape withAllSubclasses.c := RTComposer new.c gap: 35.""-------""b := RTGraphBuilder new.b view: c view.b nodes 	if: [ :cls | cls numberOfMethods > 10 ];	color: Color red.b edges connectFrom: #superclass; useInLayout.b nodes color: Color gray.b global normalizeSize: #numberOfLinesOfCode min: 5 max: 15 using: #sqrt.b layout tree.b addAll: classesToAnalyze.b build.c propagateHighlight.c group: #hierarchy.""-------""b2 := RTCharterBuilder new.b2 view: c view.b2 extent: 200 @ 150.b2 interaction popup.b2 shape rectangle size: 0.b2 points: classesToAnalyze.b2 allY: [ :cls | cls methods size ].b2 shape rectangle color: Color lightBlue.b2 stackX.b2 histogramBarWidth: 5.b2 axisX; axisYWithNumberOfTicks: 4.b2 build.c propagateHighlight.c group: #stat.""-------""b3 := RTPieBuilder new.b3 view: c view.b3 interaction popup.b3 objects: classesToAnalyze.es := b3 slice: #numberOfLinesOfCode.b3 globalRule 		elements: es;		distinctColor.b3 build.c propagateHighlight.c group: #pie.""-------""b4 := RTCharterBuilder new.b4 view: c view.b4 extent: 290 @ 200.b4 interaction popup.b4 shape ellipse size: 15; color: (Color red alpha: 0.3).b4 points: classesToAnalyze.b4 x: #numberOfMethods; y: #numberOfVariables min: 0 max: 10.b4 size: #numberOfLinesOfCode min: 4 max: 20 using: #sqrt.	b4 axisXWithNumberOfTicks: 3.b4 axisYWithNumberOfTicks: 4.b4 highlightIf: [ :cls | (cls numberOfLinesOfCode > 2000) or: [ cls numberOfVariables > 10 ] ] using: #name.c propagateHighlight.c group: #plot.""-------""c move: #hierarchy onTheLeftOf: #pie.c move: #stat below: #hierarchy.c move: #plot below: #stat.c nameGroup: #hierarchy as: ''class hierarchy''.c nameGroup: #stat as: ''#methods''.""c nameGroup: #pie as: ''#LOC''.""c nameGroup: #plot as: ''NOM x NOA x LOC''.c open.c view canvas'	"
+"RTMapLocationExample","RTMapLocationExample new installTitle: 'SeismOnEarth' 		code:		'| b tab |tab := RTTabTable new input:  RTMapLocationBuilder new seismData2 usingDelimiter: $,.tab removeFirstRow.tab replaceEmptyValuesWith: ''0'' inColumns: #(2 3 4 5).tab convertColumnsAsFloat: #(2 3 4 5).b := RTMapLocationBuilder new.b shape circlesize: [ :v | (2 raisedTo: v) / 2 ];color: (Color red alpha: 0.3).tab values do: [ :row | b addPoint: row second @ row third value: row fifth ].b open.b view canvas'	"
+"RTAverageDecorator","RTAverageDecorator is a decorator that indicates the average of a set of values.Consider the following example:-=-=-=-=b := RTGrapher new.ds := RTDataSet new. ds dotShape color: Color red. ds points: #(5 1 20 8).b add: ds.b addDecorator: (RTAverageDecorator new withLabel; labelConvertion: [ :aValue | 'average = ', aValue asFloat asString ]).b.-=-=-=-="
+"RTIdentityLineDecorator",""
+"RTAbstractPlugin",""
+"RTPythonAnalysisPlugin",""
+"RTVisualizeCSVFileScript",""
+"RTOnlineDocumentation",""
+"RTNumberAnimation","A number animation to handle a number and interpolate between values"
+"RTGrapher","RTGrapher describes a chart. Data set may be added and axis may be configured. Consider the following example:b := RTGrapher new.ds := RTDataSet new. ds dotShape color: Color red. ds points: #(5 1 20 8).b add: ds.b build."
+"RTCityBuilder",""
+"RTMicroprint",""
+"RTCircleTree","I am a class helper to do the layout in RTCircularTreeMapBuilder"
+"RTExploraTestTree",""
+"RTShowLabel","A RTShowLabel is an interaction that add a label on a set of elements when the mouse enters a particular element.  RTLabelled is used for the labelling. When the mouse leaves the element, all the labels are removed.Instance Variables	labelledInteraction:		<RTLabelled>labelledInteraction	- an object which is responsible for creating and removing of a label"
+"RTDraggableView","I am an interaction that makes a view draggable using the mouse.For example:-=-=-=-=-=-=-=-=-=	| v |	v := RTView new.	v @ RTDraggableView.	RTCPDiverging new viewOn: v.	^ v-=-=-=-=-=-=-=-=-="
+"RTBlink","RTBlink is an interaction to make element blink. You simply need to invoke  ""RTBlink on: aRoassalElement""Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.v @ RTDraggableView.shape := RTBox new width: [ :cls | cls numberOfVariables * 5  max: 5 ]; height: [ :cls | cls numberOfMethods sqrt * 2 ].es := shape elementsOn: Collection withAllSubclasses.v addAll: es.RTFlowLayout on: es.RTMetricNormalizer new	elements: es;	normalizeColor: #numberOfLinesOfCode.	es when: TRMouseClick do: [ :event | RTBlink new color: Color blue; on: event element ].v-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=And a larger example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=""Set here the classes you wish to visualize""classes := Collection withAllSubclasses.v := RTView new.v @ RTDraggableView.shape := RTBox new width: [ :cls | cls numberOfVariables * 5  max: 5 ]; height: [ :cls | cls numberOfMethods sqrt * 2 ].es := shape elementsOn: classes.v addAll: es.RTFlowLayout on: es.RTMetricNormalizer new	elements: es;	normalizeColor: #numberOfLinesOfCode.""Set here the classes you wish to visualize""labels := (RTLabel new height: 8) elementsOn: classes.RTFlowLayout new gapSize: 0; on: labels.v addAll: labels.TRConstraint move: labels onTheRightOf: es.labels translateBy: 20 @ 0.labels @ RTHighlightable.labels when: TRMouseClick do: [ :event | RTBlink new color: Color blue; on: (es elementFromModel: event element model) ].es @ RTHighlightable.es when: TRMouseClick do: [ :event | RTBlink new color: Color blue; on: (labels elementFromModel: event element model) ].v-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTLazyInteraction","I am an abstract interaction that postpones the element initialization until it is already connected to the view."
+"RTInteractiveComposerExample",""
+"RTLinearPathBuilder","A simple clase for create Lines in SVG"
+"RTEnglishDictionary",""
+"RTScalePow","I scale using pow function"
+"RTShapeBuilderExample",""
+"RTResizeCanceled","I am fired when Resize operation is canceled globally for the whole View.!! CollaboratorsDCRTResizable"
+"RTRectangleTreeMap","I am a utility class to hepl th layout process in RTTreeMapBuilder"
+"RTMenuGroup","I am a component to manage the selected/unselected state for the menu items. instance guarantees that only one menu item can be selected at a time.Initially all butons managed by Button group instance are unselected"
+"RTAbstractData",""
+"RTColorPaletteExample","RTColorPaletteExample new installTitle: 'DivergingPalette' 		code:		'CPDiverging show canvas'	"
+"RTLineDecorationExample","RTLineDecorationExample new installTitle: 'Cool' 		code:		'	| v b1 b2 edges |	b1 := (RTBox new		size: 100;		element)		translateTo: 0 @ 0;		@ RTDraggable.	b2 := (RTBox new		size: 100;		element)		translateTo: 400 @ 0;		@ RTDraggable.	edges := OrderedCollection new.	edges add: ((RTArrowedLine new head: RTFilledDiamond asHead; color: Color black; width: 2; attachPoint: (RTRectangleAttachPoint new offset: 15)) edgeFrom: b1 to: b2).	edges add: ((RTDecoratedLine new color: Color blue; width: 2; attachPoint: (RTRectangleAttachPoint new offset: 15)) edgeFrom: b1 to: b2).	edges add: ((RTDecoratedLine new filledDiamondHead; color: Color green; width: 2; attachPoint: (RTRectangleAttachPoint new offset: 15)) edgeFrom: b1 to: b2).	edges add: ((RTDecoratedLine new filledDiamondHead; emptyCircleTail; color: Color red; width: 2; attachPoint: (RTRectangleAttachPoint new offset: 15)) edgeFrom: b1 to: b2).v := RTView new	add: b1;	add: b2;	addAll: edges.edges do: [ :each | each update ].v'	"
+"RTAbstractGrapherDecorator",""
+"RTHorizontalLineDecorator","Add horizontal lines for some values-=-=-=-=-=	| b ds p |	b := RTGrapher new.	ds := RTData new.	ds dotShape color: Color red.	ds points: #( 0 1 2 5 10).	ds x: #yourself.	ds y: #yourself.	b add: ds.	b minY: -3.33.	p := RTHorizontalLineDecorator new.	p add: 1; add: 5; add: 3.34.	p shape line color: (Color red alpha: 0.3).	b addDecorator: p.	p := RTVerticalLineDecorator new.	p add: 5.	p shape line color: (Color blue alpha: 0.3).	b addDecorator: p.	b -=-=-=-=-="
+"RTVarianceRangeDecorator",""
+"RTNetworkLatencyPlugin",""
+"RTViewFolder2Script",""
+"RTHowToContribute","I am a class that display general information about Roassal contributions"
+"RTAccelerationMove",""
+"RTDynamicGrapher","Version of Grapher that allow for dynamic data points addition. Here is a small example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=	| b |	b := RTDynamicGrapher new.	b maxX: 100.	b maxY: 100.	b x: #x; y: #y.	 	b shape circle color: (Color red alpha: 0.3).	b view addMenu: '+ 10' callback: [ 			b addAll: ((1 to: 10) collect: [ :i | (100 atRandom @ 100 atRandom) ]) ].	b open-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTAreaBuilder","A builder for SVG shapes. in area with data."
+"RTMenuBuilderExamples",""
+"RTTextBuilder","A RTTextBuilder parses a text and displays it on a RTView.It uses textTokenizer for splitting text into lines and lines into words. For each word an RTElement is created. It allows to have different shape or/and interaction on each word. User can define how to split text by implementing a textTokenizer; by default RTTextTokenizer. All the RTElements representing words are nested to a main RTElement object with padding.On each word, wordShapeBuilder and wordInteractionBuilder are applied. Before applying shape and interaction builders on any RTElement object, hook for main element and wordHook for wor elements are called. It allows to make extra customization for each element.Instance Variables	hook:						<BlockClosure>	padding:					<Integer>	textTokenizer:				<RTTextTokenizer>	wordHook:					<BlockClosure>	wordInteractionBuilder:		<RTInteractionBuilder>	wordShapeBuilder:			<RTShapeBuilder>hook	- is one-orgument-block which receives a main RTElement object; the RTElement object nests all the other objects for a displayed text. It is called before any element initialization. padding	- number of pixes between main RTElement object and nested text.textTokenizer	- is responsible for splitting a text into lines and lines into words.wordHook	- is two-argument-block which receives a word element and interval of a word in the original textwordInteractionBuilder	- interaction builder applied on each word elementwordShapeBuilder	- shape builder applied on each word element"
+"RTExploraNode","A ROExploraNode is xxxxxxxxx.Instance Variables	builder:		<Object>	directions:		<Object>	expanded:		<Object>	expandedNodes:		<Object>	expansion:		<Object>	id:		<Object>	parentNode:		<Object>builder	- xxxxxdirections	- xxxxxexpanded	- xxxxxexpandedNodes	- xxxxxexpansion	- xxxxxid	- xxxxxparentNode	- xxxxx"
+"RTTransitivelyHighlightable","A RTTransitivelyHighlightable highlight all connected elements (either incoming or outgoing). Consider the following example:	v := RTView new.	v addAll: (RTBox elementsOn: (1 to: 3)).	RTGridLayout on: v elements.		eb := RTEdgeBuilder new.	eb view: v.	eb useAssociations: { 1 -> 2 . 2 -> 3 }.		v elements @ RTPopup @ (RTTransitivelyHighlightable new focusOnIncomingElements; color: Color red).	v"
+"RTAbstractMorphingView","view1 := RTView new.view1 addAll: ((RTEllipse new size: 20) elementsOn: (1 to: 25)).RTEdgeBuilder new	view: view1;	connectFrom: [ :vv | vv // 2 ].RTTreeLayout on: view1 elements.view2 := RTView new.view2 addAll: ((RTEllipse new size: 20) elementsOn: (1 to: 25)).RTGridLayout on: view2 elements.view2 addMenu: 'Morphing' callback: [ view2 @ (RTMorphingView new referenceView: view1; smoothTransition) ]"
+"RTFixedPopup","A RTFixedPopup creates a popup, located at a fixed position, in the window."
+"RTDataHighlightInteraction","I highlight the whole dataset when I any of my elements are hovered over."
+"RTVisible","A RTVisible is an interaction for element. It allows one to define behavior when an element become visible or visible. The interaction has to be used after having added the element to a view.Instance Variables	invisibleBlock:		<Object>	visibleBlock:		<Object>invisibleBlock	- xxxxxvisibleBlock	- xxxxx"
+"RTLinePathBuilder","An interpolator a way to create lines in SVG"
+"RTValueLinearNormalizer","A ROValueLinearNormalizer is xxxxxxxxx.Instance Variables	maxScale:		<Object>	minScale:		<Object>maxScale	- xxxxxminScale	- xxxxx"
+"RTScaleLinear","I follow the linear function"
+"RTVector","I am a class to represent a simple vector and their functions"
+"RTExampleOpeningEvent","RTExampleOpeningEvent  is an event that is trigger when someone browse an example"
+"RTSankeyAttachPoint",""
+"RTDatasets","This class contains many data sets. "
+"RTBoundedShapeBuilder","A RTBoundedShapeBuilder is a shape builder for which all the nodes cannot have a size of less than 5 pixels."
+"RTBundleExample","RTBundleExample new installTitle: 'GroupOfGroups' 		code:		'^ v'	"
+"RTLayoutExample","Example about layoutsRTLayoutExample new installTitle: 'ConditionaLayoutInMondrian' 		code:		'b := RTMondrian new.b shape rectangle	fillColor: Color white;	borderColor: Color lightGray;	withTextAbove: #name.b nodes: Collection withAllSubclasses forEach: [ :cls |	b nodes: cls methods.	b edges connectToAll: #dependentMethods.	b layout 		ifElement: #isConnected then: RTTreeLayout new;		else: RTGridLayout new. ].b edges connectFrom: #superclass.b layout tree.b build.^ b view'	"
+"RTTimelineExample","RTTimelineExample new installTitle: 'SimpleGantt2' 		code:		'| b s data |data := #(     #(WP1 0 4)      #(WP2 4 8)     #(WP3 8 12)         #(WP4 3 4)     #(WP4 7 9)     #(WP4 10 12)     ).b := RTTimeline new.s := RTTimelineSet new.s objects: data.s lineIdentifier: #first.s start: #second.s end: #third.b add: s.b axisX	noDecimal;	title: ''Month'';	numberOfLabels: 12.b build.^ b view'"
+"RTVerticalMinValueDecorator","=-=-=-=| b ds |b := RTGrapher new.ds := RTData new.ds points: RTShape withAllSubclasses.ds y: #numberOfMethods.b add: ds.b addDecorator: RTVerticalMinValueDecorator new red.b addDecorator: RTVerticalMaxValueDecorator new blue.b axisY noLabel.b =-=-=-="
+"RTRangeBelowXAxis","Enable one to define a range of values. For example:-=-=-=-=b := RTGrapher new.d := RTData new.d points: (1 to: 5).d y: #yourself.b add: d.b addDecorator: (RTRangeBelowXAxis new startValue: 2.5; endValue: 4; label: 'A').b addDecorator: (RTRangeBelowXAxis new startValue: 0; endValue: 2; label: 'B').b -=-=-=-="
+"RTMultiPilesPlugin",""
+"RTInspectorScript",""
+"RTExampleBrowser","Visual browser of Roassal example.This class create a world menu item to open the examples"
+"RTLayoutAnimation",""
+"RTDoubleGrapher",""
+"RTTreeMapBuilder","I am a class to produces treemap visualizationssee examples to  know how to use me.check this to get more info:http://www.humane-assessment.com/blog/system-nesting-map"
+"RTMatrixRing","I'm a class that models matrix data as concentric rings, with columns and row separations.Look at exampleRTMatrixRing for details on how to use it."
+"RTSpectrograph","A RTSpectrograph is a builder to create spectographs"
+"RTEditableLabelExample","I am a class example of RTEditable label"
+"RTAbstractHighlightable","A RTAbstractHighlightable is an highlight mechanism of an element or group of elements. It trigger highlight on mouse enter and reset the highlight on mouse leave. By default it highlight the element itself, but by methods #highlight: and #highlightElements: any other element can be highlighted.Instance Variables	highlightElements:		<BlockClosure>highlightElements	- it is one argument block (o any object which understand #rtValue:) which returns collection of elements. Those element are then highlighted."
+"RTFilterInView","This interaction adds a set of menu in the view to filter in and out some elementsHere is an example:-=-=-=| b |b := RTMondrian new.b shape box size: #numberOfMethods.b nodes: (Collection withAllSubclasses).b layout grid.b normalizer normalizeColor: #numberOfMethods.b view @ RTFilterInView.b -=-=-=With edges:-=-=-=| b |b := RTMondrian new.b shape box size: #numberOfMethods.b nodes: (Collection withAllSubclasses).b normalizer normalizeColor: #numberOfMethods.b edges connectFrom: #superclass.b layout tree.b view @ RTFilterInView.b -=-=-=Example using the spawn block:-=-=-=| b |b := RTMondrian new.b shape box size: #numberOfMethods.b nodes: (Collection withAllSubclasses).b layout grid.b normalizer normalizeColor: #numberOfMethods.filter := RTFilterInView new.filter spawnBlock: [ :el | RTView new addAll: el copy; yourself ].b view @ filter.b -=-=-="
+"RTPopup","A RTPopup is an interaction that dynamically add a text or a group of elements above the element pointed by the mouse.Example of use: -=-=-=	v := RTView new.	es := (RTEllipse new color: Color blue) elementsOn: Collection withAllSubclasses.	v addAll: es.	aPopup := RTPopup new 		text: [ :aClass | 				'Classname = ', aClass name, String cr,					'NbMethod=', aClass numberOfMethods asString, String cr,				'NbVariables=', aClass numberOfVariables asString ].	aPopup borderColor: Color black.	aPopup textColor: Color white.	aPopup backgroundColor: Color black.	es @ aPopup.	RTMetricNormalizer new		elements: es;		normalizeSize: #numberOfMethods min: 20 max: 50;		normalizeColor: #numberOfVariables.	RTGridLayout new on: es.	v-=-=-= Another example of use:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.es := RTLabel elementsOn: (1 to: 10).v addAll: es.es @ (RTPopup new 	background: Color blue	group: [ :group :el |   		group addAll: (RTEllipse elementsOn: (1 to: el model)).		RTWeightedCircleLayout new			initialRadius: 50;			on: group.		]).RTHorizontalLineLayout on: es.v open-=-=-=-=-=-=-=-=-=-=-=-="
+"RTFocusElement","I am a new interaction to focus and zoom one element"
+"RTShowEdge","RTShowEdge is an interaction that add edges on one particular element when the mouse is above the element. Edges are removed when the mouse leaves the element.=-=-=-=	| v es |	v := RTView new.	es := ((RTEllipse new size: 30) + RTLabel) elementsOn: (1 to: 20).	v addAll: es.	RTCircleLayout new initialRadius: 150; on: es.	es @ (RTShowEdge new connectTo: [ :value | value - 5 to: value + 5]; shape: (RTLine new color: (Color blue alpha: 0.4))).	^ v=-=-=-="
+"RTLineLegendItem",""
+"RTNFontLinearNormalizer","A RONFontLinearNormalizer is xxxxxxxxx."
+"RTScale","A class to have nice scales checks subclasses"
+"RTUninterpolateClamp","I do not allow a value get off the scale of 0 to 1"
+"RTTextLines","A RTTextLines contains RTTextLine objects and represents whole text splitted into lines."
+"RTDataInteractionBuilder","I am interaction builder that provides some extra interactions specific for RTGrapher/RTData, such as dynamic decorators."
+"RTAnimationExample","RTAnimationExample new installTitle: 'Smooth' 		code:''	"
+"RTGrapherScatterplotExample",""
+"RTStackBarPlotExample","RTStackBarPlotExample new installTitle: 'SimpleWithDifferentColor' 		code:		'| b |b := RTStackBarPlot new.b interaction popupText.b colorPalette colors: { Color blue . Color gray . Color red }.b add: #(1 2 3 4 ).b add: #(4 3 2 1).b add: #(5 3 2 0).b barWidth: 200 height: 20.b open.^ b view canvas'	"
+"RTVerticalAllValuesDecorator","=-=-=-=-| b ds deco labels |b := RTGrapher new.ds := RTData new.ds points: #(2 3 4 5 6).b add: ds.deco := RTVerticalAllValuesDecorator new.b addDecorator: deco.b axisX noTick; noLabel.b axisY noTick; noLabel.b =-=-=-=-"
+"RTMarkerOnX","=-=-=-=-| b ds |b := RTGrapher new.ds := RTData new.ds connectColor: Color blue.ds points: #(3 4 5 6 7).ds x: #yourself.ds y: #yourself.b add: ds.b addDecorator: (RTMarkerOnX new value: 5).b addDecorator: (RTMarkerOnX new value: 6).b=-=-=-=-"
+"RTKendrickPlugin",""
+"RTDuplicationBetweenPackages",""
+"RTAbout","I am a class that display general information about Roassal"
+"RTForceLayoutStepping",""
+"RTBuilder","The class RTBuilder translates a user-defined domain into low level instruction using the Roassal API. A builder essentially wraps a Roassal view and offers dedicated builders, described in the following sections."
+"RTInteractiveTreeBuilder","This is a new builder to create a visualization of nodes with text"
+"RTMapBuilder","A RTMapBuilder is xxxxxxxxx. Instance Variables	cities:		<Object>	cityBuilder:		<Object>	cityElements:		<Object>	cityNames:		<Object>	color:		<Object>	countries:		<Object>	countryNames:		<Object>	mapPing:		<Object>	periodLabel:		<Object>	popup:		<Object>	routeBuilder:		<Object>	scale:		<Object>cities	- xxxxxcityBuilder	- xxxxxcityElements	- xxxxxcityNames	- xxxxxcolor	- xxxxxcountries	- xxxxxcountryNames	- xxxxxmapPing	- xxxxxperiodLabel	- xxxxxpopup	- xxxxxrouteBuilder	- xxxxxscale	- xxxxx"
+"RTSimon","Simon is an electronic game that intensively use arcs:http://en.wikipedia.org/wiki/Simon_(game)A RTSimon is xxxxxxxxx."
+"RTDepMatrixExample",""
+"RTDraggableSnapToGrid","I am an interaction which allows the element to be dragged in a steps of fixed size equivalent to the size of the grid.If the view has RTGridView interaction, then I will use it's spacing instead.Here is an example:[[[v := RTView new.s := RTBox new size: 25; color: (Color blue alpha: 0.3).es := s elementsOn: (1 to: 10).v addAll: es.RTGridLayout on: es.es @ RTDraggableSnapToGrid.v]]]When embedded within the RTInteractionBuilder (and thus by Mondrian):[[[b := RTMondrian new.b interaction snapToGrid gridSize: 10.b shape rectangle size: 25. b shape color: Color transparent.b shape borderColor: Color black.b nodes: (1 to: 9).b layout grid.b]]]"
+"RTZoomableBoxView","I am a class that allows you to use a elastic box in a View, this box is a tool that allows you to zoom in or zoom out in a view."
+"RTAbstractPopup","A RTAbstractPopup is an sbtract class that describes popup."
+"RTEventForwarder","A RTEventForwarder is used to forward event from one element to other elements"
+"RTSelectionBox","I am a simple selection Box interaction to  create elastic boxs that allow to explore the edges from a viewHere is an example:b := RTMondrian new.b nodes: RTObject withAllSubclasses.b edges moveBehind; connectToAll: #dependentClasses.b layout grid.b build.b view @ RTSelectionBox.b viewAnother:b := RTMondrian new.b nodes: (1 to: 1000).b edges connectFrom: [ :v | v // 2 ].b layout grid.b build.b view @ RTSelectionBox.b view"
+"RTColoredTextLegendItem",""
+"RTNLinearNormalizer","A RONLinearNormalizer is xxxxxxxxx.Instance Variables	context:		<Object>	maximumValue:		<Object>	minimumValue:		<Object>context	- xxxxxmaximumValue	- xxxxxminimumValue	- xxxxx"
+"RTSBFadeInteractionExamples","Just a class for examples"
+"RTScrollPadBuilderExamples","Give it a try, inspect the comments"
+"RTSubTimelineSet","RTSubTimelineSet new a set of events for the timeline. It takes a list of objects, lineIdentifier, start, end, and level.Consider the following example:[ [ [ 	data := #(#(c1 0 5 1) #(c1 3 8 2) #(c2 0 9 1) #(c2 3 5 2) #(c2 6 8 2)).	b := RTTimeline new.		s := RTSubTimelineSet new.	s objects: data.	s lineIdentifier: #first.	s start: #second.	s end: #third.	s level: #fourth.	b add: s.		b axisX 		numberOfLabels: 5;		labelRotation: -45;		labelConversion: [ :v | Date year: 2015 day: v ]. 	b]]]"
+"TRClipBoxShape",""
+"RTOrderedCollection",""
+"RTAbstractBuilder",""
+"RTHistogramSet","The histogram gives you a distribution frequency over the points given. Frequency on y and a collection of values per bars on x.  "
+"RTGrapherDecorationExample",""
+"RTSparklineExample",""
+"RTHorizontalValuesDecorator","Add ticks at particular values:-=-=-=-=-=-=-=-=-=-=-=-=c := (1 to: 100) collect: [ :i | 50 atRandom @ 50 atRandom ].g := RTGrapher new.d := RTData new.d points: c.d x: #x.d y: #y.g add: d.g axisX noTick.g axisY noTick.g addDecorator: (RTVerticalValuesDecorator new addAll: #(10 25)).g addDecorator: (RTHorizontalValuesDecorator new addAll: #(10 25)).g-=-=-=-=-=-=-=-=-=-=-=-="
+"RTCursorFollower","A decorator that add lines that follow the mouse cursor-=-=-=-=| b ds |b := RTGrapher new.ds := RTDataSet new.ds points: #(5 10 6 2 -2.5).b add: ds.b addDecorator: RTCursorFollower new.b build.^ b view-=-=-=-="
+"RTFixFontProblemPlugin",""
+"RTUsefulScript",""
+"RTMultiLinearColorForIdentity","RTMultiLinearColorForIdentity associates to each objects a distinct color. Consider the following example:[[[classes := Collection withAllSubclasses.packages := (classes collect: #package) asSet asArray.v := RTView new.v @ RTDraggableView.normalizer := RTMultiLinearColorForIdentity new 					objects: packages;					command: #package.s := RTBox new size: 15; color: normalizer.v addAll: (s elementsOn: classes).e := RTEdgeBuilder new		view: v;		moveBehind;		objects: classes.e connectFrom: #superclass.RTClusterLayout on: v elements.v]]]Using the Mondrian api, the normalizer es:"
+"RTColorTransitionAnimation",""
+"RTBarLabelFactory","Useful to provide an object with a configuration when creating label for bars.For example:b := RTGrapher new.d := RTData new.d points: (Collection withAllSubclasses copyFrom: 1 to: 20).d y: #numberOfMethods.d barChartUsing: (RTBarLabelFactory new label: #name; fontSize: 7).b add: d.b axisX noLabel; noTick.b"
+"RTCircularTreeMapBuilder","I am a variation of RTTreeMapBuilder in to explore in a better way any tree representation"
+"RTHighlighterBuilder","I am a builder that add a widget to a view. The widget can be configured to give names and conditions. When the mouse goes above a name, elements contained in the view that match the condition are highlighted.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=b := RTMondrian new.b shape circle.b nodes: Collection withAllSubclasses.b edges connectFrom: #superclass.b layout tree.b normalizer normalizeSize: #numberOfMethods using: #sqrt.b build.	hb := RTHighlighterBuilder new.	hb view: b view.	hb filter: [ :obj | obj isBehavior ].	hb addEntry: [ :cls | '*Array*' match: cls name ] named: 'Array'.	hb addEntry: [ :cls | '*Set*' match: cls name ] named: 'Set'.		hb addEntry: [ :cls | '*Hash*' match: cls name ] named: 'Hash'.	hb addEntry: [ :cls | '*Dictionary*' match: cls name ] named: 'Dictionary'.	hb build.b view-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Another example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=b := RTMondrian new.b shape circle.b nodes: Collection withAllSubclasses.b edges connectFrom: #superclass.b layout tree.b normalizer normalizeSize: #numberOfMethods using: #sqrt.b build.	hb := RTHighlighterBuilder new.	hb view: b view.	hb highlightColor: Color white.	hb filter: [ :obj | obj isBehavior ].	hb addEntry: [ :cls | '*Array*' match: cls name ] named: 'Hide Array'.	hb build.b view-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Fading is also supported:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=b := RTMondrian new.b nodes: (1 to: 10).b normalizer normalizeSize: #yourself.b build.	hb := RTHighlighterBuilder new.	hb view: b view.	hb highlightColor: [ :nb | Color r: nb / 10 g: 0 b: 0 ].	hb filter: [ :obj | obj isNumber ].	hb addEntry: [ :number | true ] named: 'Red' highlightColor: [ :nb | Color r: nb / 10 g: 0 b: 0 ].	hb addEntry: [ :number | true ] named: 'Green' highlightColor: [ :nb | Color r: 0 g: nb / 10 b: 0 ].		hb build.b view.-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTSankeyBuilder","I am a experimental class to have a sankey visualizationmore info in this linkhttp://en.wikipedia.org/wiki/Sankey_diagram"
+"RTCubeHelix",""
+"RTConstrainedDraggable","A RTConstrainedDraggable is like Draggable, but restraint the element to move within a provided rectangle"
+"RTBrushInteraction","I am a interaction that adds a new elastic box to the viewthis box allows you to select a group of elements and highlight them with a color. And define what kind of elements you want to unhighlight."
+"RTLabeled","A RTLabeled  adds a label above an element. The label may be particularized using #text: in the default string representation is not sufficient. Consider:E.g., v := RTView new.e := (RTEllipse new size: 30) elementOn: 42.v add: e.e @ (RTLabeled new text: [ :value | 'My value is ', value asString ]).vInstance Variables	canvas:		<Object>	color:		<Object>	highlightable:		<Object>	lowColor:		<Object>	offsetOnEdge:		<Object>	position:		<Object>	text:		<Object>canvas	- xxxxxcolor	- xxxxxhighlightable	- xxxxxlowColor	- xxxxxoffsetOnEdge	- xxxxxposition	- xxxxxtext	- xxxxx"
+"RTDragAndDroppable",""
+"RTScrollBar","add a simple scroll bar to the view"
+"RTColorFadingLegendItem",""
+"RTNIdentityNormalizer","A RONIdentityNormalizer is xxxxxxxxx.Instance Variables	colorIndex:		<Object>	dictionary:		<Object>colorIndex	- xxxxxdictionary	- xxxxx"
+"RTResizableRectangle","I provide some primitives for manipulating with rectangles and its sides.!! CollaboratorsDCRTResizable"
+"RTSqrtTransformation",""
+"RTTextWord","A RTTextWord represents one word of an original text.Instance Variables	interval:		<Interval>	text:		<String | Text>interval	- interval of the word in the original texttext	- word, a part of the orignal text"
+"RTSparkline",""
+"RTTextPath","I am a simple class to generate text in roassal with Athens cairo that uses the textPathCommand from roassal"
+"RTAbstractDataSet",""
+"RTGradientColoredLineExample","RTGradientColoredLineExample new installTitle: 'Dependencies' 		code:		'| eb |v := RTView new.es := RTEllipse new elementsOn: RTShape withAllSubclasses, TRShape withAllSubclasses.v addAll: es.es @ RTDraggable.es @ RTPopup.eb := RTEdgeBuilder new.eb view: v.eb shape line color: Color black.eb objects: RTShape withAllSubclasses from: #yourself toAll: #dependentClasses.RTMetricNormalizer new	elements: es;	normalizeSize: #numberOfLinesOfCode min: 10  max: 30;	normalizeColor: #numberOfMethods using: {Color green . Color red} using: #sqrt;	alphaColor: 0.5.RTForceBasedLayout new charge: -300; on: es.v edgesDo: #remove.eb := RTEdgeBuilder new.eb view: v.eb shape gradientLineFrom: Color green to: Color white.eb objects: RTShape withAllSubclasses, TRShape withAllSubclasses from: #yourself to: #superclass.v open.v canvas.'"
+"RTSVGExample","RTSVGExample new installTitle: 'Animated' 		code:		' 	| view randInt rand |	rand := Random new.	randInt := [ :n | (rand next * n) asInteger ].	view := RTView new.	RTSVGPath icons do: [ :icon |		|elem|		elem := (RTSVGPath new		path: (RTSVGPath perform: icon);		borderWidth: 0;		scale: 5;		fillColor: Color random) element.		elem @ RTDraggable.		view add: elem.		elem translateBy: (randInt value: 400) @ (randInt value: 400).		view addAnimation: (RTRotationMove angle: 100 during: (randInt value: 90) + 10 on: elem).	].	^ view	'"
+"RTAbstractHorizontalValuesDecorator",""
+"RTAreaDecorator",""
+"RTDataStudioPlugin",""
+"RTVisualIDPlugin",""
+"RTMultiLinearColor","A RTGrayLinearColor is xxxxxxxxx.Instance Variables	max:		<Object>	min:		<Object>	scope:		<Object>max	- xxxxxmin	- xxxxxscope	- xxxxx"
+"RTActiveAnimation",""
+"RTAxisConfiguration","A RTAxisConfiguration describes an axis configuration"
+"RTScrollPadBuilder","A RTScrollPadBuilder is a scroll pad that you can add to navigate in two dimension in your view. More than a Draggable view, it allows to keep a mark about your position in the view and it scale for large views. It can be static, movable, using #isStatic or #isMovableaving an orientation #vertical or #horizontal.the default configuration is #isBasic and #isStatic,the bar shape is defined by #barShape: <#aBox or default value #anEllipse>the bar can have a specificity like #scalable, so it give an idea of the size of the view.Size or fixedPosition can be defined as blocks.width: to set a static size of width."
+"RTExploraBuilder","A ROExploraBuilder is xxxxxxxxx.Instance Variables	layout:		<Object>	lineShape:		<Object>	nextId:		<Object>	nodeListeners:		<Object>	nodeProperties:		<Object>	nodes:		<Object>	popUp:		<Object>	view:		<Object>layout	- xxxxxlineShape	- xxxxxnextId	- xxxxxnodeListeners	- xxxxxnodeProperties	- xxxxxnodes	- xxxxxpopUp	- xxxxxview	- xxxxx"
+"RTPieBuilder",""
+"RTComposer","I am responsible to compose several visualizations.For example:====compo := RTComposer new.b := RTMondrian new.b view: compo view.b nodes: (1 to: 3).b build.compo group: #g1.b := RTMondrian new.b view: compo view.b nodes: (1 to: 4).b build.compo group: #g2.compo layout: RTVerticalLineLayout new alignCenter. compo view===="
+"RTInteraction","A ROInteraction is xxxxxxxxx."
+"RTVerticalDraggableView","I am an interaction to translate the view as my parent.The difference is that I only allow horizontal translations"
+"RTZoomableView","I am interaction which allows view to be zoomed with a mouce wheel. While zomming mouce cursor stays on the same spot in the canvas"
+"RTStackBarRow",""
+"RTResizable","I provide element resizing in all eight directions. Resizing handles are displayed after clicking on an associated element, and are automatically removed when clicked on a view or another element.!! AssumptionsYou must provide this class with aView instance or the initialized element must be already added to the view.!! CollaboratorsRTResizableRectangleRTResizeCanceled!! Examplesee my class side"
+"RTDecoration",""
+"RTNAbstractNormalizer","A RONAbstractNormalizer is xxxxxxxxx.Instance Variables	command:		<Object>command	- xxxxx"
+"RTLazyMetricNormalizer",""
+"RTLinearTransformation",""
+"RTPalette","Define a set of colors.Examples showing all the palletes:-=-=-=| v allLines lbl es lb| v := RTView new.allLines := OrderedCollection new.(RTPalette class selectors sorted) do: [ :selector |	lbl := RTLabel elementOn: selector.		v add: lbl.		es := (RTBox new size: 20) elementsOn: (1 to: 5).	v addAll: es.	es @ (RTMouseHoverZoom new desiredExtent: [ :anElement | anElement extent * 1.7 ]).	TRConstraint stick: lbl onTheLeftOf: es first.		RTHorizontalLineLayout new gapSize: 3; on: es.	RTMetricNormalizer new		elements: es;		normalizeColor: #yourself using: (RTPalette perform: selector).	allLines add: es.].RTVerticalLineLayout on: allLines.lb := RTLegendBuilder new.lb view: v.lb onDemand.lb addText: 'Many color palettes are offered by Roassal'.lb addText: 'To obtain the a palette, simply evaluate: RTPalette c5'.lb build.v-=-=-=Using a palette:-=-=-=p := RTPalette c10.b := RTMondrian new.b shape box	color: p fifth;	if: [ :c | '*Line*' match: c name ] color: p first;	if: [ :c | '*Arrow*' match: c name ] color: p second;	if: [ :c | '*Arc*' match: c name ] color: p third;	if: [ :c | '*Abstract*' match: c name ] color: p fourth.b nodes: (RTShape withAllSubclasses).b layout flow.b normalizer normalizeSize: #numberOfMethods.b-=-=-="
+"RTTextBuilderExamples","A RTTextBuilderExamples has examples of RTTextBuilder class."
+"RTLineDualWidth","I am a line with different sizes in each side.Here is an example:-=-=-=	| view box e1 e2 l |    view := RTView new.    view @ RTDraggableView.    box := RTBox new size: 20.    e1 := box element.    e2 := box element.    e2 translateTo: 40 @ 20.    l := RTLineDualWidth new        widthFrom: [:edge | 2];        widthTo: [:edge | 1];        color: Color red;        withShorterDistanceAttachPoint;        yourself.    e1 @ RTDraggable.    e2 @ RTDraggable.    view        add: e1;        add: e2;        add: (l edgeFrom: e1 to: e2).    view -=-=-=Another example:-=-=-=-=""This visualization shows dependencies between Monticello packages""pak := RPackageOrganizer default packages select: [ :p | 'Metacell*' match: p name ].b := RTMondrian new.b shape circle withTextAbove: #packageName.b nodes: pak.b shape lineDualWidth 	color: Color blue trans; 	withShorterDistanceAttachPoint;	widthFrom: [ :anEdge | (anEdge from model numberOfDependenciesToward: anEdge to model) sqrt  * 4];	widthTo: [ :anEdge | (anEdge to model numberOfDependenciesToward: anEdge from model) sqrt * 4].b edges 	noRepetition; noBidirectional;	connectToAll: #dependentPackages.b layout circle.b normalizer normalizeSize: #numberOfClasses using: #sqrt.b-=-=-=-="
+"RTInteractiveComposerTest",""
+"RTData","A data set for which each element has to be plotted using two functions, one against the X-axis and another against the Y-axis), is modelled using the class RTData. -=-=-=""Since no x: and y: have been specified, it simply lines up all the values""b := RTGrapher new.ds := RTData new. ds dotShape color: Color red. ds points: #(5 1 20 8).b add: ds.b.-=-=-=-=-=-=b := RTGrapher new.ds := RTData new. ds dotShape color: Color red. ds points: #(5 1 20 8).ds y: [ :x | x * x ].b add: ds.b.-=-=-=-=-=-=b := RTGrapher new.ds := RTData new. ds dotShape color: Color red. ds points: (1 to: 100).ds y: [ :x | x * x ].b add: ds.b.-=-=-=-=-=-=""Use objects instead of numerical values""b := RTGrapher new.ds := RTData new. ds dotShape color: (Color red alpha: 0.3). ds points: Collection withAllSubclasses.ds y: #numberOfLinesOfCode.ds x: #numberOfMethods.b add: ds.b.-=-=-="
+"RTExperimentalExample","RTExperimentalExample new installTitle: 'BoxSelectionForEdges' 		code:		'<gtExample>| b v |b := RTObjectBrowser new.v := RTView new.v addElement: RTBox element.b object: v.^ b'"
+"RTPieExample","RTPieExample new installTitle: 'GroupOfGroups' 		code:		'v canvas'	"
+"RTAbstractLineDecorator",""
+"RTHorizontalTickLineDecorator","Add some horizontal lines, one line per tick.	b := RTGrapher new.	b extent: 300 @ 200.	ds := RTData new.	ds points: (-50 to: 100 by: 0.1).	ds y: [ :x | (0.1 * x) sin  ].	ds noDot.	ds interaction popupText: 'sinus'.	ds connectColor: Color blue.	b add: ds.	ds := RTData new.	ds points: (-50 to: 100 by: 0.1).	ds y: [ :x | (0.1 * x) cos  ].	ds noDot.	ds interaction popupText: 'cosinus'.	ds connectColor: Color red.	b add: ds.	b addDecorator: RTHorizontalTickLineDecorator new.	b addDecorator: RTVerticalTickLineDecorator new.	^ b	"
+"RTCPPAnalysisPlugin",""
+"RTSoftwareHeritagePlugin",""
+"RTBucketColor","A scale of elements is discretized into buckets where elements of each bucket is associated to an element. The buckets are formed by creating partitions uniformly."
+"RTZoomInMove","I increase camera's zoom by 25%"
+"RTRotationMove",""
+"RTAbstractScrollBuilder","Abstract class for the pad or bar builders"
+"RTDoubleSlider","Class implementing a slider with two cursors, useful for selection of intervals"
+"RTNameCloud","Create a simple namecloud "
+"RTCPQualitative","Qualitative schemes do not imply magnitude differences between legend classes, and hues are used to create the primary visual differences between classes. Qualitative schemes are best suited to representing nominal or categorical data.Check it out by executing:ColorPalette qualitative showMore info: http://colorbrewer2.org/learnmore/schemes_full.html#qualitative---Copyright:All colors, palettes and schemes are from www.ColorBrewer.org by Cynthia A. Brewer, Geography, Pennsylvania State University.FalutUI1 color scheme come from: http://flatuicolors.com/"
+"RTGrapherLabel","I am an utility class for RTLabelGenerator"
+"RTConstrainedDraggableView","I am a view interaction allowing horizontal translation.In addition, I hold a block allowing constraints on the translations"
+"RTShowLabelWhenZooming","This is an interaction that show label only when the camera reaches a particular zoom scale factor.Here is an example:-=-=-=b := RTMondrian new.b shape labeledBox.elements := b nodes: (1 to: 9).b layout grid.b view @  RTShowLabelWhenZooming.b-=-=-="
+"RTSelectable","A RTSelectable is an interaction that allows for element contained in a view to be selected and having a callback whenever the selection is changed"
+"RTMorphDropInteraction",""
+"RTNumberInterpolator","I am the basic interpolator for numbers"
+"RTMetricNormalizer","A Metric normalizer is made to assign a color, or a particular shape computed from a group of elements. Consider the following example:-=-=-=-=-=-=-=-=-=-=-=-=""Set here the classes you wish to visualize""classes := Collection withAllSubclasses.v := RTView new.v @ RTDraggableView.shape := RTBox new.es := shape elementsOn: classes.v addAll: es.RTMetricNormalizer new	elements: es;	normalizeWidth: #numberOfVariables;	normalizeHeight: #numberOfMethods;	normalizeColor: #numberOfLinesOfCode.RTFlowLayout on: es.v-=-=-=-=-=-=-=-=-=-=-=-="
+"RTNiceStep","I am an utility class for RTNiceStepSizeGenerator>>next"
+"RTScalePowPow","I am a utility clas for RTScalePow"
+"RTSelectionEnd","I am called when the selection with the elastic box ends"
+"RTTable",""
+"RTMultipleData","This is an obsolete class"
+"RTConstraintExample","RTConstraintExample new installTitle: 'AboveTopOnLabel' 		code:		'| v b e |v := RTView new.e := RTLabel elementOn: ''Happiness''.b := (RTBox new size: 80; color: (Color blue alpha: 0.3)) element.v add: e; add: b.b @ RTDraggable.e @ RTDraggable.(RTConstraint child: e parent: b)	above;	top;	stick.^ v'	"
+"RTMondrianExample","RTMondrianExample new installTitle: 'ClusterLayout' 		code:		'| b |b := RTMondrian new.b shape circle.b nodes: RTObject withAllSubclasses.b shape line color: (Color blue alpha: 0.4).b edges connectFrom: #superclass.b normalizer	objects: RTObject withAllSubclasses;	normalizeSize: #numberOfMethods min: 5 max: 30 using: [:value | (value + 1) ln ];	normalizeColor: #numberOfMethods using: {Color gray . Color blue. Color red } using: [ :value | (value + 1) ln ].	b layout cluster.b build.^ b'	"
+"RTHorizontalAverageDecorator","RTHorizontalAverageDecorator is a decorator that indicates the average of a set of values.Consider the following example:-=-=-=-=b := RTGrapher new.ds := RTDataSet new. ds dotShape color: Color red. ds points: #(5 1 20 8).b add: ds.b addDecorator: (RTHorizontalAverageDecorator new withLabel; labelConvertion: [ :aValue | 'average = ', aValue asFloat asString ]).b.-=-=-=-="
+"RTVerticalLineDecorator","Add vertical lines for some values-=-=-=-=-=	| b ds p |	b := RTGrapher new.	ds := RTDataSet new.	ds points: #( 0 1 2 10).	b add: ds.	b minY: -3.33.	p := RTHorizontalLineDecorator new.	p add: 5; add: 7; add: 3.34.	p shape line color: (Color red alpha: 0.3).	b addDecorator: p.	p := RTVerticalLineDecorator new.	p add: 5.	p shape line color: (Color blue alpha: 0.3).	b addDecorator: p.	b build.	^ b view -=-=-=-=-="
+"RTAIPackageslugin",""
+"RTRoassal3DBasic",""
+"RTXMLViewerScript",""
+"RTAnimation","I am called on every Morphic repaint cycle so you can update your visualization accordingly.==#start== method is called when the animation has been added to the view (so you can prepare your animation)==#refresh== is called on every repaint cycle (depending on the configured FPS many times every second)==#hasCompleted== should return ==true== once your animation has completed it's purpose, then it is automatically removed/detached from the view."
+"RTPathAnimation","I am a class to move elements position in a SVG path"
+"RTScatterplotMatrix","I am a basic builder to build a matrix of scatterplot with roassal"
+"RTDepMatrix",""
+"RTMondrian","A RTMondrian describes Mondrian, a domain-specific language that is adapted to represent polymetric views. More info about polymetric views in ""Michele Lanza and Stéphane Ducasse. Polymetric Views—A Lightweight Visual Approach to Reverse Engineering. In Transactions on Software Engineering (TSE) 29(9) p. 782—795, September 2003.""RTMondrian maintains a stack of frame, instances of RTMondrianFrameInstance Variables	currentFrame:		<RTMondrianFrame>	edgeBuilder:		<RTEdgeBuilder>	metricNormalizer:		<RTMetricNormalizer>	rootFrame:		<RTMondrianFrame>currentFrame	- xxxxxedgeBuilder	- xxxxxmetricNormalizer	- xxxxxrootFrame	- xxxxx"
+"RTColorPalette","Each ColorPalette is a set of beautiful color schemes in a context for a specific purpose.Each palette contains several color schemes. Each scheme can be selected in different numbers of colors: 3 or 5 or 11 (depends on each scheme).We have three palettes:- Qualitative: helps to distinguish different classes of data. - Sequential: useful for showing graduable data with a very light ""low color"" increasing darkness to ""high color"".- Diverging: it contains color scales with diverging colors on the extremes and transition colors from one extreme to the other. More detailed information is on it class comments.---Copyright:All colors, palettes and schemes are from www.ColorBrewer.org by Cynthia A. Brewer, Geography, Pennsylvania State University."
+"RTGapTree","I am a utility class to help to the layout process in the RTCircularTreeMapBuilder"
+"RTAbstractInteractionView","Subclasses of myself are interaction for the view"
+"RTGridView","I add a grid background to a view.Additionally any element having RTDraggableSnapToGrid will use my gridSize settings.!! Examplesee class-side"
+"RTClickStateInteraction",""
+"RTMakeEdgeNotUpdatable","This class is a bit of a hack. The problem is drag-and-droping an element updates the edges connected to that element. However, the edge update also refresh the color and the width. And this is problematic when you try to change the color and the width of the edge. Dragging an element makes the edge use the width and color set in the RTLine shape.In the future, maybe in Roassal3, which mechanism will be removed.-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.e1 := RTBox element.e2 := RTBox element.e1 @ RTDraggable.e2 @ RTDraggable.v add: e1; add: e2.e1 translateBy: 10 @ 8.v add: (RTLine edgeFrom: e1 to: e2).v addMenu: 'do' callback: [ 	v edges first @ RTMakeEdgeNotUpdatable.	v edges first trachelShape color: Color red; width: 3. 		v signalUpdate ].v-=-=-=-=-=-=-=-=-=-=-=-="
+"RTInterpolator","I am a base Interpolator, my sbuclasses are	RTColorInterpolator, and RTNumberInterpolator	"
+"RTMapBuilderExample",""
+"RTNoDictionary",""
+"RTScaleOrdinal","I am a scale for ordinal ranges"
+"RTSelectionEvent","I am an event for RTSelectableView"
+"RTSmoothLayoutTranslator","A ROSmoothLayoutTranslator is xxxxxxxxx.Instance Variables	move:		<Object>	nbCycles:		<Object>move	- xxxxxnbCycles	- xxxxx"
+"RTSimilarityMatrix","A TSOverview is a visualization of similarity between test methods as measured by TestSurgeon.	TSOverview demo"
+"RTAbstractMultipleData",""
+"RTComposedShapeExample","RTComposedShapeExample new installTitle: 'Flags' 		code:		'v canvas'	"
+"RTMapExample","RTMapExample new installTitle: 'ColoredAfrica03' 		code:		'					b := RTMapBuilder new.				countries := RTMapBuilder africanPopulation.	countriesName := countries collect: #first.	max := (countries collect: [ :c | c at: 2 ]) max.		cn := RTMultiLinearColor new		colors: (ColorPalette sequential colors: 8 scheme: ''GnBu'');		command: [ :aCountry | (countries detect: [ :c | c first = aCountry ]) second / max ].		b countries: countriesName.	b color: cn.	b scale: 2.	b build.	^ b view'	"
+"RTAbstractAverageDecorator",""
+"RTHorizontalTimelineDecorator","RTHorizontalTimelineDecorator defines a separation between lined up group of events. Such a decoration simply needs to have a particular identifier. [[[ 	data := #(#(c1 0 5) #(c1 6 8) #(c2 0 5) #(c2 8 10) #(c3 0 10) #(c4 5 10) #(c5 5 8)).	b := RTTimeline new.		s := RTTimelineSet new.	s objects: data.	s lineIdentifier: #first.	s start: #second.	s end: #third.	b add: s.		b axisX 		numberOfLabels: 5;		labelRotation: -45;		labelConversion: [ :v | Date year: 2015 day: v ]. 	p := RTHorizontalTimelineDecorator new.	p addLineAboveIdentifier: 'c3'.	p addLineAboveIdentifier: 'c2'.	p shape line width: 3; color: (Color red).	b addDecorator: p.	b]]]"
+"RTAbstractMenuEntry",""
+"RTPDFExporterPlugin",""
+"RTViewFolderScript",""
+"RTHowToReportABug","I am a class that display general information about how to report a bug"
+"RTNopAnimation","A RTNopAnimation simply wait. This is useful to temporize"
+"RTDynamicStackedGrapher","RTDynamicStackedGrapher is a dynamic grapher on which bar may be added.Consider the following example:	| b |	b := RTDynamicStackedGrapher new.	b numberOfBars: 10.	b minY: -200; maxY: 200.	b y: #yourself.	 	b barShape color: (Color red alpha: 0.3).	b view addMenu: '+ 1' callback: [ b add: 400 atRandom - 200 ].	b open"
+"RTBundleBuilder","You can use this builder to represent a hierarchy of an object(like Collection and all subclasses). This builder uses cluster layout.This builder uses all the leaf of the tree structure, and put a string representation for each object.Also this builder can create bezier relations between each leaf node. that you can activate with mouseEnter in one nodeThis builders adds some interactions, like* an interaction with beziers	 - #useBezierlineWith: . Send nil to disable* a slider to change the tension for each bezier shape	- #sliderShape: .Send nil to disable* RTRotableView	- view: anotherView. Send another view to disable"
+"RTMetricMap","A RTMapBuilder2 is specialized to display metrics"
+"RTCache","I am class to handle a lot of elements and drawI am still growing, if you find a best answer to cache elements, please let me to to akevalion@gmail.co"
+"RTExploraNodeLazy",""
+"RTHighlightableWithCursor","Highlight to indicates that some interaction be can done. It changes the cursor aspectE.g.,-=-=-=| b |b := RTUMLClassBuilder new   instanceVariables: #instVarNames;   methodselector: #selector;	methodsNames: #rtmethods;	attributeselector: #yourself.b attributeShape color: Color black.b methodShape color: Color black.b classNameShape color: Color black.b lineShape color: Color black.b boxShape borderColor: Color black.b addObjects: (Collection withAllSubclasses ).b layout tree.b build.b view elements @ RTHighlightableWithCursor.^b view-=-=-=-=-=-=b := RTMondrian new.b shape circle size: 10.b interaction showEdge 	connectToAll: #subclasses.b interaction showLabel 	highlightObjects: #subclasses.	nodes := b nodes: (Collection withAllSubclasses).nodes @ RTHighlightableWithCursor.b edges moveBehind; connectFrom: #superclass.b layout radial.b-=-=-="
+"RTMorphingView","I am the advanced brother of RTMorphingView. In addition to its functionalities I also...- Add new nodes from one view to the next- Remove nodes no longer present- Adapt the #extent of nodes"
+"RTAutomaticFlowLayout",""
+"RTDataToggleInteraction","I hide the dataset when the associated legend entry has been clicked on.For example:-=-=-=-=-=-=-=-=-=-=g := RTGrapher new.d := RTData new.d label: 'Collection code'.d interaction toggleDataset.d dotShape color: Color red trans.d points: (Collection withAllSubclasses).d x: #numberOfLinesOfCode.d y: #numberOfMethods.g add: d.d := RTData new.d interaction toggleDataset.d label: 'Roassal code'.d dotShape color: Color blue trans.d points: (RTObject withAllSubclasses).d x: #numberOfLinesOfCode.d y: #numberOfMethods.g add: d.g axisX noDecimal; title: 'Number of lines of code'; withThousandsSeparator.g axisY noDecimal; title: 'Number of Methods'.g legend addText: 'Collection vs Roassal code base'.g-=-=-=-=-=-=-=-=-=-="
+"RTInteractiveComposer",""
+"RTLinearClosedPathBuilder","a Builder for points that return points with Z command"
+"RTNameCloudDictionary",""
+"RTScaleLog","for scale log"
+"RTSunburstExtentLayout","I am a layout for Sunburst Visualization, I use a radius to calculate the better distance of all arcs in the visualization.You can use radius to set the total radius of sunburstor use the selector extent:, that uses radius size"
+"RTAbstractSunburstLayout","I am the abstract class for sunburst visualizations in Roassal2, check my subclasses * RTSunburstConstanWidthLayout* RtSunburstExtentLayoutYou can use this layout in with RTLayoutBuilder or with RTSunburstBuilderand their examples to get more info"
+"RTClipBox","I am a simple class to clip a part of the canvas"
+"RTMenu",""
+"RTRouteBuilder",""
+"RTCircularTreeMapExample","RTCircularTreeMapExample new installTitle: 'FileSystem' 		code:		'| b color |b := RTCircularTreeMapBuilder new.color := RTScale linear 	domain: { 0. 12000.};	range: { Color gray. Color red }.b shape	color: Color transparent;	borderColor: Color black;	if: [ :f | f isFile ] color: [ :f | color scale: f size sqrt ].b 	leafWeight: [:f | f size sqrt ]; 	explore: FileSystem disk workingDirectory	nesting: #directories	leaves: #files.b build.^ b view'	"
+"RTLegendBuilderExample","RTLegendBuilderExample new installTitle: 'OnDemand' 		code:		'| l lb |b := RTMondrian new.b shape rectangle	width: [ :c | c numberOfVariables * 5 ];	height: #numberOfMethods.b nodes: RTShape withAllSubclasses.b edges connectFrom: #superclass.b layout tree.b normalizer	normalizeColor: #numberOfLinesOfCode using: { Color black. Color red }.b build.lb := RTLegendBuilder new.lb onDemand.lb view: b view.lb addText: ''System complexity view''.lb addRectanglePolymetricWidth: ''number of methods'' height: ''Line of code'' box: ''a Pharo class''.lb build.^ b view'	"
+"RTTreeMapExample","RTTreeMapExample new installTitle: 'FileSystem' 		code:		'| b color |b := RTTreeMapBuilder new.color := RTScale linear 	domain: { 0. 12000.};	range: { Color gray. Color red }.b shape	color: Color transparent;	borderColor: Color black;	if: [ :f | f isFile ] color: [ :f | color scale: f size sqrt ].b 	leafWeight: [:f | f size sqrt ]; 	explore: FileSystem disk workingDirectory	nesting: #directories	leaves: #files.b build.^ b view'	"
+"RTVerticalValuesDecorator","=-=-=-=-| b ds deco |b := RTGrapher new.ds := RTData new.ds points: #(0 1 2 3 4 5 6).b add: ds.deco :=  RTHorizontalAllValuesDecorator new.deco labelConversion: [ :value | '#', value asString ].b addDecorator: deco.deco :=  RTVerticalValuesDecorator new.deco addAll: #(2 3 4).deco labelConversion: [ :value | '#', value asString ].b addDecorator: deco.b axisX noTick; noLabel.b axisY noTick; noLabel.b=-=-=-=-"
+"RTRangeSelector","A range along the X-Axis is selectable.-=-=-=-=-=g := RTGrapher new.g view: RTView new.ds := RTData new.ds points: RTShape withAllSubclasses.ds y: [ :cls | cls numberOfMethods - 50 ].ds x: [ :cls | cls numberOfLinesOfCode - 150 ].g add: ds.g addDecorator: (RTRangeSelector new callback: [:es | es inspect ]).""RTGrapherSelectRangeViewContext onGrapher: g.""g -=-=-=--=-=Another example:-=-=-=--=-=v := RTView new.b := [ :someClasses |	g := RTGrapher new.	g view: v.	ds := RTData new.	ds points: someClasses.	ds y: [ :cls | cls numberOfMethods ].	ds x: [ :cls | cls numberOfLinesOfCode ].	g add: ds.	g addDecorator: (RTRangeSelector new callback: [:es | 		| classesToZoomIn |		classesToZoomIn := es collect: #model.		v cleanAll.		b value: classesToZoomIn	]).	g build.].b value: RTShape withAllSubclasses.v-=-=-=--=-="
+"RTNeoPlugin",""
+"RTPackageLife",""
+"RTGitHub",""
+"RTLinearMove","A RTLinearMove linearly and at a regular speed move the element on which the animation is invoked on"
+"RTDynamicEqualizerGrapher",""
+"RTApplicationMatrix",""
+"RTMenuBuilder","A RTMenuBuilder create menus, submenus, buttons in a view.Titles, callback, colors and callback can be defined.Instance Variables	parentMenus:		<Object>parentMenus	- xxxxx"
+"RTStackBarPlot",""
+"RTExperimentalStack","I am an experimental class.This is an stack data based in	http://leebyron.com/streamgraph/stackedgraphs_byron_wattenberg.pdf"
+"RTHighlightable","A RTHighlightable changes color of elements which should be highlighted.Example using Mondrian:-=-=-=-=-=-=-=-=-=b := RTMondrian new.b view @ RTZoomableView .b interaction highlightEdges: #dependentClasses.b shape circle.b nodes: (Collection withAllSubclasses).b edges moveBehind; connectToAll: #dependentClasses.b normalizer normalizeSize: #numberOfMethods; normalizeColor: #numberOfMethods.b layout force.b-=-=-=-=-=-=-=-=-="
+"RTHighlightElementsInView","Add a menu entry to easily allow for selection[[[| v |v := RTView new.v addAll: (RTBox elementsOn: (Collection withAllSubclasses)).RTGridLayout on: v elements.v elements @ RTPopup.v @  RTHighlightElementsInView.]]][[[| b | b := RTMondrian new.b node: 4 forIt: [	b node: 4 ].b view @ RTHighlightElementsInView new transparent.b]]]			"
+"RTContinuousPopup","shows a continuous popup in one element"
+"RTGrapherInteraction","I am a base class for interactions specific to RTGrapher."
+"RTSimpleResizable","A RTResizeable is an interaction to enable resizing element.Here is an example:-=-=-=-=v := RTView new.s := RTBox new color: Color blue; width: [ :c | c numberOfVariables * 5 ]; height: #numberOfMethods.e := s elementOn: RTView.e @ RTResizeable.v add: e.-=-=-=-="
+"RTPolymorphicBoxLegendItem",""
+"RTNumberLinearNormalizer","A RONumberLinearNormalizer is xxxxxxxxx.Instance Variables	scale:		<Object>scale	- xxxxx"
+"RTScaleBilinear","I represent a bilinear range for 2 limits, start and end"
+"RTUninterpolateNumber","I uninterpolate a value of x acording to 2 limits, a and b"
+"TRTextPath","I am a simple label shape to draw text with the command textPath:"
+"RTComparison","A Comparison bundles two entities to be compared in a SimilarityMatrix."
+"RTShapeBuilder",""
+"RTBitmapExamples",""
+"RTInteractionExample","self new installTitle: 'GroupOfGroups' 		code:		'^ v'	"
+"RTSunburstBuilderExamples","RTSunburstBuilderExamples new installTitle: 'basic15' 		code:		'	| b |	b := RTSunburstBuilder new.	b strategy: (RTSunburstExtentStrategy new extent: 800@800).	b shape colorElement: [ :el | el model subclasses isEmpty ifTrue: [ Color purple ] ifFalse: [ Color lightGray ] ].	b explore: Morph using: #subclasses.	b view @ RTDraggableView.	b build.	^ b view'	"
+"RTVerticalMaxValueDecorator","=-=-=-=| b ds |b := RTGrapher new.ds := RTData new.ds points: RTShape withAllSubclasses.ds y: #numberOfMethods.b add: ds.b addDecorator: RTVerticalMinValueDecorator new red.b addDecorator: RTVerticalMaxValueDecorator new blue.b axisY noLabel.b =-=-=-="
+"RTMeanDevVarDecorator","=-=-=-=-| b ds |b := RTGrapher new.ds := RTData new.ds interaction popup.ds points: #(600 470 170 430 300).ds barShape width: 20; color: Color lightGreen.b add: ds.b axisX noLabel; noTick.b axisY noDecimal.b addDecorator: RTMeanDevVarDecorator new.b =-=-=-=-"
+"RTMoreColorPlugin",""
+"RTFreeMemory4DebugScript","Script to free Roassal objects.MCHttpRepository	location: 'http://www.smalltalkhub.com/mc/JohnBrant/ReferenceFinder/main'	user: ''	password: ‘’	Once loaded, you can evaluate something like ""ReferenceFinder findPathToInstanceOf: MyClass”.  That will return a reference path or nil if no path exists from the Smalltalk global to an instance of MyClass. If you want to find a path to a particular instance, you can use “ReferenceFinder findPathTo: myInst”.Here are an useful code snippet:RTView allInstances size.TRCanvas allInstances size.AthensCairoSurface allInstances size.Smalltalk garbageCollect.ReferenceFinder findPathToInstanceOf: RTView.ReferenceFinder findPathToInstanceOf: TRCanvas.ReferenceFinder findPathToInstanceOf: AthensCairoSurface."
+"RTChatWithUs","I am a class that simply forward to the discord channel"
+"RTSpringLayoutStepping",""
+"RTAbstractGrapher",""
+"RTSunburstBuilder","I am a class to create visualizations about rings, center is the root of the tree and arcs are the sub trees.You can customize the angle of the arc, and play with the with radius and width of each arc."
+"RTMapLocationBuilder",""
+"RTSlider","Create a slider on a view.A `#callback:`can be set to view the `#progress` (as float between 0 and 1)."
+"RTDistribution","frequency distrubution of a collection.number of classes defined by default in #defaultNumberOfIntervals, a common calcul to have an optimized number of classes."
+"RTGhostDraggable","I am a lightweight alternative to RTDraggable.During dragging, instead of moving the original element I create a ""ghost double"" that is dragged instead, and only when the dragging is complete the original shape is moved.I am useful if the original elements has many children or related elements that would have to be updated during each dragging step. With me only single update at the end occurs.!! ExampleRTInteractionExample new exampleGhostDraggable open"
+"RTAbstractHighlightElementsInView",""
+"RTPlatformPopup","I am a basic class to have the platform popup instead of the roassal popup (RTPopup)"
+"RTFisheye","I am a simple to expand boxes from a simple view using the mouse in that interaction."
+"RTSetEdgeAlpha","A RTSetEdgeAlpha is an interaction raises the transparency of the incoming and outgoing edges for a given element when the mouse enter the element.-=-=-=-=	| v es |	v := RTView new.	es := RTEllipse new elementsOn: RTShape withAllSubclasses.	v addAll: es.	RTWeightedCircleLayout new		initialRadius: 200;		on: es.	RTMetricNormalizer new		elements: es;		normalizeSize: #numberOfMethods			min: 10			max: 35			using: #sqrt;		normalizeColor: #numberOfLinesOfCode.	RTEdgeBuilder new		view: v;		objects: RTShape withAllSubclasses;		shape: (RTLine new color: Color blue);		connectFrom: #yourself toAll: #dependentClasses.	es @ RTPopup @ RTSetEdgeAlpha.	^ v-=-=-=-="
+"RTLabelLegendItem",""
+"RTNColorLinearNormalizer","A RONColorLinearNormalizer is xxxxxxxxx.Instance Variables	highColor:		<Object>	lowColor:		<Object>	maxBrightness:		<Object>	minBrightness:		<Object>highColor	- xxxxxlowColor	- xxxxxmaxBrightness	- xxxxxminBrightness	- xxxxx"
+"RTSamplingGrapher",""
+"RTScrollShapesBuilder","Define the shapes added to the view by the pad and bar builders"
+"RTAnimatedScatterPlotExample","RTAnimatedScatterPlotExample new installTitle: 'EvolutionOfGraphET2'		code:		'| b |b := RTAnimatedScatterPlot new.b addName: ''Version 22 of GraphET2'' table: (RTTabTable new input:  ''GET2HorizontalBarDiagram	12	0	70	GET2AbstractLineDiagram	23	5	86	GET2AxisBuilderTest	8	0	54	GET2UnionDiagram	8	1	26	GET2VerticalLabelDecorator	3	0	10	GET2RegularLabelDecorator	12	2	51	GET2ModelLabelDecorator	8	2	31	GTScatterplot	5	1	51	GET2AbstractAxisBuilder	18	2	55	GET2Abstract2DDiagram	22	4	94	GET2SingleAxisDiagram	17	2	65	GET2Examples	64	0	48	GET2RegularTickDecorator	6	1	24	GET2AbstractAxisDecorator	10	1	64	GET2AbstractAxisStrategy	8	1	17	GET2OrdinaryLineDiagram	7	1	40	GET2TopDownAxisStrategy	3	0	11	GET2AbstractBarDiagram	11	2	34	GET2Distribution	8	1	41	GET2InteractionWrapper	9	1	33	GET2UnionDiagramTest	4	0	60	GTBuilderTest	3	0	38	GTHistogram	2	0	5	GET2BaseLineDecorator	2	0	10	GTAbstractBuilder	18	4	57	GTLine	3	0	19	GET2LineDiagram	19	3	94	GET2DiagramBuilder	19	2	55	GET2PieDiagramTest	2	0	22	GET2YAxisBuilder	2	0	15	GET2Scatterplot	7	1	38	GET2PieDiagram	9	2	35	GET2OldExamples	59	0	48	GET2XAxisBuilder	2	0	15	GET2LineDiagramTest	12	0	128	GET2CompositeDiagramTest	16	0	240	GET2VerticalBarDiagram	11	0	66	GET2BarDiagramTest	34	0	525	GET2AbstractDiagram	47	15	138	GET2TitleDecorator	2	0	14	GET2CompositeDiagram	18	1	70	GET2RotatedLabelDecorator	10	1	47	GET2Axis	29	10	71	GET2Version	4	2	13	DotaHero	8	4	21	GET2LeftRightAxisStrategy	3	0	11	GET2DataObject	8	3	24	'').b addName: ''Version 28 of GraphET2'' table: (RTTabTable new input: ''GET2HorizontalBarDiagram	12	0	71	GET2AbstractLineDiagram	21	5	82	GET2VerticalLabelDecorator	3	0	10	GET2UnionDiagram	8	1	26	GET2AbstractBuilder	26	11	85	GET2RegularLabelDecorator	12	2	51	GET2ModelLabelDecorator	8	2	31	GET2CatalogTest	1	0	10	GET2AbstractAxisBuilder	29	4	85	GET2SingleAxisDiagram	11	2	38	GET2Examples	69	0	48	GET2AbstractAxisBuilderTest	11	0	80	GET2RegularTickDecorator	6	1	24	GET2Line	10	5	44	GET2CatalogSample	10	2	29	GET2AbstractAxisDecorator	11	1	66	GET2AbstractAxisStrategy	8	1	17	GET2OrdinaryLineDiagram	8	1	43	GET2TopDownAxisStrategy	3	0	11	GET2AbstractBarDiagram	8	2	24	GET2InteractionBuilder	4	2	25	GET2Distribution	8	1	41	GET2InteractionWrapper	9	1	33	GET2UnionDiagramTest	4	0	60	GTBuilderTest	3	0	38	GET2ScatterplotDiagram	7	1	38	GET2BaseLineDecorator	2	0	10	GET2LineDiagram	17	3	85	GET2DiagramBuilder	19	2	55	GET2PieDiagramTest	2	0	22	GET2YAxisBuilder	4	0	11	GET2Scatterplot	5	1	51	GET2PieDiagram	9	2	35	GET2OldExamples	59	0	48	GET2XAxisBuilder	4	0	11	GET2LineDiagramTest	12	0	128	GET2Catalog	10	1	23	GET2CompositeDiagramTest	16	0	240	GET2Histogram	10	2	31	GET2VerticalBarDiagram	10	0	67	GET2BarDiagramTest	34	0	525	GET2AbstractDiagram	54	15	156	GET2TitleDecorator	2	0	14	GET2CompositeDiagram	16	1	66	GET2RotatedLabelDecorator	10	1	47	GET2Axis	33	10	85	GET2Version	4	2	13	DotaHero	8	4	21	GET2LeftRightAxisStrategy	3	0	11	GET2DataObject	8	3	24	'').b addName: ''Version 34 of GraphET2'' table: (RTTabTable new input: ''GET2CompositeBuilder	7	1	31	GET2HorizontalBarDiagram	12	0	72	GET2Builder	29	11	95	GET2AbstractLineDiagram	19	5	78	GET2Bar	10	2	31	GET2UnionDiagram	9	1	29	GET2VerticalLabelDecorator	3	0	10	GET2RegularLabelDecorator	12	2	51	GET2ModelLabelDecorator	8	2	32	GET2CatalogTest	1	0	10	GET2LabelDecorator	8	0	48	GET2SingleAxisDiagram	7	2	20	GET2Examples	73	0	48	GET2RegularTickDecorator	6	1	24	GET2Line	10	5	44	GET2CatalogSample	10	2	29	GET2AbstractAxisDecorator	9	2	38	GET2AbstractAxisStrategy	8	1	17	GET2OrdinaryLineDiagram	8	1	43	GET2TopDownAxisStrategy	3	0	11	GET2AbstractBarDiagram	8	2	24	GET2InteractionBuilder	4	2	25	GET2Distribution	8	1	41	GET2InteractionWrapper	9	1	33	GET2UnionDiagramTest	4	0	60	GTBuilderTest	3	0	38	GET2UnionBuilder	5	1	17	GET2AxisBuilder	39	7	109	GET2AxisBuilderTest	15	0	119	GET2LineDiagram	19	3	93	GET2BaseLineDecorator	2	0	10	GET2ScatterplotDiagram	7	1	38	GET2PieDiagramTest	2	0	22	GET2YAxisBuilder	4	0	11	GET2Scatterplot	5	1	52	GET2PieDiagram	9	2	37	GET2OldExamples	60	0	48	GET2XAxisBuilder	4	0	11	GET2DiagramBuilder	19	2	55	GET2LineDiagramTest	12	0	128	GET2Catalog	10	1	23	GET2CompositeDiagramTest	16	0	240	GET2VerticalBarDiagram	8	0	64	GET2BarDiagramTest	34	0	525	GET2AbstractDiagram	67	15	193	GET2TitleDecorator	2	0	14	GET2CompositeDiagram	14	1	62	GET2RotatedLabelDecorator	6	1	18	GET2Axis	36	10	91	GET2Version	4	2	13	DotaHero	8	4	21	GET2LeftRightAxisStrategy	3	0	11	GET2DataObject	8	3	24	'').b addName: ''Version 38 of GraphET2'' table: (RTTabTable new input:  ''GET2LabelDecorator	1	1	7	GET2VerticalBarDiagram	8	0	65	GET2SingleAxisDiagram	7	2	20	GET2PieDiagram	9	2	37	GET2HorizontalBarDiagram	12	0	72	GET2Line	10	5	44	GET2NumericLabelDecorator	15	3	55	GET2Axis	38	10	99	DotaHero	8	4	21	GET2LineDiagram	19	3	93	GET2TopDownAxisStrategy	3	0	11	GET2Scatterplot	5	1	52	GET2XAxisBuilder	4	0	11	GTBuilderTest	3	0	38	GET2Bar	10	2	31	GET2UnionDiagramTest	5	0	128	GET2AbstractLineDiagram	19	5	78	GET2DiagramBuilder	21	2	59	GET2InteractionBuilder	4	2	25	GET2AbstractBarDiagram	8	2	24	GET2AbstractAxisDecorator	19	2	84	GET2ObliqueLabelCreator	6	1	15	GET2HorizontalLabelCreator	1	0	7	GET2VerticalLabelCreator	2	0	7	GET2Version	4	2	13	GET2OldExamples	60	0	48	GET2BaseLineDecorator	2	0	10	GET2PieDiagramTest	2	0	22	GET2LineDiagramTest	12	0	131	GET2Catalog	10	1	23	GET2ModelLabelDecorator	8	2	33	GET2DataObject	8	3	24	GET2UnionDiagram	9	1	31	GET2BarDiagramTest	35	0	521	GET2OrdinaryLineDiagram	8	1	43	GET2ScatterplotDiagram	7	1	38	GET2Builder	32	12	104	GET2Distribution	8	1	41	GET2AbstractAxisStrategy	8	1	17	GET2CatalogSample	10	2	29	GET2CompositeDiagram	14	1	64	GET2AxisBuilder	45	9	137	GET2YAxisBuilder	4	0	11	GET2CompositeDiagramTest	16	0	240	GET2AbstractDiagram	69	16	202	GET2UnionBuilder	5	1	17	GET2LabelCreator	6	0	7	GET2Examples	72	0	48	GET2RegularTickDecorator	7	1	30	GET2InteractionWrapper	9	1	33	GET2LeftRightAxisStrategy	3	0	11	GET2CompositeBuilder	7	1	31	GET2AxisBuilderTest	16	0	124	GET2TitleDecorator	3	0	20	'').b addName: ''Version 42 of GraphET2'' table: (RTTabTable new input:  ''GET2LabelDecorator	1	0	7	GET2VerticalBarDiagram	8	0	65	GET2SingleAxisDiagram	7	2	20	GET2PieDiagram	9	2	37	GET2HorizontalBarDiagram	12	0	72	GET2Line	10	5	49	GET2CompositeBuilderTest	11	0	150	GET2NumericLabelDecorator	14	3	53	GET2Axis	40	10	105	DotaHero	8	4	21	GET2LineDiagram	19	3	93	GET2TopDownAxisStrategy	3	0	11	GET2Scatterplot	5	1	53	GET2XAxisBuilder	4	0	11	GTBuilderTest	3	0	45	GET2Bar	10	2	31	GET2BackgroundLinesDecorator	11	2	42	GET2AbstractLineDiagram	19	5	78	GET2UnionDiagramTest	5	0	128	GET2InteractionBuilder	4	2	25	GET2AbstractBarDiagram	8	2	24	GET2AbstractAxisDecorator	20	4	88	GET2ObliqueLabelCreator	6	1	15	GET2HorizontalLabelCreator	1	0	7	GET2VerticalLabelCreator	2	0	7	GET2Version	4	2	13	GET2OldExamples	60	0	48	GET2BaseLineDecorator	2	0	10	GET2PieDiagramTest	2	0	22	GET2LineDiagramTest	12	0	131	GET2Catalog	10	1	23	GET2DiagramBuilder	21	2	59	GET2ModelLabelDecorator	5	1	27	GET2DataObject	8	3	24	GET2UnionDiagram	9	1	31	GET2BarDiagramTest	35	0	521	GET2OrdinaryLineDiagram	8	1	43	GET2ScatterplotDiagram	7	1	38	GET2Builder	30	12	112	GET2Distribution	8	1	41	GET2AbstractAxisStrategy	8	1	17	GET2CatalogSample	10	2	29	GET2CompositeDiagram	14	1	65	GET2AxisBuilder	50	11	151	GET2YAxisBuilder	4	0	11	GET2CompositeDiagramTest	17	0	252	GET2AbstractDiagram	70	16	205	GET2UnionBuilder	5	1	18	GET2LabelCreator	6	0	7	GET2Examples	73	0	48	GET2RegularTickDecorator	6	1	24	GET2InteractionWrapper	9	1	33	GET2LeftRightAxisStrategy	3	0	11	GET2CompositeBuilder	6	1	31	GET2AxisBuilderTest	16	0	124	GET2TitleDecorator	3	0	20	'').b addName: ''Version 45 of GraphET2'' table: (RTTabTable new input:  ''GET2LabelDecorator	1	0	7	GET2VerticalBarDiagram	8	0	65	GET2SingleAxisDiagram	7	2	20	GET2PieDiagram	9	2	37	GET2HorizontalBarDiagram	12	0	72	GET2Line	10	5	49	GET2CompositeBuilderTest	11	0	150	GET2NumericLabelDecorator	18	3	90	GET2Axis	40	10	105	DotaHero	8	4	21	GET2LineDiagram	19	3	93	GET2TopDownAxisStrategy	3	0	11	GET2Scatterplot	5	1	53	GET2XAxisBuilder	4	0	11	GTBuilderTest	3	0	45	GET2Bar	10	2	37	GET2BackgroundLinesDecorator	11	2	42	GET2AbstractLineDiagram	19	5	78	GET2UnionDiagramTest	5	0	128	GET2InteractionBuilder	4	2	25	GET2AbstractBarDiagram	8	2	24	GET2AbstractAxisDecorator	20	4	88	GET2ObliqueLabelCreator	6	1	15	GET2HorizontalLabelCreator	1	0	7	GET2VerticalLabelCreator	2	0	7	GET2Version	4	2	13	GET2OldExamples	60	0	48	GET2BaseLineDecorator	2	0	10	GET2PieDiagramTest	2	0	22	GET2LineDiagramTest	12	0	131	GET2Catalog	10	1	23	GET2DiagramBuilder	21	2	59	GET2ModelLabelDecorator	5	1	27	GET2DataObject	8	3	24	GET2UnionDiagram	9	1	31	GET2BarDiagramTest	35	0	521	GET2OrdinaryLineDiagram	8	1	43	GET2ScatterplotDiagram	7	1	38	GET2Builder	30	12	112	GET2Distribution	8	1	41	GET2AbstractAxisStrategy	8	1	17	GET2CatalogSample	10	2	29	GET2CompositeDiagram	14	1	65	GET2AxisBuilder	50	11	151	GET2YAxisBuilder	4	0	11	GET2CompositeDiagramTest	17	0	252	GET2AbstractDiagram	70	16	205	GET2UnionBuilder	5	1	18	GET2LabelCreator	6	0	7	GET2Examples	73	0	48	GET2RegularTickDecorator	6	1	24	GET2InteractionWrapper	9	1	33	GET2LeftRightAxisStrategy	3	0	11	GET2CompositeBuilder	6	1	31	GET2AxisBuilderTest	16	0	124	GET2TitleDecorator	3	0	20	'').b addName: ''Version 47 of GraphET2'' table: (RTTabTable new input:  ''GET2Axis	40	10	105	GET2TopDownAxisStrategy	3	0	11	GET2ModelLabelDecorator	5	1	27	GET2YAxisBuilder	4	0	11	GET2Line	10	5	49	GET2Version	4	2	13	GTBuilderTest	4	0	51	GET2SingleAxisDiagram	7	2	20	GET2HorizontalLabelCreator	1	0	7	GET2BarDiagramTest	35	0	521	GET2AxisBuilderTest	16	0	124	GET2Scatterplot	5	1	53	GET2AbstractBarDiagram	8	2	24	GET2AxisBuilder	50	11	151	GET2RegularTickDecorator	6	1	24	GET2LabelCreator	6	0	7	DotaHero	8	4	21	GET2AbstractLineDiagram	19	5	78	GET2InteractionWrapper	9	1	33	GET2LineDiagram	19	3	93	GET2OldExamples	60	0	48	GET2DataObject	8	3	24	GET2CompositeDiagramTest	17	0	252	GET2Distribution	8	1	41	GET2Table	28	2	100	GET2XAxisBuilder	4	0	11	GET2InteractionBuilder	4	2	25	GET2Examples	73	0	48	GET2ObliqueLabelCreator	6	1	15	GET2Bar	5	1	14	GET2VerticalLabelCreator	2	0	7	GET2PieDiagramTest	2	0	22	GET2LeftRightAxisStrategy	3	0	11	GET2BackgroundLinesDecorator	11	2	42	GET2LineDiagramTest	12	0	131	GET2AbstractDiagram	70	16	205	GET2AbstractAxisStrategy	8	1	17	GET2UnionDiagram	9	1	31	GET2UnionDiagramTest	5	0	128	GET2HorizontalBar	2	0	15	GET2Builder	30	12	115	GET2OrdinaryLineDiagram	8	1	43	GET2VerticalBar	2	0	15	GET2PieDiagram	9	2	37	GET2NumericLabelDecorator	18	3	92	GET2LabelDecorator	1	0	7	GET2CompositeBuilder	6	1	31	GET2UnionBuilder	5	1	18	GET2VerticalBarDiagram	8	0	65	GET2HorizontalBarDiagram	12	0	72	GET2AbstractAxisDecorator	20	4	88	GET2BaseLineDecorator	2	0	10	GET2CatalogSample	10	2	29	GET2ScatterplotDiagram	7	1	38	GET2Catalog	10	1	23	GET2DiagramBuilder	21	2	59	GET2CompositeDiagram	14	1	65	GET2CompositeBuilderTest	11	0	150	GET2TitleDecorator	3	0	20	'').b x: #second.b y: #third.b size: #fourth.b if: [ :row | row first endsWith: ''Test'' ] color: Color green.b if: [ :row | row first endsWith: ''Decorator'' ] color: Color blue.b if: [ :row | row first endsWith: ''Diagram'' ] color: Color red.b open.""b build.b view ""b view canvas'	"
+"RTAnimatedScatterPlot",""
+"RTAxisAdaptedBuilder","A RTRelativeAxisBuilder add  X,Y axis to the view, given a collection of RTElements.Instance Variables	margin:		<Object>	maxX:		<Object>	maxY:		<Object>	minX:		<Object>	minY:		<Object>	objects:		<Object>	xAxisConfiguration:		<Object>	yAxisConfiguration:		<Object>margin	- xxxxxmaxX	- xxxxxmaxY	- xxxxxminX	- xxxxxminY	- xxxxxobjects	- xxxxxxAxisConfiguration	- xxxxxyAxisConfiguration	- xxxxx"
+"RTAxisAdaptedBuilderExample",""
+"RTBenchmarks","This class contains a set of benchmarks.It is useful for example, to monitor the evolution or see the impact of the Virtual machine"
+"RTBoxPlotItem","I am an utility class to build a Box Plot visualization with RTBoxPlotBuilder"
+"RTBoxPlotExample","RTBoxPlotExample new installTitle: 'BoxPlot1' 		code:		'| b createList r ds |r := Random new.createList := [ :size :d1 :d2 | (1 to: size) collect: [ :i | d1 + (r next * (d2-d1))] ].b := RTGrapher new.ds := RTBoxPlotDataSet new.	ds points: (createList value: 20 value: 0 value: 20).	b add: ds.b build.b view. '"
+"RTBoxPlotDataSet","Boxplots are used to better understant how values are spaced out in different sets of data through their quartiles.To get more info chec RTBoxPlotExample"
+"RTDateLayout","I am a layout for elements with model date."
+"RTCalendarBuilder","I am a builder to create calendars with Roassal"
+"RTMonthLayout","This is a specific layout for month in RTCalendarBuilder"
+"RTCalendarExample","RTCalendarExample new installTitle: 'VisualizationCSV' 		code:'| b tab colors dictionary |tab := RTTabTable new input: ''http://bl.ocks.org/mbostock/raw/4063318/dji.csv'' asUrl retrieveContents usingDelimiter: $,.tab removeFirstRow.dictionary := Dictionary new.tab values do: [ :ar | | value |	value := (ar fifth asNumber - ar second asNumber)/ ar second asNumber.	dictionary at: ar first asDate put: value ].colors := #(#(165 0 38) #(215 48 38) #(244 109 67)	#(253 174 97) #(254 224 139) #(255 255 191) #(217 239 139)	 #(166 217 106) #(102 189 99) #(26 152 80) #(0 104 55)  ) collect: [ :ar| Color r: ar first g: ar second b: ar third range: 255 ].b := RTCalendarBuilder new.b dateShape rectangle size: 15; color: Color white; borderColor: Color lightGray.b monthShape shape: (b monthShapePath: 15.0).b yearShape composite: [ :comp | 	comp add: (RTLabel new text: [ :d | d year ]; height: 20 ).	comp add: (RTBox new color: Color transparent). ] .b dates: ((Year year: 1990) to: (Year year: 2010) ).b dateLayout gapSize: 0.b monthLayout month.b yearLayout horizontalLine.b dateShape if: [ :d | dictionary includesKey: d ] color: 	[ :d | | value index |	value := (dictionary at: d)+0.05.	index := (value * 11/ 0.1)+1.	index < 1 ifTrue: [ index := 1 ].	index > 11 ifTrue: [ index := 11 ].	colors at: index. ].b dateInteraction popup.b build.(b view elements select: [:e | e model isKindOf: Month]) pushFront.^ b view'	"
+"RTMockEdge",""
+"RTShorterDistanceAttachPointAndCompositeShape","A RTShorterDistanceAttachPointAndCompositeShape assumes that the elements to be connected to or from have a composite shapeHere is an example:-=-=-=-=-=-=-=-=-=v := RTView new.s1 := RTBox new color: Color red.s2 := RTCompositeShape        with: (RTBox new size: 20; color: Color green)        with: (RTBox new color: Color blue).s2 horizontal.e1 := s1 elementOn: #atomic.e2 := s2 elementOn: #composite.e1 @ RTDraggable.e2 @ RTDraggable.attachPoint := RTShorterDistanceAttachPointAndCompositeShape new						composedShapeSelection: #second.e := RTLine new attachPoint: attachPoint; edgeFrom: e1 to: e2.v add: e1; add: e2; add: e.RTTreeLayout new doNotAttachPoint; on: v elements.v-=-=-=-=-=-=-=-=-="
+"RTFilledDiamond",""
+"RTElement","An element is a wrapper to an external provided object (e.g., a number, a file, your object).To an element, you can add a shape (composed or not), and interaction. Elements are added in a view. To be visible, elements must have at least one shape. One key aspect of Roassal is that shapes may accept metrics or numerical values to define their visual dimensions (''e.g.,'' height, width, color, border width). Instead of giving absolute numerical values to define the visual aspect of the graphical element (as with most visualization frameworks), functions used as metrics may be provided.Instance Variables	connectedEdges:		<Object>connectedEdges	- xxxxx"
+"RTEmptyArrow",""
+"RTAbstractElementHandling",""
+"RTNullLayout",""
+"RTNoShape","This implements the Null pattern for a Roassal shape. It is typically used for defaults."
+"RTTreeLayout","A ROTreeLayout is xxxxxxxxx."
+"RTLineDecoration","A RTLineDecoration is a shape decoration, intended to be combined with a line."
+"RTRadialTreeLayout","A RORadialTreeLayout is xxxxxxxxx."
+"RTArc","A RTArc is an arc portion. e.g., 	RTArc new externalRadius: 100; innerRadius: 20; outerAngle: 45 innerAngle: 90Instance Variables	alphaAngle:		<Object>	betaAngle:		<Object>	externalRadius:		<Object>	innerRadius:		<Object>alphaAngle	- xxxxxbetaAngle	- xxxxxexternalRadius	- xxxxxinnerRadius	- xxxxx"
+"RTAbstractLineLayout","A ROAbstractLineLayout is the abstract superclass of the line layout.Instance Variables	alignment:		<Object>	gapSize:		<Object>	horizontalGap:		<Object>	horizontalOutGap:		<Object>	horizontallyStretchable:		<Object>	verticalGap:		<Object>	verticalOutGap:		<Object>	verticallyStretchable:		<Object>alignment	- xxxxxgapSize	- xxxxxhorizontalGap	- xxxxxhorizontalOutGap	- xxxxxhorizontallyStretchable	- xxxxxverticalGap	- xxxxxverticalOutGap	- xxxxxverticallyStretchable	- xxxxx"
+"RTLine","RTLine describes a line between two elements.-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.s := RTEllipse new color: (Color red alpha: 0.4); size: 30.e1 := s elementOn: 'Begin'.e2 := s elementOn: 'End'.edge := RTLine edgeFrom: e1 to: e2.v add: e1; add: e2; add: edge.e1 @ RTDraggable.e2 @ RTDraggable.e2 translateBy: 80 @ 50.v -=-=-=-=-=-=-=-=-=-=-=-=Using an attach point:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.s := RTEllipse new color: (Color red alpha: 0.4); size: 30.e1 := s elementOn: 'Begin'.e2 := s elementOn: 'End'.lineShape := RTLine new.lineShape attachPoint: (RTShorterDistanceAttachPoint instance).edge := lineShape edgeFrom: e1 to: e2.v add: e1; add: e2; add: edge.e1 @ RTDraggable.e2 @ RTDraggable.e2 translateBy: 80 @ 50.v -=-=-=-=-=-=-=-=-=-=-=-=Slightly more sophisticated example:-=-=--=-=-=--=-=-=--=	| view elements |	view := RTView new.		elements := RTBox elementsOn: (1 to: 100).	elements @ RTDraggable.	view addAll: elements.	RTEdge 		buildEdgesFromObjects: (1 to: 100)		from: [ :v | v // 2 ] to: #yourself 		using: (RTLine new color: Color purple) inView: view.	RTTreeLayout on: view elements edges: view edges.		view edges do: [ :e | e trachelShape pushBack ].		view @ RTDraggableView.	^ view-=-=--=-=-=--=-=-=--="
+"RTWeightedCircleLayout","RTWeightedCircleLayout is a circle layout that gives more space to big elements and fewer space to small elements.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.elements := (RTEllipse new size: 5; color: Color red; size: [:vv | vv * 4 ]) elementsOn: (1 to: 15).v addAll: elements.RTWeightedCircleLayout on: elements.v-=-=-=-=-=-=-=-=-=-=-=-="
+"RTDoubleArrowedLine","A RTDoubleArrowedLine is a double arrowed line between its extremities.-=-=-=| v l e1 e2 eShape |v := RTView new.eShape := RTEllipse new size: 8; color: (Color blue alpha: 0.3).e1 := eShape element.e2 := eShape element.e2 translateBy: 50 @ 30.v add: e1; add: e2.e1 @ RTDraggable.e2 @ RTDraggable.l := (RTDoubleArrowedLine new color: Color red) edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTDummyNode","A RODummyNode is used by the sugiyama layout"
+"RTBox","A RTBox is a rectangular box. E.g.,| v |v := RTView new.v add: (RTBox new width: 10; height: 20) element.v open"
+"RTVerticalAttachPoint","Vertical attach points between elements when drawing lines. Useful for (vertical) tree layout-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTVerticalttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTStretchBehavior",""
+"RTCenteredAttachPoint","Make the line start and ends from the center of the element.This is the default attach point for lines.  Consider the following example:[[[v := RTView new.es := (RTEllipse new size: 40) elementsOn: #(1 2).es second translateBy: 100 @ 100.es @ RTDraggable.v addAll: es.lineShape := RTLine new color: Color blue.lineShape attachPoint: (RTCenteredAttachPoint instance).v add: (lineShape edgeFrom: es first to: es second).v]]]"
+"RTSimpleArrow",""
+"RTAbstractShorterDistanceAttachPoint","I am an abstract class. My subclasses have to override #attachPointsFor:on:"
+"RTAbstractDiamond",""
+"RTShapedObject","A RTShapedObject is the super class of RTElement and RTEdge. A RTShapeObject has the ability to keep attributes, and receive a shape. This is an abstract class, it is not meant to be instantiated.Instance Variables	attributes:		<Object>	isFixed:		<Object>	model:		<Object>	shape:		<Object>	trachelShape:		<Object>	view:		<Object>attributes	- xxxxxisFixed	- xxxxxmodel	- xxxxxshape	- xxxxxtrachelShape	- xxxxxview	- xxxxx"
+"RTLineDecorationShape","A DCRTLineDecorationShape contains information about trachel shape used as line heads or tails with DCRTAbstractLineDecorationUsage: 	DCRTLineHead shape: DCRTEmptyArrow	or	DCRTEmptyArrow asHead"
+"RTIdentityGroup","This class is useful to contains objects for which their class have overriden #= (e.g., AST Nodes)"
+"RTGroupLayout","RTGroupLayout is a simple class to order group of connected elements.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.v addAll: (RTBox elementsOn: (1 to: 6)) @ RTPopup.RTEdgeBuilder new	view: v;	useAssociations: { 1 -> 2. 1 -> 3 . 4 -> 5 }.RTTreeLayout on: v elements.RTGroupLayout new grid; on: v elements.v-=-=-=-=-=-=-=-=-=-=-=-=Another example:-=-=-=-=-=-=-=-=-=-=-=-=clss := Collection allSubclasses.b := RTMondrian new.b nodes: clss.b edges connectFrom: #superclass.b layout tree.b build.RTGroupLayout new grid; on: b view elements.(RTGroupLayout new getGroupsFrom: b view elements) do: [ :g | 	c := Color random.	g do: [ :e | e color: c ] ].b view.-=-=-=-=-=-=-=-=-=-=-=-=The whole picture of Pharo-=-=-=-=-=-=-=-=-=-=-=-=classes := Smalltalk globals allClasses copyWithoutAll: { Object . TestCase . Model }.b := RTMondrian new.b shape box	width: [ :c | c numberOfVariables * 6 ];	height: #numberOfMethods.b nodes: classes.b edges connectFrom: #superclass.b layout tree.""b normalizer normalizeSize: #numberOfMethods.""b build.gl := RTGroupLayout new flow.gl on: b view elements.gl lonelyGroup do: #remove.(RTGroupLayout new getSortedGroupsFrom: b view elements) do: [ :g | 	c := Color random.	g do: [ :e | e color: c ] ].b view @ RTZoomableView.b view.-=-=-=-=-=-=-=-=-=-=-=-="
+"RTLineTail","A DCRTLineTail is a handler of tail of a line"
+"RTAbstractVerticalTreeLayout","A ROAbstractVerticalTreeLayout is xxxxxxxxx."
+"RTRotatedLabel","A RTRotatedLabel describes rotated labels.| v shape es |v := RTView new.shape := RTRotatedLabel new text: [ :c | 'Class ', c name ]; angleInDegree: [ :c | c numberOfMethods \\ 360 ].es := shape elementsOn: Collection withAllSubclasses.RTGridLayout on: es.v addAll: es.v open"
+"RTAbstractGraphLayout","A ROAbstractGraphLayout is xxxxxxxxx.Instance Variables	cachedChildren:		<Object>	cachedParents:		<Object>	cachedParentsWithHighestNestings:		<Object>	horizontalGap:		<Object>	verticalGap:		<Object>cachedChildren	- xxxxxcachedParents	- xxxxxcachedParentsWithHighestNestings	- xxxxxhorizontalGap	- xxxxxverticalGap	- xxxxx"
+"RTStyledMultiLine","A RTMultiLineHeaded is a multi-purpose modification of RTMultiLine with head and/or tail (like arrow) and possibility of being styled (dashed, dotted...).-=-=-=v := RTView new.es := (RTEllipse new size: 20; color: (Color blue alpha: 0.3)) elementsOn: (1 to: 10).RTCircleLayout new on: es allButFirst.v addAll: es.es @ RTDraggable.TRConstraint move: es first onTheCenterOf: es allButFirst.shape := RTStyledMultiLine new.shape filledArrowHead; arrowTail; dashdotLine; orthoVertical.shape attachPoint: (RTRectangleAttachPoint new).lines := shape edgesFrom: es first toAll: es allButFirst.v addAll: lines.v-=-=-="
+"RTCellLayout","A ROCellLayout is like ROGridLayout. Elements of each column are centered along the same vertical line. And elements of each row are centered along the same horizontal line.Instance Variables	inCellPosition:		<Object | Block>inCellPosition	- Object which computes position of each element inside a cell. The cell is the space allocated for an element. Its height is maximum of heights of elements on the row. Its width is maximum of widths of elements on the column. By default elements are in the middle of their cell."
+"RTSVGPathBezierLine","This is a RTBezierLine using a TRSVGPath instead of a TRBezierLine as Trachel shape.An edge with an array of control points will generate a sequence of quadratic Bezier curves."
+"RTAbstractWeightedCircleLayout","I am the abstract root class of weighted circle layout. Look at the class comments of my subclasses for more details."
+"RTAbstractArrowedLine",""
+"RTConstraint","I am iteratively buildable constraint for moving and positioning an element on top of another one.!! UsageThe order of configuration message sends is irrelevant, only the last of a group will be used.Note: ==move== and ==stick== will execute the movement on the configured object (so if you ==stick== shapes and then change configuration, it will honor the new configuration.[ [ [(RTConstraint on: aChildShape background:  parentShape)	top | middle | bottom; ""vertical position""	left | center | right; ""horizontal position""	inner | border | outer; ""inside the parent, on border, outside""	move; ""execute movement""	padding: aNumber; ""shortcut for vertical + horizontal padding""	verticalPadding: aNumber;	horizontalPadding: aNumber;	stick ""add callbacks that will continuously execute the movement""]]]See ==self default== for default configuration.[ [ [v := RTView new.es := (RTBox new size: 50) element.es @ RTDraggable.v add: es.l := RTLabel elementOn: 'This is a label!'.v add: l.RTConstraint new	moveable: l;	fix: es;	inner;	bottom;	move.v  ] ] ]"
+"RTAbstractElementShape",""
+"RTDualAttachPoint","I am a new class to combine attach points"
+"RTNestingBehavior","A RTNestingBehavior is the root of classes to describes behavior when nesting.Consider the following example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=| v  es |v := RTView new.es := RTBox elementsOn: (1 to: 50).back := (RTBox new color: Color red; size: 100) element.v add: back.v addAll: es.RTFlowLayout new on: es.RTNest new	behavior: (RTTopLeftBehavior new);	on: back nest: es.""behavior: (RTTopLeftBehavior new);""es @ RTPopup @ RTDraggable.v-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTShorterVerticalDistanceAttachPoint","-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint:  RTShorterVerticalDistanceAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-=-"
+"RTFilledNarrowArrow",""
+"RTView","A RTView is xxxxxxxxx.Roassal structures a visualization in terms of views, elements, shapes, interactions, and animations.A ''view'' is a container of graphical elements and represents a layer that may be combined with other views.Instance Variables	edges:		<Object>	elements:		<Object>	trCanvas:		<Object>edges	- xxxxxelements	- xxxxxtrCanvas	- xxxxx"
+"RTEmptyCircle",""
+"RTAnchorConstraint","I attach a RTElement to a RTEdge (works for both line and connection shapes). When the edge or it's extremities are moved, so is the anchor.Furthermore I will try to move the Element in such a way that it doesn't overlap neither the edge, nor it's extremities, nor their other lines. I will not however prevent overlapping of another elements (e.g. another element or edge nearby).!! ExampleSee RTConstraintExample>>exampleAnchorConstraint.!! API==#balance: aNumber==Specify where the anchor should be positioned. x \in [0, 1] for relative positions (so 0.5 will be exactly middle, 1 at the end, etc.).x > 1 or x < 0 for absolute positioning. E.g.: 10 - position the anchor 10 pixels from the beginning; -20 - 20 pixels from the end==#minDistance: aNumber==A minimum distance (in pixels) that should be maintained between the edge and the element"
+"RTLayoutTranslator",""
+"RTVisitor","A RTVisitor is a simple visitor."
+"RTForceBasedLayout","A ROForceBasedLayout is inspired from the Code of D3. The original d3 version may be found on: http://bl.ocks.org/mbostock/4062045Layout algorithm inspired by Tim Dwyer and Thomas Jakobsen.Instance Variables	alpha:		<Object>	center:		<Object>	charge:		<Object>	charges:		<Object>	fixedNodes:		<Object>	friction:		<Object>	gravity:		<Object>	layoutInitial:		<Object>	length:		<Object>	lengths:		<Object>	nodes:		<Object>	oldPositions:		<Object>	strength:		<Object>	strengths:		<Object>	theta:		<Object>	weights:		<Object>alpha	- xxxxxcenter	- xxxxxcharge	- xxxxxcharges	- xxxxxfixedNodes	- xxxxxfriction	- xxxxxgravity	- xxxxxlayoutInitial	- xxxxxlength	- xxxxxlengths	- xxxxxnodes	- xxxxxoldPositions	- xxxxxstrength	- xxxxxstrengths	- xxxxxtheta	- xxxxxweights	- xxxxx"
+"RTExtremityLineDecoration","A DCRTLineDecoration is an abstract handler of head or tail of a line.Usage: 	DCRTLineHead shape: DCRTEmptyArrow	or	DCRTEmptyArrow asHead"
+"RTHorizontalDominanceTreeLayout",""
+"RTLabel","A RTLabel is a shape to describe textual shape.-=-=-=-=| v shape es |v := RTView new.shape := RTLabel new text: [ :c | 'Class ', c name ].es := shape elementsOn: Collection withAllSubclasses.RTGridLayout on: es.v addAll: es.v open-=-=-=-=Raw font may also be provided:-=-=-=-=v := RTView new.('/Library/Fonts/' asFileReference children first: 15) do: [ :fr |    rawFont := FreeTypeFont fromFile: fr fullName pointSize: 10 index: 0.    v add: (RTLabel new height: 4; rawFont: rawFont; elementOn: fr basename) ].RTVerticalLineLayout on: v elements.v @ RTDraggableView.v-=-=-=-="
+"RTConditionalLayout",""
+"RTGradientColoredLine","A RTGradientColoredLine is an alpha and color gradiant shape between the two first values of colorArray. Precision define the number of gradient colors for the edges.Instance Variables	precision :		<Object>"
+"RTHorizontalFlowLayout","A RTHorizontalFlowLayout is a FlowLayout horizontaly arranged,  right queued at default."
+"RTBezier4Line","Wow! I am  the biezer shape 4 4 control points.Maybe we need roassal3 now with a better system for bezier lines"
+"RTAbstractCircleLayout","A ROAbstractCircleLayout is xxxxxxxxx.Instance Variables	factor:		<Object>	initialAngle:		<Object>	initialIncrementalAngle:		<Object>	initialRadius:		<Object>factor	- xxxxxinitialAngle	- xxxxxinitialIncrementalAngle	- xxxxxinitialRadius	- xxxxx"
+"RTPolygon","I am a shape which builds the polygon sequentialy conecting my vertices.For example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=| v  shape element |v := RTView new.shape := 	RTPolygon new 		vertices:{		25 @ 00 .		10 @ 50 .		50 @ 20 .		00 @ 20 .		40 @ 50 }.element := shape element.v add: element.v open-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTCellMatrix","A ROCellMatrix is xxxxxxxxx.Instance Variables	contents:		<Object>	ncols:		<Object>	nrows:		<Object>contents	- xxxxxncols	- xxxxxnrows	- xxxxx"
+"RTQuadTree","A ROQuadTree is xxxxxxxxx.Instance Variables	charge:		<Object>	corner:		<Object>	cx:		<Object>	cy:		<Object>	leaf:		<Object>	node:		<Object>	nodes:		<Object>	origin:		<Object>	x:		<Object>	y:		<Object>charge	- xxxxxcorner	- xxxxxcx	- xxxxxcy	- xxxxxleaf	- xxxxxnode	- xxxxxnodes	- xxxxxorigin	- xxxxxx	- xxxxxy	- xxxxx"
+"RTCircleAttachPoint","Continuous attach point which presumes both shapes are circles whose radius = half of width of encompassingRectangle-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTCircleAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTMockElement",""
+"RTShorterDistanceWithOffsetAttachPoint","A RTShorterDistanceWithOffsetAttachPoint contains the logic to have edges with a slight offset (normal to the edge direction).-=-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: (RTShorterDistanceWithOffsetAttachPoint new offset: 20).l := s edgeFrom: e1 to: e2.v add: l.l := s edgeFrom: e1 to: e2.v add: l.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-=-="
+"RTAbstractNarrowArrow",""
+"RTAbstractMultiElement",""
+"RTFilledArrow",""
+"RTAlignment","Define alignment of elements. For example, inspect the following:-=-=-=	objects := TRShape withAllSubclasses.	v := RTView new.	n := RTMultiLinearColorForIdentity new objects: objects.	shape := RTBox new color: n; size: #numberOfMethods.	es := shape elementsOn: objects.	v addAll: es.	RTHorizontalLineLayout new gapSize: 0; on: es.	RTAlignment new elements: es; top.	v-=-=-="
+"RTRectanglePackLayout","A layout that packs rectangles in as amall space as possible (at least it tries to)Instance Variables	padding:	<Number>	freeSpace:	<Set of Rectamgles>	bounds:	<Point>gap	- gap between elements defined as ""percentage"" of average size. 0.2 means 20%freeSpace	- collection of spaces that can be used for next element insertion	bounds	- bounding box of all currently processed elements"
+"RTSVGPath","A RTSVGPath models an SVG Path.E.g., RTSVGPath new path: 'M150 0 L75 200 L225 200 Z'Instance Variables	borderColor:		<Object>	borderWidth:		<Object>	curves:		<Object>	keepInOriginalPosition:		<Object>	path:		<Object>	rotation:		<Object>	scale:		<Object>borderColor	- xxxxxborderWidth	- xxxxxcurves	- xxxxxkeepInOriginalPosition	- xxxxxpath	- xxxxxrotation	- xxxxxscale	- xxxxx"
+"RTClusterLayout","A ROClusterLayout is xxxxxxxxx.Instance Variables	externalLayer:		<Object>	maxAbcissa:		<Object>	maxLayer:		<Object>externalLayer	- xxxxxmaxAbcissa	- xxxxxmaxLayer	- xxxxx"
+"RTDiamond","A RTDiamond is a line decoration. -=-=-=-=-=-=-=-=-=-=-=-=| v e1 e2 l |v := RTView new.e1 := (RTEllipse new size: 20) element.e2 := (RTEllipse new size: 20) element.e1 @ RTDraggable.e2 @ RTDraggable.e2 translateBy: 50 @ 50.l := (RTLine new + RTDiamond new) edgeFrom: e1 to: e2. v add: e1; add: e2; add: l.v open-=-=-=-=-=-=-=-=-=-=-=-="
+"RTAbstractRegularTreeLayout","A ROAbstractRegularTreeLayout is xxxxxxxxx.Instance Variables	alreadyLayoutedNodes:		<Object>	isLayered:		<Object>	leftGap:		<Object>	nodesByLayer:		<Object>	topGap:		<Object>alreadyLayoutedNodes	- xxxxxisLayered	- xxxxxleftGap	- xxxxxnodesByLayer	- xxxxxtopGap	- xxxxx"
+"RTCompositeShape","A RTCompositeShape describes a composite shape. The bounds of the element depends therefore on the composition. Consider the following example:-=-=-=-=-=-=-=-=-=-=-=-=| v shape es methodElements |	v := RTView new.	v @ RTDraggableView.	shape := RTCompositeShape new.	shape add: RTLabel new.	shape add: (RTBox new color: (Color blue alpha: 0.3)).	shape vertical.		es := shape elementsOn: RTShape withAllSubclasses.	v addAll: es.	es do: [ :e | 		methodElements := RTBox new elementsOn: e model rtmethods.		RTGridLayout on: methodElements.		v addAll: methodElements.		RTNest new			on: e 			inShape: #second 			nest: methodElements.	].	RTFlowLayout on: es.	es @ RTDraggable.^ v-=-=-=-=-=-=-=-=-=-=-=-=Doing a layout does not produce overlap of names.Shapes composed in a RTCompositeShape may be relayouted after one of them has changed its size. Consider the following example:-=-=-=-=-=-=-=-=-=-=-=-=	s := RTCompositeShape new.	b1 := RTBox new color: Color green.	b2 := RTBox new color: Color blue; size: 20.	b3 := RTLabel new.	s add: b1.	s add: b2.	s add: b3.	s horizontal.	s setAutomaticRelayout.		e := s elementOn: 'click to expand'.	view := RTView new.	view add: e.		e @ RTDraggable.	e @ RTPopup.		e when: TRMouseClick do: [ :ev |		e trachelShape shapes second extent: 45 @ 45.		e trachelShape shapes third text: 'hello'.		view signalUpdate.	].		view open-=-=-=-=-=-=-=-=-=-=-=-= "
+"RTHorizontalLineLayout","A RTHorizontalLineLayout locates all the elements horizontally"
+"RTDirectedLine",""
+"RTAbstractFlowLayout","A RTAbstractFlowLayout is a layout based on the size in pixels of elements.Instance Variables	alignment:		<Object>	gapSize:		<Object>	maxWidth:		<Object>alignment	- xxxxxgapSize	- xxxxxmaxWidth	- xxxxx"
+"RTArcLine","I am a circle arc-like line, good for visualizing two lines going in opposite directions.[[[|v els e1 e2 arcShape|v := RTView new.els := RTEllipse new color: Color gray; borderColor: Color black; size: 20; elementsOn: #(A B).els @ RTDraggable.v addAll: els.els second translateBy: 100 @ 0.e1 := RTArcLine new distance: 10; withContinuousCircleAttachPoint; filledNarrowArrowHead; color: Color black; edgeFrom: els first to: els last.e2 := RTArcLine new distance: 10; withContinuousCircleAttachPoint; filledNarrowArrowHead; color: Color black; edgeFrom: els second to: els first.v add: e1; add: e2.v]]]"
+"RTIdentityMatrix",""
+"RTRoundedBox","Rounded rectangle.-=-=-=v := RTView new.e1 :=((RTRoundedBox new borderRadius: 10; size: 50) + RTLabel )  elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 80 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTRectangleAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTBorderStyle","Define the style of a border.It is used now in RTBox.Here is an example:-=-=-=v := RTView new.box := RTBox new.box width: 50; height: 30.box borderStyle dot.box borderWidth: 3.box borderColor: Color blue.v add: box element.v-=-=-="
+"RTTopLeftBehavior",""
+"RTCompositeElementAttachPoint",""
+"RTLineSegment","A DCLineSegment is line from 'from' point to 'to' point"
+"RTShorterDistanceAttachPoint","-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTShorterDistanceAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTEmptyDiamond",""
+"RTEdge","RTEdge describes an edge between two RTElement. Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.ballShape := RTEllipse new size: 30; color: #yourself. redBall :=  ballShape elementOn: Color red.blueBall :=  ballShape elementOn: Color blue.v add: redBall; add: blueBall.blueBall translateBy: 80 @ 50.blueBall @ RTDraggable.redBall @ RTDraggable.edge := RTLine edgeFrom: redBall to: blueBall."" The line above is equivalent to the following two lines:edge := RTEdge from: redBall to: blueBall.edge + RTLine.""v add: edge.v-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTAbstractArrow",""
+"RTObject","Root of most of the Roassal classes."
+"RTNoLayout","Here is an example:v := RTView new.es := (RTEllipse new color: Color blue trans; size: 20) elementsOn: (1 to: 30).v addAll: es.RTEdgeBuilder new	view: v;	elements: es;	connectFrom: [ :vv | vv // 2 ].v addMenu: 'Remember!' callback: [ 	positions := es collect: #position.	 ].v addMenu: 'Recall!' callback: [ 	positions with: es do: [ :p :e | e translateTo: p ].	v signalUpdate.	 ].v addMenu: 'Start layout!' callback: [ 	force := RTForceBasedLayout new.	force initialLayout: RTNoLayout new.	animation := RTSpringLayoutStepping new.	animation layoutWithoutPreparing: force.	animation inView: v.].v addMenu: 'Stop layout!' callback: [ 	animation stopAndRemove].v "
+"RTSimpleArrowHead","A RTSimpleArrowHead is a line decorartion.-=-=-=-=-=-=-=-=-=-=-=-=| v e1 e2 l |v := RTView new.e1 := (RTEllipse new size: 20) element.e2 := (RTEllipse new size: 20) element.e1 @ RTDraggable.e2 @ RTDraggable.e2 translateBy: 50 @ 50.l := ((RTLine new color: Color red) + (RTSimpleArrowHead new color: Color red)) edgeFrom: e1 to: e2. v add: e1; add: e2; add: l.v open-=-=-=-=-=-=-=-=-=-=-=-="
+"RTDominanceTreeLayout",""
+"RTStyledLabel","I am a label that can be emphasized.!! Usage==label emphasis: TextEmphasis bold.==or==label emphasis: { TextEmphasis bold . TextEmphasis underlined }==!! Example[[[|v|v := RTView new.l := RTStyledLabel new	color: Color black;	emphasis: TextEmphasis underlined;	elementOn: 'Underlined Text'.v add: l.v open.]]]"
+"RTAbstractCompactTree","A ROAbstractCompactTree is xxxxxxxxx.Instance Variables	initialLayout:		<Object>	margin:		<Object>	root:		<Object>	sonsDictionary:		<Object>initialLayout	- xxxxxmargin	- xxxxxroot	- xxxxxsonsDictionary	- xxxxx"
+"RTSVGPathLine","I am a line that can be styled with arrow ends and whose path is specified by SVG path.I am used as a line, if you need a regular shape, use RTSVGPath."
+"RTGridLayout","A ROGridLayout places elements as a grid.Instance Variables	gapSize:		<SmallInteger>	lineItemsCountBlock:		<BlockContext>gapSize	- number of pixels between each elements, horizontally and verticallylineItemsCountBlock	- tells the amount of item per line should be used"
+"RTDecoratedLine","A DCRTDecoratedLine is an arrowed line on both ends between its extremities"
+"RTEquidistantCircleLayout","RTEquidistantCircleLayout is a circle layout in which elements are equidistant from each other: the layout maintains the same distance between elements.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.elements := (RTEllipse new size: 5; color: Color red; size: [:vv | vv * 4 ]) elementsOn: (1 to: 15).v addAll: elements.RTEquidistantCircleLayout on: elements.v-=-=-=-=-=-=-=-=-=-=-=-="
+"RTArrowedLine","A RTArrowedLine is an arrowed line between its extremitiesInstance Variables	head:		<Object>	line:		<Object>head	- xxxxxline	- xxxxx"
+"RTDecorationItem",""
+"RTBitmap","A RTBitmap represents a bitmap shape Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=	| v  s trachelShape |	v := RTView new.	s := RTBitmap element.	v add: s.	trachelShape := s trachelShape.	trachelShape extent: 180 @ 100.	trachelShape fillColor: Color blue.	1 to: 80 do: [ :i |		trachelShape at: i @ i put: Color green ].	v open-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=Another example:=-=-=-=	| v s |	v := RTView new.	s := RTBitmap new.	s form: RTIcon roassal.	v add: s element.	^ v-=-=--=Another example:-=-=-=-=root := '/Users/alexandrebergel/Desktop/TT' asFileReference.b := RTMondrian new.b shape label text: #basename.b interaction popupView: [ :group :element |	| form fileReference |	fileReference := element model.	form := fileReference binaryReadStreamDo: [ :stream | ImageReadWriter formFromStream: stream ].	form := form scaledToSize: 200 @ 200.	group add: (RTBitmap new extent: 200 @ 200; form: form; element) ].b nodes: root children.b layout verticalLine.b-=-=-=-="
+"RTHorizontalAttachPoint","Horizontal attach points between elements when drawing lines.  Useful for horizontal tree layout.-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTHorizontalAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTNoBehavior",""
+"RTBorderAttachPoint","I am an attach point that will end the line on the border of the end shapes.Unline ContinuousAttachPoint & co. you don't need to care about what the end shape is, as long as it is one of the basic shapes.Supported shapes:	- Box	-RoundedBox	- Ellipse/CircleTodo:	- PolygonSupported lines:	- Line (straight line)Todo:	- MultiLine	- BezierLine"
+"RTNoDecorationShape",""
+"RTAttachPoint","I am the superclass of the class hierarchy describing attach points. An attach point indicates where lines start and end. "
+"RTFilledCircle",""
+"RTAnnounceableObject","A RTAnnounceableObject is the root of the class hierarchy to have an announcer, useful to define event callbacks.Instance Variables	announcer:		<Object>announcer	- xxxxx"
+"RTDirectLayoutTranslator",""
+"RTSortBlock",""
+"RTGroup","A RTGroup represents collections of Roassal elements. A RTGroup is not designed to contain other things than Roassal elements. A RTGroup is polymorphic to RTElement. When an RTElement is expected, one can provide an RTGroup."
+"RTOptimizedForceBasedLayout",""
+"RTLineHead","A DCRTLineHead is a handler of head of a line"
+"RTHorizontalTreeLayout","A ROHorizontalTreeLayout is xxxxxxxxx."
+"RTExtensibleLabel",""
+"RTEdgeDrivenLayout","A ROEdgeDrivenLayout is xxxxxxxxx.Instance Variables	edges:		<Object>	fromPositions:		<Object>	toPositions:		<Object>	userDefinedEdges:		<Object>edges	- xxxxxfromPositions	- xxxxxtoPositions	- xxxxxuserDefinedEdges	- xxxxx"
+"RTMultiLine","A RTMultiLine represents Instance Variables	blockProducingPath:		<Block>   a two arg block that produces the path. The block has to return the collection of pointsblockProducingPath	- xxxxx"
+"RTAbstractGridLayout","A ROAbstractGridLayout is xxxxxxxxx.Instance Variables	gapSize:		<Object>	lineItemsCountBlock:		<Object>gapSize	- xxxxxlineItemsCountBlock	- xxxxx"
+"RTBezierLine","A RTBezierLine defines a bezier line shape.Here is an example=-=-=-=-=-=-=-=-=	| v shape  edge els |	v := RTView new.	shape := RTEllipse new size: 10; color: (Color purple alpha: 0.3).	els := (shape elementsOn: (1 to: 6)) @ RTDraggable.	v addAll: els .	RTHorizontalLineLayout on: v elements.	edge := (RTBezierLine new controllingElements: v elements) edgeFrom: els first to: els last.	v add: edge.	v open=-=-=-=-=-=-=-=-="
+"RTCircleLayout","A ROCircleLayout is xxxxxxxxx."
+"RTAbstractLine","All  my subclasses describes a line shape"
+"RTCircleGeometry","I represent a circle described by its 'center ' and a 'radius'.I am NOT a Roassal shape, for that use RTEllipse. Instead I am using in some circle-related gemetric computations."
+"RTShape","A RTShape is an element factory. A shape is shared amoung all the elements created by the shape. We therefore have the following relationsAn ''element'' is a graphical representation of an arbitrary object. An element is combined with ''shapes'' to define its visual representation. A shape describes a visual primitive representation such as a box, a circle, a line or a textual label. Shapes can be combined to form elaborated shapes. An end user sees elements and interacts with these elements by using the mouse and keyboard. A Roassal element is a compound object that contains (i) a two dimensional spatial location; (ii) a set of interactions; (iii) a combination of shapes; (iv) a model, which is any arbitrary object that belongs to the domain model provided by the user.shape := RTBox new size: 10.e1 := shape elementOn: 'hello'.e2 := shape elementOn: 'world'.self assert: e1 shape == e2 shape.self assert: e1 shape ~~ e1 trachelShape.self assert: (e1 shape isKindOf: RTBox).self assert: (e1 trachelShape isKindOf: TRBoxShape).self assert: e1 trachelShape ~~ e2 trachelShape."
+"RTRectangleAttachPoint","Continuous attach point which presumes both shapes are not rotated rectangles-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint: RTRectangleAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-="
+"RTNest","A RTNest is about nesting a group of objects in an element, typically located below.Here is an example:-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=| v  es |v := RTView new.es := RTBox elementsOn: RTShape withAllSubclasses.v addAll: es.RTNest new	for: es	add: [ :group :model | 		group addAll: ((RTBox new color: Color blue) elementsOn: model rtmethods).		RTGridLayout on: group.	].RTFlowLayout new on: es.es @ RTPopup @ RTDraggable.v-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="
+"RTShorterHorizontalDistanceAttachPoint","-=-=-=v := RTView new.e1 := (RTBox new size: 50) elementOn: 1.e2 := (RTEllipse new size: 50) elementOn: 2.v add: e1; add: e2.e2 translateBy: 30 @ 60.e1 @ RTDraggable.e2 @ RTDraggable.s := RTArrowedLine new color: Color black.s attachPoint:  RTShorterHorizontalDistanceAttachPoint new.l := s edgeFrom: e1 to: e2.v add: l.v-=-=-=-"
+"RTEmptyNarrowArrow",""
+"RTCompoundElement",""
+"RTAbstractCircle",""
+"RTResize","Adjust the size of the Elements.[ [ [ 	values := #(35 26 5 18 17 60 36 13 16 28 29 3 8 0 3 2 14 12 13 17 1 9 3 3 4 1 1 1 2 1 1 61).	v := RTView new.	n := RTMultiLinearColorForIdentity new objects: values.	shape := RTBox new color: n; size: #yourself.	es := shape elementsOn: values.	v addAll: es.	RTResize new elements: es; sameSize.	RTHorizontalLineLayout new gapSize: 0; on: es.		v ] ] ]"
+"RTLayoutBuilder","RTLayoutBuilder is a higher abstract to manage layout. Most builder use it as it significantly shorten the use of layouts.Consider the following example:-=-=-=-=-=-=-=-=-=-=-=-=v := RTView new.es := (RTBox new size: 8) elementsOn: (1 to: 100).v addAll: es.lb := RTLayoutBuilder new.lb horizontalFlow.lb setUpElements: es.v-=-=-=-=-=-=-=-=-=-=-=-=Another example using conditional layout:-=-=-=-=-=-=-=-=-=-=-=-=b := RTMondrian new.b nodes: self.b edges connectToAll: [ :c | c queryAllOutgoingInvocations atTypeScope ].b layout 	forceWithCharge: -300;	ifElement: #isNotConnected then: RTNullLayout new.b-=-=-=-=-=-=-=-=-=-=-=-="
+"RTTheme","I hold various default configurations for Roassal such as default colors etc, so each shape doesn't have to set it by itself."
+"RTSugiyamaLayout",""
+"RTEmptyArrowHead","A RTEmptyArrowHead is a line decorartion.-=-=-=-=-=-=-=-=-=-=-=-=| v e1 e2 l |v := RTView new.e1 := (RTEllipse new size: 20) element.e2 := (RTEllipse new size: 20) element.e1 @ RTDraggable.e2 @ RTDraggable.e2 translateBy: 50 @ 50.l := (RTLine new + RTEmptyArrowHead new) edgeFrom: e1 to: e2. v add: e1; add: e2; add: l.v open-=-=-=-=-=-=-=-=-=-=-=-="
+"RTAbstractHorizontalTreeLayout","A ROAbstractHorizontalTreeLayout is xxxxxxxxx."
+"RTConditionalShape","A conditional shape can provide element(s) (instances of RTElement) with different shape(s) depending on a provided condition.For example:-=-=-=-=| myRTGroup myObj |myObj := #(1 2 3 'hola' 'chau').myRTGroup := RTConditionalShape	condition: [ : ref | ref isCollection ifTrue: [ RTEllipse ] ifFalse: [ RTBox ] ]	elementsOn: myObj.-=-=-=-=Here is an example:-=-=-=-=v := RTView new.v @ RTDraggableView.shape := RTCompositeShape new.shape add: RTLabel new.shape add: (RTConditionalShape new     condition: [ : m | m hasComment         ifTrue: [ RTEllipse new color: (Color blue alpha: 0.3); size: 30 ]         ifFalse: [ RTBox new color: (Color red alpha: 0.3); size: 20 ] ]).shape vertical.es := shape elementsOn: RTShape withAllSubclasses.RTFlowLayout on: es.v addAll: es.v-=-=-=-=Internal Representation and Key Implementation Points.    Instance Variables	condition:		<Object>    Implementation Points"
+"RTVerticalLineLayout","A RTVerticalLineLayout locates all the elements vertically"
+"RTMultiColoredLine","A RTMultiColoredLine is a colored shape for lines from a color array  (Can be a Color Palete Sequential.Instance Variables	colorArray:		<Object>	path :colorArray	- xxxxx"
+"RTFlowLayout","A RTFlowLayout arrange elements in a rectangle including space (gapSize) between them, ideally it give you a square if all elements have an equal height and width ."
+"RTBezier3Line","Describe a cubic Bezier splineHere is an example:-=-=-=-=-=v := RTView new.s := RTEllipse new color: (Color red alpha: 0.4); size: 30.e1 := s elementOn: 'Begin'.e2 := s elementOn: 'End'.e3 := s elementOn: 'Middle'.lineShape := RTBezier3Line new.lineShape controlElement: e3.lineShape attachPoint: (RTShorterDistanceAttachPoint instance).edge := lineShape edgeFrom: e1 to: e2.v add: e1; add: e2; add: e3; add: edge.e1 @ RTDraggable.e2 @ RTDraggable.e3 @ RTDraggable.e2 translateBy: 80 @ 50.e3 translateBy: 40 @ 25.v -=-=-=-=-="
+"RTLayout","A ROLayout is the superclass of all.Instance Variables	affectedNodes:		<Object>	currentIteraction:		<Object>	eventHandler:		<Object>	maxInterations:		<Object>	translator:		<Object>affectedNodes	- xxxxxcurrentIteraction	- xxxxxeventHandler	- xxxxxmaxInterations	- xxxxxtranslator	- xxxxx"
+"RTEllipse","A RTEllipse is an ellipse. e.g., RTEllipse new width: 10; height: 20| v |v := RTView new.v add: (RTEllipse new width: 10; height: 20) element.v open"
+"RTCell",""
+"RTPolyLineSegment","I am an ordered collection of LineSegments. I provide some extra functions such as searching for specific segment given some position etc."
+"RTContinuousAttachPoint","Attach point which does not select best point from predefined points, but calculates it continuously from simple geometric shapes"
+"RTSmallMultipleStatisticScript",""
+"RTDSM","RTDSM build a Dependency Structural Matrix for a collection of objects and an arbitrary dependency function.For example, inspect the following:[[[ 	dsm := RTDSM new.	dsm objects: RTShape withAllSubclasses.	dsm dependency: #dependentClasses.	^ dsm]]]"
+"RTEvolutionDSM","I am a simple draw of evolution group"
+"RTEvolutionLine","I am a simple object that has values in a timeline"
+"RTSmallMultipleSingleScript",""
+"RTAbstractDSM","I am an abstract class for dependency structural matrices"
+"RTGradualDSM","RTGradualDSM build a Dependency Structural Matrix for a collection of objects and an arbitrary score function. The score is used to give a color to the cell.For example, inspect the following:[[[ 	dsm := RTGradualDSM new.	values := { 1->#(2 3 1 5 6) . 2 -> #(1 2 1 1 1 1 4) . 3 -> #(1 2 5 3 2) . 4 -> #(2 5 1) . 5 -> #() . 6 -> #(4) } asDictionary.	dsm objects: (1 to: 6).	dsm score: [ :assoc | (values at: assoc key) occurrencesOf: assoc value ].	dsm.]]]"
+"RTDSMExample","RTDSMExample new installTitle: 'EvolutionDSM' 		code:'	| b option data labels input other |	option := #(collab gtinspector).	option := TRPlatform current dialogChooseFrom: option values: option.	option ifNil: [ ^ nil ].		data := RTTabTable new 		input: (RTDSMExample perform: option)		usingDelimiter: Character tab.	labels := data removeFirstRow.	input := Dictionary new.	other := Set new.	data values do: [ :line| | item timeline  | 		item := input at: (line second) ifAbsentPut: [ Dictionary new ].		other add: line third.		timeline := item at: line third ifAbsentPut: [ OrderedCollection new ].		timeline add: line first -> line fourth asNumber. ].	b := RTEvolutionDSM new.	b objectsY: input keys.	b objectsX: other.	b timeline: [ :assoc | (input at: assoc key) at: assoc value ifAbsent: [ nil ] ].	b labelShape		height: 30;		color: Color blue.	b shape shape allShapes first size: 100.	b shape shape allShapes second		size: 100;		values: [ :assoc| 			assoc timeline 				ifNil:  [ nil ]				ifNotNil: [ :ob | ob collect: #value ] ].	b selectElement: [ :e| e model score notNil ].	b score: [ :assoc | assoc score ].	^ b 	'"
+"RTSmallMultipleManyScript",""
+"RTSVGEntity","A RTSVGEntity represents the SVG entity, in the SVG format.The id is used to differentiate elements for the interactions.The type represents the SVG element type, such as ""text"", ""p"", ""circle"", etc..The label represents the name used in the final SVG to differentiate group of elements. It also refers to the corresponding Roassal entity."
+"RTSVGInteraction","A RTSVGInteraction represents ay interaction present on a SVG export. It translates itself as javascript functions applied to SVG elements using its ""id"" or ""class"" attributes as anchor.The type field represents both the interaction type and how it will be translated to javascript, it is used to set the actual interactions to exactly the right elements.The target refers to the Roassal elements (as members of a class) affected by this interaction.Both contained and external are booleans used to determine where to insert the code in javascript. This position WIDELY varies, depending on the intended interaction."
+"RTSVGPathEntity","A RTSVGPathEntity is SVG path that translates from a generic SVG path, as represented in Roassal."
+"RTSVGStringConverter","A RTSVGStringConverter is a class used to fix Strings before using them inside SVG elements. Since many characters need to be translated to its HTML standart encoding"
+"RTSVGAbstractMarker","A RTSVGAbstractMarker represents the SVG marker, set on a Line."
+"RTSVGLink","A RTSVGLink is a link (to an external browser) when clicking a certain element. "
+"RTHTML5Exporter","I am a class to export instances of RTView with all its shapes and interactions, just check the examples to see how to use me.Instance Variables	directory:		a string	fileName:		a string	stream:		a WriteStream	title:		a stringdirectory	- the directory where the file is going to be saved, default the working directoryfileName	- the name of the html file. Default name: thePage.htmlstream	- the write stream is created when export method is called.title	- the title for the HTML page. Default title is Roassal Page"
+"RTSVGExporter","A RTSVGExporter is an exporter to get SVG files from RTBuilders or RTViews.For exporting from a RTView, use the ""exportViewAsSVG:"" method.For exporting a RTBuilder (or any subclasses) use the ""exportBuilderAsSVG:"" method."
+"RTSVGArc","A RTSVGArc is represents the SVG path for a radial arc, as in Roassal."
+"RTSVGTextPopup","A RTSVGTextPopup is a simple text popup."
+"RTSVGAbstractLine","A RTSVGAbstractLine refers to the common interface for both regular SVG lines and bezier lines (as paths).The decoration refers to the Maker of the Line."
+"RTSVGButton","A RTSVGButton represents buttons that changes the elements attributes. Since is defined just like any other interaction, is treated as it."
+"RTSVGPolygon","A RTSVGPolygon is represents the SVG Polygon of a regular polygon, as defined in Roassal."
+"RTLinkView","I allow to export several viewsfor instance if in your visualization RTView, you have elements that have visualizalitations you can use it to explore it in a web browserRTLinkView works with RTHTML5Exporter andRTSVGExporter"
+"RTSVGArrowHeadMarker","A RTSVGArrowHeadMarker is an arrow-head marker."
+"RTSVGPopup","A RTSVGPopup is any kind of popup born from a certain element.The click refers to the posibility of activating the popup only when the element is clicked. This is disabled by default."
+"RTHTML5ExporterExample","Examples of HTML exporter"
+"RTInteractiveSVGExporter","RTInteractiveSVGExporter exists for the sole porpouse of adding interactions, coming from the RTHTMLExporter, smoothly"
+"RTSVGBitmap","NOT WORKING, REFRAIN FROM USAGE"
+"RTSVGBoxedTextPopup","A RTSVGBoxedTextPopup is a text popup, contained in a square box.This boxing, in SVG, supports many features, not included in this class."
+"RTSVGBezierLine","A RTSVGBezierLine is represents the SVG path of a bezier line, as defined in Roassal."
+"RTSVGDragAndDrop","A RTSVGDragAndDrop is the Drag&Drop of SVG elements.Drag&Drop of edges is NOT supported, but edges connected to dragged elements will move accordingly"
+"RTSVGRectangle","A RTSVGLine is represents the SVG Rectangle of a regular rectangle, as defined in Roassal."
+"RTJavascriptVisitor","I am a class to visit all the nodes of one RTView"
+"RTSVGArrowMarker","A RTSVGArrowMarker is an arrow (open figure)  marker."
+"RTSVGElementPopup","A RTSVGElementPopup is a single element popup. The element may be any translatable Roassal Shape."
+"RTPNGExporter","A RTPNGExporter export the view or builder provided as argument as a PNG file"
+"RTSVGExporterExample","A RTSVGExporterExample is the example class for RTSVGExporter."
+"RTSVGOval","A RTSVGOval is the SVG Ellipse that translates from Roassal's Ellipse."
+"RTSVGViewPopup","A RTSVGViewPopup is a RTView popup. As in a complete view generated from each element."
+"RTSVGLine","A RTSVGLine is represents the SVG line of a regular line, as defined in Roassal."
+"RTSVGHightlight","A RTSVGHightlight is hightlight of SVG elements.Highlighting of edges is NOT supported."
+"RTCanvasExporter","A DCTRCanvasExporter is exporter of canvas into image		supported formats: png, jpg, jpeg, bmp, gif		usage example:	(DCTRCanvasExporter canvas: roassalView canvas)		withoutFixedShapes;		whole;		defaultScale;		oversizedBy: 20 @ 20;		format: #png;		fileName: ((UIManager default request: 'Please enter file name' initialAnswer: 'export.png') ifNil: [ ^ nil ]);		export"
+"RTSVGText","A RTSVGLine is represents the SVG text of a regular or rotated text, as defined in Roassal."
+"RTSVGVisitor","A RTSVGVisitor is a RTVisitor for SVG exporting."
+"RTSVGDiamondMarker","A RTSVGDiamondMarker is a diamond shape marker."
+"RTSVGGroupPopup","A RTSVGGroupPopup is a RTGroup popup. "
+"RTIntrospectionTest",""
+"RTSVGExporterTest",""
+"RTHTML5ExporterTest",""
+"RTPNGExporterTest",""
+"RTSVGStringConverterTest",""
+"Roassal2VW","A simple class to export Roassal and trachel packages to visualworks"
+"Roassal2VWTest","A Roassal2VWTest is a test class for testing the behavior of Roassal2VW"
+"RTKiviatElement","A RTKiviatElement is one element in the view. It has a reference on its kiviatNode, the name of the metric, its value and it position.Instance Variables	kiviatNode:		<Object>	metric:		<Object>	position:		<Object>	value:		<Object>kiviatNode	- xxxxxmetric	- xxxxxposition	- xxxxxvalue	- xxxxx"
+"RTKiviatMetric","A RTKiviatMetric represent an axis in the view and is used to know where to place an element in the view according to a value.Instance Variables	maxSize:		<Object>	maxValue:		<Object>	minValue:		<Object>	modelBlock:		<Object>maxSize	- xxxxxmaxValue	- xxxxxminValue	- xxxxxmodelBlock	- xxxxx"
+"RTKiviatBuilderExample","RTKiviatBuilderExample new installTitle: 'Colored3' 		code:		'	| b myKiviatNodesElems m col |	b := RTKiviatBuilder new.	b objects: RTAbstractCircleLayout withAllSubclasses.	b addMetric: #numberOfLinesOfCode.	b addMetric: #numberOfMethods.	b addMetric: #numberOfVariables.	b open.	myKiviatNodesElems := (b view elements select: [ :e | (e model isKindOf: RTKiviatElement)]).	b objects do: [:o | m:= myKiviatNodesElems select: [ :e | (e model named name= o name)]. col := 	(Color random alpha: 0.6). m do: [:e | e color: col]].	b build.	b '"
+"RTKiviatBuilder","A RTKiviatBuilder is a builder for Kiviat Chart, comparing objects considering metrics.Instance Variables	axisSize:		<Object>	highlight:		<Object>	kiviatMetrics:		<Object>	kiviatNodes:		<Object>	metrics:		<Object>	objects:		<Object>	shapes:		<Object>axisSize	- xxxxxhighlight	- xxxxxkiviatMetrics	- xxxxxkiviatNodes	- xxxxxmetrics	- xxxxxobjects	- xxxxxshapes	- xxxxx"
+"RTKiviatFruitExample","I am a utility class for and example of KiviatBuilder"
+"RTKiviatNode","A RTKiviatNode represent a polygon in the view, it represent one objects that is studied. It is composed by as many kiviatElement as the umber of metrics, connected by edges. Instance Variables	arrayValues:		<Object>	edgeElements:		<Object>	named:		<Object>	nodeElements:		<Object>	shapeEdge:		<Object>	shapeNode:		<Object>arrayValues	- xxxxxedgeElements	- xxxxxnamed	- xxxxxnodeElements	- xxxxxshapeEdge	- xxxxxshapeNode	- xxxxx"
+"RTOpenStreetMapExample","RTOpenStreeMapExample new installTitle: 'VerySimple' 		code:		'	| v |	v := RTView new.	map := RTOSM new.	e := map element.	v add: e.	paris := 48.8567 @ 2.3508.		v @ RTDraggableView.		v canvas camera translateTo: (map latLonToRoassal: paris).	v canvas camera noInitializationWhenOpen.self halt.	^ v'	"
+"RTOSMTest",""
+"TROSMShape","This Shape represent an OpenStreetMap background object which tracks the camera zoom level and translation to build a view of the corresponding part of the OpenStreetMap.A similar approach could work with Google maps.Instance Variables	osmZoomLevel:		<Integer>	position:		<Point>	rectangle:	<Rectangle>	scale:		<Point>	tiles:		<Dictionary of Point -> Form>	zoom:		<Point>osmZoomLevel	- the zoom level in the OSM range (0 to 18, integer)position	- position of the shaperectangle	- bounds of the shapescale	- the scale of the shapetiles	- the cache of tiles, indexed by x, yzoom	- zoom of the shapePrinciple:	1.0 in Roassal space -> 1km in OSM. 	R zoom to OSM zoom level: (base is 1km/pixel) 		1000 * Rzoom = 156543.034 meters/pixel / (2 ^ zoomlevel)		zoomlevel = ln( 156.543034 * Rzoom ) / ln 2		remainderZoom =  156.543034 * Rzoom / (2 ^ zoomlevel))		lon to Roassal space = [ :l | 40075.016686 * (l / 360) ]		lat to Roassal space = [ :l | ((Float pi / 4) + (l degreesToRadians / 2)) tan ln * 40075.016686 / (2.0 * Float pi) ]		Remember : working limit for lat/lon is ±85.05113°Goal:	depending on the RTView size and the canvas parameters, get the right tiles from OSM and display them.Algorithm:	From the camera, get the zoom level and offset.	Compute the OSM zoom level (with the camera zoom value).	Make remainder zoom a transform inside the TROSMShape.	Take corners of bounding box, get lat / long, get tiles x and y based on previous zoom level.	Set clipping rectangle to TROSMShape bounds.	Display each tile.	cache each tile. When displaying, check if tile exists. Remove tile if not used in display."
+"RTOSM","A RTOSM represent a shape linked to OpenStreetMap background tiles.Its outside boundaries and position are independent of the RTView camera. However, its inside is dependent on the RTView camera parameters.	A ratio can be added, to change the base scale factor which is 1.0 in Roassal is equal to 1km in the mercator projection at equator. A ratio of 10 will mean 1.0 in Roassal is equal to 100m in the mercator projection at equator."
+"RTInvocationSequenceRule","Edges will not be drawn if nodes are not initialized before the invocation of #edges message"
+"RTStackBarPlotTest",""
+"RTMapBuilderTest",""
+"RTArrowedLineTest","A RTArrowedLineTest is a test class for testing the behavior of RTArrowedLine"
+"RTMultiLineTest",""
+"RTConditionalLayoutTest","A RTConditionalLayoutTest is a test class for testing the behavior of RTConditionalLayout"
+"RTNormalizerTest","A RONormalizerTest is xxxxxxxxx."
+"RTEdgeBuilderTest",""
+"RTRTShorterDistanceAttachPointTest",""
+"RTForceBasedLayoutTest","A RTForceBasedLayoutTest is a test class for testing the behavior of RTForceBasedLayout"
+"RTShowEdgeTest",""
+"RTLabeledTest",""
+"RTTreeLayoutTest",""
+"RTAMItemTest",""
+"RTCircleGeometryTest",""
+"RTNNormalizerTest","A RONormalizerTest is xxxxxxxxx."
+"RTDoubleGrapherBuilderTest",""
+"RTEllipseTest","A RTEllipseTest is a test class for testing the behavior of RTEllipse"
+"RTSVGPathTest",""
+"RTHighlighterBuilderTest","Test the class RTHighlitherBuilder"
+"RTStyledMultiLineTest","A RTStyledMultiLineTest is a test class for testing the behavior of RTStyledMultiLine"
+"RTMenuActivableTest",""
+"RTAttachPointTest",""
+"RTMultiLinearColorForIdentityTest","A RTMultiLinearColorForIdentityTest is a test class for testing the behavior of RTMultiLinearColorForIdentity"
+"RTConstrainedDraggableTest",""
+"RTEdgeTest",""
+"RTRadialTreeLayoutTest",""
+"RTOptimizedForceBasedLayoutTest",""
+"RTShowLabelTest","A RTShowLabelTest is a test class for testing the behavior of RTShowLabel"
+"RTLayoutBuilderTest",""
+"RTTreeMapTest",""
+"RTAbstractElasticBoxInteractionTest","A RTAbstractElasticBoxInteractionTest is a test class for testing the behavior of RTAbstractElasticBoxInteraction"
+"RTCircleLayoutTest",""
+"RTDoubleScrollBarTest",""
+"RTEventForwarderTest",""
+"RTSVGVisitor2Test","I am a simple test class for RTSVGVisitor2"
+"RTHorizontalTickLinePluginTest",""
+"RTSugiyamaLayoutTest",""
+"RTMethodAgeTest",""
+"RTBorderAttachPointTest",""
+"RTMultiLinearColorTest",""
+"RTConstraintTest",""
+"RTRangeBelowXAxisTest","A RTRangeBelowXAxisTest is a test class for testing the behavior of RTRangeBelowXAxis"
+"RTGradientColoredLineTest",""
+"RTShowLabelWhenZoomingTest",""
+"RTLayoutTest",""
+"RTUMLClassBuilderTest",""
+"RTAbstractGrapherDecoratorTest",""
+"RTCircularTreeMapTest",""
+"RTDoubleSliderTest","Tests for class RTDoubleSlider"
+"RTExpandableTest",""
+"RTScaleTest",""
+"RTHorizontalTimelineDecoratorTest","A RTHorizontalTimelineDecoratorTest is a test class for testing the behavior of RTHorizontalTimelineDecorator"
+"RTSunburstBuilderTest","A RTSunburstBuilderTest is a test class for testing the behavior of RTSunburstBuilder"
+"RTMetricMapTest",""
+"RTAxisConfigurationTest",""
+"RTMultipleDataTest",""
+"RTCubeHelixTest",""
+"RTRectangleAttachPointTest","A RTRectangleAttachPointTest is a test class for testing the behavior of RTRectangleAttachPoint"
+"RTGrapherBuilderTest",""
+"RTSimonTest",""
+"RTLayoutTranslatorTest",""
+"RTVerticalMultipleDataTest",""
+"RTAbstractLineDecorationTest","A DCRTAbstractLineDecorationTest is a test class for testing the behavior of DCRTAbstractLineDecoration"
+"RTCollectionExtensionTest",""
+"RTDragAndDroppableTest",""
+"RTExperimentalExampleTest",""
+"RTSelectableTest",""
+"RTHorizontalTreeLayoutTest",""
+"RTTabTableTest",""
+"RTBezier3LineTest","A RTBezier3LineTest is a test class for testing the behavior of RTBezier3Line"
+"RTCursorFollowerTest",""
+"RTRectanglePackaLayouTest",""
+"RTGrapherTest",""
+"RTSimpleArrowHeadTest",""
+"RTLazyMetricNormalizerTest",""
+"RTVerticalTickLineDecoratorTest",""
+"RTAbstractPluginTest",""
+"RTColorPaletteTest",""
+"RTDraggableTest","A RTDraggableTest is a test class for testing the behavior of RTDraggable"
+"RTExploraBuilderTest","A ROExploraBuilderTest is xxxxxxxxx.Instance Variables	builder:		<Object>builder	- xxxxx"
+"RTShapeBuilderTest",""
+"RTInteractionBuilderTest",""
+"RTTextBuilderTest",""
+"RTBezierLineTest",""
+"RTDSMTest",""
+"RTResizableTest","A RTResizableTest is a test class for testing the behavior of RTResizable"
+"RTGridLayoutTest",""
+"RTSliderTest",""
+"RTLegendBuilderTest",""
+"RTVerticalValuesDecoratorTest",""
+"RTAlignmentTest",""
+"RTComposerTest",""
+"RTDraggableViewTest",""
+"RTPolyLineSegmentsTest",""
+"RTExtensibleLabelTest",""
+"RTShapeTest",""
+"RTInteractionTest",""
+"RTTextTest",""
+"RTContinuousDecoratorTest","A RTContinuousDecoratorTest is a test class for testing the behavior of RTContinuousDecorator"
+"RTBlinkTest",""
+"RTDataTest",""
+"RTResizeTest",""
+"RTMetricNormalizerTest",""
+"RTGridViewTest","A RTGridViewTest is a test class for testing the behavior of RTGridView"
+"RTSparklineTest",""
+"RTPieBuilderTest",""
+"RTLineDualWidthTest",""
+"RTViewTest",""
+"RTAnimatedScatterPlotTest",""
+"RTUnoptimizedComposerTest",""
+"RTDynamicEqualizerGrapherTest","A RTDynamicEqualizerGrapherTest is a test class for testing the behavior of RTDynamicEqualizerGrapher"
+"RTPolygonTest",""
+"RTExtensionTest",""
+"RTShapedObjectTest",""
+"RTKiviatBuilderTest",""
+"RTTimelineSetTest","A RTTimeLineSetTest is a test class for testing the behavior of RTTimeLineSet"
+"RTInteractiveTreeBuilderTest","A RTInteractiveTreeBuilderTest is a test class for testing the behavior of RTInteractiveTreeBuilder"
+"RTBucketColorTest",""
+"RTOrderedCollectionTest",""
+"RTDecoratedTest","A RTDecoratedTest is a test class for testing the behavior of RTDecorated"
+"RTMondrianFrameTest",""
+"RTRoassal2ArchitectureTest",""
+"RTGroupTest",""
+"RTSpectrographTest",""
+"RTLineSegmentTest","A RTLineSegmentTest is a test class for testing the behavior of RTLineSegment"
+"RTVisibleTest",""
+"RTAnimationTest",""
+"RTMultiColoredLineTest",""
+"RTCompositeShapeTest",""
+"RTNameCloudTest",""
+"RTDynamicGrapherTest",""
+"RTPopupTest","A ROAbstractPopupTest is xxxxxxxxx.Instance Variables	popup:		<Object>	view:		<Object>popup	- xxxxxview	- xxxxx"
+"RTFilterInViewTest",""
+"RTShorterDistanceAttachPointAndCompositeShapeTest",""
+"RTLabelGeneratorTest","A RTLabelGeneratorTest is a test class for testing the behavior of RTLabelGenerator"
+"RTTimelineTest",""
+"RTSankeyBuilderTest","A RTSankeyBuilderTest is a test class for testing the behavior of RTSankeyBuilder"
+"RTCacheTest",""
+"RTDistributionTest","A GETDistributionTest is a test class for testing the behavior of GETDistribution"
+"RTEditableLabelTest","A RTEditableLabelTest is a test class for testing the behavior of RTEditableLabel"
+"RTRotableViewTest",""
+"RTMondrianTest",""
+"RTHighlightElementsInViewTest",""
+"RTSpringLayoutSteppingTest",""
+"RTLineTest",""
+"RTApplicationMatrixTest",""
+"RTMultiCompositeShapeTest",""
+"RTCompoundElementTest",""
+"RTNestTest",""
+"RTDynamicStackedGrapherTest","A RTDynamicStackedGrapherTest is a test class for testing the behavior of RTDynamicStackedGrapher"
+"RTQuadTreeTest","A ROQuadTreeTest is xxxxxxxxx.Instance Variables	nodes:		<Object>	quad:		<Object>nodes	- xxxxxquad	- xxxxx"
+"RTFocusElementTest",""
+"RTShorterDistanceWithOffsetAttachPointTest",""
+"RTLabelTest",""
+"RTTransitivelyTHighlightableTest",""
+"RTTest",""
+"RTCellLayoutTest",""
+"RTDominanceTreeLayoutTest",""
+"RTElementTest",""
+"RTRotatedLabelTest",""
+"RTHighlightableTest",""
+"RTUMLExample","RTUMLExample new installTitle: 'BlackColor' 		code:		'| b |b := RTUMLClassBuilder new   instanceVariables: #instVarNames;   methodselector: #selector;	methodsNames: #methods;	attributeselector: #yourself.b attributeShape color: Color black.b methodShape color: Color black.b classNameShape color: Color black.b lineShape color: Color black.b boxShape borderColor: Color black.b addObjects: (TRAbstractArrowHeadShape withAllSubclasses ).b layout tree.b build.^b view'"
+"RTUMLClassBuilder","I am a builder to create UML diagrams in Roassal2, see examples"
+"RTInteractiveViewContext",""
+"GLMRoassal2Presentation","A GLMRoassalPresentation is xxxxxxxxx.Instance Variables	newViewBlock:		<Object>	painting:		<Object>	paintingBlock:		<Object>	shouldPopulateSelection:		<Object>	view:		<Object>newViewBlock	- xxxxxpainting	- xxxxxpaintingBlock	- xxxxxshouldPopulateSelection	- xxxxxview	- xxxxx"
+"GLMInspectViewAction",""
+"GLMInteractiveContextAction",""
+"RTGrapherSelectRangeContextInteraction",""
+"GLMHTMLExporting2Action",""
+"RTAbstractViewContext",""
+"RTExampleMethodIcon",""
+"GLMCameraCenterAction",""
+"RTExampleFactory",""
+"GLMSVGExportingAction",""
+"RTGTContextExample",""
+"RTExampleSelection",""
+"GLMSelectionBox",""
+"GLMAddLabelAction",""
+"RTResizeableViewContextInteraction","Interaction for a view. Make the view resizeable in GTInspector. Here is an example:-=-=-=b := RTMondrian new.b nodes: (1 to: 100).b layout grid.b view @ RTResizeableViewContextInteraction.b-=-=-="
+"GLMHTMLExportingWithoutFixedShapesAction",""
+"RTEmptyViewContext",""
+"GLMMorphicRoassal2Renderer","A GLMMorphicRoassalRenderer is xxxxxxxxx.Instance Variables	myMorph:		<Object>myMorph	- xxxxx"
+"GLMFindInViewAction",""
+"GLMAbstractSetContextAction",""
+"RTAbstractContextInteraction",""
+"GLMRoassal2Action",""
+"GLMZoomInAction",""
+"GLMAddScrollbarAction",""
+"RTSelectableElementContextInteraction","This is an interaction for an element"
+"GLMPNGExporting2Action",""
+"RTGrapherSelectRangeViewContext","Define a range for GT-=-=-=g := RTGrapher new.g view: RTView new.ds := RTData new.ds dotShape color: Color blue trans.ds points: RTShape withAllSubclasses.ds y: [ :cls | cls numberOfMethods - 50 ].ds x: [ :cls | cls numberOfLinesOfCode - 150 ].g add: ds.RTGrapherSelectRangeViewContext onGrapher: g callback: [ :elements |  (g view attributeAt: #presentation) selection: elements ].g -=-=-="
+"RTFindInAView","Useful interaction to let one search for elements contained in a view[[[| b |			b := RTMondrian new.b shape box.b nodes: Collection withAllSubclasses.b normalizer normalizeWidth: #numberOfVariables; normalizeHeight: #numberOfMethods.b layout flow.b view @ RTFindInAView.b]]]			"
+"GLMHTMLExportingAction",""
+"GLMEmptyContextAction",""
+"RTEmptyViewContextInteraction","Interaction for a view. Make the view __not__ resizeable in GTInspector. Here is an example:-=-=-=b := RTMondrian new.b nodes: (1 to: 100).b layout grid.b view @ RTEmptyViewContextInteraction.b-=-=-="
+"GLMAbstractExportingAction",""
+"GLMZoomOutAction",""
+"GLMBoxZoomAction",""
+"RTSelectableElementsContextInteraction","This is an interaction for a view"
+"GLMPNGExportingAction",""
+"GLMRoassal2ActionTest",""
+"GLMRoassal2MorphicTest","A GLMRoassalMorphicTest is xxxxxxxxx."
+"RTGTContextInteractionTest",""
+"GLMCameraCenterActionTest",""
+"RTExampleTestCase",""
+"RTFindInAViewTest",""
+"RTGTContextTest",""
+"RTViewForSpec","I am a special view used to record registered announcement to propagate them outside of the view to other Spec models"
+"RoassalModel","I am a Spec model to embed Roassal2 visualizations. See the SpecEasel class for an example use."
+"SpecEasel","I am a demo of how to use the Spec Roassal Integration. I implement the behavior that was originally present in the Roassal Easel.To run, do-it of the following: SpecEasel  new openWithSpec"
+"MorphicRoassalAdapter","I am bridging RoassalModel and RTView"
+"RoassalAndSpecExample",""
+"DynamicStackedModelExample","I am an example to use spec with roassal and RTDynamicStackedGrapher"

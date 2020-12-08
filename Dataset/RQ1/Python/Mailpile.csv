@@ -1,0 +1,1759 @@
+fileName,className,classComment,commentStart,commentEnd,classCommentSymbolLength,classCommentLineLength
+C:\Users\vaano\python_projects\Mailpile\setup.py,Builder,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\app.py,InteractCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\app.py,WaitCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\auth.py,UserSession,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\auth.py,UserSessionCache,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\auth.py,Authenticate,"
+Authenticate a user (log in)
+",101,102,28,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\auth.py,DeAuthenticate,"
+De-authenticate a user (log out)
+",234,235,32,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\auth.py,SetPassphrase,"
+Manage storage of passwords (passphrases)
+",263,264,41,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\commands.py,Command,"
+Generic command object all others inherit from
+",28,29,46,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\commands.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\command_cache.py,CommandCache,"This is an in-memory cache of commands and results we may want to
+    refresh in the background and/or reuse.
+    
+    The way this works:
+        - Cache-able commands generate a fingerprint describing themselves.
+        - If the fingerprint is found in cache, reuse the result object.
+        - Otherwise, run, generate a list of requirements and cache all of:
+          the command object itself, the requirements, the result object.
+        - Internal state changes (tag ops, new mail, etc.) call mark_dirty()
+          describing which assets (requirements) have changed.
+        - Periodically, the cache is refreshed, which re-runs any dirtied
+          commands and fires events notifying the UI about changes.
+    
+    Examples of requirements:
+    
+       - Search terms, eg. 'in:inbox' or 'potato' or 'salad'
+       - Messages: 'msg:INDEX' where INDEX is a number (not a MID)
+       - Threads: 'thread:MID' were MID is the thread ID.
+       - The app configuration: '!config'
+",17,37,1,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\command_cache.py,Cached,"
+Fetch results from the command cache.
+",151,152,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,Capability,"
+These are constants defining different types of outgoing or incoming
+connections. Brokers use these to describe what sort of connections they
+are capable of handling, and calling code uses these to describe the
+intent of network connection.
+",104,108,240,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,CapabilityFailure,"
+This exception is raised when capability requirements can't be satisfied.
+It extends the IOError, so unaware code just thinks the network is lame.
+
+>>> try:
+...     raise CapabilityFailure('boo')
+... except IOError:
+...     print('ok')
+ok
+",150,158,238,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,Url,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,BrokeredContext,"
+This is the context returned by the BaseConnectionBroker.context()
+method. It takes care of monkey-patching the socket.create_connection
+method and then cleaning the mess up afterwards, and collecting metadata
+from the brokers describing what sort of connection was established.
+
+WARNING: In spite of our best efforts (locking, etc.), mixing brokered
+         and unbrokered code will not work well at all. The patching
+         approach also limits us to initiating one outgoing connection
+         at a time.
+",174,183,510,9
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,BaseConnectionBroker,"
+This is common code used by most of the connection brokers.
+",244,245,59,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,TcpConnectionBroker,"
+The basic raw TCP/IP connection broker.
+
+The only clever thing this class does, is to avoid trying to connect
+to .onion addresses, preventing that from leaking over DNS.
+",336,340,169,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,SocksConnBroker,"
+This broker offers the same services as the TcpConnBroker, but over a
+SOCKS connection.
+",401,403,87,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,TorConnBroker,"
+This broker offers the same services as the TcpConnBroker, but over Tor.
+
+This removes the ""trackable"" capability, so requests that reject it can
+find their way here safely...
+
+This broker only volunteers to carry encrypted traffic, because Tor
+exit nodes may be hostile.
+",483,490,271,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,TorRiskyBroker,"
+This differs from the TorConnBroker in that it will allow ""cleartext""
+traffic to anywhere - this is dangerous, because exit nodes could mess
+with our traffic.
+",525,528,158,3
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,TorOnionBroker,"
+This broker offers the same services as the TcpConnBroker, but over Tor.
+
+This removes the ""trackable"" capability, so requests that reject it can
+find their way here safely...
+
+This differs from the TorConnBroker in that it will allow ""cleartext""
+traffic, since we trust the traffic never leaves the Tor network and
+we don't have hostile exits to worry about.
+",538,546,359,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,BaseConnectionBrokerProxy,"
+Brokers based on this establish a RAW connection and then manipulate it
+in some way, generally to implement proxying or TLS wrapping.
+",562,564,133,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,AutoTlsConnBroker,"
+This broker tries to auto-upgrade connections to use TLS, or at
+least do the SSL handshake here so we can record info about it.
+",594,596,127,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,AutoSmtpStartTLSConnBroker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,AutoImapStartTLSConnBroker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,AutoPop3StartTLSConnBroker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,MasterBroker,"
+This is the master broker. It implements a prioritised list of
+connection brokers, each of which is tried in turn until a match
+is found. As such, more secure brokers should register themselves
+with a higher priority - if they fail, we fall back to less
+secure connection strategies.
+",632,637,283,5
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,NetworkHistory,"
+Show recent network history
+",728,729,27,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,GetTlsCertificate,"
+Fetch and parse a server's TLS certificate
+",749,750,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\conn_brokers.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\eventlog.py,Event,"
+This is a single event in the event log. Actual interpretation and
+rendering of events should be handled by the respective source class.
+",49,51,136,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\eventlog.py,EventLog,"
+This is the Mailpile Event Log.
+
+The log is written encrypted to disk on an ongoing basis (rotated
+every N lines), but entries are kept in RAM as well. The event log
+allows for recording of incomplete events, to help different parts
+of the app ""remember"" tasks which have yet to complete or may need
+to be retried.
+",182,189,314,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\httpd.py,HttpRequestHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\httpd.py,HttpServer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\httpd.py,HttpWorker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\i18n.py,i18n_disabler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\packing.py,StorageBackedData,"
+This lovely hack exposes the full API of a Python set or list, but any
+writes get flushed to a storage backend and the initial state is loaded
+from the same.
+
+It is NOT SAFE to ever have more than one of these for a given backend
+as they will not stay in sync. Since most methods are proxies, using
+set method on a backed list will fail and vice-versa.
+
+This class must be subclassed and _pack and _unpack implemented.
+",95,104,418,9
+C:\Users\vaano\python_projects\Mailpile\mailpile\packing.py,StorageBackedSet,"
+This combines StorageBackedData with Pack/UnpackIntSet to pack
+and save sets of ints.
+
+>>> storage = {'sbs': '\x01\x00\x00\x00'}
+>>> sbs = StorageBackedSet(storage, 'sbs')
+>>> 1 in sbs
+True
+
+>>> sbs.add(2)
+>>> sbs.save()
+>>> UnpackIntSet(storage['sbs']) == set([1, 2])
+True
+",219,231,273,12
+C:\Users\vaano\python_projects\Mailpile\mailpile\packing.py,StorageBackedLongs,"
+This combines StorageBackedData with Pack/UnpackLongList to pack
+and save sets of ints.
+
+>>> storage = {'sbl': '\x01\x00\x00\x00\x00\x00\x00\x00'}
+>>> sbl = StorageBackedLongs(storage, 'sbl')
+>>> 1 in sbl
+True
+
+>>> sbl.append(2)
+>>> sbl.save()
+>>> UnpackLongList(storage['sbl']) == [1, 2]
+True
+",238,250,293,12
+C:\Users\vaano\python_projects\Mailpile\mailpile\postinglist.py,PostingListContainer,"
+A container for posting lists mapping search terms to message IDs.
+",81,82,66,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\postinglist.py,NewPostingList,"
+A posting list is a map of search terms to message IDs.
+",290,291,55,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\postinglist.py,OldPostingList,"
+A posting list is a map of search terms to message IDs.
+",334,335,55,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\postinglist.py,GlobalPostingList,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\safe_popen.py,Safe_Pipe,"
+Creates a pipe consisting of two Python file objects.
+
+This prevents leaks and prevents weird thread bugs cuased by closing
+the underlying FD more than once, because Python's objects are smart
+(as opposed to dumb ints).
+",57,62,219,5
+C:\Users\vaano\python_projects\Mailpile\mailpile\safe_popen.py,Safe_Popen,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\search.py,MailIndex,"
+This is a lazily parsing object representing a mailpile index.
+",40,41,62,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\search_history.py,SearchHistory,"This is an in-memory cache of search results, which can be used to
+    give a ""search context"" to various commands. The actual results are
+    preserved, so adding/removing/retagging messages won't change the
+    context and meaning of ""next"" or ""message number five"".
+",14,19,73,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\security.py,SecurePassphraseStorage,"
+This is slightly obfuscated in-memory storage of passphrases.
+
+The data is currently stored as an array of integers, which takes
+advantage of Python's internal shared storage for small numbers.
+This is not secure against a determined adversary, but at least the
+passphrase won't be written in the clear to core dumps or swap.
+
+>>> sps = SecurePassphraseStorage(passphrase='ABC')
+>>> sps.data
+[65, 66, 67]
+
+To copy a passphrase:
+
+>>> sps2 = SecurePassphraseStorage().copy(sps)
+>>> sps2.data
+[65, 66, 67]
+
+To check passphrases for validity, use compare():
+
+>>> sps.compare('CBA')
+False
+>>> sps.compare('ABC')
+True
+
+To extract the passphrase, use the get_reader() method to get a
+file-like object that will return the characters of the passphrase
+one byte at a time.
+
+>>> rdr = sps.get_reader()
+>>> rdr.seek(1)
+>>> [rdr.read(5), rdr.read(), rdr.read(), rdr.read()]
+['B', 'C', '', '']
+
+If an expiration time is set, trying to access the passphrase will
+make it evaporate.
+
+>>> sps.expiration = time.time() - 5
+>>> sps.get_reader() is None
+True
+>>> sps.data is None
+True
+FIXME: Replace this with a memlocked ctype buffer, whenever possible",304,345,1065,41
+C:\Users\vaano\python_projects\Mailpile\mailpile\security.py,SecurePassphraseReader,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\smtp_client.py,SMTP,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\smtp_client.py,SendMailError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\smtp_client.py,SMTP_SSL,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,SuppressHtmlOutput,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,NoColors,"
+Dummy color constants
+",54,55,21,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,ANSIColors,"
+ANSI color constants
+",118,119,20,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,Completer,"
+Readline autocompler
+",165,166,20,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,UserInteraction,"
+Log the progress and performance of individual operations
+",188,189,57,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,HttpUserInteraction,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,BackgroundInteraction,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,SilentInteraction,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,CapturingUserInteraction,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,RawHttpResponder,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,Session,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\ui.py,NoFailEncoder,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,BadMethodError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,BadDataError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,_FancyString,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,UrlMap,"
+This class will map URLs/requests to Mailpile commands and back.
+
+The URL space is divided into three main classes:
+
+   1. Versioned API endpoints
+   2. Nice looking shortcuts to common data
+   3. Shorthand paths to API endpoints (current version only)
+
+Depending on the endpoint, it is often possible to request alternate
+rendering templates or generate output in a variety of machine readable
+formats, such as JSON, XML or VCard. This is done by appending a
+psuedo-filename to the path. If ending in `.html`, the full filename is
+used to choose an alternate rendering template, for other extensions the
+name is ignored but the extension used to choose an output format.
+
+The default rendering for API endpoints is JSON, for other endpoints
+it is HTML. It is strongly recommended that only the versioned API
+endpoints be used for automation.
+",31,49,842,18
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,UrlRedirect,"
+A stub command which just throws UrlRedirectException.
+",658,659,54,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,UrlRedirectEdit,"
+A stub command which just throws UrlRedirectException.
+",667,668,54,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,UrlRedirectThread,"
+A stub command which just throws UrlRedirectException.
+",677,678,54,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,HelpUrlMap,"
+Describe the current API and URL mapping
+",687,688,40,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\urlmap.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,WorkerError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,UsageError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,AccessError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,InternalError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,UrlRedirectException,"
+An exception indicating we need to redirecting to another URL.
+",236,237,62,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,JobPostponingException,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,MultiContext,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,GpgWriter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,PeekableStringIO,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,CleanText,"
+This is a helper class for aggressively cleaning text, dumbing it
+down to just ASCII and optionally forbidding some characters.
+
+>>> CleanText(u'clean up\xfe', banned='up ').clean
+'clean'
+>>> CleanText(u'clean\xfe', replace='_').clean
+'clean_'
+>>> CleanText(u'clean\t').clean
+'clean\t'
+>>> str(CleanText(u'c:\\l/e.an', banned=CleanText.FS))
+'clean'
+>>> CleanText(u'c_(l e$ a) n!', banned=CleanText.NONALNUM).clean
+'clean'
+",1035,1048,421,13
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,TimedOut,"
+We treat timeouts as a particular type of IO error.
+",1095,1096,51,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,RunTimedThread,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,DebugFileWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\util.py,Wrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardLine,"
+This class represents a single line in a VCard file. It knows how
+to parse the most common ""structured"" lines into attributes and
+values and also convert a name, attributes and value into a properly
+encoded/escaped VCard line.
+
+For specific values, the object can be initialized directly.
+>>> vcl = VCardLine(name='name', value='The Dude', pref=None)
+>>> vcl.as_vcardline()
+'NAME;PREF:The Dude'
+
+Alternately, the name and value attributes can be set after the fact.
+>>> vcl.name = 'FN'
+>>> vcl.value = 'Lebowski'
+>>> vcl.attrs = []
+>>> vcl.as_vcardline()
+'FN:Lebowski'
+
+The object mostly behaves like a read-only dict.
+>>> print(vcl)
+{u'fn': u'Lebowski'}
+>>> print(vcl.value)
+Lebowski
+
+VCardLine objects can also be initialized by passing in a line of VCard
+data, which will then be parsed:
+>>> vcl = VCardLine('FN;TYPE=Nickname:Bjarni')
+>>> vcl.name
+u'fn'
+>>> vcl.value
+u'Bjarni'
+>>> vcl.get('type')
+u'Nickname'
+
+Note that the as_vcardline() method may return more than one actual line
+of text, as RFC6350 mandates that lines over 75 characters be wrapped:
+>>> print(VCardLine(name='bogus', value=('B' * 100)+'C').as_vcardline())
+BOGUS:BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
+ BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBC
+",17,55,1240,38
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,SimpleVCard,"
+This is a very simplistic implementation of VCard 4.0.
+
+The card can be initialized with a series of VCardLine objects.
+>>> vcard = SimpleVCard(VCardLine(name='fn', value='Bjarni'),
+...                     VCardLine(name='email', value='bre@example.com'),
+...                     VCardLine(name='email', value='bre2@example.com'),
+...                     VCardLine('EMAIL;TYPE=PREF:bre@evil.com'),
+...                     client='default')
+
+The preferred (or Nth) line of any type can be retrieved using
+the get method. Lines are sorted by (preference, card order).
+>>> vcard.get('email').value
+u'bre@evil.com'
+>>> vcard.get('email', n=2).value
+u'bre@example.com'
+>>> vcard.get('email', n=4).value
+Traceback (most recent call last):
+    ...
+IndexError: ...
+
+If the client attribute is specified on creation, all lines will
+have a PID attribute.
+>>> vcard.get('clientpidmap').value
+u'990;default'
+>>> vcard.get('email')['pid']
+'990.1'
+
+There are shorthand methods for accessing or setting the values of
+the full name and e-mail lines:
+>>> vcard.email
+u'bre@evil.com'
+>>> vcard.fn = 'Bjarni R. E.'
+>>> vcard.get('fn').value
+u'Bjarni R. E.'
+
+To fetch all lines, use the get_all method. In this case no
+sorting is performed and lines are simply returned in card order.
+>>> [vcl.value for vcl in vcard.get_all('email')]
+[u'bre@example.com', u'bre2@example.com', u'bre@evil.com']
+",229,268,1373,39
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,MailpileVCard,"
+This is adds some mailpile-specific extensions to the SimpleVCard.
+",799,800,66,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,AddressInfo,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardStore,"
+This is a disk-backed in-memory collection of VCards.
+
+>>> vcs = VCardStore(cfg, '/tmp')
+
+# VCards are added to the collection using add_vcard. This will
+# create a file for the card on disk, using a random name.
+>>> vcs.add_vcards(MailpileVCard(VCardLine('FN:Dude'),
+...                              VCardLine('EMAIL:d@evil.com')),
+...                MailpileVCard(VCardLine('FN:Guy')))
+
+VCards can be looked up directly by e-mail.
+>>> vcs.get_vcard('d@evil.com').fn
+u'Dude'
+>>> vcs.get_vcard('nosuch@email.address') is None
+True
+
+Or they can be found using searches...
+>>> vcs.find_vcards(['guy'])[0].fn
+u'Guy'
+
+Cards can be removed using del_vcards
+>>> vcs.del_vcards(vcs.get_vcard('d@evil.com'))
+>>> vcs.get_vcard('d@evil.com') is None
+True
+>>> vcs.del_vcards(*vcs.find_vcards(['guy']))
+>>> vcs.find_vcards(['guy'])
+[]
+",1201,1228,822,27
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardPluginClass,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardImporter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardExporter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vcard.py,VCardContextProvider,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\vfs.py,FilePath,"
+Wrapper for file-names, to manage the insanity of paths being binary
+data that people insist on treating as strings. This is also where we
+add and remove the /PREFIX$ stuff from paths.
+
+The Mailpile VFS knows to use the raw_fp attribute instead of the
+unicode() or str() representation, those methods expose data which
+is suitable for writing to a config file or JSON stream.
+",45,52,375,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\vfs.py,MailpileVfsBase,"
+Base class for VFS Handler objects.
+",129,130,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\vfs.py,MailpileVFS,"
+This is a router object that implements the VFS interface but,
+delegating calls to individual implementations.
+",235,237,110,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\vfs.py,MailpileVfsLocal,"
+Local filesystem VFS handler; pipes through to built-in Python API.
+
+FIXME: Our VFS uses Unix separators for everything, which implies that
+       all the functions below need path mapping wrappers for other
+       operating systems (Windows, in particular).
+",280,285,258,5
+C:\Users\vaano\python_projects\Mailpile\mailpile\vfs.py,MailpileVfsRoot,"
+This VFS implements a fancy root listing, including things like:
+
+   - Discovery of Thunderbird, Mail.app and Unix mail spools
+   - Listing configured sources
+   - Shortcut to the user's Home$
+   - Shortcuts to any root level registered VFSes
+",305,311,242,6
+C:\Users\vaano\python_projects\Mailpile\mailpile\workers.py,Cron,"
+An instance of this class represents a cron-like worker thread
+that manages and executes tasks in regular intervals
+",17,19,115,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\workers.py,Worker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\workers.py,ImportantWorker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\workers.py,DumbWorker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\__init__.py,Mailpile,"
+This object provides a simple Python API to Mailpile.
+",10,11,53,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,ConfigValueError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,InvalidKeyError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,CommentedEscapedConfigParser,"
+This is a ConfigParser that allows embedded comments and safely escapes
+and encodes/decodes values that include funky characters.
+
+>>> cfg = u'[config/sys: Stuff]\ndebug = True ; Ignored comment'
+>>> cecp = CommentedEscapedConfigParser()
+>>> cecp.readfp(io.BytesIO(cfg.encode('utf-8')))
+>>> cecp.get('config/sys: Stuff', 'debug') == 'True'
+True
+
+>>> cecp.items('config/sys: Stuff')
+[(u'debug', u'True')]
+",78,89,403,11
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,ConfigList,"
+A sanity-checking, self-documenting list of program settings.
+
+Instances of this class are usually contained within a ConfigDict.
+
+>>> lst = ConfigList(_rules={'_any': ['We only like ints', int, 0]})
+>>> lst.append('1')
+'0'
+>>> lst.extend([2, '3'])
+>>> lst
+[1, 2, 3]
+
+>>> lst += ['1', '2']
+>>> lst
+[1, 2, 3, 1, 2]
+
+>>> lst.extend(range(0, 100))
+>>> lst['c'] == lst[int('c', 36)]
+True
+",504,522,383,18
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,ConfigDict,"
+A sanity-checking, self-documenting dictionary of program settings.
+
+The object must be initialized with a dictionary which describes in
+a structured way what variables exist, what their legal values are,
+and what their defaults are and what they are for.
+
+Each variable definition expects three values:
+   1. A human readable description of what the variable is
+   2. A data type / sanity check
+   3. A default value
+
+If the sanity check is itself a dictionary of rules, values are expected
+to be dictionaries or lists of items that match the rules defined. This
+should be used with an empty list or dictionary as a default value.
+
+Configuration data can be nested by including a dictionary of further
+rules in place of the default value.
+
+If the default value is an empty list, it is assumed to be a list of
+values of the type specified.
+
+Examples:
+
+>>> pot = ConfigDict(_rules={'potatoes': ['How many potatoes?', 'int', 0],
+...                          'carrots': ['How many carrots?', int, 99],
+...                          'liquids': ['Fluids we like', False, {
+...                                         'water': ['Liters', int, 0],
+...                                         'vodka': ['Liters', int, 12]
+...                                      }],
+...                          'tags': ['Tags', {'c': ['C', int, 0],
+...                                            'x': ['X', str, '']}, []],
+...                          'colors': ['Colors', ('red', 'blue'), []]})
+>>> sorted(pot.keys()), sorted(pot.values())
+(['colors', 'liquids', 'tags'], [[], [], {}])
+
+>>> pot['potatoes'] = pot['liquids']['vodka'] = ""123""
+>>> pot['potatoes']
+123
+>>> pot['liquids']['vodka']
+123
+>>> pot['carrots']
+99
+
+>>> pot.walk('liquids.vodka')
+123
+>>> pot.walk('liquids/vodka', parent=True)
+({...}, 'vodka')
+
+>>> pot['colors'].append('red')
+'0'
+>>> pot['colors'].extend(['blue', 'red', 'red'])
+>>> pot['colors']
+['red', 'blue', 'red', 'red']
+
+>>> pot['tags'].append({'c': '123', 'x': 'woots'})
+'0'
+>>> pot['tags'][0]['c']
+123
+>>> pot['tags'].append({'z': 'invalid'})
+Traceback (most recent call last):
+    ...
+ValueError: Invalid value for config/tags/1: ...
+
+>>> pot['evil'] = 123
+Traceback (most recent call last):
+    ...
+InvalidKeyError: Invalid key for config: evil
+>>> pot['liquids']['evil'] = 123
+Traceback (most recent call last):
+    ...
+InvalidKeyError: Invalid key for config/liquids: evil
+>>> pot['potatoes'] = ""moo""
+Traceback (most recent call last):
+    ...
+ValueError: Invalid value for config/potatoes: moo
+>>> pot['colors'].append('green')
+Traceback (most recent call last):
+    ...
+ConfigValueError: Invalid value for config/colors/4: green
+
+>>> pot.rules['potatoes']
+['How many potatoes?', <type 'int'>, 0]
+
+>>> isinstance(pot['liquids'], ConfigDict)
+True
+",600,685,2757,85
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,PathDict,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,_ConfigRule,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,Checker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\base.py,_RuledContainer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\manager.py,ConfigManager,"
+This class manages the live global mailpile configuration. This includes
+the settings themselves, as well as global objects like the index and
+references to any background worker threads.
+",64,67,187,3
+C:\Users\vaano\python_projects\Mailpile\mailpile\config\validators.py,IgnoreValue,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\autocrypt.py,AutocryptRecommendation,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGEventUpdater,"
+Parse the GPG response into something useful for the Event Log.
+",60,61,63,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGResultParser,"
+Parse the GPG response into EncryptionInfo and SignatureInfo.
+",108,109,61,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGRecordParser,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,StreamReader,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,StreamWriter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPG,"
+Wrap GnuPG and make all functionality feel Pythonic.
+",503,504,52,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,OpenPGPMimeSigningWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,OpenPGPMimeEncryptingWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,OpenPGPMimeSignEncryptWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGExpectScript,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGBaseKeyGenerator,"
+This is a background thread which generates a new PGP key.
+",1747,1748,58,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPG14KeyGenerator,"
+This is the GnuPG 1.4x specific PGP key generation script.
+",1791,1792,58,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPG21RSAKeyGenerator,"
+This is the GnuPG 2.1.x specific RSA PGP key generation script.
+",1816,1817,63,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPG21Curve25519KeyGenerator,"
+This is the GnuPG 2.1.x specific ECC PGP key generation script.
+",1846,1847,63,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\gpgi.py,GnuPGDummyKeyGenerator,"
+A dummy key generator class, for incompatible versions of GnuPG.
+",1866,1867,64,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\keyinfo.py,ustr,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\keyinfo.py,RestrictedDict,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\keyinfo.py,KeyUID,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\keyinfo.py,KeyInfo,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\keyinfo.py,MailpileKeyInfo,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\mime.py,EncryptionFailureError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\mime.py,SignatureFailureError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\mime.py,MimeWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\mime.py,MimeSigningWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\mime.py,MimeEncryptingWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,_SimpleList,"
+Some syntactic sugar for listalikes
+",129,130,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedRecordStore,"
+This is an on-disk AES encrypted record storage. Data is written
+out base64 encoded, with 64 characters per line + CRLF, as that is
+likely to make it in and out of IMAP servers or other mail stores
+unchanged, while giving us a round multiple of what both AES and
+Base64 can handle without padding.
+",154,159,297,5
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedBlobStore,"
+This is an on-disk variable-sized, sharded AES encrypted blob
+storage. It augments EncryptedRecordStore by placing bounds on
+how large each encrypted file will become and allows data blobs
+of arbitrary size by bumping ""large"" records to a secondary (or
+tertiary, ...) store.
+",376,381,274,5
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedUnicodeStore,"
+An EncryptedBlobStore that only works with unicode data.
+",469,470,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedDict,"
+This is a variable-sized, sharded AES encrypted dict. It uses
+EncryptedRecordStore for hashing and EncryptedBlobStore for values
+that do not fit alongside the keys. At the moment, data can be
+overwritten, but not deleted.
+
+TODO:
+    - Grow the dict by adding keysets
+    - Migrating ""exciting"" keys to the primary keyset
+",480,488,320,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedUnicodeDict,"
+EncryptedDict which only deals in unicode values.
+",757,758,49,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\records.py,EncryptedIntDict,"
+EncryptedDict which only deals in signed 64-bit int values.
+This also adds a working keys() function.
+",770,772,101,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\state.py,KeyLookupError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\state.py,CryptoInfo,"
+Base class for crypto-info classes
+",25,26,34,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\state.py,EncryptionInfo,"
+Contains information about the encryption status of a MIME part
+",121,122,63,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\state.py,SignatureInfo,"
+Contains information about the signature status of a MIME part
+",130,131,62,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,IOFilter,"
+This class will wrap a filehandle and spawn a background thread to
+filter either the input or output.
+",95,97,101,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,ReadLineIOFilter,"
+This is a line-based IOFilter, which can stop when it sees a
+particular marker to hand off processing to others.
+",217,219,112,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,IOCoprocess,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,OutputCoprocess,"
+This class will stream data to an external coprocess.
+",314,315,53,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,InputCoprocess,"
+This class will stream data from an external coprocess.
+",333,334,55,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,ChecksummingStreamer,"
+This checksums and streams data to a named temporary file on disk, which
+can then be read back or linked to a final location.
+",359,361,125,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,EncryptingDelimitedStreamer,"
+This class creates a coprocess for encrypting data. The data will
+be streamed to a named temporary file on disk, which can then be
+read back or linked to a final location.
+",505,508,171,3
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,EncryptingUndelimitedStreamer,"
+This class creates a coprocess for encrypting data. The data will
+be streamed to a named temporary file on disk, which can then be
+read back or linked to a final location.
+",664,667,171,3
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,DecryptingStreamer,"
+This class creates a coprocess for decrypting data.
+",687,688,51,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\streamer.py,PartialDecryptingStreamer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\crypto\tor.py,Tor,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\index\base.py,BaseIndex,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\index\mailboxes.py,MailboxIndex,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\index\msginfo.py,MessageInfoConstants,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\index\search.py,SearchResultSet,"
+Search results!
+",9,10,15,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\index\search.py,CachedSearchResultSet,"
+Cached search result.
+",38,39,21,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\gmvault.py,MailpileMailbox,"
+A Gmvault class that supports pickling and a few mailpile specifics.
+",13,14,68,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\macmail.py,_MacMaildirPartialFile,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\macmail.py,MacMaildirMessage,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\macmail.py,MacMaildir,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\macmail.py,MailpileMailbox,"
+A Mac Mail.app maildir class that supports pickling etc.
+",147,148,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\maildir.py,MailpileMailbox,"
+A Maildir class that supports pickling and a few mailpile specifics.
+",12,13,68,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\maildirwin.py,MailpileMailbox,"
+A Maildir class for Windows (using ! instead of : in filenames)
+",9,10,63,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\mbox.py,MboxIndex,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\mbox.py,MailpileMailbox,"
+A mbox class that supports pickling and a few mailpile specifics.
+",22,23,65,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,wrappable_POP3_SSL,"
+Override the default poplib.POP3_SSL init to use socket.create_connection
+",22,23,73,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,UnsupportedProtocolError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,POP3Mailbox,"
+Basic implementation of POP3 Mailbox.
+",45,46,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,MailpileMailbox,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,_MockPOP3,"
+Base mock that pretends to be a poplib POP3 connection.
+
+>>> pm = POP3Mailbox('localhost', user='bad', conn_cls=_MockPOP3)
+Traceback (most recent call last):
+   ...
+AccessError
+
+>>> pm = POP3Mailbox('localhost', user='a', password='b',
+...                  conn_cls=_MockPOP3)
+>>> pm.stat()
+(2, 123456)
+
+>>> pm.iterkeys()
+['evil', 'good']
+
+>>> 'evil' in pm, 'bogon' in pm
+(True, False)
+
+>>> [msg['subject'] for msg in pm]
+['Msg 1', 'Msg 2']
+
+>>> pm.get_msg_size('evil'), pm.get_msg_size('good')
+(47, 51)
+
+>>> pm.get_bytes('evil')
+'From: test@mailpile.is\nSubject: Msg 1\n\nOh, hi!\n'
+
+>>> pm.get_bytes('evil', 5)
+'From:'
+
+>>> pm['invalid-key']
+Traceback (most recent call last):
+   ...
+KeyError: ...
+",281,315,699,34
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\pop3.py,_MockPOP3_Without_UIDL,"
+Mock that lacks the UIDL command.
+
+>>> pm = POP3Mailbox('localhost', user='a', password='b',
+...                  conn_cls=_MockPOP3_Without_UIDL)
+>>> pm.iterkeys()
+Traceback (most recent call last):
+   ...
+UnsupportedProtocolError
+",369,377,231,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\wervd.py,MailpileMailbox,"
+A Maildir class that supports pickling and a few mailpile specifics.
+",16,17,68,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\__init__.py,NoSuchMailboxError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailboxes\__init__.py,UnorderedPicklableMailbox,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\addresses.py,AddressHeaderParser,"
+This is a class which tries very hard to interpret the From:, To:
+and Cc: lines found in real-world e-mail and make sense of them.
+
+The general strategy of this parser is to:
+   1. parse header data into tokens
+   2. group tokens together into address + name constructs.
+
+And optionaly,
+   3. normalize each group to a standard format
+
+In practice, we do this in multiple passes: first a strict pass where
+we try to parse things semi-sensibly, followed by fuzzier heuristics.
+
+Ideally, if folks format things correctly we should parse correctly.
+But if that fails, there are are other passes where we try to cope
+with various types of weirdness we've seen in the wild. The wild can
+be pretty wild.
+
+This parser is NOT (yet) fully RFC2822 compliant - in particular it
+will get confused by nested comments (see FIXME in tests below).
+
+The normalization will take pains to ensure that < and , are never
+present inside a name/comment (even if legal), to make life easier
+for lame parsers down the line.
+
+Examples:
+
+>>> ahp = AddressHeaderParser(AddressHeaderParser.TEST_HEADER_DATA)
+>>> ai = ahp[1]
+>>> ai.fn
+u'Bjarni'
+>>> ai.address
+u'bre@klaki.net'
+>>> ahpn = ahp.normalized_addresses()
+>>> (ahpn == ahp.TEST_EXPECT_NORMALIZED_ADDRESSES) or ahpn
+True
+
+>>> AddressHeaderParser('Weird email@somewhere.com Header').normalized()
+u'""Weird Header"" <email@somewhere.com>'
+
+>>> ai = AddressHeaderParser(unicode_data=ahp.TEST_UNICODE_DATA)
+>>> ai[0].fn
+u'Bjarni R\xfanar'
+>>> ai[0].fn == ahp.TEST_UNICODE_NAME
+True
+>>> ai[0].address
+u'b@c.x'
+",17,64,1530,47
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\emails.py,Email,"
+This is a lazy-loading object representing a single email.
+",337,338,58,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\generator.py,Generator,"
+Generates output from a Message object tree.
+
+This basic generator writes the message to the given file object as plain
+text.
+Public interface",91,95,125,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\generator.py,DecodedGenerator,"
+Generates a text representation of a message.
+
+Like the Generator base class, except that non-text parts are substituted
+with a format string representing the part.
+",369,373,164,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VObject,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VTimeZone,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VTZStandard,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VTZDaylight,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VAlarm,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VEvent,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\vcal.py,VCalendar,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\__init__.py,NotEditableError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\__init__.py,NoFromAddressError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\__init__.py,NoRecipientError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\__init__.py,InsecureSmtpError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mailutils\__init__.py,NoSuchMailboxError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,IMAP_IOError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,WithaBool,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,ImapMailboxIndex,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,SharedImapConn,"
+This is a wrapper around an imaplib.IMAP4 connection which facilitates
+sharing of the same conn between different parts of the app.
+
+If nobody is using the connection and an IDLE callback is specified,
+it will switch to IMAP IDLE mode when not otherwise in use.
+
+Callers are expected to use the ""with sharedconn as conn: ..."" syntax.
+",153,160,333,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,SharedImapMailbox,"
+This implements a Mailbox view of an IMAP folder. The IMAP connection
+itself is obtained as a SharedImapConn from a particular mail source.
+
+>>> imap = ImapMailSource(session, imap_config)
+>>> mailbox = SharedImapMailbox(session, imap, conn_cls=_MockImap)
+>>> #mailbox.add('From: Bjarni\r\nBarely a message')
+",378,384,308,6
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,ImapMailSource,"
+This is a mail source that connects to an IMAP server.
+
+A single connection is made to the IMAP server, which is then shared
+between the ImapMailSource job and individual mailbox instances.
+",762,766,189,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,_MockImap,"
+Base mock that pretends to be an imaplib IMAP connection.
+
+>>> imap = ImapMailSource(session, imap_config)
+>>> imap.open(conn_cls=_MockImap)
+<SharedImapConn(mock, started ...)>
+
+>>> sorted(imap.capabilities)
+['IMAP4REV1', 'X-MAGIC-BEANS']
+",1154,1162,238,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,_Mocks,"
+A bunch of IMAP test classes for testing various configurations.
+
+>>> ImapMailSource.Tester(_Mocks.NoDns, session, imap_config)
+False
+
+>>> ImapMailSource.Tester(_Mocks.BadLogin, session, imap_config)
+False
+",1189,1196,205,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,MailSourceVfs,"
+Expose the IMAP tree to the VFS layer.
+",777,778,38,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,NoDns,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap.py,BadLogin,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap_starttls.py,IMAP4,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap_utf7.py,StreamReader,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\imap_utf7.py,StreamWriter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\local.py,LocalMailSource,"
+This is a mail source that watches over one or more local mailboxes.
+",11,12,68,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\pop3.py,POP3_IOError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\pop3.py,Pop3MailSource,"
+This is a mail source that watches over one or more POP3 mailboxes.
+",69,70,67,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\__init__.py,BaseMailSource,"
+MailSources take care of managing a group of mailboxes, synchronizing
+the source with Mailpile's local metadata and/or caches.
+",25,27,126,2
+C:\Users\vaano\python_projects\Mailpile\mailpile\mail_source\__init__.py,MailSourceVfs,"
+Generic VFS layer for this mail source.
+",40,41,39,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,AutoTagger,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,AutoTagCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,Tagger,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,Trainer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,AutoTagCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,Retrain,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,Classify,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag.py,AutoTag,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag_sb.py,SpamBayesTagger,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\autotag_sb.py,SpamBayesTrainer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\backups.py,MakeBackup,"
+Generate an encrypted backup of Stuff
+",53,54,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\backups.py,RestoreBackup,"
+Bootstraup setup from a backup archive
+",216,217,38,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,EditableSearchResults,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,CompositionCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Draft,"
+Edit an existing draft
+",293,294,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Compose,"
+Create a new blank e-mail for editing
+",317,318,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,RelativeCompose,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Reply,"
+Create reply(-all) drafts to one or more messages
+",400,401,49,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Forward,"
+Create forwarding drafts of one or more messages
+",598,599,48,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Attach,"
+Attach a file to a message
+",704,705,26,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,UnAttach,"
+Remove an attachment from a message
+",784,785,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Sendit,"
+Mail/bounce a message (to someone)
+",850,851,34,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,Update,"
+Update message from a file or HTTP upload.
+",991,992,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,UpdateAndSendit,"
+Update message from an HTTP upload and move to outbox.
+",1048,1049,54,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,UnThread,"
+Remove a message from a thread.
+",1056,1057,31,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,EmptyOutbox,"
+Try to empty the outbox.
+",1096,1097,24,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\compose.py,newcls,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,VCardCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,VCard,"
+Display a single vcard
+",140,141,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,AddVCard,"
+Add one or more vcards
+",160,161,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,RemoveVCard,"
+Delete vcards
+",286,287,13,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,VCardAddLines,"
+Add a lines to a VCard
+",319,320,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,VCardSet,"
+Add a lines to a VCard, ensuring VCard exists
+",406,407,45,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,VCardRemoveLines,"
+Remove lines from a VCard
+",425,426,25,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ListVCards,"
+Find vcards
+",483,484,11,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,Contact,"
+View contacts
+",565,566,13,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,AddContact,"
+Add contacts
+",608,609,12,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,RemoveContact,"
+Remove a contact
+",612,613,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ListContacts,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ContactSet,"
+Set contact lines, ensuring contact exists
+",621,622,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ContactImport,"
+Import contacts
+",625,626,15,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ContactImporters,"
+Return a list of contact importers
+",668,669,34,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,AddressSearch,"
+Find addresses (in contacts or mail index)
+",688,689,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,Profile,"
+View profile
+",1150,1151,12,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,AddProfile,"
+Add profiles (Accounts)
+",1154,1155,23,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,EditProfile,"
+Edit a profile
+",1244,1245,14,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,RemoveProfile,"
+Remove a profile
+",1338,1339,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ListProfiles,"
+Find profiles
+",1489,1490,13,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ProfileSet,"
+Set contact lines, ensuring contact exists
+",1494,1495,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ChooseFromAddress,"
+Display a single vcard
+",1498,1499,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ContentTxf,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ContactVCardCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\contacts.py,ProfileVCardCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Load,"
+Load or reload the metadata index
+",44,45,33,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Rescan,"
+Add new messages to index
+",65,66,25,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Optimize,"
+Optimize the keyword search index
+",354,355,33,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,DeleteMessages,"
+Delete one or more messages.
+",371,372,28,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,BrowseOrLaunch,"
+Launch browser and exit, if already running
+",442,443,43,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,RunWWW,"
+Just run the web server
+",482,483,23,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Cleanup,"
+Perform cleanup actions (runs before shutdown)
+",524,525,46,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,WritePID,"
+Write the PID to a file
+",554,555,23,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,RenderPage,"
+Does nothing, for use by semi-static jinja2 pages
+",569,570,49,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ProgramStatus,"
+Display list of running threads, locks and outstanding events.
+",592,593,62,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CronStatus,"
+Manually edit or display the background job schedule
+",738,739,52,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,HealthCheck,"
+Check and report app health
+",798,799,27,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,GpgCommand,"
+Interact with GPG directly
+",891,892,26,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ListDir,"
+Display working directory listing
+",940,941,33,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ChangeDir,"
+Change working directory
+",1048,1049,24,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CatFile,"
+Dump the contents of a file, decrypting if necessary
+",1066,1067,52,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ListLanguages,"
+List available languages
+",1116,1117,24,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ConfigSet,"
+Change a setting
+",1131,1132,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ConfigAdd,"
+Add a new value to a list (or ordered dict) setting
+",1254,1255,51,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ConfigUnset,"
+Reset one or more settings to their defaults
+",1314,1315,44,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ConfigPrint,"
+Print one or more settings
+",1367,1368,26,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,ConfigureMailboxes,"
+Add one or more mailboxes.
+
+If not account is specified, the mailbox is only assigned an ID for use
+in the metadata index.
+
+If an account is specified, the mailbox will be assigned to that account
+and configured for automatic indexing.
+",1465,1472,235,7
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Output,"
+Choose format for command results.
+",1673,1674,34,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Pipe,"
+Pipe a command to a shell command, file or e-mail
+",1698,1699,49,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Quit,"
+Exit Mailpile, normal shutdown
+",1794,1795,30,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,IdleQuit,"
+Shut down Mailpile if it has been idle for a while
+",1824,1825,50,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,TrustingQQQ,"
+Allow anybody to quit the app
+",1845,1846,29,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Abort,"
+Force exit Mailpile (kills threads)
+",1859,1860,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,Help,"
+Print help on Mailpile or individual commands.
+",1881,1882,46,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,HelpVars,"
+Print help on Mailpile variables
+",2066,2067,32,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,HelpSplash,"
+Print Mailpile splash screen
+",2105,2106,28,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\core.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptRecord,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptSearch,"
+Search for the Autocrypt database.
+",346,347,34,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptForget,"
+Forget all Autocrypt state for a list of e-mail address.
+",381,382,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptParse,"
+Parse the Autocrypt header from a message (or messages).
+",407,408,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptPeers,"
+List known Autocrypt Peers and their state.
+",433,434,43,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptTxf,"
+This is an outgoing email content transform for adding autocrypt headers.
+
+Note: This transform relies on Memory Hole code elsewhere to correctly
+obscure Gossip headers. Plugin/hook priorities must be set accordingly.
+",498,502,217,4
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,AutocryptKeyLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_autocrypt.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,ContentTxf,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,CryptoTxf,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeySearch,"
+Search for a GPG Key.
+",202,203,21,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeyReceive,"
+Fetch a GPG Key.
+",224,225,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeyImport,"
+Import a GPG Key.
+",245,246,17,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeySign,"
+Sign a key.
+",289,290,11,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeyImportFromMail,"
+Import a GPG Key.
+",319,320,17,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeyList,"
+List GPG Keys.
+",369,370,14,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGKeyListSecret,"
+List secret GPG Keys, --usable omits disabled, revoked, expired.
+",391,392,64,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGUsageStatistics,"
+Get usage statistics from mail, given an address
+",410,411,48,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,GPGCheckKeys,"
+Sanity check your keys and profiles
+",465,466,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_gnupg.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_policy.py,CryptoPolicyBaseAction,"
+Base class for crypto policy commands 
+",35,36,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_policy.py,UpdateCryptoPolicyForUser,"
+Update crypto policy for a single user 
+",40,41,38,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\crypto_policy.py,CryptoPolicy,"
+Calculate the aggregate crypto policy for a set of users
+",81,82,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\eventlog.py,Events,"
+Display events from the event log
+",16,17,33,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\eventlog.py,Cancel,"
+Cancel events
+",132,133,13,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\eventlog.py,Undo,"
+Undo either the last action or one specified by Event ID
+",163,164,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\eventlog.py,Watch,"
+Watch the events fly by
+",195,196,23,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\exporters.py,ExportMail,"
+Export messages to an external mailbox
+",30,31,38,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,Group,"
+View groups
+",70,71,11,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,AddGroup,"
+Add groups
+",74,75,10,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,GroupAddLines,"
+Add lines to a group VCard
+",78,79,26,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,RemoveGroup,"
+Remove groups
+",82,83,13,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,ListGroups,"
+Find groups
+",86,87,11,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\groups.py,GroupVCardCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\gui.py,GuiOMaticConnection,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\gui.py,ConnectToGuiOMatic,"
+Connect to a waiting gui-o-matic GUI
+",267,268,36,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\html_magic.py,JsApi,"
+Output API bindings, plugin code and CSS as CSS or Javascript
+",27,28,61,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\html_magic.py,ProgressiveWebApp,"
+Output PWA Manifest
+",116,117,19,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\html_magic.py,HttpProxyGetRequest,"
+HTTP GET content from the public web
+",128,129,36,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\migrate.py,Migrate,"
+Perform any needed migrations
+",202,203,29,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\motd.py,MessageOfTheDay,"
+Download and/or display the Message Of The Day
+",49,50,46,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\motd.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\oauth.py,OAuth2,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\plugins.py,Plugins,"
+List the currently available plugins.
+",14,15,37,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\plugins.py,LoadPlugin,"
+Load and enable a given plugin.
+",37,38,31,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\plugins.py,DisablePlugin,"
+Disable a plugin.
+",79,80,17,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,SearchResults,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,Search,"
+Search your mail!
+",687,688,17,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,Next,"
+Display next page of results
+",1030,1031,28,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,Previous,"
+Display previous page of results
+",1049,1050,32,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,Order,"
+Sort by: date, from, subject, random or index
+",1068,1069,45,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,View,"
+View one or more messages
+",1084,1085,25,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,Extract,"
+Extract attachment(s) to file(s)
+",1173,1174,32,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,RawResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\search.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupMagic,"
+Perform initial setup
+",45,46,21,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,TestableWebbable,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupGetEmailSettings,"
+Lookup, guess, test server details for an e-mail address
+",444,445,56,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupWelcome,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,CreatePassword,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupPassword,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupTestRoute,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,SetupTor,"
+Check for Tor and auto-configure if possible.
+",1217,1218,45,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\setup_magic.py,Setup,"
+Enter setup flow
+",1303,1304,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\smtp_server.py,SMTPChannel,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\smtp_server.py,SMTPServer,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\smtp_server.py,SMTPWorker,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\smtp_server.py,HashCash,"
+Try to collide a hash using the SMTorP algorithm
+",200,201,48,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,TagCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,Tag,"
+Add or remove tags on a set of messages
+",285,286,39,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,TagLater,"
+Schedule a tag operation to happen later.
+",481,482,41,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,TagTemporarily,"
+Temporarily add or remove tags.
+",498,499,31,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,AddTag,"
+Create a new tag
+",510,511,16,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,ListTags,"
+List tags
+",604,605,9,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,DeleteTag,"
+Delete a tag
+",726,727,12,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,TagAutomation,"
+Perform automatically scheduled tasks for one or more tags
+",784,785,58,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,FilterCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,Filter,"
+Add auto-tag rule for current search or terms
+",875,876,45,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,DeleteFilter,"
+Delete an auto-tagging rule
+",1017,1018,27,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,ListFilters,"
+List (all) auto-tagging rules
+",1046,1047,29,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,MoveFilter,"
+Move an auto-tagging rule
+",1112,1113,25,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\tags.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_carddav.py,DAVClient,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_carddav.py,CardDAV,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_carddav.py,CardDAVImporter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_gnupg.py,GnuPGImporter,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_gnupg.py,PGPKeysAsVCards,"
+PGP keys as VCards (keychain import logic)
+",218,219,42,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_gnupg.py,PGPKeysImportAsVCards,"
+Import PGP keys as VCards
+",256,257,25,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_gnupg.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_gravatar.py,GravatarImporter,"
+This importer will pull contact details down from a central server,
+using the Gravatar JSON API and caching thumbnail data locally.
+
+For details, see https://secure.gravatar.com/site/implement/
+
+The importer will only pull down a few contacts at a time, to limit
+the impact on Gravatar's servers and prevent network traffic from
+stalling the rescan process too much.
+",19,27,366,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_libravatar.py,LibravatarImporter,"
+This importer will pull contact details down from a central server,
+using the Libravatar JSON API and caching thumbnail data locally.
+
+For details, see https://wiki.libravatar.org/api/
+
+The importer will only pull down a few contacts at a time, to limit
+the impact on Libravatar's servers and prevent network traffic from
+stalling the rescan process too much.
+",16,24,359,8
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_mork.py,MorkImporter,"Based on Demork by Mike Hoye <mhoye@off.net>
+    Which is based on Mindy by Kumaran Santhanam <kumaran@alumni.stanford.org>
+    
+    To understand the insanity that is Mork, read these:
+     http://www-archive.mozilla.org/mailnews/arch/mork/primer.txt
+     http://www.jwz.org/blog/2004/03/when-the-database-worms-eat-into-your-brain/
+",33,39,29,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_mork.py,Database,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_mork.py,Table,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_mork.py,Row,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\vcard_mork.py,Cell,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\webterminal.py,TerminalSessionNew,"
+Create a terminal session.
+",18,19,26,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\webterminal.py,TerminalSessionEnd,"
+End a terminal session.
+",40,41,23,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\webterminal.py,TerminalCommand,"
+Execute a terminal command.
+",65,66,27,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\__init__.py,EmailTransform,"
+Base class for e-mail transforms
+",37,38,32,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\__init__.py,PluginError,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\__init__.py,PluginManager,"
+Manage importing and loading of plugins. Note that this class is
+effectively a singleton, as it works entirely with globals within
+the mailpile.plugins module.
+",67,70,159,3
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\email_keylookup.py,EmailKeyLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\wkd.py,WKDLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\wkd.py,GetWebKeyDirectoryURLs,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,KeyLookup,"
+Perform a key lookup
+",290,291,20,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,KeyImport,"
+Import keys
+",337,338,11,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,KeyTofu,"
+Import or refresh keys
+",403,404,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,LookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,KeychainLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,KeyserverLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\plugins\keylookup\__init__.py,VerifyingKeyserverLookupHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\chi2.py,WrappedRandom,"There's no way W-H is equidistributed in 50 dimensions, so use
+        Marsaglia-wrapping to shuffle it more.
+",98,99,1,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\classifier.py,WordInfo,"A WordInfo is created for each distinct word.  spamcount is the
+    number of trained spam msgs in which the word appears, and hamcount
+    the number of trained ham msgs.
+    
+    Invariant:  For use in a classifier database, at least one of
+    spamcount and hamcount must be non-zero.
+    
+    Important:  This is a tiny object.  Use of __slots__ is essential
+    to conserve memory.
+",52,60,35,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\classifier.py,Classifier,"Defining __slots__ here made Jeremy's life needlessly difficult when
+    trying to hook this all up to ZODB as a persistent object.  There's
+    no space benefit worth getting from slots in this class; slots were
+    used solely to help catch errors earlier, when this code was changing
+    rapidly.
+",77,81,1,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\OptionsClass.py,Option,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\OptionsClass.py,OptionsClass,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\OptionsClass.py,TypesWrapper,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\Tester.py,Test,"Pass a classifier instance (an instance of Bayes).
+    Loop:
+        Train the classifer with new ham and spam.
+        train(ham, spam) this implies reset_test_results
+        Loop:
+            Optional:
+                Possibly fiddle the classifier.
+                set_classifier()
+                Forget smessages the classifier was trained on.
+                untrain(ham, spam) this implies reset_test_results
+            Optional:
+                reset_test_results()
+            Predict against (presumably new) examples.
+            predict(ham, spam)
+            Optional:
+                suck out the results, via instance vrbls and
+                false_negative_rate(), false_positive_rate(),
+                false_negatives(), and false_positives()
+",4,21,1,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\spambayes\Tester.py,_Example,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_command.py,TestCommands,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_command.py,TestCommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_command.py,TestTagging,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_command.py,TestGPG,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_config.py,TestConfig,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_crypto_policy.py,CryptoPolicyBaseTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_crypto_policy.py,UpdateCryptoPolicyForUserTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_crypto_policy.py,CryptoPolicyForUserTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_eventlog.py,TestEventlog,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_keylookup.py,KeylookupBaseTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_keylookup.py,KeylookupDNSPKILookup,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_keylookup.py,KeylookupPGPKeyserverLookup,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_keylookup.py,KeylookupEmailLookup,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_keylookup.py,KeylookupOverallTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_mailutils.py,TestCommands,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_mail_generator.py,TestMailGenerator,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_performance.py,TestSearch,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_plugin.py,PluginTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_search.py,TestSearch,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_ui.py,TestUI,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_vcard.py,TestVCard,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\test_vcard_mork.py,TestVCard,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\__init__.py,MailPileUnittest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\test_contacts.py,ContactsGuiTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\test_mail.py,MailGuiTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\test_tags.py,TagGuiTest,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\__init__.py,ElementHasClass,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\__init__.py,ElementHasNotClass,,,,,
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\__init__.py,SeleniumScreenshotOnExceptionAspecter,"
+Wraps all methods starting with *test* with a screenshot aspect.
+
+The screenshot file is named *methodname*_screenshot.png.
+
+Notes:
+  This class defines a type that has to be used as a metaclass:
+
+   >>> class Foobar()
+   ...    __metaclass__ = SeleniumScreenshotOnExceptionAspecter
+   ...
+   ...    def take_screenshot(self, filename):
+   ...        # take screenshot
+   ...        pass
+
+   The class has to provide a take_screenshot(filename) method
+
+Attributes:
+  none
+",46,64,471,18
+C:\Users\vaano\python_projects\Mailpile\mailpile\tests\gui\__init__.py,MailpileSeleniumTest,"
+Base class for all selenium GUI tests
+
+
+Attributes:
+    DRIVER (WebDriver): The webdriver instance
+
+Examples:
+
+>>> class Sometest(MailpileSeleniumTest):
+...
+...     def test_something(self):
+...         self.go_to_mailpile_home()
+...         self.take_screenshot('screen.png')
+...         self.dump_source_to('source.html')
+...
+...         self.navigate_to('Contacts')
+...
+...         self.driver.save_screenshot('screen2.png')
+...         self.assertIn('Contacts', self.driver.title)
+",109,128,484,19
+C:\Users\vaano\python_projects\Mailpile\mailpile\www\jinjaextensions.py,MailpileCommand,"
+Run Mailpile Commands, 
+",45,46,22,1
+C:\Users\vaano\python_projects\Mailpile\mailpile\www\jinjaloader.py,MailpileJinjaLoader,"
+A Jinja2 template loader which uses the Mailpile configuration
+and plugin system to find template files.
+",7,9,104,2
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\build-controller.py,ArgumentError,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\build-controller.py,BuildbotController,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\build-desktop.py,Sub,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,ArgumentError,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,Killed,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,OutputEater,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,PagekiteThread,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,BuildbotXMLRPCServer,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,BuildbotRequestHandler,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,BuildbotAPI,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\scripts\kite-runner.py,BuildbotServer,,,,,
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\package.py,WixConfig,"
+A mailpile-specific wix file generator.
+
+Takes config that one might expect to modify centrally or express as
+arguments to the packaging process, and uses them to expand a template
+structure.
+
+Note: UUIDs ***MUST*** remain consistent across versions. While rarely they
+might change, assume anywhere a UUID is required, it must be archived.
+",59,67,339,8
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\build.py,Build,"
+Construct a build environment where providers can be invoked to
+compose build artifacts.
+",14,16,88,2
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\build.py,Invoker,"
+Utility class for invoking external binaries. Captures stderr on error,
+otherwise returns stdout. The intention is for the invocation to be
+mostly a pythonic function call.
+",20,23,172,3
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\build.py,Context,"
+Build context that's disposed of after a build
+",59,60,46,1
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\cache.py,Cache,"
+Cache for various file access methods. Only use default python packages to
+allow bootstrapping.
+",18,20,95,2
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\cache.py,SemanticCache,"
+Operates at a resource-level of abstraction on top of a regular cache
+",159,160,69,1
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\scripts\extract_msi.py,LessMSI,"
+Use lessmsi to extract the msi. TODO: handle features
+",22,23,53,1
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\scripts\util.py,TemporaryScope,"
+Context for tracking multiple temporary files.
+
+Principly combats nested contexts:
+
+    with tempfile() as x:
+        with tempfile() as y:
+            with tempdir() as z:
+                with tempsomething as q:
+                    ...
+translates to:
+
+    with TemporaryScope() as context:
+
+        with context.named_file(...) as x:
+            ...
+
+        with context.named_file(...) as Y:
+            ...
+
+        z = context.named_dir(...):
+            ...
+
+so that named resouces may be sequentially constructed and automatically
+cleaned up.
+",13,37,550,24
+C:\Users\vaano\python_projects\Mailpile\packages\windows-wix\provide\scripts\util.py,Util,"
+Utility functions for builds
+",66,67,28,1
+C:\Users\vaano\python_projects\Mailpile\scripts\mailpile-pyside.py,Window,,,,,
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\datadig\datadig.py,dataDigCommand,"
+Extract tables of structured data from e-mail content
+",18,19,53,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\datadig\datadig.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\demos\demos.py,DemoVCardImporter,"
+This VCard importer simply generates VCards based on data in the
+configuration. This is not particularly useful, but it demonstrates
+how each importer can define (and use) its own settings.
+",40,43,189,3
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\demos\demos.py,md5sumCommand,"
+This command calculates MD5 sums
+",96,97,32,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\demos\demos.py,md5sumWordyView,"
+Represent MD5 sums in a more wordy way.
+",121,122,39,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\demos\demos.py,DemoMailbox,"
+A dysfunctional demo mailbox. See mailpile.mailboxes.* for proper mailbox examples
+",158,159,82,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\forcegrapher\forcegrapher.py,Graph,"
+Get a graph of the network in the current search results.
+",16,17,57,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,Hacks,"
+Various hacks ...
+",21,22,17,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,FixIndex,"
+Do various things to try and fix broken indexes
+",31,32,47,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,PyCLI,"
+Launch a Python REPL
+",68,69,20,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,ViewMetadata,"
+Display the raw metadata for a message
+",106,107,38,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,EditMetadata,"
+Edit the raw metadata for a message (DANGEROUS!)
+",161,162,48,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,ViewKeywords,"
+Display the keywords for a message
+",205,206,34,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,ViewHeaderPrint,"
+Display the HeaderPrint for a message
+",224,225,37,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,Http,"
+Send HTTP requests to the web server
+",248,249,36,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,CheckMailbox,"
+Sanity-check and optionally fix a mailbox
+",320,321,41,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hacks\hacks.py,FakeSendingDates,"
+Fake the dates of outgoing messages
+",531,532,35,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\hints\hints.py,hintsCommand,"
+Provide periodic hints to the user
+",23,24,34,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\i18nhelper\i18nhelper.py,I18NRecent,"
+Show recently translated string in context
+",8,9,42,1
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\i18nhelper\i18nhelper.py,CommandResult,,,,,
+C:\Users\vaano\python_projects\Mailpile\shared-data\contrib\maildeck\maildeck.py,maildeckCommand,,,,,
+C:\Users\vaano\python_projects\Mailpile\shared-data\mailpile-gui\mailpile-gui.py,MailpileState,,,,,

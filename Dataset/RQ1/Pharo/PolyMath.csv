@@ -1,0 +1,301 @@
+"class","comment"
+"PMAccuracy","Accuracy is a framework for testing the numerical accuracy of the results of methods."
+"PMODEAccuracy",""
+"PMArbitraryPrecisionFloat","I store floating point numbers in base 2 with some arbitrary precision (arbitrary number of bits).I do inexact arithmetic like Float.But I am very slow due to emulated (Large) Integer arithmetic... (compared to IEEE 754 hardwired)Unlike Float, mantissa is not normalized under the form 1.mmmmmmIt is just stored as an integer.The sign is stored in the mantissa.biasedExponent is the power of two that multiply the mantissa to form the number. there is no limitation of exponent (overflow or underflow), unless you succeed in exhausting the VM memory...Like Float, my arithmetic operations are inexact. They will round to nearest nBits ArbitraryPrecisionFloat.If two different precisions are used in arithmetic, the result is expressed in the higher precision.Default operating mode is rounding, but might be one of the other possibility (truncate floor ceiling).Instance Variables:	biasedExponent	<Integer>	the times two power to multiply the mantissa (floating binary scale)	mantissa	<Integer>	the bits of mantissa including sign	nBits	<Magnitude>	number of bits to be stored in mantissa when i am normalized"
+"PMArbitraryPrecisionFloatForTrigonometry","PMArbitraryPrecisionFloatForTrigonometry is a private helper class involved in trigonometry computations.Instance Variables	pi	<ArbitraryPrecisionFloat>	pi	- an approximation of number pi with doubled precision"
+"PMGradient","Computes the gradient of a function of a Collection of Numbers.Example: f(x,y)=x^2 * yg := PMGradient of:[:x|x first squared * x second].g value:#(3 2). ""-->#(12 9)"" g value:#(1 1). ""-->#(2 1)"" "
+"PMDualNumber","In linear algebra, dual numbers extend the real numbers by adjoining one new element ε with the property ε^2 = 0 (ε is nilpotent).See here: https://en.wikipedia.org/wiki/Dual_number^PMDualNumbers can be used to calculate the first derivative if one  creates them this way:	PMDualNumber value: aNumber eps:  derivativeOfaNumber (1 if the derivative with respect to aNumber is calculated, 0 otherwise)PMDualNumbers can be mixed with Numbers."
+"PMHessian","PMHessian calculates the hessian of a function of a SequentialCollection of Numbers as a PMSymmetricMatrix.  As a byproduct it also calculates the gradient.Example: f(x,y)=x^2 * y	h := PMHessian of:[:x|x first squared * x second].	h value:#(3 2). ""-->	a PMVector(4 6)	a PMVector(6 0) ""	h gradient ."" -->#(12 9)"""
+"PMHyperDualNumber","PMHyperDualNumbers can be used to additionally calculate second order derivatives.They can be mixed with Numbers, not with PMDualNumbers."
+"PMKDTreeBenchmark","you can set the sequenceableCollection class of the vectors. default is FloatArray ( eg when using run: ), which is the fastest for nnSearches (because of its use of primitives), although the building of the tree is slower than with other collection types. example:KDTreeBenchmark run:5 with: OrderedCollection . 	""Print it"""
+"PMImplicitBenchmark",""
+"PMODEBenchmark",""
+"PMExplicitMultiBenchmark",""
+"PMImplicitMultiBenchmark",""
+"PMExplicitBenchmark",""
+"PMChromosomeManager",""
+"PMVectorChromosomeManager",""
+"PMCluster",""
+"PMEuclideanCluster",""
+"PMClusterFinder",""
+"PMCovarianceCluster",""
+"PMMahalanobisCenter",""
+"PMComplex","I represent a complex number.real			--	real part of the complex numberimaginary	--	imaginary part of the complex numberComplex number constructors:	5 i	6 + 7 i.	5.6 - 8 i.	Complex real: 10 imaginary: 5.	Complex abs: 5 arg: (Float pi / 4)Arithmetic operation with other complex or non-complex numbers work.	(5 - 6 i) + (-5 + 8 i).			""Arithmetic between two complex numbers.""	5 * (5 - 6 i).				""Arithmetic between a non-complex and a complex number.""					It is also possible to perform arithmetic operations between a complex numberand a array of (complex) numbers:	2 * {1 + 2i.	     3 + 4i.	     5 + 6i}	5 + 5i * {1 + 2i.	          3.	          5 + 6i}It behaves analogously as it is with normal numbers and an array.NOTE: Although Complex something similiar to the Smalltalk's Number class, it wouldnot be a good idea to make a Complex to be a subclass of a Number because:- Number is subclass of Magnitude and Complex is certainly not a magnitude.  Complex does not behave very well as a Magnitude. Operations such as	<	>	<=	>=  do not have sense in case of complex numbers.- Methods in the following Number methods' categories do not have sense for a Complex numbers	trucation and round off	testing	intervals	comparing- However the following Number methods' categories do have sense for a Complex number	arithmetic (with the exception of operation		//		\\		quo:		rem:		mathematical functionsThus Complex is somewhat similar to a Number but it is not a subclass of it. Some operationswe would like to inherit (e.g. #abs, #negated, #reciprocal) but some of the Number operationdo not have sens to inherit or to overload. Classes are not always neat mechanism.!!! We had to COPY the implementation of the		abs		negated		reciprocal		log:		isZero		reciprocal		...	methods from the Number class to the Complex class. Awful solution. Now I begin to	appreciate the Self.Missing methods	String | converting | asComplex	Complex | mathematical functions | arcSin	Complex | mathematical functions | arcCos	Complex | mathematical functions | arcTan"
+"PMFloatingPointMachine","A PMFloatingPointMachine represents the numerical precision of this system.Instance Variables	defaultNumericalPrecision:		The relative numerical precision that can be expected for a general numerical computation. One should consider to numbers a and b equal if the relative difference between them is less than the default machine precision.	largestExponentArgument:		natural logarithm of largest number	largestNumber:		The largest positive number that can be represented in the machine	machinePrecision:		r^{-(n+1)}, with the largest n such that (1 + r^-n) - 1 != 0	negativeMachinePrecision:		r^{-(n+1)}, with the largest n such that (1 - r^-n) - 1 != 0	radix:		The radix of the floating point representation. This is often 2.	smallNumber:		A number that can be added to some value without noticeably changing the result of the computation	smallestNumber:		The smallest positive number different from 0.largestExponentArgument	- xxxxxThis class is detailed in Object Oriented Implementation of Numerical Methods, Section 1.4.1 and 1.4.2."
+"PMWeightedPoint","I'm a simple point (two values with a weight and an error).(c) Copyrights Didier BESSET, 1999."
+"PMVector","A vector is an object in a multidimensional space. It is represented by its components measured on a reference system.Here is a typical use of myself[[[ | u v w a b c |u := #(1 2 3) asPMVector.v := #(3 4 5) asPMVector.a := PMMatrix rows: #( ( 1 0 1 ) (-1 -2 3)).b := PMMatrix rows: #( ( 1 2 3 ) (-2 1 7) (5 6 7)).w := 4 * u + (3 * v).c := a * b.v := a * u.w := c transpose * v.w := v * c.]]]"
+"PMCongruentialRandomNumberGenerator",""
+"PMMitchellMooreGenerator",""
+"PMNormalDistribution",""
+"PMErfApproximation","A PMErfApproximation is a five term approximation to erf(x). This is a singleton class encapsulating the approximation. Use with PMErfApproximation new value: aNumberto receive erf(x). The result of the error function lies between zero and one.An extension to Number exists, so the simpler use isaNumber errorFunction which produces the same result.If you need the error function as a function, you will need to enclose it in a block as:| errorFunction |errorFunction := [:x | x errorFunction].Instance variables constant and series are part of the approximation formula. norm is a scale factor to make erf(infinity) = 1.The error function is the Cumulative Distribution of the standard normal distribution. Thus, erf(x) represents the probability of a random variable with standard normal distribution being less than x. The approximation used is credited to Abramowitz and Stegun's Handbook of Mathematical Functions. The error function is detailed in Chapter 7. The implementation is detailed in PM's book Section 2.3Additional resources available from NIST Digital Library of Mathematics at:http://dlmf.nist.gov/7"
+"PMProbabilityDensity",""
+"PMFixpoint","A Fixpoint is just a little utility. it calculates the fixpoint of a block with one variable. a starting value for the variable is necessary. the variable does not need to be numerical, it can be anything the block can eat and spit out.example:a:=Fixpoint block: [:x| 1/ (1+x )] value: 20.0.a evaluate. ""-->0.6180339887498948"""
+"PMIterativeProcess","A PMIterativeProcess class is an abstract base class for processes which follow an iterative pattern. Subclasses of PMIterativeProcess will redefine	initializeIterations	evaluateIteration	finalizeIterationsThe instance variable result is used to store the most recent/best result, and is accessible through the result selector.The maximumIterations: method allows control of the amount of work this method is allowed to do. Each evaluation of the iteration increments the instance variable iterations. When this number exceeds maximumIterations, the evaluate method will stop the process, and answer result."
+"PMBetaDistribution",""
+"PMIncompleteBetaFunction",""
+"PMStudentDistribution",""
+"PMFisherSnedecorDistribution",""
+"PMChiSquareDistribution",""
+"PMAsymptoticChiSquareDistribution",""
+"PMIncompleteGammaFunction",""
+"PMGammaDistribution",""
+"PMFastFourierTransform","A FastFourierTransform can be initialized with: FastFourierTransform data: anArrayOfNumbersOrComplexyou can look at the data with #data, #realData and #imaginaryData.#transform calculates the Fourier transform (in place, iow you get the transform again with #data etc) and #inverseTransform does the inverse. "
+"PMErrorMinimizer","ErrorMinimizer fits a function to some data using an ErrorOfParameterFunction . It is internally used by GeneralFunctionFit . It is generally better to use GeneralFunctionFit .f:=[:x :a :b|a*x / (b+x)].col:=(1 to: 20)collect: [:i|i@(f cull: i cull: 2 cull: 0.4) ].er:=ErrorOfParameterFunction function: f data: col.er errorType: #median.fit:= ErrorMinimizer function: er.fit evaluate . fit  parameters. 	-->  #(2.0 0.39999999999903596)"
+"PMErrorOfParameterFunction","ErrorOfParameterFunction wants a function with parameters as a block and a Collection of x@f(x) points. The independent variable has to be declared first in the block, then the parameters.ErrorOfParameterFunction>>value: anArrayOfParameters returns a sum of squared errors or similar error measures. it can be used in MultiVariableOptimizers to calculate parameters."
+"PMDataHolder","DataHolder is an Array of Points and is used only internally by FunctionFit."
+"PMGeneralFunctionFit","GeneralFunctionFit fits a function to some data. the data has to be a collection of points x@f(x). the fitting minimizes by default the squared error, but it can also do more robust regressions. GeneralFunctionFit can also deal with local minima. if you have a function with many parameters you might want to enlarge the populationSize and/or the maximumIterations. if the result is not exact enough, it is faster and often sufficient to rerun #evaluate.f:=[:x :a :b |x squared sin squared -b/ (a+x squared)].col:=(-2.5 to: 2.5 by:0.25)collect: [:i|i@(f cull: i cull: 2 cull: 3 )].fit:= GeneralFunctionFit function: f data: col minimumValues: #(0 0) maximumValues: #(10 10) .fit evaluate . fit result  .  --> #(2.0000000000000413 3.000000000000014)"
+"PMAnotherChromosomeManager","AnotherChromosomeManager implements more specific operations for Floats. Is used by AnotherGeneticOptimizer"
+"PMGAAccuracy","GAAccuracy tests standard problems"
+"PMSimpleParameterFunction","SimpleParameterFunction is used internally by FunctionFit . it is essentially a wrapper around a block, which is used as a function with parameters. the independent variable has to be declared first in the block, then the parameters."
+"PMFunctionFit","FunctionFit fits a function to some data. the data has to be a collection of points x@f(x). the fitting minimizes the squared error.f:=[:x :a :b|a*x / (b+x)].col:=(1 to: 20)collect: [:i|i@(f cull: i cull: 2 cull: 0.4) ].fit:= FunctionFit function: f data: col .fit evaluate . fit result parameters .   --->  #(1.9999999999999998 0.39999999999999863)"
+"PMAnotherGeneticOptimizer","AnotherGeneticOptimizer is a more efficient GeneticOptimizer, that is necessary for the correct use of AnotherChromosomeManager."
+"PMErrorAsParameterFunction","ErrorAsParameterFunction is used internally by ErrorMinimizer. it is essentially a wrapper around an ErrorOfParameterFunction ."
+"PMIndexedKDTree","IndexedKDTree returns the indices of the nearest neighbours instead of the nearest neighbours itself. additionally it returns the squared distances between the vector and its neighbours, if more than one neighbour is searched."
+"PMStupidNN","StupidNN is a naive nearest neighbour search. KDTree is much faster though, if you have to do several searches. StupidNN exists only for the KDTreeTests (and as an example, how simple it is to subclass NNStore) ."
+"PMKDTree","KDTree is a space partitioning data structure to store points of that space with ""KDTree withAll: aCollectionOfVectors"", where a vector can be any collection of numbers that understands ""at:"". you can then find nearest neighbours of aVector with ""nnSearch: aVector i: numberOfNearestNeighbours"".   "
+"PMNNStore","NNStore stores neighbours together with distances and uses the distances for sorting. can easily be subclassed if one needs an Array sorted depending on some outside data. see StupidNN for a simple example and comment on ""withAll:"" or just use ""newFrom:""."
+"PMKernelSmoothedDensity","A KernelSmoothedDensity estimates the probability density function from a sample drawn from some distribution with an unknown density.  you initialize it with:  k := KernelSmoothedDensity fromData: aCollectionOfSampleNumbersand you get the estimated density value as usual with:  k value: aValuethe kernels are settable via either #normal (the default) or #epanechnikov. the bandwidth can be set via  #bandWidth: or #ruleOfThumbBandWidth"
+"PMKolmogorovsDistribution","beta approximation according to Jin Zhang & Yuehua Wu :http://www.ism.ac.jp/editsec/aism/pdf/054_3_0577.pdfresults for the distributionValue are generally accurate up to two digits after the decimal point, better for higher p-values (the interesting case in practice) ."
+"PMKolmogorovSmirnov2Sample","does a two-sided Kolmogorov-Smirnow test and checks whether two sample data are from the same population, which is assumed to be a continous distribution (iow  ties occur with probability zero ). #ksStatistic returns kolmogorovs D.#pValue returns the probability of getting a D < ksStatistic .#rejectEqualityHypothesisWithAlpha: does what its name says of course.example:nd:= DhbNormalDistribution new.ks :=KolmogorovSmirnov2Sample  	compareData: ((1 to:100) collect:[:i|nd random]) 	withData: ((1 to:100) collect:[:i|nd random]). ""-->a KolmogorovSmirnov2Sample(dataSize: 100 otherDataSize: 100)""k ksStatistic . ""-->(9/100)""k pValue asFloat .""-->0.18458528753386905""ks rejectEqualityHypothesisWithAlpha: 0.05. ""-->false""the pValue is directly (no SmirnovDistribution implemented at the moment) and exactly calculated as explained in:Kim, P. J. & Jennrich, R. I. 'Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion...'in 'Selected Tables in Mathematical Statistics Volume I' (1973).no aproximation is at the moment used for bigger datasizes, hence calcs will be too slow in that case."
+"PMKolmogorovSmirnovSample","abstract class, use KolmogorovSmirnov1Sample or KolmogorovSmirnov2Sample"
+"PMKolmogorovSmirnov1Sample","does a two-sided Kolmogorov-Smirnow test and checks whether sample data are from a population with a given distribution. you have to set the data that can be any collection of numbers and the cumulative distribution function. you can do the last one in two ways, either  by specifying a block via #cdf: or by specifying a distribution with concrete parameters via #populationDistribution: .#ksStatistic returns kolmogorovs D, calculated as the maximum of D+ and D- , iow it does not (!) use D = max( | F(y(i)) - i/n| ) . (see eg http://www.itl.nist.gov/div898/handbook/eda/section3/eda35g.htm  why this would be wrong.)#pValue returns the probability of getting a D <= ksStatistic .#rejectEqualityHypothesisWithAlpha: does what its name says of course.example:nd:= DhbNormalDistribution new.""--> Normal distribution( 0, 1)""ks :=KolmogorovSmirnov  compareData: ((1 to:100) collect:[:i|nd random]) withDistribution: nd.""--> a KolmogorovSmirnov(dataSize: 100 cdf: distributionValue of Normal distribution( 0, 1))""ks rejectEqualityHypothesisWithAlpha: 0.05.""--> false"""
+"PMSingularMatrixError","some calculations dont work with singular matrices and result eg with errors like 'receiver of last is nil', deep down in the calculation, which is quite ununderstandable. otoh these errors can occasionally be treated by using another calculation, hence i introduced this error."
+"PMLUPDecomposition","LUP stands for Lower, Upper and Permutation. It comes from the observation that any non-singular square matrix A can be decomposed into a product of 3 square matrices of the same dimension.LUP decomposition is another technique to solve asystem of linear equations. It is an alternative to the Gaussian elimination. Gaussian elimination can solve a system with several constant vectors, but all constant vectors must be known before starting the algorithm.LUP decomposition is done once for the matrix of a given system. Thus, the system can be solved for any constant vector obtained after the LUP decomposition. In addition, LUP decomposition gives a way to calculate the determinant of a matrix and it can be used to compute the inverse of a matrix.Instance variables- rows contains a copy of the rows of the matrix representing the system of linear equations, i.e.the matrix A; copying the matrix is necessary since LUP decomposition destroys the components; at the end of the LUP decomposition, it will contain the components of the matrices L and U,- permutation contains an array of integers describing the permutation, i.e.the matrix P,- parity contains parity of the permutation for efficiency purpose.[[[| s sol1 sol2 |s := DhbLUPDecomposition equations: #( (3 2 4) (2 -5 -1) (1 -2 2)).sol1 := s solve: #(16 6 10).sol2 := s solve: #(7 10 9).]]]"
+"PMMatrix","I represent a mathematical matrix. I can be build from rows as follows: [[[ PMMatrix rows: #((1 2 3)(4 5 6)).]]]I understand the usual matrix operations."
+"PMSingularValueDecomposition","Singular Value Decomposition method.https://en.wikipedia.org/wiki/Singular_value_decompositionA = U * S * V transposeInput:  -  A - m x n matrix Output:  -  U - m x m unitary matrix. -  V - n x n unitary matrix. -  S - diagonal matrix with singular components on the main diagonalExample:[ [ [ matrix := PMMatrix rows: #(	(0 1 0 0)	(0 0 2 0)	(0 0 0 3)	(0 0 0 0)).	svd := matrix decompose.u := svd leftSingularForm.v := svd rightSingularForm.s := svd sForm. ] ] ]"
+"PMLargestEigenValueFinder","[ [ [ m := PMMatrix rows: #( ( 84 -79  58 55)						(-79  84 -55 -58)						( 58 -55  84  79) 						( 55 -58  79  84) ).finder := PMLargestEigenValueFinder matrix: m.eigenvalue := finder evaluate.eigenvector := finder eigenvector.nextFinder := finder nextLargestEigenValueFinder.nextEigenvalue := nextFinder evaluate.nextEigenvector := nextFinder eigenvector.] ] ]"
+"PMJacobiTransformationHelper","I store eigenvalues and eigenvectors of a symmetric matrix computed with PMJacobiTransformation"
+"PMLinearEquationSystem","This class offers Gaussian elimination.[[[  (DhbLinearEquationSystem equations: #( (3 2 4)                                   (2 -5 -1)                                   (1 -2 2))                      constant: #(16 6 10)     ) solution.]]]Note that Gaussian elimination is solely dedicated to solving systems of linear equations. The algorithm is somewhat slower than LUP decomposition.If the system does not have a solution --- that is, if the system's matrix is singular --- an arithmetic error occurs in themethod ==pivotAt:== when the division with the zero pivot is performed. The method ==solutionAt:== traps this error within anexception handling structure and sets the solution vector to a special value --- the integer 0 --- as a flag to prevent attempting Gaussian elimination a second time. Then, the value ==nil== is returned to represent the non-existent solution."
+"PMSymmetricMatrix","This class can be instantiated like DhbMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons."
+"PMJacobiTransformation","[[[| m jacobi eigenvalues eigenvectors |m := PMSymmetricMatrix rows: #((84 -79 58 55)                                 (-79 84 -55 -58)                                 (58 -55 84 79)                                 (55 -58 79 84)).jacobi := PMJacobiTransformation matrix: m.eigenvalues := jacobi evaluate.eigenvectors := jacobi transform columnsCollect: [ :each | each].]]]"
+"PMLineSearch","I implement line search algorithm to find the minimum of a function g(x) >= 0 on the interval 0 < x < 1.The method is initialized by g(0), g(1) and g'(0).The step from x = 0 to x = 1 suppose to minimize g(x) (i.e. g'(0) < 0), but due to nonlinearity of g(x) might fail to do so.In this case, this method finds such an x that this function is minimized in the sense:g(x) <= g(0) + alpha g'(0)for some small alpha (defaults to 1e-4).UsageFor once off use:           (PMLineSearch function:  funBlock valueAtZero: g0  derivativeAtZero: dg0  valueAtOne: g1 ) evaluate.where funBlock is the implementation of g(x), g0 = g(0), dg0 = g'(0) and g1 = g(0).For repeated use:            storedMethod := DhbLineSearch new.           storedMethod setFunction: funBlock.           storedMethod setValueAtZero: g0 derivativeAtZero: dg0  valueAtOne: g1.           storedMethod evaluate.  !!! Optimization tip!!!It is guaranteed that g(x) will be called on the resulting x.See DhbNewtonZeroFinder (PMNewtonZeroFinder) that uses this to minimize the number of function evaluations."
+"PMWeibullDistribution",""
+"PMIncompleteGammaFractionTermServer",""
+"PMFunctionOptimizer",""
+"PMFisherTippettDistribution",""
+"PMPointSeries",""
+"PMRombergIntegrator","A DhbRombergIntegrator implements the Romberg Method. This uses Richardson extrapolation on the Trapezoid method to generate a higher order estimate.Evenly spaced samples are used. See also:http://en.wikipedia.org/wiki/Romberg%27s_methodmethods:order: anInteger	number of rows in the tableau.	"
+"PMBulirschStoerInterpolator",""
+"PMOneVariableFunctionOptimizer",""
+"PMLogNormalDistribution",""
+"PMScaledProbabilityDensityFunction",""
+"PMMaximumLikelihoodHistogramFit",""
+"PMLinearRegression",""
+"PMNewtonZeroFinder","I implement Globally Convergent Newton Method to solve scalar nonlinear equations f(x)=0.As Newton step (especially started far from actual root) may lead to divergence, I use Line Search (PMLineSearch) to extend the convergence region.Each iteration of the method finds next approximation according to the formula:x(new) = x(old) + step; step = - f(x) / f'(x)step might be adjusted by line search.Usage         (PMNewtonZeroFinder function: funBlock derivaitve: derBlock) initValue: x0; evaluate.Or         (PMNewtonZeroFinder function: funBlock) initValue: x0; evaluate.If derivative is not provided, it will be approximated, but this leads to very inefficient process!"
+"PMDecimalFloatingNumber","A PMDecimalFloatingNumber is a demonstration of floating point arithmetic and rounding errors. The implementation uses decimal digits to allow easier human reading and understanding, and hand-worked examples. Only basic arithmetic operations are specified (+, -,*, sqrt). The message #value answers a fraction which is the exact representation of the stored number. The message #normalize uses truncation to fit the best precision possible. It is at this step that roundoff errors occur. #normalize is called when these numbers are created.This class is detailed in appendix A of Didier Besset's book."
+"PMIncompleteGammaSeriesTermServer",""
+"PMGeneticOptimizer",""
+"PMHistogrammedDistribution",""
+"PMProbabilityDistributionFunction",""
+"PMSimpsonIntegrator",""
+"PMNewtonInterpolator","A PMNewtonInterpolator is a specialized Lagrange Interpolator which precomputes the polynomial to be evaluated when interpolating. This is twice as expensive as direct evaluation, but produces a linear time (in the number of points) evaluation method for fixed points.add: resets the coefficientsvalue: lazily initializes the coefficients and yields an interpolated value.computeCoefficients and resetCoefficients should be considered private."
+"PMOptimizingBracketFinder",""
+"PMTriangularDistribution",""
+"PMSeriesTermServer",""
+"PMFunctionalIterator","A PMFunctionalIterator is an abstract base class for IterativeProcesses operating on a function. In the sense of these classes, a function is a block or object responding to the value: selector. Subclasses will redefine (in addition to methods prescribed in IterativeProcess)	computeInitialValues New instances may be created with the function: class method, or existing instances may be assigned a new function with setFunction:All functions are required to be single argument blocks, so multivariable functions must be wrapped in a way that value: takes an array of values as input."
+"PMCauchyDistribution",""
+"PMMinimizingPoint",""
+"PMCDFNewtonZeroFinder","A CdfNewtonZeroFinder is a specialised version of PMNewtonZeroFinder for DhbProbabilityDensity >>privateInverseDistributionValue:, that can deal with problems that can arise there (it doesnt diverge on a cdf)"
+"PMLagrangeInterpolator","A PMLagrangeInterpolator takes a set of points (include each with #add:) and interpolates values using the Lagrange Interpolation Polynomial. This is the polynomial of minimum degree through all points in the pointCollection.This is appropriate for interpolation only (interior to the region of the set of values), and sensitive to several conditions.The method value: yields an approximation at a given value of the independent variable. Calculation is deferred until value is sent. If the set of points is fixed, NewtonInterpolator precomputes the value function. If the set of points is likely to change more often than interpolated values are needed, this is a fair choice.(c) Copyrights Didier BESSET, 2000"
+"PMVectorAccumulator","I'm a simple object summing vectors. The idea that I does not keep the data but information that are representative of the accumulated data. The class VectorAccumulator has two instance variables:- count counts the number of vectors accumulated in the object so far; - average keeps the average of the accumulated vector."
+"PMHillClimbingOptimizer",""
+"PMLaplaceDistribution",""
+"PMProjectedOneVariableFunction",""
+"PMIncompleteBetaFunctionFraction",""
+"PMSplineInterpolator",""
+"PMSimplexOptimizer",""
+"PMUniformDistribution",""
+"PMIncompleteBetaFractionTermServer",""
+"PMBisectionZeroFinder","I implement Bisection zero finder for the scalar problem f(x)=0 when it is known the single root exists on the interval (a, b)"
+"PMExponentialDistribution",""
+"PMMaximizingPoint",""
+"PMTrapezeIntegrator","A PMTrapezeIntegrator is the base class for integration methods. You should not use this class for real applications, since much better results can be obtained from Romberg or Simpson integration."
+"PMNevilleInterpolator",""
+"PMCovarianceAccumulator","It has one additional instance variable compared to its superclass:- covariance accumulates the components of the covariance matrix; for efficiency reason, only the lower half of the matrix is computed since it is symmetric."
+"PMMultiVariableGeneralOptimizer",""
+"PMProbabilityDensityWithUnknownDistribution",""
+"PMVectorProjectedFunction",""
+"PMLeastSquareFit",""
+"PMLanczosFormula","A DhbLanczosFormula is a singleton class which calculates an approximation to Gamma(x). Gamma function is a continuous extension to Factorial. Gamma(x + 1) = x * Gamma(x). For integers Gamma(n) = (n-1) factorial. This is called from Number>>gamma, and Number>>logGamma.Instance variable coefficients contains the terms of the approximation.The method is detailed in Numerical Recipes in C. The implementation is detailed in Besset's book Section 2.4"
+"PMAB2Stepper","It is stepper for Adams - Bashforth method of order 2.  We can't use AB2 method until we have two old solution values. A AB2 method is explicit. We found starting point with Midpoint Method (RK2)."
+"PMAB3Solver","We can't use AB3 method until we have three old solution values. A  AB3 method is explicit. We found starting point with Midpoint Method (RK2) and the next point with AB2 method."
+"PMHeunStepper","Heun's method may refer to the improved or modified Euler's method (that is, the explicit trapezoidal rule), or a similar two-stage Runge-Kutta method. "
+"PMImplicitAnnouncer","An ImplicitAnnouncer is used by ODESolver to announce step results (ImplicitSolverAnnouncement)."
+"PMImplicitSolverAnnouncement","An ImplicitSolverAnnouncement is a record of a step in an implicit system. It contains a time and a state."
+"PMImplicitSystem","This concept describes how to define a ODE that can be solved by an implicit routine. Implicit routines need not only the function f(x,t) but also the Jacobian df/dx = A(x,t). A is a matrix and implicit routines need to solve the linear problem Ax = b"
+"PMAM3Stepper","It is stepper for Adams - Moulton method of order 3.An s-step Adams - Moulton method can reach order s+1.We can't use AM3 method until we have old solution value and approximate new one. A  AM3 method is implicit."
+"PMAM4Solver","We can't use AM4 method until we have two old solution values and  approximate new one. A  AM4 method is implicit. We found starting point with Trapezoidal rule and next point with AM3."
+"PMImplicitMidpointStepper","The implicit midpoint method is equavelent to the so-called 2nd order Gauss method."
+"PMODESolver","An ODE Solver uses a Stepper to solve a System. The main interface once the solver is set up (it has a stepper and a solver) is	solve: system x0: aState t0: startTime t1: endTime	solve: system x0: aState t0: startTime t1: endTime stepSize: dt	Announcements are made when a step is taken."
+"PMStepper","Basic steppers execute one timestep of a specific order with a given stepsize.From odeint-v2 documentation:Solving ordinary differential equation numerically is usually done iteratively, that is a given state of an ordinary differential equation is iterated forward x(t) -> x(t+dt) -> x(t+2dt). Steppers perform one single step. The most general stepper type is described by the Stepper concept.Before calling doStep, it is important to associate the stepper with a system. The class method onSystem will assign the system to the Stepper."
+"PMBDF4Stepper","It is stepper for Backward differentiation formulas method of order 3.We can't use BDF4 method until we have three old solution values and  approximate new one. A  BDF4 method is implicit. "
+"PMImplicitMidpointSolver","The implicit midpoint method is equavelent to the so-called 2nd order Gauss method."
+"PMAB3Stepper","It is stepper for Adams - Bashforth method of order 3. We can't use AB3 method until we have three old solution values. A AB3 method is explicit."
+"PMAB4Solver","We can't use AB4 method until we have four old solution values. A  AB4 method is explicit. We found starting point with Midpoint Method (RK2) and the next points with AB2 and AB3 methods."
+"PMMidpointStepper","The midpoint method is also known as the modified Euler method or RK2. It is an explicit method."
+"PMExplicitSolverSubscriber","An ExplicitSolverSubscriber implements the minimal behavior to attach to an ODESolver and receive ExplicitSolverAnnouncements. Subclasses should override block to determine appropriate behavior."
+"PMSymplecticSystem","DescriptionThis concept describes how to define a symplectic system written with generalized coordinate q and generalized momentum p:q'(t) = f(p)p'(t) = g(q)Such a situation is typically found for Hamiltonian systems with a separable Hamiltonian:H(p,q) = Hkin(p) + V(q)which gives the equations of motion:q'(t) = dHkin / dp = f(p)p'(t) = dV / dq = g(q)The algorithmic implementation of this situation is described by a pair of callable objects for f and g with a specific parameter signature. Such a system should be implemented as a std::pair of functions or a functors. Symplectic systems are used in symplectic steppers like symplectic_rkn_sb3a_mclachlan. "
+"PMAM4Stepper","It is stepper for Adams - Moulton method of order 4.An s-step Adams - Moulton method can reach order s+1.We can't use AM4 method until we have two old solution values and  approximate new one. A  AM4 method is implicit. "
+"PMBDF2Solver","We can't use BDF2 method until we have old solution value and approximate new one. A  BDF2 method is implicit. We found starting point with Backward Euler method."
+"PMMultiStepper","Another large class of solvers are multi-step method. They save a small part of the history of the solution and compute the next step with the help of this history. Since multistep methods know a part of their history they do not need to compute the system function very often, usually it is only computed once. This makes multistep methods preferable if a call of the system function is expensive. Examples are ODEs defined on networks, where the computation of the interaction is usually where expensive (and might be of order O(N^2)).Multistep methods differ from the normal steppers. They safe a part of their history and this part has to be explicitly calculated and initialized. In the following example an Adams-Bashforth-stepper with a history of 5 steps is instantiated and initialized; The initialization uses a fourth-order Runge-Kutta stepper and after the call of initialize the state of inout has changed to the current state, such that can be immediately used by passing it to following calls of do_step. Of course, you can also use you own steppers to initialize the internal state of the Adams-Bashforth-Stepper: Many multistep methods are also explicit steppers, hence the parameter of do_step method do not differ from the explicit steppers. "
+"PMExplicitSolver",""
+"PMButcherTableauStepper",""
+"PMTrapezoidStepper","The trapezoidal rule is an implicit second-order method, which can be considered as both a Runge-Kutta method and a linear multistep method. It is Adams - Moulton method of order 2."
+"PMODESystem","An ODESystem is a wrapper for a system of or a single ordinary differential equation."
+"PMAB4Stepper","It is stepper for Adams - Bashforth method of order 4. We can't use AB4 method until we have three old solution values. A AB4 method is explicit."
+"PMImplicitSolver",""
+"PMRungeKuttaStepper","A RungeKuttaStepper is a specialization on Explicit Stepper that provides a higer order estimate. The Euler method implemented in ExplicitStepper is order 1, and the error obtained is proportional to the step size.The RungeKuttaStepper is order 4, the error term is proportional to the step size to the fourth power."
+"PMStateRecorder","A StateRecorder captures each step in an ODESolvers history. It stores these as a sorted collection of StateTime object, in increasing time order."
+"PMSimpleSymplecticSystem","In most Hamiltonian systems the kinetic term is a quadratic term in the momentum Hkin = p^2 / 2m and in many cases it is possible to rescale coordinates and set m=1 which leads to a trivial equation of motion:q'(t) = f(p) = p.while for p' we still have the general formp'(t) = g(q)As this case is very frequent we introduced a concept where only the nontrivial equation for p' has to be provided to the symplectic stepper. We call this concept Simple_Symplectic_System"
+"PMBDF2Stepper","It is stepper for Backward differentiation formulas method of order 2. We can't use BDF2 method until we have old solution value and approximate new one. A  BDF2 method is implicit. "
+"PMBDF3Solver","We can't use BDF3 method until we have two old solution values and  approximate new one. A  BDF3 method is implicit. We found starting point with Backward Euler method and next point with BDF2."
+"PMExplicitMultiStepper","An ExplicitMultiStepper is stepper for explicit linear multistep methods.Explicit means that the new state of the ode can be computed explicitly from the current state without solving implicit equations."
+"PMAB2Solver","We can't use AB2 method until we have two old solution values. A  AB2 method is explicit. We found starting point with Midpoint Method (RK2)."
+"PMExplicitStepper","Explicit steppersA first specialization are the explicit steppers. Explicit means that the new state of the ode can be computed explicitly from the current state without solving implicit equations. These steppers have in common that they evaluate the system at time t such that the result of f(x,t) can be passed to the stepper. In odeint, the explicit stepper have two additional methodsdo_step( sys , inout , dxdtin , t , dt )do_step( sys , in , dxdtin , t , out , dt )Here, the additional parameter is the value of the function f at state x and time t."
+"PMExplicitAnnouncer","An ExplicitAnnouncer is used by ODESolver to announce step results (ExplicitSolverAnnouncement)."
+"PMExplicitSolverAnnouncement","An ExplicitSolverAnnouncement is a record of a step in an explicit system. It contains a time and a state."
+"PMExplicitSystem","Rather than passing dxdt as a reference to be modified, we will ask the system x:t: and expect reply dxdt. This may be a single value or a vector of values.From ODEINT-V2:System functionsUp to now, we have nothing said about the system function. This function depends on the stepper. For the explicit Runge-Kutta steppers this function can be a simple callable object hence a simple (global) C-function or a functor. The parameter syntax is sys( x , dxdt , t ) and it is assumed that it calculates dx/dt = f(x,t).Other types of system function represent Hamiltonian systems or system which also compute the Jacobian needed in implicit steppers. For informations which stepper uses which system function see the stepper table below. It might be possible, that odeint will introduce new system types in near future. Since the system function is strongly related to the stepper type, such an introduction of a new stepper might result in a new type of system function."
+"PMImplicitMultiStepper","An ImplicitMultiStepper is stepper for implicit linear multistep methods.Implicit methods find a solution by solving an equation involving  the current state of the system and the previous states."
+"PMAM3Solver","We can't use AM3 method until we have old solution value and approximate new one. A  AM3 method is implicit. We found starting point with Trapezoidal rule."
+"PMImplicitStepper","For some kind of systems the stability properties of the classical Runge-Kutta are not sufficient, especially if the system is said to be stiff. A stiff system possesses two or more time scales of very different order. Solvers for stiff systems are usually implicit, meaning that they solve equations like x(t+dt) = x(t) + dt * f(x(t+1)). This particular scheme is the implicit euler method. Implicit methods usually solve the system of equations by a root finding algorithm like the Newton method and therefore need to know the Jacobian of the system.For implicit solvers the system is again a pair, where the first component computes f(x,t) and the second the Jacobian. ons of motion to "
+"PMTranscriptRecorder","A TranscriptRecorder is a very primitive tool.It prints a message to transcript when a step is taken by the solver.The demo class method shows an example."
+"PMStateTime","A StateTime class is a generalization of point. It holds both a state and a time.We don't want to  use Point, since state may be a vector quantity, and the behavior of array @ number is a little off (it stores points in an array, what we want is the array itself in state, and the scalar quantity in time)."
+"PMBDF3Stepper","It is stepper for Backward differentiation formulas method of order 3.We can't use BDF3 method until we have two old solution values and  approximate new one. A  BDF3 method is implicit. "
+"PMBDF4Solver","We can't use BDF4 method until we have three old solution values and  approximate new one. A  BDF4 method is implicit. We found starting point with Backward Euler method and next points with BDF2 and BDF3."
+"ManifestMathOperationsExtensions","Additional math operations"
+"PMPermutation","Permutation is an Array, that - if it's reduced - consists of the numbers from (1 to: self size) in the original order.example:Permutation ordering: #(5 4 1). -> a Permutation(3 2 1)you can think of a permutation as a positioning specification for a SequentialCollection.another example:a:=Permutation randomPermutation: 4. -> a Permutation(1 4 2 3)a permute: #(a b cd e). -> #(#a #e #b #cd)yet another one: Permutation ordering: #(a e b cd). ""a Permutation(1 4 2 3)"" "
+"PMConstant","Define usual physics constants"
+"PMPolynomialLeastSquareFit",""
+"PMPolynomial","A PMPolynomial represents a single variable polynomial function as an array of coefficients.The constructor coefficients: anArray expects coefficients in increasing degree, that is constant term first. So, for example, to represent X^2 + 2X, we want to create:PMPolynomial coefficients: #(0 2 1)The printOn: method similarly displays the polynomial from lowest nonzero degree to highest. PMPolynomial coefficients: #(0 2 1)   2 X +  X^2 "
+"PMEstimatedPolynomial",""
+"PMDataTransformer","PMDataTransformer is the abstract root class of transformers. All data transformers should implemen a fit and a method method."
+"PMPrincipalComponentAnalyser",""
+"PMPrincipalComponentAnalyserSVD",""
+"PMStandardizationScaler",""
+"PMPrincipalComponentAnalyserJacobiTransformation","I'm implementing a principle component analysis with Jacobi transformation of the covariante matrix.Clients should first - create myself specifying a size which represents the number of elements on which I should be working. - accumulate: (give a certain amount of vectors of the elements to compare)- then ask for the components"
+"PMSciKitLearnSVDFlipAlgorithm","This class uses the SciKit-Learn SVD flip algorithm to ensure the signs of the eigenvectors correlate with the trend of the data.    Instance Variables	u:		PMMatrix	v:		PMMatrix"
+"PMQuaternion","Quaternion are to 3D rotations what Complex are to plane rotations.They are formed with one real part and three unreal parts.We will note the real part qr, and the unreal part qi*i + qj*j + qk*k, where :	i*i=j*j=k*k=-1	i*j=-j*i=k	j*k=-k*j=i	k*i=-i*k=jA 3D rotation of angle theta around axis [u v w] can be associated to quaternion :	cos(theta/2) + sin(theta/2) * (u i + v j + w k)Such a quaternion is unitary (have a unit norm)Product of quaternion is equivalent to product of rotation matrix.Quaternion conjugate is equivalent to rotation matrix transpose.A quaternion can also be decomposed into two complex numbers(qr i: qi) + (qj i: qk) jInstance Variables:	qr	<Number>	real part	qi	<Number>	first unreal part	qj	<Number>	second unreal part	qk	<Number>	third unreal part"
+"PMMersenneTwisterRandomGenerator","See http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html"" To get a pseudo-random float ""MersenneTwisterRandom new next. "" To get a pseudo-random integer ""MersenneTwisterRandom new nextInteger."
+"PMExplicitInverseCongruentialRandomGenerator","A PMExplicitInverseCongruentialGenerator is an explicit inversive congruential generator, constructed according to ""Good random number generators are (not so) easy to find"" by P. Hellekalek (1998) and extended euclidean algorithm.Developed by Konstantin Nizheradze <konsnizher@gmail.com> Instance Variables	nextN:		<Object>	nextValue:		<Object>	p:		<Object>nextN	- next number of the sequence of random numbers. It is also the parameter at extended euclidean algorythmnextValue	- next modulo inverse value, calculated by extended euclidean algorithmp	- parameter at extended euclidean algorithm"
+"PMNumberGenerator","A PMNumberGenerator is a stream of numbers. All NumberGenerators respond to #next.As generator I use a PMRandomGenerator instance as defined by the class message defaultGeneratorClass.My API is - generator: - next and peekBy default I use a Park and Miller minimum congruent random number generator. See PMParkMillerMinimumRandomGenerator"
+"PMExponentialGenerator","A PMExponentialGenerator uses a uniform random variable in [0,1] to sample from an exponential distribution.The exponential distribution has a single parameter beta, here denoted as mean. The default RandomGenerator is PMRandom, but can be modified.The next method uses the formula:x=  - \beta * ln (1 - u)to generate an exponential sample x from a uniform [0,1] sample u.(Applied Statistics 3rd ed., Ledolter and Hogg, p. 185)"
+"PMLaplaceGenerator","I'm a random number generator whose values are distributed according to  Laplace distribution.Ideally this class should be a subclass of  RandomGenerator however it is unclear how to implement peek."
+"PMParkMillerMinimumRandomGenerator","Uses Park and Miller's 'Minimum Standard' Congruential generator. See 'Numerical Recipes in C', 2nd Edition; Press, Flannery, Teukolsky and Vetterling; Cambridge University Press, 1992.PMParkMillerMinimumRandomGenerator new next"
+"PMLehmerRandomGenerator","This generator uses the Lehmer's Linear Congruential method.PMLehmerRandomGenerator new next"
+"PMBernoulliGenerator","A PMBernoulliGenerator is simulates a Bernoulli Process. This is a discrete process, with probability of p for success, and 1-p for failure. next	answer 1 if success event, 0 otherwise	generator:	provide a uniform [0,1] random number generator	p: 	set the probability of success events	class methodswithProbability:	create a generator with probability set to p	defaultGeneratorClass	class used for generator in new instances"
+"PMGaussianGenerator","A PMGaussianGenerator uses a Normal Distribution."
+"PMLinearCongruentialRandomGenerator","I use a quick and dirty Linear Congruential generator.PMLinearCongruentialRandomGenerator new next."
+"PMBinomialGenerator","A PMBinomialGenerator yields results from a binomial distribution with probability p and n trials. The generator is the underlying random source.If each independent event has probability 0<p<1, and n trials are performed, next returns number of successes."
+"PMPoissonGenerator","A PMPoissonGenerator simulates a Poisson Process with parameter lambda.This class is implemented to yield an integer result, corresponding to the number of events in n intervals, with probabilility of an event in each individual interval of p. The parameter lambda is the product of n and p."
+"PMMarsagliaKissRandomGenerator","A PMMarsagliaKissRandom is a pseudo-random number generator (PRNG) using Marsaglia's Keep it Simple Stupid algorithm.It generates Float with uniform distribution in Interval [0,1).The result divided by 1.0 predecessor will be in [0,1].Instance Variables	kernelRand1:		<PMMarsagliaKissRandomKernel> a first generator	kernelRand2:		<PMMarsagliaKissRandomKernel> a second generator"
+"PMCombinedRandomGenerator","This Combined Random Number Generator is based on the algorithm described by PIERRE L'ECUYER in ""Efficient and Portable Combined Random Number Generators"" [Communications of the ACM, June 19, Volume 31, Number 6, pp. 742-749, references p.774]. Taking into account its two-dimensional behaviour (from abovementioned article), this generator is suitable to produce the pairs of consecutive numbers.For the first linear congruential generator (generator A):m = 2147483563; a = 40014; q = 53668; r = 12211.For the second linear congruential generator (generator B):m = 2147483399; a = 40692; q = 52774; r = 3791.To produce initial seedA (for the first generator)  the method #nextInt: 2147483562 of Random is used; to produce seedB (for the second)  - the method #nextInt: 2147483398. Corresponding seeds are represented as Floats. The result of work of two generators (the next seedA and seedB) are combined.Developed by Konstantin Nizheradze <konsnizher@gmail.com> Instance Variables:	random	<Random>	seedA	<Number>	seedB	<Number>"
+"PMMarsagliaKissRandomKernel","A PMMarsagliaKissRandomKernel is a private class for generating pseudo-Random numbers.It generates 32-bits Integer with uniform distribution in Interval [ 0,16rFFFFFFFF].It holds the states of the pseudo-random generator, and the kernel generation algorithm.The algorithm is the one used in libgfortran library.It is based on Marsaglia's Keep It Simple Stupid 2005 version as in ""double precision RNGs"" in  sci.math.num-analysis  http://sci.tech-archive.net/Archive/sci.math.num-analysis/2005-11/msg00352.htmlIt is a combination of:1) a linear congruential generator with period 2^322) a 3-shift shift-register generator of period 2^32-13) 2 16-bit multiply with carry generators with a period 597273182964842497 > 2^59Period of this generator is about 2^123Previous 1999 version can be found along with discussions in this sci.stat.math newsgroup archive:http://www.ciphersbyritter.com/NEWS4/RANDC.HTM#369F6FCA.74C7C041@stat.fsu.eduThe shift-register had a permutation of first two shifts (13 and 17) leading to a reduced period.Warning: this pseudo-random generator is not suitable for cryptography as it could be too easily broken (see http://eprint.iacr.org/2011/007.pdf)Instance Variables	jcong:	<Integer> state of the linear congruencial generator	jsr:		<Integer> state of the 3-shift register generator	w:		<Integer> state of the first multiply with carry generator	z:		<Integer> state of the second multiply with carry generator"
+"PMConstantGenerator","A PMConstantGenerator is still a number generator but a simple one :)"
+"PMPseudoRandomNumberGenerator","I'm  the top abstract class of the pseudo-random numbers generator.The applications of Pseudo-Random Numbers Generators are many ones:- Simulations- Sampling- Cryptography- Numeric Analysis- Games- AestheticsInternally, one can classify Random Number Generator according to several views, so choosing one or another is fully dependent of your requirements:From the production view, there is always a tradeoff between: speed and safetyAnother view, based on the seed they use, is:- Deterministic: They take the seed value from a specific number. These ones are called  Pseudo random number generators.- Non-deterministic: They take the seed value from a physical source non-predictable and outside the human control. These are called true Random number generators.Along these terms, deterministic Random Number Generator  are divided between:- Normal PRNG-- Linear Congruential-- Non-Linear Congruential- Cryptography safe PRNG (CSPRNG)-- DSA-- ECDSAAnd finally, there's a taxonomy more related with the internal implementation, based on how the pseudo-generator make its random variables following a distribution function."
+"PMContinuedFraction",""
+"PMInfiniteSeries",""
+"PMStatisticalMoments",""
+"PMFastStatisticalMoments",""
+"PMHistogram","[[[| histogram valueStream |	valueStream := #(3 3 5 6 7 7 7 72  1 3  5 7 8 20) readStream.      histogram := PMHistogram new.      [ valueStream atEnd ]		whileFalse: [ histogram accumulate: valueStream next ].histogram			]]]"
+"PMFixedStatisticalMoments",""
+"PMTSNE","Implementation of t-SNE (t-Distributed Stochastic Neighbor Embedding) algorithmhttps://lvdmaaten.github.io/tsne/t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets."
+"PMAccuracyTestExample","used for tests. if you want to see how to subclass Accuracy, you only need to look at initialize, initializeXXX and checkXXX, the rest is only for AccuracyTest.if you want to see its output, just 'print it':AccuracyTestExample new run."
+"PMAccuracyTest","AccuracyTest uses AccuracyTestExample"
+"PMArbitraryPrecisionFloatTest","Test to check FloatingPoint numbers with arbitrary precision"
+"PMGradientAndHessianTest",""
+"PMHyperDualNumberTest",""
+"PMDualNumberTest",""
+"PMClusterFinderTest",""
+"PMComplexTest",""
+"PMVectorTest",""
+"PMFixpointTest",""
+"PMFFTTest",""
+"PMErrorMinimizerTest","ErrorMinimizerTest tests indirectly also ErrorAsParameterFunction."
+"PMFunctionFitTest",""
+"PMSimpleParameterFunctionTest",""
+"PMAnotherGeneticOptimizerTest",""
+"PMErrorAsParameterFunctionTest",""
+"PMErrorOfParameterFunctionTest",""
+"PMGeneralFunctionFitTest",""
+"PMAnotherChromosomeManagerTest",""
+"PMDataHolderTest",""
+"PMNNStoreTest","the individual tests also check and show the general way NNStore processes its data."
+"PMKDTreeTest","KDTreeTest makes random checks of KDTree, comparing results with results of StupidNN. is not too fast."
+"PMSmoothedDensityTest",""
+"PMKolmogorovSmirnov1SampleTest",""
+"PMKolmogorovSmirnov2SampleTest",""
+"PMKolmogorovsDistributionTest","data are taken from: http://www.ism.ac.jp/editsec/aism/pdf/054_3_0577.pdf  "
+"PMAdditionalTest","here are tests that would be in Math-Tests-DHB-Numerical, if it could construct random matrices"
+"PMSymmetricMatrixTest",""
+"PMRestTest",""
+"PMQRTest",""
+"PMSingularValueDecompositionTest","Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State a one line summary. For example, ""I represent a paragraph of text"".For the Responsibility part: Three sentences about my main responsibilities - what I do, what I know.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - (for bonus points) how to create instances.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Instance Variables	ones:		<Object>	randomMatrix:		<Object>	s_matrix:		<Object>	u:		<Object>	v:		<Object>    Implementation Points"
+"PMJacobiTransformationTest",""
+"PMMatrixTest",""
+"PMNumberExtensionsTest",""
+"PMDecimalFloatingNumberTest","A DhbDecimalFloatingNumberTest is a test class for testing the behavior of DhbDecimalFloatingNumber"
+"PMFloatingPointMachineTestCase",""
+"PMHistogramTestsAndBugs",""
+"PMNumericalMethodsTestCase",""
+"PMCovarianceAccumulatorTest",""
+"PMExponentialDistributionTest","A DhbExponentialDistributionTest is a test class for testing the behavior of DhbExponentialDistribution"
+"PMGeneticOptimizerBugsTest",""
+"PMNumberExtensionsTestCase","A DhbNumberExtensionsTestCase is a suite of tests for extension methods to Number, Integer, and Float defined in Didier Besset's book Object Oriented Numerical Methods"
+"PMStatisticsBugs",""
+"PMBeckwardEulerSolverTest",""
+"PMODESystemTest","An ODESystemTest is a test class for testing the behavior of ODESystem"
+"PMAM3SolverTest",""
+"PMBDF4StepperTest",""
+"PMMidpointStepperTest",""
+"PMAB4StepperTest",""
+"PMBDF4SolverTest",""
+"PMMidpointSolverTest",""
+"PMAB4SolverTest",""
+"PMBDF3StepperTest",""
+"PMImplicitMidpointStepperTest",""
+"PMAB3StepperTest",""
+"PMBDF3SolverTest",""
+"PMImplicitMidpointSolverTest",""
+"PMAB3SolverTest",""
+"PMTrapezoidStepperTest",""
+"PMBDF2StepperTest",""
+"PMHeunStepperTest",""
+"PMAB2StepperTest",""
+"PMTrapezoidSolverTest",""
+"PMBDF2SolverTest",""
+"PMEulerStepperTest","An ExplicitStepperTest is a test class for testing the behavior of ExplicitStepper"
+"PMAB2SolverTest",""
+"PMStepperTest","A StepperTest is a test class for testing the behavior of Stepper"
+"PMAM4StepperTest",""
+"PMEulerSolverTest","An ODESolverTest is a test class for testing the behavior of ODESolver"
+"PMRungeKuttaStepperTest",""
+"PMAM4SolverTest",""
+"PMBeckwardEulerStepperTest",""
+"PMRungeKuttaSolverTest",""
+"PMAM3StepperTest",""
+"PMPermutationTest",""
+"PMPolynomialTest",""
+"PMPCASingularValueDecompositionTest","This test checks that the SVD transform based PCA meets the acceptance requirements defined in PMPrincipalComponentAnalysisTest"
+"PMScikitLearnSVDFlipAlgorithmSandiaTest","These tests use the example from:https://prod-ng.sandia.gov/techlib-noauth/access-control.cgi/2007/076422.pdfX =  [  4  22   3    5]        [  1    5    1   1]        [11 69 10 14]        [11 69 10 14]The expected output is the computation carried out by Scikit-Learn's SVD flip algorithm."
+"PMPCAJacobiTransformationTest","This test checks that the Jacobi transform based PCA meets the acceptance requirements defined in PMPrincipalComponentAnalysisTest"
+"PMSciKitLearnSVDFlipAlgorithmTest","This is the test class that exercises scikit-learn Eigenvector Flip Algorithm"
+"PMStandardizationScalerTest",""
+"PMPrincipalComponentAnalyserTest","The tests in this class compare the output from PolyMath with: 1) an example from Scikit-Learn's documentation; and2) the PCA Tutorial by Lindsay Smith (see http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf). The input data usedare the mean-centred data in section 3.1, step 2."
+"PMQuantileTest","QuantileTest tests mainly '#quantile: method:' by calculating quartiles with every method on SortedCollections of size 4, 5, 6 and 11."
+"PMQuaternionTest","This class is for unit testing the Quaternion."
+"PMLehmerRandomTest",""
+"PMPoissonGeneratorTest",""
+"PMExponentialGeneratorTest","A PMExponentialGeneratorTest is a test class for testing the behavior of PMExponentialGenerator"
+"PMLinearCongruentialRandomTest",""
+"PMPseudoRandomNumberGeneratorTest",""
+"PMBernoulliGeneratorTest","A BernoulliGeneratorTest is a test class for testing the behavior of BernoulliGenerator"
+"PMGaussianGeneratorTest",""
+"PMMersenneTwisterRandomTest",""
+"PMRandomSample","I generate sample numerical data for the convergence tests given a size and distribution/PRNGmessages:  - generateASampleOfSize: size usingGenerator:gen"
+"PMBinomialGeneratorTest",""
+"PMLaplaceGeneratorTest",""
+"PMNumberGeneratorTest",""
+"PMConstantGeneratorTest",""
+"PMTSNETest","I test the method of the class PMTSNE."
+"PMMemoryBasedDataServer","I take the data I will serve via the message data: aCollection.Once done I will be able to serve the data until none is available. "
+"PMAbstractDataServer","I act as an interface for potential data server.My subclasses should implement the following methods: atEnd, close, next, open, reset."

@@ -1,0 +1,192 @@
+"class","comment"
+"PPSearcher","PPSearcher walks over a grammar specification and matches its parsers against the patterns using #match:inContext:.Instance Variables:	answer <Object>	The answer propagated between matches."
+"PPParserReplaceRule","PPParserReplaceRule replaces a matched grammar with another grammar, which may include patterns from the matching grammar.Instance Variables:	replaceParser	<PPParser>	The parser to replace the matched parser with."
+"PPListPattern","PPListPattern that is used to match any number of parsers. As its superclass, it cannot be used for actually parsing something."
+"PPRule","PPRule is the abstract superclass of all of the grammar search rules. A rule is the first class representation of a particular pattern to search for. The owner of the rule is the algorithms that actually executes the search. This arrangement allows multiple searches to be conducted by a single processor.Instance Variables:	owner	<PPProcessor>	The processor that is actually performing the search.	search	<PPParser>	The parse pattern to be searched."
+"PPSearchRule","PPSearchRule is a rule that simply searches for matches to the rule. Every time a match is found, answerBlock is evaluated with the parser that matches and the current answer. This two-argument approach allows a collection to be formed from all of the matches, like with #inject:into:.Instance Variables:	answerBlock	<BlockClosure>	Block to evaluate with the matching node and the current answer."
+"PPProcessor","PPProcessor is an abstract superclass to PPRewriter and PPSearcher. It implements common functionality to search and transform grammars.The implementation of these matching algorithms is inspired from the refactoring engine by Don Roberts and John Brant. Contrary to the original implementation that worked on syntax trees, this implementation was generalized and works on possibly cyclic search patterns and grammar graphs.Instance Variables:	searches	<Collection of: PPRule>	The rules to be processed.	context	<Dictionary>	The current search context."
+"PPReplaceRule","PPReplaceRule is the abstract superclass of all of the transforming rules. The rules change the grammar by replacing the node that matches the rule. Subclasses implement different strategies for this replacement.Instance Variables:	verificationBlock	<BlockClosure>	Is evaluated with the matching parser and allows for further verification of a match."
+"PPSentinel",""
+"PPRewriter","PPRewriter walks over a grammar graph and transforms its parsers. If the grammar is modified, #hasChanged returns true.Instance Variables:	changed	<Boolean>	Indicates if the last operation has changed anything."
+"PPBlockReplaceRule","PPBlockReplaceRule replaces the matching node by the result of evaluating replaceBlock. This allows arbitrary computation to come up with a replacement.Instance Variables:	replaceBlock <BlockClosure>	The block that returns the parer to replace to matching parser with."
+"PPPattern","PPPattern is meta-parser that is solely used to match other types of parsers. It cannot be used for actually parsing something. The constructor method determines what can be matched."
+"PPRewriterTest",""
+"PPSearcherTest",""
+"PPAnalyzerTest",""
+"PPCommaSeparatedParser",""
+"PPCommaSeparatedParserTest",""
+"PPCompareParser",""
+"PPPushAsParserParser",""
+"PPTokenOLParser",""
+"PPOffsideOLParser",""
+"PPPushParser",""
+"PPAlignOLParser",""
+"PPOnsideOLParser",""
+"IndentStack",""
+"PPColumnParser","Return the current column in the input"
+"PPPopParser",""
+"PPListsParser",""
+"PPMiniFSharpGrammar","A MiniFSharpGrammar is proof of concept of FSharp indentation sensitive rules.Instance Variables"
+"PPMiniPythonGrammar",""
+"PPIndentExpressionGrammar","I am an expression grammar where parentheses ( ) are replaced by indent and dedent"
+"PPMiniCommonMark",""
+"PPMiniHaskellGrammar",""
+"PPNestedStmtListsParser",""
+"PPMiniHaskellGrammarTest",""
+"PPOffsideRuleTest",""
+"PPListsParserTest",""
+"PPMiniPythonGrammarTest",""
+"IndentStackTest",""
+"PPMiniCommonMarkTest",""
+"PPNestedStmtListsParserTest",""
+"PPIndentStreamTest",""
+"PPMiniFSharpGrammarTest",""
+"PPIndentTest",""
+"PPIndentExpressionGrammarTest",""
+"PPWater",""
+"PPMemoizingSea","A PPMemoizingIsland is memoized version of PPIsland. Use this one, unless you don't mind really bad performance. If the memoized version is not working flawlessly, its a bug!Please see help of the PPIsland for how to use...Instance Variables	memoizationDictionaries:		<Object>	rootParser:		<Object>memoizationDictionaries	- memoization cacherootParser	- used for memoizing, once the root changes, flushes the caches"
+"PPPreviousParser",""
+"PPSea","A PPIsland allows for imprecise parsing. One can create it on a parser p by calling: 'p island' E.g.:p := x, a island, y              accepts following inputs:x.....a.....b xabyet fails on:x....a....cxbxacx..b....a....bThe input represented by dots is called water and water can appear before and after the island. Use it, if you don't want to define all the grammar rules and you want to skip something.I am still an experiment, but if you know how to improve me, please contact Jan Kurs at: kurs@iam.unibe.chInstance Variables	afterWaterParser:		<Object>	awp:		<Object>	beforeWaterParser:		<Object>	bwp:		<Object>	context:		<Object>	island:		<Object>afterWaterParser	- xxxxxawp	- xxxxxbeforeWaterParser	- xxxxxbwp	- xxxxxcontext	- xxxxxisland	- xxxxx"
+"PPNonEmptyParser","I return failure, if the delegate parser did not consumed any input."
+"PPRubySeaGrammar","I can recognize basic structure block in ruby code (almost precisely).I use indentation to determine the scope of the block. I use island to skip the rest.The following structures are recognized:- modules- classes- methods"
+"PPRobustXmlFeedParser","A RobustXmlFeedParser is XmlFeedParser, that can handle error within an xml Item element. This is thanks to the fact, that elements in item are defined as islands (see rule itemContent)."
+"PPRubySeaGrammarTest",""
+"PPXmlFeedParser","A XmlFeedParser is Parser of a fake shop feed. Shop feed is a XML file with information about shop products. Shop feed can be malformed (for any reason) the parser will recover from malformed item (see rule shoplistContent) and will continue on the next valid item.Instance Variables	closeItem:		<Object>	closeName:		<Object>	closeShoplist:		<Object>	item:		<Object>	itemContent:		<Object>	name:		<Object>	nameContent:		<Object>	openItem:		<Object>	openName:		<Object>	openShoplist:		<Object>	shoplist:		<Object>	shoplistContent:		<Object>	simpleElement:		<Object>	stringValue:		<Object>closeItem	- xxxxxcloseName	- xxxxxcloseShoplist	- xxxxxitem	- xxxxxitemContent	- xxxxxname	- xxxxxnameContent	- xxxxxopenItem	- xxxxxopenName	- xxxxxopenShoplist	- xxxxxshoplist	- xxxxxshoplistContent	- xxxxxsimpleElement	- xxxxxstringValue	- xxxxx"
+"PPRobustXmlFeedParserTest",""
+"PPXmlFeedParserTest",""
+"PPSeaTest",""
+"PPMemoizingSeaTest",""
+"FirstFollowNextTests",""
+"PPJsonGrammar",""
+"PPJsonParser",""
+"PPJsonGrammarTest",""
+"PPMSEPrettyPrinter",""
+"PPMSEGrammar","This defines a parser for the MSE format.Instance Variables:	elements	<BalloonBezierSimulation | BalloonLineSimulation | Character class | ECMenuMorph | FMSingleEdgeStrategy | GLMSelectedTextChanged | LineSegment | MABreadthFirstSearchPath | MADijkstra | PPParser | REPHudson | SHRange | Stopwatch | Timespan>	element	<Heap | PPParser | RecordingControlsMorph>	elementName	<ProtoObject | PseudoContext>	elementId	<PPParser>"
+"PPMSEArrayParser",""
+"PPMSEArrayParserTest",""
+"PPMSEGrammarTest",""
+"PPManifestMfParser",""
+"PPManifestMfParserTest",""
+"PPCompositeParser","A PPCompositeParser is composed parser built from various primitive parsers. Every production in the receiver is specified as a method that returns its parser. Note that every production requires an instance variable of the same name, otherwise the production is not cached and cannot be used in recursive grammars. Productions should refer to each other by reading the respective inst-var. Note: these inst-vars are typically not written, as the assignment happens in the initialize method using reflection.The start production is defined in the method start. It is aliased to the inst-var parser defined in the superclass of PPCompositeParser."
+"PPFailingParser","A parser that consumes nothing and always fails.Instance Variables:	message <String>	The failure message."
+"PPFailure","The failure object in PetitParser. It is the only class that responds to #isPetitFailure with true. It contains an error message and a position of the occurrence of the failure.Instance Variables:	message	<String>	The error message of this failure.	position	<Integer>	The position of this failure in the input stream."
+"PPGreedyRepeatingParser","A greedy repeating parser, commonly seen in regular expression implementations. It aggressively consumes as much input as possible and then backtracks to meet the 'limit' condition.This class essentially implements the iterative version of the following recursive parser composition:	| parser |	parser := PPChoiceParser new.	parser setParsers: (Array		with: (self , parser map: [ :each :rest | rest addFirst: each; yourself ])		with: (limit and ==> [ :each | OrderedCollection new ])).	^ parser ==> [ :rest | rest asArray ]"
+"PPPredicateSequenceParser","A parser that accepts if a given predicate on an arbitrary number of elements of the input sequence holds.Instance Variables:	size	<Integer>	The number of elements to consume."
+"PPFlattenParser","A parser that answers a flat copy of the range my delegate parses."
+"PPSequenceParser","A parser that parses a sequence of parsers."
+"PPActionParser","A parser that performs an action block with the successful parse result of the delegate.Instance Variables:	block	<BlockClosure>	The action block to be executed."
+"PPEndOfFileParser","A PPEndOfFileParser is parser that will will return true if the stream position is at the end, returns failure otherwise.The diffirenece between PPEndOfFIleParser and PPEndOfInputParser is: - PPEndOfFileParser can be created using #eof asParser - PPEndOfInputParser can be created by using parser end - PPEndOfFileParser does not delegate to any other parser - PPEndOfInputParser parsers its delegate and then decides if the input is at the end.The PPEndOfFileParser can be used to accept some input only if it is at the end of the input, e.g:   ('a' asParser, #eof asParser) parse: 'a'   ('a' asParser, #eof asParser) parse: 'aa'"
+"PPUnresolvedParser","This is a temporary placeholder or forward reference to a parser that has not been defined yet. If everything goes well it will eventually be replaced with the real parser instance."
+"PPCharSetPredicate","I am a predicate allowing to check if a character is included in the set of char described by the Block this object is initialized with.I work efficiently on characters for which the code point is between 1 and 255 using a lookup table.For example,[[[charSetPredicate := PPCharSetPredicate on: [ :char | #($a $b $c) includes: char ].charSetPredicate value: $a. ""true""charSetPredicate value: $z. ""false""]]]"
+"PPOptionalParser","A parser that optionally parsers its delegate, or answers nil."
+"PPPluggableParser","A pluggable parser that passes the parser stream into a block. This enables users to perform manual parsing or to embed other parser frameworks into PetitParser.Instance Variables:	block	<BlockClosure>	The pluggable one-argument block."
+"PPConditionalParser","A PPConditionalParser is a delegate parser that evaluates a block and if that returns true, the delegate parser is invoked and its result returned. If the block evaluates to false, the PPFailure is returned.The block accepts one argument, context.E.g.    ('a' asParser if: [ :ctx | (ctx propertyAt: #myProperty) isNotNil ]) parse: 'a'"
+"PPListParser","Abstract parser that parses a list of things in some way (to be specified by the subclasses).Instance Variables:	parsers	<SequenceableCollection of: PPParser>	A sequence of other parsers to delegate to."
+"PPMemento","PPMemento is an internal class used by PPMemoizedParser to cache results and detect left-recursive calls.Instance Variables:	result	<Object>	The cached result.	count	<Integer>	The number of recursive cycles followed.	"
+"PPLazyRepeatingParser","A lazy repeating parser, commonly seen in regular expression implementations. It limits its consumption to meet the 'limit' condition as early as possible.This class essentially implements the iterative version of the following recursive parser composition:	| parser |	parser := PPChoiceParser new.	parser setParsers: (Array		with: (limit and ==> [ :each | OrderedCollection new ])		with: (self , parser map: [ :each :rest | rest addFirst: each; yourself ])).	^ parser ==> [ :rest | rest asArray ]"
+"PPStartOfLineParser","A PPStartOfLineParser is that does not fail, if the stream position is at the beginning of a line. It does not consume anything."
+"PPTokenParser","A parser that answers a token with the value of my delegate parses.Instance Variables:	tokenClass	<PPToken class>	The token sub-class to be used."
+"PPLiteralParser","Abstract literal parser that parses some kind of literal type (to be specified by subclasses).Instance Variables:	literal	<Object>	The literal object to be parsed.	message	<String>	The error message to be generated."
+"PPWrappingParser","A parser that performs an action block upon activation with the stream and a continuation block."
+"PPEndOfLineParser","A PPEndOfLineParser is a parser that does not fail, if the stream position is at the end of a line. It does not consume anything."
+"PPToken","PPToken represents a parsed part of the input stream. Contrary to a simple String it remembers where it came from, the original collection and its start and stop position.Instance Variables:	collection	<SequenceableCollection>	The collection this token comes from.	start	<Integer>	The start position in the collection.	stop	<Integer>	The stop position in the collection."
+"PPContext","A PPContext is provides contextual information to the parsing function.Instance Variables	globals:		<Dictionary>	properties:		<Dictionar>	root:		<PPParser>	stream:		<PPStream>globals	- properties that are not restored after backtrackingproperties	- properties that are restored after backtrackingroot	- the root parserstream	- input stream"
+"PPRepeatingParser","An abstract parser that repeatedly parses between 'min' and 'max' instances of its delegate. The default configuration parses an infinite number of elements, as 'min' is set to 0 and 'max' to infinity (SmallInteger maxVal).Instance Variables:	min	<Integer>	The minimum number of repetitions.	max	<Integer>	The maximum number of repetitions."
+"PPPredicateParser","An abstract parser that accepts if a given predicate holds.Instance Variables:	predicate	<BlockClosure>	The block testing for the predicate.	predicateMessage	<String>	The error message of the predicate.	negated	<BlockClosure>	The block testing for the negation of the predicate.	negatedMessage	<String>	The error message of the negated predicate."
+"PPEndOfInputParser","A parser that succeeds only at the end of the input stream."
+"PPChoiceParser","A parser that uses the first parser that succeeds."
+"PPParser","An abstract parser for all parsers in PetitParser. Subclasses implement #parseOn: to perform the actual recursive-descent parsing. All parsers support a variety of methods to perform an actual parse, see the methods in the #parsing protocol. Parsers are combined with a series of operators that can be found in the #operations protocol.Instance Variables:	properties	<Dictionary>	Stores additional state in the parser object."
+"PPPossessiveRepeatingParser","The default repeating parser with standard PEG semantics (i.e. possessive, blind, eager)."
+"PPStartOfLogicalLineParser","A PPStartOfLogicalLineParser is that does not fail, if the stream position is at the first non-blank character of a line. It does not consume anything."
+"PPMemoizedParser","A memoized parser, for refraining redundant computations.Instance Variables:	stream	<PositionableStream>	The stream of the associated memento objects.	buffer	<Array of: PPMemento>	The buffer of memento objects."
+"PPLiteralObjectParser","A parser that accepts a single literal object, such as a character. This is the same as the predicate parser 'PPPredicateParser expect: literal' but slightly more efficient."
+"PPAndParser","The and-predicate, a parser that succeeds whenever its delegate does, but does not consume the input stream [Parr 1994, 1995]."
+"PPEpsilonParser","A parser that consumes nothing and always succeeds."
+"PPStream","A positional stream implementation used for parsing. It overrides some methods for optimization reasons."
+"PPContextMemento","I am an implementation of the memento design pattern.My goal is to remember the state of a PPContext to eventually be able to restore its state later.I should be instantiated using PPContext>>#memorize method.A PPContext can restore its state by providing the memento to PPContext>>#restore:."
+"PPLimitedRepeatingParser","An abstract parser that repeatedly parses between 'min' and 'max' instances of my delegate and that requires the input to be completed with a specified parser 'limit'. Subclasses provide repeating behavior as typically seen in regular expression implementations (non-blind).Instance Variables:	limit	<PPParser>	The parser to complete the input with."
+"PPPredicateObjectParser","A parser that accepts if a given predicate on one element of the input sequence holds."
+"PPExpressionParser","A PPExpressionParser is a parser to conveniently define an expression grammar with prefix, postfix, and left- and right-associative infix operators.The following code initializes a parser for arithmetic expressions. First we instantiate an expression parser, a simple parser for expressions in parenthesis and a simple parser for integer numbers.	expression := PPExpressionParser new.	parens := $( asParser token trim , expression , $) asParser token trim 		==> [ :nodes | nodes second ].	integer := #digit asParser plus token trim		==> [ :token | token value asInteger ].	Then we define on what term the expression grammar is built on:	expression term: parens / integer.	Finally we define the operator-groups in descending precedence. Note, that the action blocks receive both, the terms and the parsed operator in the order they appear in the parsed input. 		expression		group: [ :g |			g prefix: $- asParser token trim do: [ :op :a | a negated ] ];		group: [ :g |			g postfix: '++' asParser token trim do: [ :a :op | a + 1 ].			g postfix: '--' asParser token trim do: [ :a :op | a - 1 ] ];		group: [ :g |			g right: $^ asParser token trim do: [ :a :op :b | a raisedTo: b ] ];		group: [ :g |			g left: $* asParser token trim do: [ :a :op :b | a * b ].			g left: $/ asParser token trim do: [ :a :op :b | a / b ] ];		group: [ :g |			g left: $+ asParser token trim do: [ :a :op :b | a + b ].			g left: $- asParser token trim do: [ :a :op :b | a - b ] ].		After evaluating the above code the 'expression' is an efficient parser that evaluates examples like:	expression parse: '-8++'.	expression parse: '1+2*3'.	expression parse: '1*2+3'.	expression parse: '(1+2)*3'.	expression parse: '8/4/2'.	expression parse: '8/(4/2)'.	expression parse: '2^2^3'.	expression parse: '(2^2)^3'.	Instance Variables:	operators	<Dictionary>	The operators defined in the current group."
+"PPLimitedChoiceParser","A PPLimitedChoiceParser is similar to the choice parser except for the fact, that limit must pass if one of the choices passes. This is similar strategy as with the PPLimitedRepeatingParsers.This way, one can implement choices that successfully parse this (if limit is filled with 'a'):('aa' // 'a') 'a' parse: 'aa'The limit can be automatically filled using elements from either follow or next set (see methods  PPParser>>followSets or PPParser>>nextSets).Limit is by default epsilon and therefore it behaves as an ordinary ordered choice.Instance Variables	limit:		<Object>limit	- xxxxx"
+"PPDelegateParser","A parser that delegates to another parser.Instance Variables:	parser	<PPParser>	The parser to delegate to."
+"PPTrimmingParser","A parser that silently consumes spaces before and after the delegate parser."
+"PPStartOfWordParser","A PPStartOfWordParser is that matches a word boundary.I return success if no word character preceeds my position and if word chracter succeeds my position.Word characters are any alphanumeric characters."
+"PPNotParser","The not-predicate, a parser that succeeds whenever its delegate does not, but consumes no input [Parr 1994, 1995]."
+"PPLiteralSequenceParser","A parser accepts a sequence of literal objects, such as a String. This is an optimization to avoid having to compose longer sequences from PPSequenceParser."
+"PPLambdaParser",""
+"PPArithmeticParser",""
+"PPExtendedCompositeParser","A PPExtendedCompositeParser offers you a new way to create rules. Just define your rule as a method in the #rules protocol and it will be managed exactly like rules in PPCompositeParser.You will not have the limitation of 256 rules due to the instance variables limit but you will need to refer to your rule with the method #rule: in any other rule using it.You can mix PPCompositeParser and PPExtendedCompositeParser way to define rules.Look at PPExtendedCompositeParserFake to have a basic example."
+"PPMultiStringParser","A PPMultiStringParser is a tool able to create a really effective parser on a huge  collection of Strings. This parser will match any string in this collection, and the longest one if two are matchable (( PPMultiStringParser on: #('tin' 'tintin')) parse: 'tintin' will match 'tintin' and not just 'tin')Instance Variables	possibilities:		<Object>possibilities	- xxxxx"
+"PPBrowserStream","Provides a stream compatible with PPStream with additional abilities for display in parser inspections.Check conversions:- asExecutionTrace- asFrequencyTable- asPositionDrawing- asPositionMorphthe is also support for clicking on representations. "
+"PPParserInspector","I allow one to type in content and run the parser for the content.This browser expects an instance of PPParser in the #entity port.self openOn: PPArithmeticParser new."
+"PPDebugParser","A PPDebugParser is  a parser that traces all the progress and returns special object that can be browsed to see how the parsing advanced over a time.Used by adding enableDebug before parsing.Instance Variables	root:		result of root parserroot	- xxxxx"
+"PPParserDebuggerResult","This class is meant to be used as a model for running a parser over a given stream.You create it via parse:with: class side method. For example:self parse: '1 + 2' with: PPArithmeticParser new.Instance Variables:	parser	<PPParser>	result	<Object>	children	<OrderedCollection of PPParserDebuggerResult>	parent	<PPParserDebuggerResult>"
+"PPVerticalParserInspector","I allow one to type in content and run the parser for the content.The content and results are displayed on top of each other."
+"PPParserTest",""
+"PPContextMementoTest",""
+"PPLambdaParserTest",""
+"PPExtensionTest",""
+"PPPredicateTest",""
+"PPContextTest",""
+"PPComposedTest",""
+"PPMappingTest",""
+"PPScriptingTest","These are some simple demo-scripts of parser combinators for the compiler construction course.http://www.iam.unibe.ch/~scg/Teaching/CC/index.html"
+"PPArithmeticParserTest",""
+"PPConditionalParserTest",""
+"PPObjectTest",""
+"PPTokenTest",""
+"PPExpressionParserTest",""
+"PPConditionalParserTests",""
+"PPreRegexStreamPreProcessor","A PPreRegexStreamPreProcessor is a preProcessor based on regular expression.Instance Variables	regex:		<Object>	replacement:		<Object>regex	- xxxxxreplacement	- xxxxx"
+"PPreIntervalTransformation",""
+"PPreIntervalTransformations",""
+"PPInfoParser","A PPInfoParser is a containing parser providing the evaluation content and the stream content positions.To use this, only send ""info"" to any PPParser:'My Parser' asParser infoInstance Variables"
+"PPrePParserStreamPreProcessor",""
+"PPInfo","A PPInfo represent the informations around a parsing result and also contain this result. It is usefull to get parsing evaluation and stream position.Instance Variables	element:		<Object>	start:		<Object>	stop:		<Object>element	- xxxxxstart	- xxxxxstop	- xxxxx"
+"PPreStreamTransformation",""
+"PPRelativePositionStream","A PPRelativePositionStream is a specialized stream to get the relative position according to another stream.Instance Variables"
+"PPreStreamPreProcessor","A PPreTransformer is a processor able to transform a stream into another stream. It will also create the PPre	Transformation to make possible linking the original stream to the processed stream.Instance Variables"
+"PPPreProcessingParserRegexTest",""
+"PPPreProcessingParserTest","A PPPreProcessingParserTest is xxxxxxxxx.Instance VariablesDouble inclusion:yoyoLiYYbTeYYlTluTlYYeyoyo==>yoyoLiYYbeYYllulYYeyoyo==>yoyoLibelluleyoyo"
+"PPInfoParserTest",""
+"PPRegexParser",""
+"PPRegexMatcher",""
+"PPRegexTest",""
+"PPSmalltalkGrammar","A parser for Smalltalk methods and expressions."
+"PPSmalltalkToken",""
+"PPSmalltalkWhitespaceParser",""
+"PPSmalltalkParser","Enhances the Smalltalk grammar with production actions to build parse-tree nodes of the refactoring browser."
+"PPSmalltalkTokenParser","A parser that knows how to skip comments and whitespace in Smalltalk and how to instantiate tokens"
+"PPSmalltalkParserTests",""
+"PPSmalltalkClassesTests","Evalaute the following code to verify the complete image."
+"PPSmalltalkGrammarTests",""
+"PPParserResource",""
+"PPAbstractParserTest",""
+"PPCompositeParserTest",""
+"PPXPathAttributeFilter","I'm a filter by attribute. I check that an attribute matches with its value (or any if specified) "
+"PPXPathMultipleFilter","I filter collections. I answer the unique element if collection size = 1, or the full collection if is bigger. "
+"PPXPathWalker","I'm a ""walker"" for visiting all nodes of a XPath expression and resolve an xml document with it. "
+"PPXPathParser",""
+"PPXPathFilter","I'm a node filter. A xpath node applies me to filter xml elements. "
+"PPXPathIndexFilter","I'm a filter by index. I answer an indexed element in a collection."
+"PPXPathNode","I'm an XPath expresion node. I'm conformed for two attributes, a tag, who defines the xml element in which I'm applied and a filter, who defines how I will be selected (for example, an attribute, an index, etc.)"
+"PPXPathGrammar",""
+"PPXPathError","I'm an error of XPath parsing"
+"PPXPathSyntaxTest",""
+"PPXmlData","An abstract XML data node."
+"PPXmlText","An XML text node."
+"PPXmlName",""
+"PPXmlComment","An XML comment node."
+"PPXmlParent",""
+"PPXmlNode","An abstract XML node."
+"PPXmlDoctype",""
+"PPXmlDocument","An XML root node."
+"PPXmlGrammar",""
+"PPXmlAttribute",""
+"PPXmlProcessing","An XML processing instruction."
+"PPXmlElement","An XML element node."
+"PPXmlParser",""
+"PPXmlResource",""
+"PPXmlParserTest",""
+"PPYAMLGrammar","I am a grammar to parse YAML.See http://yaml.org/ for inforation about YAML.http://www.yaml.org/spec/1.2/spec.html has the gory details.There is a BNF at https://gist.github.com/tociyuki/3936873start points to l_bare_documentProperties are not yet supported.| and & are not supported either."
+"PPYAMLGrammarTest",""

@@ -1,0 +1,842 @@
+"class","comment"
+"JQGoogleLibrary",""
+"JQAjax","Load a remote page using an HTTP request."
+"JQLoad","Load HTML from a remote file and inject it into the DOM."
+"JQueryClass",""
+"JQAjaxifierLibrary",""
+"JQEvent",""
+"JQGet","Load a remote page using an HTTP GET request."
+"JQPost","Load a remote page using an HTTP POST request."
+"JQueryInstance",""
+"JQDeploymentLibrary",""
+"JQPlugin",""
+"JQGetJson","Load JSON data using an HTTP GET request."
+"JQAnimate",""
+"JQScriptGenerator",""
+"JQDevelopmentLibrary",""
+"JQAjaxSetup","Setup global settings for AJAX requests."
+"JQGetScript","Loads, and executes, a local JavaScript file using an HTTP GET request."
+"JQuery","The core functionality of jQuery centers around this object. Everything in jQuery is based upon this, or uses this in some way. The most basic use of this object is to pass in an expression (usually consisting of CSS), which then finds all matching elements."
+"JQAjaxTest",""
+"JQueryInstanceTest",""
+"JQFunctionalTest",""
+"JQEffectsFunctionalTest",""
+"JQRequestFunctionalTest",""
+"JQEffectsTest",""
+"JQAjaxFunctionalTest",""
+"JQFormFunctionalTest",""
+"JQWelcomeFunctionalTest",""
+"JQEventTest",""
+"JQAllFunctionalTestsLibrary",""
+"JQAnimateFunctionalTest",""
+"JQJsonFunctionalTest",""
+"JQueryTest",""
+"JQueryClassTest",""
+"JQAllFunctionalTests",""
+"JQCounterFunctionalTest",""
+"JQRepeatingFunctionalTest",""
+"JQEffectFunctionalTest",""
+"JQDraggableTest",""
+"JQAccordionFunctionalTest",""
+"JQUiAllFunctionalTests",""
+"JQSelectableFunctionalTest",""
+"JQProgressbarTest",""
+"JQDialogFunctionalTest",""
+"JQButtonTest",""
+"JQUiAllFunctionalTestsLibrary",""
+"JQToggleFunctionalTest",""
+"JQSortableTest",""
+"JQIconsFunctionalTest",""
+"JQDroppableTest",""
+"JQAutocompleteFunctionalTest",""
+"JQueryUiTest",""
+"JQSliderFunctionalTest",""
+"JQResizableTest",""
+"JQDraggableFunctionalTest",""
+"JQDatepickerTest",""
+"JQUiWelcomeFunctionalTest",""
+"JQTransitionFunctionalTest",""
+"JQTabsTest",""
+"JQProgressbarFunctionalTest",""
+"JQEffectTest",""
+"JQButtonFunctionalTest",""
+"JQAccordionTest",""
+"JQSortableFunctionalTest",""
+"JQSelectableTest",""
+"JQDroppableFunctionalTest",""
+"JQDialogTest",""
+"JQUiFunctionalTest",""
+"JQVisualsFunctionalTest",""
+"JQResizableFunctionalTest",""
+"JQPositionTest",""
+"JQDatepickerFunctionalTest",""
+"JQAutocompleterTest",""
+"JQTabsFunctionalTest",""
+"JQSliderTest",""
+"JQHotSneaksTheme",""
+"JQBlackTieTheme",""
+"JQDatepicker","A highly configurable plugin that adds datepicker functionality to your pages. You can restrict the functionality in various ways, you can select date ranges, and you can provide the date in picker in a number of languages."
+"JQBlitzerTheme",""
+"JQUiDevelopmentLibrary",""
+"JQSunnyTheme",""
+"JQPosition",""
+"JQEggplantTheme",""
+"JQAccordion","An expandable/collapsible content pane. Applicable when content must be displayed within limited space."
+"JQUiLightnessTheme",""
+"JQSlider",""
+"JQHumanityTheme",""
+"JQDialog","Make the selected elements Dialog boxes."
+"JQCupertinoTheme",""
+"JQRedmondTheme",""
+"JQUiGoogleLibrary",""
+"JQSwankyPurseTheme",""
+"JQProgressbar","Make the selected elements progressbar."
+"JQExciteBikeTheme",""
+"JQAutocomplete","Autocomplete, added to an input field, enables users to quickly find and select from a pre-populated list of values as they type, leveraging searching and filtering."
+"JQOvercastTheme",""
+"JQSouthStreetTheme",""
+"JQVaderTheme",""
+"JQLeFrogTheme",""
+"JQMintChocTheme",""
+"JQSortable","Creates new sortable on the nodeset supplied by the query."
+"JQDraggable","Creates new draggables on the nodeset supplied by the query."
+"JQDarkHiveTheme",""
+"JQEffect","This is the core dependency of the effects of jQuery UI. This file is needed by all other effects and can also be used as stand-alone. Please note that ui.core.js is not a dependency for the effects to work."
+"JQSmoothnessTheme",""
+"JQTrontasticTheme",""
+"JQResizable","Creates new resizables on the nodeset supplied by the query."
+"JQFlickTheme",""
+"JQButton","Button enhances standard form elements like button, input of type submit or reset or anchors to themable buttons with appropiate mouseover and active styles.In addition to basic push buttons, radio buttons and checkboxes (inputs of type radio and checkbox) can be converted to buttons: Their associated label is styled to appear as the button, while the underlying input is updated on click.Buttons can be grouped using the buttonSet method, which should be always applied for radio buttons."
+"JQBaseTheme",""
+"JQUiDeploymentLibrary",""
+"JQTabs",""
+"JQStartTheme",""
+"JQDroppable","Creates new droppables on the nodeset supplied by the query."
+"JQDotLuvTheme",""
+"JQWidget",""
+"JQPepperGrinderTheme",""
+"JQUiDarknessTheme",""
+"JQSelectable","Creates new selectable on the nodeset supplied by the query."
+"JSFunction","I represent an anonymous JavaScript function."
+"JSAccess","I access a member of the decorated object."
+"JSCondition","I wrap the decorated object into a conditional statement."
+"JSScript","I represent a sequence of JavaScript statements."
+"JSMember",""
+"JSConcatenation","I represent a sequence (or concatenation) of a decorated object and another object."
+"JSLogger","I am a logger class to be used together with FireBug. I have nothing to do with Scriptaculous directly, but I nicely fit in here as everybody should be using FireBug for Script debugging anyway."
+"JSIfThenElse","I execute different code snippets depending if the receiver is true (defined) or false (null)."
+"JSBinary","I join the decorated object with a binary operator."
+"JSJson","I represent the JSON object (www.json.org) that is supported by most modern web browsers. For older browsers I require WAJsonDeploymentLibrary or WAJsonDevelopmentLibrary to be included."
+"JSCreate","I instantiate the decorated object."
+"JSStatement",""
+"JSJoin","I join a collection of JavaScript statements with the given string."
+"JSCall","I represent a function call or method invocation to the decorated object."
+"JSNegation","I negate the decorated object and yield a boolean value."
+"JSObject","I represent the abstract root of all JavaScript objects in the Smalltalk world. My subclasses provide accessors and action methods to configure instances of myself and implement the method #javascriptContentOn: to emit valid JavaScript code for my presentation.Instance Variables	decoration:			<JSObject|JSDecoration>	renderContext:		<WARenderContext>	rendererClass:		<WARenderer>"
+"JSAssignment","I represent an assignment ot the decorated object."
+"JSProperty","I access a property of the decorated object."
+"JSTimeout","I evaluate the decorated object after a timeout."
+"JSApply","I apply a JavaScript function and provide arguments."
+"JSPassenger",""
+"JSAssignLocal","I assign the decorated object to a local variable."
+"JSInterval","I periodically execute the decorated object."
+"JSDecoration","I decorate JavaScript objects."
+"JSAjaxCallback",""
+"JSAssign","I assign the decorated object to a global variable."
+"JSTimed",""
+"JSStream","I represent a verbatim JavaScript string. I support streaming facilities to efficiently encode JavaScript input."
+"JSAlias","I alias the decorated object with a name."
+"JSConditionElse",""
+"JSScriptTest",""
+"JSConversionTest",""
+"JSJsonTest",""
+"JSRenderingTest",""
+"JSStreamTest",""
+"JSObjectTest",""
+"JSDecorationTest",""
+"JSLoggingTest",""
+"WAEmbedTag","The <embed> tag defines a container for an external application or interactive content (a plug-in)."
+"WAListTag","Abstract base class for ordered and unordered list tags.Ordered and unordered lists are rendered in an identical manner except that visual user agents number ordered list items. User agents may present those numbers in a variety of ways. Unordered list items are not numbered.Both types of lists are made up of sequences of list items defined by the LI element (whose end tag may be omitted).Lists may also be nested."
+"WAPopupAnchorTag","I am used to create a link that opens in a new window. A name can be specified using #name: and many features can be configured. Note, that not all features are supported on all web browser platforms. If Javascript is disabled the link will behave like any other anchor.Most of the time a popup-anchor is created like this:	html popupAnchor		callback: [ self session presenter			show: WACounter new ];		with: 'Open the counter within a new window'This code creates a new render-loop and displays a new instance of WACounter within the new browser window.		"
+"WARadioGroup","A WARadioGroup is a container for several related radio buttons. It must be used to create radio buttons.Example:| group |group := html radioGroup.group radioButton	selected: aBoolean;	callback: [ self someThing ]."
+"WATableColumnGroupTag","WATableColumnGroupTag groups a set of col elements. It allows you to group several semantically related columns together."
+"WAOutputTag","The output element represents the result of a calculation."
+"WATextAreaTag","I am a multi line text input widget. See WAInputTest >> #renderTextAreaWithExampleOn: for examples."
+"WAIframeTag","The IFRAME element allows authors to insert a frame within a block of text. Inserting an inline frame within a section of text is much like inserting an object via the OBJECT element: they both allow you to insert an HTML document in the middle of another, they may both be aligned with surrounding text, etc. The information to be inserted inline is designated by the src attribute of this element. The contents of the IFRAME element, on the other hand, should only be displayed by user agents that do not support frames or are configured not to display frames.Inline frames may not be resized."
+"WASubmitButtonTag","The submit type creates a button. When a submit button is pressed it automatically submits the form."
+"WATimeInputTag","supported on:- Opera 9graceful degeneration to text inputA time (hour, minute, seconds, fractional seconds) encoded according to ISO 8601 [ISO8601] with no time zone: two digits (0-9) for the hour, a colon (U+003A), two digits for the minute, optionally a colon and two digits for the second, and optionally (if the seconds are present) a period (U+002E) and one or more digits for the fraction of a second. All the numbers must be in base ten and zero-padded if necessary. If the seconds are omitted, they must be assumed to be zero. If the fraction is omitted, it must be assumed to be zero as well. For instance: 23:59:00.00000 or 00:00:05. The step attribute specifies the precision in seconds, defaulting to 60. Times must be greater than or equal to 0 and must be less than 24 hours, in addition to any tighter restrictions placed on the control by the min and max attributes. Note that this type is not an elapsed time data type.User agents are expected to show an appropriate widget, such as a clock. UAs should make it clear to the user that the time does not carry any time zone information. "
+"WAColorInputTag","Provide a user interface element that lets a user specify a color"
+"WACommandTag","The command element represents a command that the user can invoke."
+"WACollectionTag","This element allows the use to select one (in single selection mode) or multiple (in single selection mode) elements. Multiple selection can be triggered with #beMultiple, single selection can be triggered with #beSingle .Default is single selection.The general idea is that you pass the collection of options to #list: and use #labels: to customize their rendering. The selected option(s) can be set with: #selected:.This whole class is kind of an awkward hack, but nobody needs MI anyway. You can always get a way with composition and delegation"
+"WAAnchorTag","I'm the class responsible for adding anchors (links) to your webpage. There are multiple ways of using me.1. In the following case, the method #doSomethingOnClick will be sent to self when the user click on the anchor 'Click here to do something':	html anchor		callback: [ self doSomethingOnClick ];		with: 'Click here to do something'.		The following code is a shortcut to create an anchor. The executed action is #doSomethingOnClick and the text is 'Do Something On Click':	html anchor		on: #doSomethingOnClick of: self2. In the following case, a link to an external resource will be generated:	html anchor		url: 'http://www.seaside.st';		with: 'Visit the Seaside'"
+"WATimeTag","http://www.whatwg.org/specs/web-apps/current-work/#the-timenot known browser supportThe time element represents a date and/or a time.The datetime attribute, if present, must contain a date or time string that identifies the date or time being specified.If the datetime attribute is not present, then the date or time must be specified in the content of the element, such that parsing the element's textContent according to the rules for parsing date or time strings in content successfully extracts a date or time. see RFC 3339:http://www.ietf.org/rfc/rfc3339.txt"
+"WASourceTag","The source element allows authors to specify multiple media resources for media elements.The source attribute must be present. Either the type  attribute, the media attribute or both, must be specified, unless this is the last source element child of the parent element."
+"WAOptionTag","The option element defines an option in a drop-down list. "
+"WAWeekInputTag","supported on:- Opera 9graceful degeneration to text inputA date consisting of a year and a week number encoded according to ISO 8601 [ISO8601]: four or more digits (0 to 9) representing the year, a hyphen (U+002D), a literal ""W"", and two digits for the week, zero-padded if necessary. All the numbers must be in base ten. The week number must be a number greater than or equal to 01. Week 01 of a given year is the week containing the 4th of January; weeks start on Monday. For instance: 2005-W52 is the week that ends on Sunday the first of January, 2006. The step attribute specifies the precision in weeks, defaulting to 1. This type is used most frequently for dates in European industry."
+"WAHeadingTag","A heading element briefly describes the topic of the section it introduces. Heading information may be used by user agents, for example, to construct a table of contents for a document automatically.There are six levels of headings in HTML with H1 as the most important and H6 as the least. Visual browsers usually render more important headings in larger fonts than less important ones."
+"WAHiddenInputTag","Authors may create controls that are not rendered but whose values are submitted with a form. Authors generally use this control type to store information between client/server exchanges that would otherwise be lost due to the stateless nature of HTTP (see [RFC2616]). The INPUT element is used to create a hidden control."
+"WANumberInputTag","supported on:- Opera 9graceful degeneration to text inputA numerical value. The step attribute specifies the precision, defaulting to 1.Numbers must be submitted as a significand followed by an optional exponent. The significand is an optional minus sign (U+002D, ""-""), an integer, and optionally a decimal point (U+002E, ""."") and an integer representing the fractional part. The exponent is a lowercase literal letter ""e"", an optional minus sign, and an integer representing the index of a power of ten with which to multiply the significand to get the actual number. Integers are one or more decimal digits. If the exponent part is omitted its index of a power of ten must be assumed to be zero.For example, negative-root-two, to 32 significant figures, would be -1.4142135623730950488016887242097e0, the radius of the earth given in furlongs, to an arbitrary precision, would be 3.17e4, and the answer to the life, the universe and everything could be any of (amongst others) 42, 0042.000, 42e0, 4.2e1, or 420e-1.This format is designed to be compatible with scanf(3)'s %f format, ECMAScript's parseFloat, and similar parsers while being easier to parse than some other floating point syntaxes that are also compatible with those parsers.The strings +0, 0e+0, and +1e+3 are all invalid numbers (the minus sign cannot be replaced by a plus sign for non-negative numbers, it must simply be omitted). Similarly, .42e2 is invalid (there must be at least one digit before the decimal point). UAs must not submit numbers in invalid formats (whatever the user might enter).The submission format is not intended to be the format seen and used by users. UAs may use whatever format and UI is appropriate for user interaction; the description above is simply the submission format."
+"WAFormInputTag","The <input> tag defines the start of an input field where the user can enter data."
+"WACompound","I am the superclass for stuff that is not html element but you still want to access via the canvas API."
+"WASelectTag","This element allows the use to select one (in single selection mode) or multiple (in single selection mode) elements. Default is single selection. Multiple selection can be triggered with #beMultiple.Single selection is in general a drop-down list, so make sure the list of options is not too big.Multiple selection has in general crappy browser support and a list of checkboxes is in general the better option.If in single selection mode and you want enable ""no selection"" see #beOptional.If you absolutely need to you can render the options yourself with 'html option' inside #with:Make sure to check the superclass for more methods.See WAInputTest >> #renderSingleSelectionOn: and WAInputTest >> #renderMultiSelectionOn: for examples."
+"WABreakTag","The BR element forcibly breaks (ends) the current line of text. Authors are advised to use style sheets to control text flow around floating images and other objects.Prohibiting a line break Sometimes authors may want to prevent a line break from occurring between two words. The &nbsp; entity (&#160; or &#xA0;) acts as a space where user agents should not cause a line break."
+"WATimeInput","I am a composition of three input fields that allows the user to select hour, minute and optionally second.#withSeconds and #withoutSeconds can be used to toggle seconds.The argument for my callback blocks is an instance of Time.See WADateTimeTest >> #renderDateTimeOn:"
+"WAMediaElementTag","WAMediaElementTag is an abstract class for all the media elements providing common media attributes.See: http://www.w3.org/TR/html5/video.html#media-element"
+"WAHtmlCanvas","I'm a canvas for building HTML."
+"WATableHeadingTag","The WATableHeadingTag defines a table header cell in a table. The text within the th element usually renders in bold."
+"WARubyTextTag","This element works with the <ruby> element. The text following <rt> appears as a note to the base text displayed by the <ruby> element."
+"WAObjectTag","Defines an embedded object. Use this element to add multimedia to your XHTML page.This element allows you to specify the data and parameters for objects inserted into HTML documents, and the code that can be used to display/manipulate that data."
+"WAUrlInputTag","supported on:- Opera 9graceful degeneration to text inputAn IRI, as defined by [RFC3987] (the IRI token, defined in RFC 3987 section 2.2). UAs could, for example, offer the user URIs from his bookmarks. (See below for notes on IDN.) The value is called url (as opposed to iri or uri) for consistency with CSS syntax and because it is generally felt authors are more familiar with the term ""URL"" than the other, more technically correct terms."
+"WADateTimeLocalInputTag","supported on:- Opera 9graceful degeneration to text inputA date and time (year, month, day, hour, minute, second, fractions of a second) encoded according to ISO 8601 [ISO8601], with no time zone information: four or more digits (0 to 9) representing the year, a hyphen (U+002D), two digits for the month, a hyphen, two digits for the day, a literal ""T"", two digits for the hour, a colon (U+003A), two digits for the minute, optionally a colon and two digits for the second, and optionally (if the seconds are present) a period (U+002E) and one or more digits for the fraction of a second. All the numbers must be in base ten and zero-padded if necessary. If the seconds are omitted, they must be assumed to be zero. If the fraction is omitted, it must be assumed to be zero as well. For instance: 1995-12-31T23:59:59.99 or, representing the time 10 milliseconds later, 1996-01-01T00:00. The step attribute specifies the precision in seconds, defaulting to 60 (one minute)."
+"WAGenericTag","A WAGenericTag is the class for all tags that do not have a class of their own.Instance Variables	tag:		<String>tag	- the name of the tag"
+"WASteppedTag","Common superclass for step related tags"
+"WACheckboxTag","The checkbox element is used with an associated property of typ boolean. It renders a HTML <input> element of type checkbox.If this input element is disabled then the callback will still be evaluated but with an argument that is false. See method comment of #callback: for more information."
+"WAEventSourceTag","The event-source element represents a target for events generated by a remote server.The src attribute, if specified, must give a URI (or IRI) pointing to a resource that uses the application/x-dom-event-stream format.When the element is inserted into the document, if it has the src attribute specified, the user agent must act as if the addEventSource() method on the event-source element had been invoked with the URI resulting from resolving the src attribute's value to an absolute URI.While the element is in a document, if its src attribute is mutated, the user agent must act as if first the removeEventSource() method on the event-source element had been invoked with the URI resulting from resolving the old value of the attribute to an absolute URI, and then as if the addEventSource() method on the element had been invoked with the URI resulting from resolving the new value of the src attribute to an absolute URI.When the element is removed from the document, if it has the src attribute specified, or, when the src attribute is about to be removed, the user agent must act as if the removeEventSource() method on the event-source element had been invoked with the URI resulting from resolving the src attribute's value to an absolute URI.There can be more than one event-source element per document, but authors should take care to avoid opening multiple connections to the same server as HTTP recommends a limit to the number of simultaneous connections that a user agent can open per server.The src DOM attribute must reflect the content attribute of the same name. "
+"WAOrderedListTag","See superclass comment."
+"WABasicFormTag","Acts as a basic form, with no defaultAction, and no holding of _s and _c values."
+"WAKeyGeneratorTag","A WAKeygenTag is allows the user agent to generate a secure key and submits the public key.Supported by:    * Netscape 3, 4, 6, 7    * Mozilla 1    * Firefox 1    * Opera 3, 4, 5, 6, 7, 8    * Safari 1 === Links for more info ===http://lists.whatwg.org/pipermail/whatwg-whatwg.org/attachments/20080714/07ea5534/attachment.txthttp://wp.netscape.com/eng/security/comm4-keygen.htmlhttp://wp.netscape.com/eng/security/ca-interface.htmlhttp://webdesign.about.com/od/htmltags/p/bltags_keygen.htmhttp://eskimonorth.com/~bloo/indexdot/html/tagpages/k/keygen.htmhttp://web.archive.org/web/20040710102131/devedge.netscape.com/library/manuals/1998/htmlguide/http://64.233.183.104/search?q=cache:TExfCslqOcwJ:www.html4newbies.com/Keygen.phphttp://www.di.unito.it/~rabser/ssleay/x509_netscape.htmlhttp://msdn.microsoft.com/en-us/library/cc214558.aspx - Something that may look like the MS version of the keygen attribute"
+"WACanvas","This is the superclass of all canvas. It's a rendering interface that generates brushes (see WABrush).Subclass WAXmlCanvas, if you want to generate an XML dialect."
+"WATableColumnTag","WATableColumnTag elements define the alignment properties for cells in one or more columns."
+"WAParameterTag","The param element allows you to specify the run-time settings for an object inserted into XHTML documents."
+"WAVideoTag","Supported only on experimental Operahttp://people.opera.com/howcome/2007/video/A video element represents a video or movie, with an alternate representation given by its contents.http://www.whatwg.org/specs/web-apps/current-work/#videohttp://lists.whatwg.org/pipermail/whatwg-whatwg.org/attachments/20070228/6a0cdddc/attachment.txt"
+"WATextInputTag","I am a single line text input widget. See WAInputTest >> #renderTextInputWithExampleOn: for examples."
+"WAImageTag","The IMG element embeds an image in the current document at the location of the element's definition. The IMG element has no content; it is usually replaced inline by the image designated by the src attribute, the exception being for left or right-aligned images that are ""floated"" out of line.The alt attribute specifies alternate text that is rendered when the image cannot be displayed (see below for information on how to specify alternate text ). User agents must render alternate text when they cannot support images, they cannot support a certain image type or when they are configured not to display images.Seaside per default sets the alternate text to an empty string. This helps validation of the page."
+"WADateInputTag","supported on:- Opera 9graceful degeneration to text inputA date (year, month, day) encoded according to ISO 8601 [ISO8601]: four or more digits (0 to 9) representing the year, a hyphen (U+002D), two digits for the month, a hyphen, and two digits for the day. All the numbers must be in base ten and zero padded if necessary. For instance: 1995-12-31. The step attribute specifies the precision in days, defaulting to 1. User agents are expected to show an appropriate widget, such as a datepicker."
+"WACancelButtonTag","Creates a Cancel submit button."
+"WAEmailInputTag","supported on:- Opera 9graceful degeneration to text inputAn e-mail address, following the format of the addr-spec  token defined in RFC 2822 section 3.4.1 [RFC2822], but excluding the CFWS  subtoken everywhere, and excluding the FWS subtoken everywhere except in the quoted-string subtoken. UAs could, for example, offer e-mail addresses from the user's address book. (See below for notes on IDN.)"
+"WADetailsTag","The details element represents additional information or controls which the user can obtain on demand.The first element child of a details element, if it is a legend element, represents the summary of the details.If the first element is not a legend element, the UA should provide its own legend (e.g. ""Details""). "
+"WADatalistTag","datalist together with the a new list attribute for input is used to make comboboxes:<input list=browsers><datalist id=browsers> <option value=""Safari""> <option value=""Internet Explorer""> <option value=""Opera""> <option value=""Firefox""></datalist>"
+"WAImageMapTag","A WAImageMapTag is supposed to be used like this:	html map		callback: [ :point | self click: point ];		with: [ html image url: 'foo.gif' ]			An example can be found in WAScreenshot.Technical:http://www.w3.org/TR/html4/struct/objects.html#include-mapsThe location clicked is passed to the server as follows. The user agent derives a new URI from the URI specified by the href attribute of the A element, by appending `?' followed by the x and y coordinates, separated by a comma. The link is then followed using the new URI. For instance, in the given example, if the user clicks at the location x=10, y=27 then the derived URI is ""http://www.acme.com/cgi-bin/competition?10,27""."
+"WATrackTag","The <track> tag specifies text tracks for media elements This element is used to specify subtitles, caption files or other files containing text, that should be visible when the media is playing."
+"WATableCellTag","Common superclass for table cells"
+"WAOptionalBreakTag","The <wbr> (Word Break Opportunity) tag specifies where in a text it would be ok to add a line-break."
+"WAHorizontalRuleTag","The HR element causes a horizontal rule to be rendered by visual user agents.The amount of vertical space inserted between a rule and the content that surrounds it depends on the user agent."
+"WATelephoneInputTag","Used to let the user enter and edit a telephone number"
+"WARadioButtonTag","Radio buttons work like checkboxes. The difference is that radio buttons, when sharing a single control name, are exclusive. This means that only one of those radio buttons can be checked, and when it's checked, the rest are automatically unchecked.Radio buttons must be created through a radio group. The callback is only called for the selected option.| group |group := html radioGroup.group radioButton	selected: aBoolean;	callback: [ self someThing ]"
+"WARangeInputTag","supported on:- Safari 2.0 (slider)graceful degeneration to text inputFor this type, step defaults to 1, min defaults to 0, max defaults to 100, and value  defaults to the min value.Volume controls and brightness controls would be good examples of ""range"" data controls."
+"WAAbstractTextAreaTag","An abstract class to describe the HTML elements that allow the user to enter text."
+"WAMultiSelectTag","See superclass."
+"WACanvasTag","supported on:- Firefox 1.5- Safari 2- Opera 9http://www.whatwg.org/specs/web-apps/current-work/#the-canvashttp://developer.mozilla.org/en/docs/Canvas_tutorial"
+"WATagBrush","This is the superclass for all XML element classes. Its main additions are- element name (#tag)- attributes (instance of WAHtmlAttributes)- common events (onXXX), this is a hack and would better be solved with traits"
+"WAAudioTag","no known browser support, might require an open codec like Ogg Vorbis, might first appear in Opera and MozillaAn audio element represents a sound or audio stream.Content may be provided inside the audio element so that older Web browsers, which do not support audio, can display text to the user informing them of how to access the audio contents. User agents should not show this fallback content to the user. "
+"WAXmlCanvas","I'm an abstract canvas base class for building canvas for custom XML dialects."
+"WATableTag","The <table> tag defines a table. Inside a <table> tag you can put table headers, table rows, table cells, and other tables."
+"WAScriptTag","Defines a script, such as a JavaScript."
+"WAOptionGroupTag","The OPTGROUP element allows authors to group choices logically. This is particularly helpful when the user must choose from a long list of options; groups of related choices are easier to grasp and remember than a single long list of options.It has crappy browser support and noone as ever used it. See WAInputTest >> #renderOptionGroupOn: for examples."
+"WAButtonTag","Buttons created with the BUTTON element function just like buttons created with the INPUT element, but they offer richer rendering possibilities: the BUTTON element may have content. For example, a BUTTON element that contains an image functions like and may resemble an INPUT element whose type is set to ""image"", but the BUTTON element type allows content."
+"WAMonthInputTag","supported on:- Opera 9graceful degeneration to text inputA date consisting of a year and a month encoded according to ISO 8601 [ISO8601]: four or more digits (0 to 9) representing the year, a hyphen (U+002D), and two digits for the month, zero-padded if necessary. All the numbers must be in base ten. For instance: 1995-12. The step  attribute specifies the precision in months, defaulting to 1. This type is used most frequently for credit card expiry dates."
+"WAEditTag","INS and DEL are used to markup sections of the document that have been inserted or deleted with respect to a different version of a document (e.g., in draft legislation where lawmakers need to view the changes).These two elements are unusual for HTML in that they may serve as either block-level or inline elements (but not both). They may contain one or more words within a paragraph or contain one or more block-level elements such as paragraphs, lists and tables.This example could be from a bill to change the legislation for how many deputies a County Sheriff can employ from 3 to 5.<P>  A Sheriff can employ <DEL>3</DEL><INS>5</INS> deputies.</P>The INS and DEL elements must not contain block-level content when these elements behave as inline elements."
+"WAClosedRangeTag","abstract class for all the elements that have a step, min and max attribute"
+"WAFileUploadTag","I represent a file input element (<input type=""file""). My callbacks will be evaluated with an instance of WAFile as an argument."
+"WAFieldSetTag","The FIELDSET element allows authors to group thematically related controls and labels. Grouping controls makes it easier for users to understand their purpose while simultaneously facilitating tabbing navigation for visual user agents and speech navigation for speech-oriented user agents. The proper use of this element makes documents more accessible.The LEGEND element allows authors to assign a caption to a FIELDSET. The legend improves accessibility when the FIELDSET is rendered non-visually."
+"WABrush","I represent a brush to be used on a *WACanvas*.Instance Variables	canvas:		The canvas instance I am used with.	parent:		The parent brush I am used within.	closed:		Wether I have been closed/flushed yet."
+"WAUnorderedListTag","See superclass comment."
+"WAFormTag","The FORM element acts as a container for input elements and buttons.Evaluation order:The input fields callbacks will be evaluated in the order theyappear in the XHTML. Buttons will always be evaluated last, no matterwhere they are positioned."
+"WADateInput","I am a composition of three input fields that allow the user to select year, month and day. #options: can be used to toggle them individually.The argument for my callback blocks is an instance of Date.See WADateTimeTest >> #renderDateTimeOn:"
+"WALabelTag","Defines a label to a control. If you click the text within the label element,  it is supposed to toggle the control."
+"WATagCanvas","I am the abstract superclass for tag based canvases."
+"WATableDataTag","The WATableDataTag defines a cell in a table."
+"WAProgressTag","No known browser support.The progress element represents the completion progress of a task. The progress is either indeterminate, indicating that progress is being made but that it is not clear how much more work remains to be done before the task is complete (e.g. because the task is waiting for a remote host to respond), or the progress is a number in the range zero to a maximum, giving the fraction of work that has so far been completed.There are two attributes that determine the current task completion represented by the element.The value attribute specifies how much of the task has been completed, and the max attribute specifies how much work the task requires in total. The units are arbitrary and not specified.Instead of using the attributes, authors are recommended to simply include the current value and the maximum value inline as text inside the element."
+"WAMeterTag","No known browser support.The meter element represents a scalar measurement within a known range, or a fractional value; for example disk usage, the relevance of a query result, or the fraction of a voting population to have selected a particular candidate.This is also known as a gauge.The meter element should not be used to indicate progress (as in a progress bar). For that role, HTML provides a separate progress element.There are six attributes that determine the semantics of the gauge represented by the element.The min attribute specifies the lower bound of the range, and the max attribute specifies the upper bound. The value attribute specifies the value to have the gauge indicate as the ""measured"" value.The other three attributes can be used to segment the gauge's range into ""low"", ""medium"", and ""high"" parts, and to indicate which part of the gauge is the ""optimum"" part. The low attribute specifies the range that is considered to be the ""low"" part, and the high attribute specifies the range that is considered to be the ""high"" part. The optimum attribute gives the position that is ""optimum""; if that is higher than the ""high"" value then this indicates that the higher the value, the better; if it's lower than the ""low"" mark then it indicates that lower values are better, and naturally if it is in between then it indicates that neither high nor low values are good.The value, min, low, high, max, and optimum attributes are all optional. When present, they must have values that are valid floating point numbers.The following examples all represent a measurement of three quarters (of the maximum of whatever is being measured):<meter>75%</meter><meter>750\u2030</meter><meter>3/4</meter><meter>6 blocks used (out of 8 total)</meter><meter>max: 100; current: 75</meter><meter><object data=""graph75.png"">0.75</object></meter><meter min=""0"" max=""100"" value=""75""></meter>"
+"WAMenuTag","no known browser supportThe menu element represents a list of commands.The type attribute indicates the kind of menu. It must have either the value popup (to declare a context menu) or the value toolbar (to define a tool bar). The attribute may also be omitted, to indicate that the element is merely a list of commands that is neither declaring a context menu nor defining a tool bar.If a menu element has a type attribute with the value popup, then it represents the commands of a context menu, and the user can only interact with the commands if that context menu is activated.If a menu element has a type attribute with the value toolbar, then it represents a list of active commands that the user can immediately interact with.Otherwise, if a menu element has no type attribute, or if has a type attribute with a value other than popup or toolbar, then it either represents an unordered list of items (each represented by an li element), each of which represents a command that the user may perform or activate, or, if the element has no li element children, a paragraph describing available commands.The label attribute gives the label of the menu. It is used by user agents to display nested menus in the UI. For example, a context menu containing another menu would use the nested menu's label attribute for the submenu's menu label.The autosubmit attribute is a boolean attribute that, if present, indicates that selections made to form controls in this menu are to result in the control's form being immediately submitted. "
+"WAPasswordInputTag","I am a password input widget that does not display the entered text."
+"WAImageButtonTag","Creates a graphical submit button. The value of the src attribute specifies the URI of the image that will decorate the button. For accessibility reasons, authors should provide alternate text for the image via the alt attribute. When a pointing device is used to click on the image, the form is submitted and the click coordinates passed to the server. The x value is measured in pixels from the left of the image, and the y value in pixels from the top of the image. The submitted data includes name.x=x-value and name.y=y-value where ""name"" is the value of the name attribute, and x-value and y-value are the x and y coordinate values, respectively."
+"WADateTimeInputTag","supported on:- Opera 9graceful degeneration to text inputA date and time (year, month, day, hour, minute, second, fractions of a second) encoded according to ISO 8601 [ISO8601] with the time zone set to UTC: four or more digits (0 to 9) representing the year, a hyphen (U+002D), two digits for the month, a hyphen, two digits for the day, a literal ""T"", two digits for the hour, a colon (U+003A), two digits for the minute, optionally a colon and two digits for the second, optionally (if the seconds are present) a period (U+002E) and one or more digits for the fraction of a second, and finally a mandatory literal ""Z"". All the numbers must be in base ten and zero-padded if necessary. If the seconds are omitted, they must be assumed to be zero. If the fraction is omitted, it must be assumed to be zero as well. For instance: 1995-12-31T23:59:59.99Z or, representing the time 10 milliseconds later, 1996-01-01T00:00Z. The step attribute specifies the precision in seconds, defaulting to 60 (one minute).User agents are expected to show an appropriate widget. UAs may display the time in whatever time zone is appropriate for the user, but should be clear to the user that the time is globally defined, not time-zone dependent. The submitted date and time must be in the UTC time zone."
+"WASearchInputTag","supported on:- Safari 1.3 and 2.0not (yet) part of HTML5graceful degeneration to text inputhttp://weblogs.mozillazine.org/hyatt/archives/2004_07.html#005890"
+"WADecoration","I am an abstract decoration around instances of WAComponent. I can be added to aComponent by calling #addDecoration: and I change the basic behaviour or look of a component. There are several methods that can be overriden to archive this:- #renderContentOn: to emit xhtml around the decorated component. Call #renderOwnerOn: to let the owner emit its output.- #handleAnswer: to intercept the answer processing."
+"WAPluggablePresenterVisitor",""
+"WAAllPresenterGuide","Visit the tree of all Presenters and their registered #children."
+"WATaskNotDelegated",""
+"WAPresenter","WAPresenter holds the functionality that is common to WAComponent and WADecoration. Subclasses of this class may have state and can be stored in instance variables of other Presenters.You might want to subclass WAPresenter if you do not need the special abilities (decoration and call/answer) of WAComponent but do need one or more of the following:	+ The ability to specify objects whose state should be backtracked (#states)	+ The ability to provide CSS and JavaScript for the component (#style, #script)	+ The ability to ""embed"" other persistent Presenters within this one (#children)WAPresenter does not support call/answer or the addition of Decorations. If you need either of these features, you should subclass WAComponent instead.Child Presenters:It is common for a Presenter to display instances of other Presenters while rendering itself.  It does this by passing them into the #render: method of a renderer (typically an instance of WACanvas).  For example, this #renderContentOn: method simply renders a heading and then displays a counter component immediately below it:	renderContentOn: html		html heading level3; with: 'My Counter'.		html render: myCounter.It's important that you use #render:, rather than directly calling the #renderContentOn: method of the subcomponent. The following is *not* correct:	renderContentOn: html		html heading level3; with: 'My Counter'.		myCounter renderContentOn: html.   ""DON'T DO THIS"".These sub-Presenters are usually instance variables of the Presenter that is ""embedding"" them.  They are commonly created as part of the Presenter's #initialize method:	initialize		myCounter := WACounter new.They may also be stored in a collection. One fairly common pattern is to keep a lazily initialized dictionary of sub-presenters that match a collection of model items. For example, if you wanted a BudgetItemRow subcomponent for each member of budgetItems, you might do something like this:	initialize		budgetRows := Dictionary new.	rowForItem: anItem		^budgetRows at: anItem ifAbsentPut: [ BudgetItemRow item: anItem ].	renderContentOn: html		self budgetItems			do: [ :each | html render: (self rowForItem: each) ]			separatedBy: [ html horizontalLine ].Each parent Presenter *must* implement a #children method that returns a collection of all of the sub-Presenters that it might display on the next render. For the above two examples, #children might look like this:	children		^Array with: myCounteror this:	children		^self budgetItems collect: [ :each | self rowForItem: each ].		Visibility:A Presenter is visible if it is:- the root of an application- a child of a visible Presenter (returned by #children) that has not been #call:'d"
+"WAAnswerHandler","I am the specific decoration to handle the answer of a given block."
+"WAPresenterGuide","WAPresenterGuides takes another WAPainterVisitor as a client. When asked to visit a Component, they will first visit its Decorations. Along the way, they will ask their client to visit each Painter they come across.This allows us to separate the behaviour of the various Presenter-tree traversal methods from the behaviour to perform on each Presenter we visit."
+"WATaskVisitor",""
+"WAComponent","I am a Presenter with the additional abilities of wrapping myself with Decorations and displaying another Component with #call:.		Call/Answer:If a sub-Component makes a #call: to another Component, that Component will appear in place of the sub-Component.  For example, if an embedded WACounter, stored in an instance variable called myCounter, made a #call: to DateSelector, that DateSelector would appear in the context of the counter's parent, with the 'My Counter' heading above it.Since an embedded subcomponent has not been #call:'d, in general #answer: is a no-op.  However, the parent may attach an #onAnswer: block to the embedded subcomponent to be notified if it sends #answer:. This allows one component to be used both from #call: and through embedding. For example:	initialize		dateSelector := WADateSelector new 			onAnswer: [ :date | self dateChosen: date ].			Visibility:A component is visible if it:- meets the visibility requirements of a Presenter; or- is passed as an argument to #call: on a visible component"
+"WADelegation","I work as a container to delegate the rendering to another object."
+"WARenderingGuide","Currently an empty class but still present for clarity and to allow customization of Rendering behaviour."
+"WAUpdateStatesVisitor",""
+"WATask","I am a subclass of WAComponent, specialized for defining workflow.  The difference between a task and a component is the following:Both of them are reusable, embeddable, callable pieces of user interface. A component has state (instance variables), behavior (it may change its state, and it may also choose to display other components with #call:), and appearance (it renders HTML). A Task has only the first two - it doesn't render any HTML directly, but only through the components it calls. This is useful when what you want to encapsulate/embed/call is purely a process (show this component, then this one, then this one).The key method for WATask is #go - as soon as a task is displayed, this method will get invoked, and will presumably #call: other components.In terms of implementation, you can think of a WATask in the following way: it is a component which renders two things:- a link whose callback invokes the #go method- a header that immediately redirects to the URL of that linkSubclasses must not implement #renderContentOn:An example can be found in WAFlowConvenienceFunctionalTest."
+"WAInitialRequestVisitor",""
+"WAVisiblePresenterGuide","Visit the tree of all Presenters and their registered #children. Do not visit a Decoration's #next Decoration if the Decoration indicates that it is not visible."
+"WAChildComponentShouldNotBeSelfError",""
+"WAAbstractContinuation",""
+"WAServerManager",""
+"WAClassBindingAttribute",""
+"WAAuthConfigurationError","A WAAuthConfigurationError is signaled when no WAAuthConfiguration was added to an application that is behind a WAAuthenticationFilter."
+"WAUrlEncoder","I do percent-encoding of parts (e.g. path segments and arguments) of a URI.Additionally, a Codec is given the chance to encode the characters into bytes before being percent-encoded (see http://tools.ietf.org/html/rfc3986#section-2.5). This allows extended characters to be represented in URIs in, for example, UTF-8."
+"WAHttpVersion",""
+"WACache","WACacheis the abstract base class for session and continuation stores in Seaside. The default implementation is WAHashCache."
+"WARequest","I am a server independent http request object. Instance of me can be aquired through WAObject >> #currentRequest.Instance Variables	method:			<String>	uri:					<WAUrl>	version:				<WAHttpVersion>	remoteAddress:	<String>	headers:			<Dictionary<String, String>>	cookies:			<Collection<WARequestCookie>>	body:				<String>	postFields:			<WARequestFields>	sslSessionId:		<String>			method	- the HTTP method, should be upper case. In general only 'GET' and 'POST' are encountered in Seaside. SqueakSource also supports 'PUT'.		uri	- The request url without parameters. For example if the client requested 'http://www.google.com/search?q=seaside' then the contents of url would be '/search'. To get the parameters use #fields. This url is fully decoded. Use the #host method to get the host name. Dependening on the server adapter the #scheme may be 'http' or 'https' if the original request was HTTPS.	version	- The version of this request.	remoteAddress	- The IP address of the client. If the server is behind a reverse proxy then this is '127.0.0.1'. This could in theory also be an IPv6 address.headers	- The header of the HTTP request. This is a Dictionary mapping lowercase strings to other strings.	cookies	- The collection of cookies (instance of WARequestCookie) the client sent. Note not all clients support all fields. E.g. you might send a path but the client might not return it. Note there can be several cookies with the same key but a different domain or path. See the #cookiesAt: method.	body	- The undecoded, raw request body as a String, may be nil. See the ""accessing-body"" protocol for accessing it.	postFields	- The HTTP POST request parameters. In general this is a dictionary mapping Strings to Strings. In the case of multivalued paramters multiple mappings may exist.	sslSessionId	- The SSL session id. This is an opaque string. It is not present if the request wasn't made over SSL (or TLS) or the server adaptor does not support this feature."
+"WAEmailCallback","A WAEmailCallback is a callback for email input fields."
+"WAStreamedResponse","A WAStreamedResponse is a HTTP response that directly writes to an external write stream. This response class is used to implement efficient HTTP response streaming, as it can directly write do the socket while content is still generated.Instance Variables	committed:		<Boolean>	Whether the status and header was written to the stream.	externalStream:		<WriteStream>	The external stream to write to."
+"WARegistryConfiguration",""
+"WANotification",""
+"WAAddRemoveExpression",""
+"WARequestFields",""
+"WAQueryFieldHandlerTrackingStrategy","I track request handlers using a query field. This results in URLs looking like this:/tests/functional?_s=de379kaie13This is a very simple and robust approach. It is also very convenient for development. Just remove the _s and you have a new session.However there are some drawbacks. The smallest is aesthetical, the URL in the address bar of the browser is less ""clean"". Second because the session id is part of the request URL it shows up in all kinds of places. For example server logs. Not only the log of the server running the application but also very web site visited from there because it shows up in the Referer HTTP header. The danger of this is that when somebody knows the session id of somebody else he can take over his session. While most of these problems can be mitigated by adding a WAProtectionFilter to every session this creates new problems for users with changing IPs (eg. mobile devices)."
+"WAPathConsumer","A WAPathConsumer keeps track of the unconsumed path elements in request handling.Image the following request path:/start/middle/endand a dispatcher mapped at 'start' and an application mapped at 'middle'.First nothing at all would be consumed so the unconsumed path would be #('start' 'middle' 'end').Then the dispatcher consumes 'start' and delegates to the application so the unconsumed path would be #('middle' 'end').Then the application consumes 'middle' so the unconsumed path would be #('end').In that caseself requestContext consumer peekinside an #initialRequest: should answer 'end'.Instance Variables	path:		<Collection<String>>path	- the collection of unconsumed path elements"
+"WAActionCallback",""
+"WATransactionFilter","This filter provides the implementation of WAComponent>>#isolate:. It rejects all requests as soon as the filter has been closed."
+"WAConcatenatedHtmlAttributeValue","I am used to represent html attribute values that can be sent separately to a brush but eventually need to be printed as a single attribute string. I was introduced to optimize html rendering where String concatentation is slow. See https://github.com/seasidest/seaside/issues/816E.g. in the following code, multiple values for 'class' are sent to the anchor brush and they are eventually concatenated in the outputhtml anchor   class: 'mycss-strong';   class: 'mycss-bold';   class: 'mycss-alignright';   with: 'some text'"
+"WASnapshot","I represent a memory snapshot of objects. Objects can be registered by sending the message #register:. All object snapshots are updated by sending #snapshot and restored by sending #restore. To have specific snapshot and restore actions for particular classes, override #snapshotCopy and #restoreFromSnapshot: in your classes."
+"WAClassBindingCollectionAttribute",""
+"WAConfigurationError",""
+"WAXmlEncoder","I encode XHTML text."
+"WAKeyGenerator",""
+"WABidirectionalCache","I support key -> value and value -> key mappings and never forget anything.I also implement serveral methods of Dictionary."
+"WARequestContext","WARequestContext encapsulates all the knowledge that should be available while processing a single request. It does not matter if this is a request to a static file, an AJAX request, a long Comet request or a normal Seaside requestion.The request context is valid only during the request that caused it. It should not be stored. Neither within instance variables, nor within the execution stack so that it might be captured by a continuation. In both cases this might lead to memory leaks."
+"WAMapCallback",""
+"WAResponseGenerator","The response generator configures the response of the provided request context according to the called generation method. This class can be subclassed to provide custom response templates."
+"WARequestHandlingConfiguration","This configuration class holds attributes needed by classes in the Request Handling layer."
+"WARenderNotification",""
+"WAValueExpression",""
+"WAHashTableSizes","WAHashTableSizes is a helper class, used by hashedCollections to determine sizes for hash tables.Public protocol is all class-side:#goodSizeAtLeast: anInteger   answers a ""good"" integer greater than or equal to the given integer.An integer is not ""good"" as a hash table size if it is any of:* Not prime* Divides 256**k +- a, for small k and a* Close to a power of two* Close to dividing the hashMultiply constantSee Andres Valloud's hashing book, and Knuth TAOCP vol. 3.This class caches a table of selected good primes within the positive SmallInteger range. When this table must be rebuilt, it uses an instance to compute the table. Primes are selected to keep the table fairly small, with approximately five entries per power of two.The cached table is ordered, and is searched with a binary search to find the closest good size >= the requested size.Original implementation by Martin McClure"
+"WAQualifiedValue","A WAQualifiedValue is an Object with an assigned quality value.Instance Variables	quality:		<Float>	value:		<Object>quality	- between 0.0 and 1.0 or Float infinity if no value is givenvalue	- the qualified object"
+"WACancelActionCallback",""
+"WARequestHandler","WARequestHandler is an abstract class whose subclasses handle http requests. Most of the methods are either empty or return a default value. Subclasses must implement the following messages:	handleFiltered:	process the request"
+"WAConditionalComment","A WAConditionalComment is an implementation of Downlevel-hidden Conditional Comments:http://msdn2.microsoft.com/en-us/library/ms537512.aspxThese are only visible for the IE family of browsers.See also WAOpeningConditionalComment and WAClosingConditionalComment."
+"WAUrl","I represent all portions of an URL as described by the RFC 1738 and updated by RFC 3986. I include scheme, userinfo, host, port, path, parameter, query, and fragment.Instance Variables	scheme:			<String> or nil	user:				<String> or nil	password:			<String> or nil	host:				<String> or nil	port:				<Integer> or nil	path:				<OrderedCollection> or nil	slash:				<Boolean>	queryFields:		<WARequestFields> or nil	fragment:			<String> or nil	pathParameters:	<GROrderedMultiMap> or nil		A Primer on URL encoding:http://blog.lunatech.com/2009/02/03/what-every-web-developer-must-know-about-url-encoding		Path Parameters:http://doriantaylor.com/policy/http-url-path-parameter-syntaxyou can have multiple name without values/path/name;param1;p2;p3or names with multiple values;param=val1,val2,val3"
+"WAClassListAttribute","WAClassListAttribute is an attribute that is restricted to a list of classes. The value will be an instance of the given class created with #new. "
+"WAAttributeNotFound",""
+"WAExceptionHandler","Exception handlers are invoked when an error in a Seaside application occurs. Request handlers can use the class-side method #handleExceptionsDuring: to set up exception handlers around a block of code.== Catching ==Exception handlers can configure which exceptions they want to catch by overriding the class-side method #exceptionsToCatch. They may also choose to override #handleExceptionsDuring: on the class-side directly, if they need more complex behaviour.== Handling ==Handling behaviour is implemented on the instance side by implementing #handleException:. This method should return a suitable seaside response (usually an instance of WAResponse) if it returns.== Internal Errors ==Internal errors are typically errors that occur while trying to execute one of the other error handlers and should be as basic as possible to ensure they don't have any trouble executing. Request handlers can ask for an internal error response by calling #internalError: on the class-side of an exception handler.== HTML Responses ==See WAWalkbackErrorHandler in the development packages for examples of how to do rendering with the canvas API."
+"WALocale","A WALocale defines a users langauge and country.Instance Variables	country:		<String>	language:		<String>country	- either an ISO 2 or ISO 3 country codelanguage	- either an ISO 2 or ISO 3 language code"
+"WAExpiringCache","I am the abstract base class for caches that remove entries. Subclasses are intended to use to track sessions.    Instance Variables	maximumSize			<Integer>	maximumRelativeAge		<Integer>	maximumAbsoluteAge	<Integer>	overflowAction			<Symbol>				maximumSize:	Number of sessions supported. When this limit is reached the overflow action is run. 0 for no maximum size. Has to be positive.maximumRelativeAge:	After so many seconds of inactivity a session is considered expired. 0 for no limit. Has to be positive.maximumAbsoluteAge:	After so many seconds after its creation a session is considered expired no matter when it was last accessed. 0 for no limit. Has to be positive.overflowAction:	What to do when the maximum number of sessions is reached. Only matters when the maximum size is bigger than 0.	Possible values:		#removeRelativeOldest remove the entry that hasn't been accessed for the longest time		#removeAbsoluteOldest remove the entry that has been created the longest time ago		#signalError signal WAMaximumNumberOfSessionsExceededError"
+"WARequestCookie","A WARequestCookie is the cookie the user agent sent to the server.Instance Variables	domain:			<String>	key:			<String>	path:			<String>	pathEncoded:	<String>	ports:			<Collection<Integer>>	value:			<String>	version:			<Integer>domain	- xxxxxkey	- xxxxxpath	- According to https://tools.ietf.org/html/rfc6265#section-5.1.4 user-agents must use an algorithm equivalent to the following one:  1.  Let uri-path be the path portion of the request-uri if such a       portion exists (and empty otherwise).  For example, if the       request-uri contains just a path (and optional query string),       then the uri-path is that path (without the %x3F (""?"") character       or query string), and if the request-uri contains a full       absoluteURI, the uri-path is the path component of that URI.   2.  If the uri-path is empty or if the first character of the uri-       path is not a %x2F (""/"") character, output %x2F (""/"") and skip       the remaining steps.   3.  If the uri-path contains no more than one %x2F (""/"") character,       output %x2F (""/"") and skip the remaining step.   4.  Output the characters of the uri-path from the first character up       to, but not including, the right-most %x2F (""/"").ports	- xxxxxvalue	- xxxxxversion	- the version of the cookie specification supported, currently only 1 is known"
+"WAUploadCallback",""
+"WARoot","A WARoot is the root of a document. It is responsible to generate header and footer of a document."
+"WAUserConfiguration","WAUserConfiguration is a composite of configurations.  This composite of configurations is stored in the field ""parents"". WAUserConfiguration provides methods to dynamically provide non-default values for attributes. WAUserConfiguration inherits attributes and values defined in its ancestors. If WAUserConfiguration does not have a value for an attribute it will search its ancestors for a value, stopping when it finds a value.An instance of WAUserConfiguration is the first configuration added to a Seaside application (WAApplication). All other configurations added to the application are added as ancestors of this instance. When a value for an attribute is set either by the standard Seaside component configuration page or in code the value is added to the ""values"" dictionary in WAUserConfiguration.Instance Variables:	parents	<Collection of: WAConfiguration>	 hierarchy of configurations defining all attributes for this instance of WAUserConfiguration	values	<Dictionary>	the dictionary key is an attribute key, dictionary value is value of that attribute "
+"WAResponseNotification","A WAResponseNotification is signaled whenever the application server wants to return a response back to the client."
+"WADocument","A WADocument combines an output stream and an instance of root. The root is responsible to render header and footer if necessary."
+"WAHtmlElement","Root class of all elements inside a <head> section."
+"WAObject","A WAObject is the base class for all portable Seaside classes. It provides convenience methods for accessing the current request context, session and application."
+"WAAccept","A WAAccept is a WAQualifiedValue with a value that is an instance of WAMimeType. It represents how much a user agent prefers a certain mime type."
+"WADefaultActionCallback",""
+"WADispatcher","WADispatcher takes http requests and dispatches them to the correct handler (WAApplication, WAFileHandler, etc). WADispatcher class>>default is the top level dispatcher. When a Seaside application is registered as ""foo"" the application is added to the top level dispatcher. The application is added to the entryPoints of the dispatcher at the key ""foo"". If a Seaside application is registered as ""bar/foo"" then the application isadded to a  dispatcher's entryPoints at the key ""foo"". That dispatcher is in the top level dispatcher's  entryPoints at the key ""bar"".   When a http request is received it is sent to WADispatcher class>>default to find the correct handler for the request. If a handler exists for the request is sent to that handler. Otherwise the request is sent to the not found response generator.The VW port maintains multiple copies of the tree of dispatchers rooted at WADispatcher class>>default. One copy is for each different URL that can reach Seaside (http://..../seaside/go/counter - normal, http://..../counter - SeasideShortPath, http://..../seaside/stream/counter - streaming). Instance Variables:	defaultName	<String>	entryPoints	<(Dictionary of: WAEntryPoint)>	 the keys are strings, which are the names and URL path segments for the handler at that key"
+"WARevealedConditionalComment","A WAConditionalComment is an implementation of Downlevel-revealed Conditional Comments:http://msdn2.microsoft.com/en-us/library/ms537512.aspxNon-IE family browsers see them always.See also WAOpeningRevealedConditionalComment and WARevealedConditionalComment."
+"WAValueHolder","I wrap a single object. I am like value holder except that I am portable and don't include the Model cruft in Squeak."
+"WACollectionAttribute",""
+"WAIllegalStateException",""
+"WAErrorHandler","WAErrorHandler catches Errors and Warnings and provides two methods for handling each type of exception:handleError:handleWarning:If either method is not implemented, the default implementation will call #handleDefault:, which can be used to provide common behaviour for both exception types."
+"WAMergedRequestFields","Provides a read-only view onto multiple dictionaries. Note that this can lead to to duplicated keys that can only retrieved by iterating over all the associations."
+"WABulkReapingCache","I am a cache that reaps all elements at once instead of incrementally.I am intended to be used in GemStone/S instead of WAHashCache. A background process should send #reap to me.    Instance Variables	dictionary:		<Dictionary>"
+"WACookie","I represent a cookie, a piece of information that is stored on the client and read and writable by the server. I am basically a key/value pair of strings.You can never trust information in a cookie, the client is free to edit it.I model only a part of the full cookie specification.Browser support:http://www.mnot.net/blog/2006/10/27/cookie_funNetscape spechttp://cgi.netscape.com/newsref/std/cookie_spec.htmlCookie spechttp://tools.ietf.org/html/rfc2109Cookie 2 spechttps://tools.ietf.org/html/rfc6265HttpOnlyhttp://msdn2.microsoft.com/en-us/library/ms533046.aspxhttps://bugzilla.mozilla.org/show_bug.cgi?id=178993Compared to WARequestCookie I represent the information that is sent to the user agent."
+"WAAllUploadsCallback",""
+"WAHtmlRoot","A WAHtmlRoot is the root element of an HTML Document (<html>).Instance Variables	bodyAttrs:		<WAHtmlAttributes>	context:			<WARenderContext>	docType:		<String>	headAttrs:		<WAHtmlAttributes>	headElements:	<OrderedCollection<WAHtmlElement>>	htmlAttrs:		<WAHtmlAttributes>	scripts:			<Set<String>>	styles:			<Set<String>>	title:			<String>bodyAttrs	- the attributes of the <body> elementcontext	- the context used to render the contents of the <body> elementdocType	- the document typeheadAttrs	- the attributes of the <head> elementheadElements	- the elements inside the <head> sectionhtmlAttrs	- the attributes of the <html> elementscripts	- contains the strings returned by WAPresenter >> #scriptstyles	- contains the strings returned by WAPresenter >> #styletitle	- the title of the HTML document, the contents of the <title> element"
+"WASharedConfiguration",""
+"WAHtmlAttributes","I represent the attributes of a (X)(HT)ML tag. Compared to my superclass I ignore requests to add a nil-values. I also don't throw an exception when accessing a key that doesn't exist, but instead return nil."
+"WAXmlDocument","A WAXmlDocument is adds the possibility to generate XML tags and knows encoders for XML text and URLs."
+"WABaseElement","In HTML, links and references to external images, applets, form-processing programs, style sheets, etc. are always specified by a URI. Relative URIs are resolved according to a base URI, which may come from a variety of sources. The BASE element allows authors to specify a document's base URI explicitly.When present, the BASE element must appear in the HEAD section of an HTML document, before any element that refers to an external source. The path information specified by the BASE element only affects URIs in the document where the element appears.For example, given the following BASE declaration and A declaration:updateRoot: html	super updateRoot: html.	html base url: 'http://www.aviary.com/products/intro.html'renderContentOn: html	html anchor		url: '../cages/birds.gif';		with: 'Bird Cages'the relative URI ""../cages/birds.gif"" would resolve to:http://www.aviary.com/cages/birds.gif"
+"WAAbstractFileLibrary",""
+"WAAcceptCharset","A WAAcceptCharset is a WAQualifiedValue with a value that is an instance of String. It represents how much a user agent prefers a certain character set for the response."
+"WAImageCallback",""
+"WADocumentHandler","WADocumentHandler handles requests for images, text documents and binary files (byte arrays). This class is not normally used directly. A number of WA*Tag classes implement document:mimeType:fileName: which use WADocumentHandler. Given a document, #document:mimeType:fileName: creates a WADocumentHandler for the document, registers the handler with a Registry, and adds the correct url in the tag for the document.Instance Variables:	document	<WAMimeDocument>	MIMEDocument object representing this document and mimeType, generates stream used to write document for the response."
+"WAConfiguration","A configuration for a Seaside application contains attributes which can be used by Seaside and the application. WAConfiguration hierarchy uses the composite pattern.Subclasses of WASystemConfiguration define and configure related groups of attributes. See WASystemConfiguration class comment for information on defining your own attributes.WAUserConfiguration is a composite of configurations. The set of configurations contained in WAUserConfiguration is called the ancestors. Attribute values in a configuration override the attribute values in the ancestors. WAUserConfiguration also holds the non-default values of attributes.Seaside applications start with a WAUserConfiguration (see WAApplication>>configuration) a single parent: WARenderLoopConfiguration. The full ancestry also includes WASessionConfiguration WAGlobalConfiguration. Other configurations can be added to an application on the Seaside configuration page for the application or in your application. Values for the attributes can be given in either location. See Seaside documentation (http://www.seaside.st/documentation) on configuration and preferences (http://www.seaside.st/documentation/Configuration%20and%20Preferences) for more information.Example of setting attributes and adding configurations in codeASubclassOfWAComponent class>>initialize	""self initialize""	| application |	application := self registerAsApplication: 'GlorpExample'.	""set a standard attribute""	application preferenceAt: #sessionClass put: Glorp.WAGlorpSession. 	""add a configuration""	application configuration addParent: GlorpConfiguration new.	application preferenceAt: #databaseLogin put: 'foo'. ""set attribute defined in GlorpConfiguration""Subclasses must implement the following messages:	name		return the name of the configuration	localValueAt:ifAbsent:		return the value of the attribute given as first argument"
+"WAVisitor",""
+"WANumberAttribute","WANumberAttribute represents a number attribute. It converts between text entered on the configuration page and numbers."
+"WAInvalidHeaderValueError",""
+"WAFile","I represent a file that was uploaded by the user via #fileInput.Instance Variables	contents:		<ByteArray>	contentType:	<WAMimeType>	fileName:		<String>contents	- the contents of the file, binarycontentType	- the content type of the file	fileName	- The name of the file the user agent uploaded. This is locale name on the machine of the client. The instance variable might include the full path on the file system, the accessor will never return the path."
+"WAMimeDocument","WAMimeDocument is the abstract base class for mime documents. It is intended as a very basic, mime documents. Implementations are free to use more advance, native implementations as long as they conform to the protocol.Instance Variables	contentType:		<WAMimeType>mimeType	- the mime type of this document"
+"WAHashCache","WAHashCache is a hash table based implementation of WACache.The characteristics of WAHashCache are:- supports both absolute and relative timeouts at the same time https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Automatic_Session_Expiration- supports a maximum size with definable overflow action (expire oldest, expire least recently used, signal exception)- access by key is fast (O(1) average case O(n) worst case)- reaping expired sessions is proportional (O(n)) to the number of expired session and independent of the total number of sessions (O(1))- creating a new session independent of the total number of sessions- does not guard against hash collision attacks, you should not use user generated keysInstance Variables:	keyTable 				<Array<WACacheKeyEntry>>	size					<Integer>	byAccessStart			<WACacheListEntry>	byAccessEnd			<WACacheListEntry>	byCreationStart		<WACacheListEntry>	byCreationEnd			<WACacheListEntry>keyTable:	Open hash table of  WACacheKeyEntrybyAccessStart	Head of the linked list sorted by access timebyAccessEnd		Tail of the linked list sorted by access timebyCreationStart	Head of the linked list sorted by creation timebyCreationEnd	Tail of the linked list sorted by creation timeThe implementation is a combination of:- an open hash table, used for look ups by key - a linked list of cache entries sorted by creation time, used for reaping by absolute age- a linked list of cache entries sorted by access time, used for reaping by relative ageFor every cache entry there is a node in the hash table and a node in both of the linked lists. It is possible to navigate from every node for a key to every other node of the same key. This is required for removing and updating entries."
+"WARequestFilter","WARequestFilter is an implementation for the chain-of-responsibility and decorator pattern for request handlers. Request filters are a way of hooking into the request handling. There is no limit on what they can do, examples include - preprocess the request - postprocess the response - set up thread locals or expection handlers - return a different response (eg. from cache or access denied) This functionality is also known as servlet filters, WSGI infrastructure or rack infrastructure.Instance Variables:	next	<WAValueHolder<WARequestFilter>>		next	- The next filter in the chain."
+"WAUrlCallback","A WAEmailCallback is a callback for url input fields."
+"WAXmlRoot",""
+"WAConfigurationDescription","I hold a collection of attributes and present methods to construct new methods, providing an interface a bit like WACanvas and #renderContentOn: to WASystemConfiguration>>addAttributes:.I can use any kind of collection class and handle setting the #configuration: parameter of the attribute appropriately on addition. If my collection is a Dictionary, I will store the attributes by their keys."
+"WAHeaderFields","I am the headers dictionary of an HTTP request or response."
+"WAHtmlDocument","A WAHtmlDocument controls how a string is created from a series of brushes."
+"WAContentElement","Common superclass of all elements inside a <head> that can have content. Either between the start and end tag or a (mime) document pointed to by an URL."
+"WAFileLibrary","What does FileLibrary do=============================It allows to serve static files directly from seaside without the need for a standalone server like Apache or to configure Kom. These files can reference each other (say a CSS references an image) and can be distrubuted the same way as normal Smalltalk code (Monticello, SqueakMap, ...).Each file in a file library is represented by a method. The method name is created from the file name, the dot is removed and the first letter of the suffix in capitalized. This puts certain limitations to the allowed filenames. Eg. 'main.css' becomes #mainCss.Like Script- and StyleLibraries FileLibraries can be added to an application so that they automatically include themselves in the document root. Implement #selectorsToInclude and return the selectors you whish to be added to the document root.How to create a FileLibrary================================- First create the static files and put them in some directory. From there they can reference the other files in the same directory normally with their filenames.- Make sure you have a ""Files"" entry that serves your files. This is a normal entry point type that you can find in your /seaside/config application. If you don't already have one, you can create it if you select ""Files"" in the type field of the ""add entry point"" dialog. For the rest of this text we assume you chose ""files"" as the path.- Create a subclass of WAFileLibrary, for the rest of this text I assume its name is MyFileLibrary.- To add the files to your file library there are two ways.1. Programmatically with MyFileLibrary class >> #addAllFilesIn: / #addFileNamed:. For example MyFileLibrary addAllFilesIn: '/path/to/directory/with/files' or MyFileLibrary addFileNamed: '/path/to/background.png'.2. Via the web interface. Go to your /seaside/config application and there click configure for your ""Files"". Click ""configure"" behind MyFileLibrary. There you can add a file by uploading it (select the file, then click ""Add"")Note that a ""Files"" can consist of several file libraries and can even have tradional script or style libraries.How to integrate a FileLibrary into your application=============================================================Files from a FileLibrary are ingetrated the same way other static files are integrated. They have a constant path that is '/seaside/<Static File Library>/<FileLibrary class name>/<filename>' so for example '/seaside/files/MyFileLibrary/background.png'. These can be conveniently generated by 'MyFileLibrary / #aSelector' where #aSelector is the name of the method representing that file. For example 'MyFileLibrary / #backgroundPng'.How to get back the files in a FileLibrary=================================================The contents of a file library can be written out to disk. Writing out a file library first makes a folder with the name of the file library in the folder of your Smallatlk image. Then a file for each file in the file library is created in this folder. Writing out to disk can happen in three ways1. MyFileLibrary default deployFiles2. Via the configuration interface of the file library. On the same page where you can add files to your file library there is also a button 'write to disk' which will write out all the files in this library.3. Via the configuration interface of your application. In the section where you can add libraries to your application there is a a button 'write to disk' which will write out all the libraries of this application.Examples:==========The following code uses WAFileLibrary to add a CSS file to a page.updateRoot: anHtmlRoot	super updateRoot: anHtmlRoot.	anHtmlRoot stylesheet 		url: WAFileLibraryDemo / #mainCss		The folllowing code uses WAFileLibrary to display an image.renderContentOn: html	html image		url: WAFileLibraryDemo / #mainJpg		Trouble Shooting:==========Earlier versions would create methods without a time stamp. You can fix this by recompiling these methods by adapting the following codeSUAllTestLibrary basicNew in: [ :library |	#(demologoGif headerGif backgroundGif demoGif logoGif menuGif) do: [ :each |		library class			addFileNamed: (library asFilename: each)			contents: (library perform: each) ] ]"
+"WAAcceptEncoding","A WAAcceptCharset is a WAQualifiedValue with a value that is an instance of String. It represents how much a user agent prefers a certain encoding for the response."
+"WADispatchCallback",""
+"WAFileHandler","Seaside serves static files using WAFileLibrary subclasses. WAFileHandler handles all requests for WALibrary files (or methods) for all applications on the Seaside server. WAFileHandler is registered with the default WADispatcher automatically."
+"WASystemConfiguration","You should subclass WASystemConfiguration to define new attributes. The method #describeOn: is passed an instance of WAConfigurationDescription which can be used to create new attributes. The attributes can be configured to specify their default value, label, and so on. See the methods on WAAttribute and its subclasses to see what options are available.If a configuration needs to override the value of another WASystemConfiguration or depends on its attributes, implement the method ""parents"", returning a collection of configuration objects.WASystemConfiguration subclasses are ""read-only"" in that their attributes, parents, and default values are all specified in code. Users and applications that want to configure values for attributes should create a WAUserConfiguration and specify the WASystemConfiguration in its ancestry.WASystemConfiguration classes are singleton. You should use #instance on the class side to get the current instance. You cannot call #copy on a WASystemConfiguration.Subclasses should implement the following messages:	describeOn:		They may also want to implement:	parents"
+"WAAttributeVisitor",""
+"WAIntegerAttribute",""
+"WAInvalidUrlSyntaxError",""
+"WAFileHandlerListing",""
+"WAMimeType","A WAMimeType abstracts a Internet media type, it is a two-part identifier for file formats on the Internet.Instance Variables	main:			<String>	parameters:	<GRSmallDictionary>	sub:			<String>main	- the main typeparameters	- a lazily initialized dictionary of optional parameterssub	- the subtype"
+"WAMutualExclusionCache","WAMutualExclusionCacheNG is a wrapper around a WACacheNG that wraps all messages in a mutex.Instance Variables:	mutex	<WAMutex>	cache	<WACache>"
+"WAAuthenticationFilter","WAAuthenticationFilter protects a request handler with username and password using the standard HTTP basic authentication. This passes username and password in clear-text, unless used over an encripted HTTPS connection. You should set the authenticator, and object that is able to validate usernames and passwords by implementing #verifyPassword:forUser:."
+"WAValuesCallback",""
+"WAScriptGenerator","I am responsible to render the loadscripts and make them run on page load. See subclasses for different strategies."
+"WAConfigurationElement",""
+"WADynamicVariable","I exist for legacy purposes. You should subclass GRDynamicVariable."
+"WAUnescapedDocument","A WAUnescapedDocument does not do any escaping."
+"WALinkElement","Defines either a link or style sheet rules. If it has children then it defines style sheet rules, else it defines a link.= if link =This element defines a link. Unlike A, it may only appear in the HEAD section of a document, although it may appear any number of times. Although LINK has no content, it conveys relationship information that may be rendered by user agents in a variety of ways (e.g., a tool-bar with a drop-down menu of links).= style sheet rules =The STYLE element allows authors to put style sheet rules in the head of the document. HTML permits any number of STYLE elements in the HEAD section of a document.User agents that don't support style sheets, or don't support the specific style sheet language used by a STYLE element, must hide the contents of the STYLE element. It is an error to render the content as part of the document's text. Some style sheet languages support syntax for hiding the content from non-conforming user agents."
+"WAFileMetadataLibrary","I seek to address the following WAFileLibrary related issues:-""""Arbitrary support for filenames"""" JQuery-UI theme libraries contain currently unsupported filenames such as ""e6e6e6_40x100_textures_02_glass_75.png"".-""""Arbitrary directories for files"""" JQuery-UI (and Twitter Bootstrap) expects certain JavaScript files, images etc in a subdirectory, such as ""ui/i18n/ui.datepicker-de.js"".-""""Arbitrary mime-types for files"""" Currently mime-types are determined from the file-extension, sometimes it would be good to have some more control.WAAbstractFileLibrary has been introduced which acts as a base for the old file libraries derived from WAFileLibrary and introduces a new subclass WAFileMetadataLibrary. WAFileMetadataLibrary supports resources with paths, which is handy when, for example, the javascript or css in a file library expects its supporting images to be in subdirectories such as img/xxxx.png. WAFileMetadataLibrary also records the original filenames so that when you #deployFiles from the file library on a production server, the exported files will maintain their original names and paths.There's a new method for recursing a sub-directory tree to add all the files and record their relative paths:=MYWAFileMetadataDerivedFileLibrary recursivelyAddAllFilesIn: '/var/www/files/twitterbootstrap'"
+"WAAcceptLanguage","A WAAcceptLanguage is a WAQualifiedValue with a value that is an instance of WALocale. It represents how much a user agent prefers a certain locale."
+"WAValueCallback",""
+"WARegistry","WARegistry maintains a set of handlers indexed by a key which it assigns when the handler is registerd. WARegistry checks incoming request URLs for a key and looks for a matching active request handler. If one exists, the request is sent to the proper handler. If not, the request is either a new request (in which case #handleDefaultRequest: is called) or a request to a now-inactive handler (in which case #handleExpiredRequest: is called). These two methods allow subclasses to properly handle these requests.Subclasses must implement the following messages:	handleDefaultRequest:		Handle a request without a session key, ie a new request.	handlerField		The URL parameter in which to store the request handler key.Instance Variables:	cache - an instance of WACache to hold the stored request handlers"
+"WAAuthConfiguration","WAAuthConfiguration defines attributes to store a username and password for an application. It is used by WAApplication to provide a basic single-account authentication mechanism for applications like the Seaside Configuration application. It changes to mainClass for the session to WAAuthMain, which adds a Decoration to check for authentication before displaying the root component.You can implement your own authentication mechanism without using this configuration by subclassing WAApplication and implementing #verifyPassword:forUser: to lookup account details from a database or similar. You can then manually set WAAuthMain as your main class."
+"WAPainterVisitor","An implementation of the Visitor pattern for Painter subclasses."
+"WAPasswordAttribute","WAPasswordAttribute represents a password attribute. When set from a string, it records a hashed value. On the Seaside configuration page it does not display its current value."
+"WAMaximumNumberOfSessionsExceededError","I signal that the maximum number of enties in a WAHashCache has been exceeded. If you use the overflow strategy #signalError you're supposed to handle me and display an error message. A filter is ideal for this.http://ora-00018.ora-code.com/"
+"WAForbiddenFileHandlerListing",""
+"WAMutex","WAMutex provides mutual exclusion properties.Only one process at a time can execute code within its #critical: method. Other processes attempting to call #critical: will block until the first process leaves the critical section. The process that owns the mutex (the one currently in the critical section), however, may call #critical: repeatedly without fear of blocking.The process currently inside the critical section can be terminated by calling #terminateOwner. This will result in the process being unwound and the critical section being freed."
+"WAUnidirectionalCache","I support only key -> value mappings and never forget anything."
+"WAConfiguredRequestFilter",""
+"WAMultipleValuesCallback",""
+"WADefaultScriptGenerator","A WADefaultScriptGenerator uses the onLoad event on the body to trigger the load scripts. Events handlers are directly inlined with the respective elements. Both techniques are considered outdated and should be avoided if possible."
+"WAAttribute","A WAAttribute represents a value of a specified type in a Seaside configuration. Some attributes are needed by Seaside for application parameters like deployment Mode and session timeout. Optional attributes like a database login may be used internally by the application.Each subclass of WAAttribute handles one type (Number, Boolean, etc) of attribute. The ""group"" of the attribute is used to place all attributes in the same group together on the Seaside configuration page. The ""key"" of the attribute identifies the attribute. Attribute keys must be globally unique so use namespacing where required to ensure uniqueness. See WAConfiguration for example of accessing a configuration attribute. Subclasses may implement their own configuration options depending on their needs.Subclasses must implement the following messages:	valueFromString: aString		convert ""aString"" into type represented by the class, return result of the conversion		accept: aVisitor with: anObject		Typical implementation is:			aVisitor visitXXXAttribute: self with: anObject		where XXX is the type of this attribute. The method visitXXXAttribute:with: must be implemented in all visitors, in particular WAUserConfigurationEditorVisitor which creates the configuration page for Seaside applications.Instance Variables:	configuration	<WAConfiguration>	The configuration object that defined the attribute	group			<Symbol>				name of the group the attribute belongs to	key				<Symbol>				key or name of the attribute, used to look up the attribute	comment		<String> 				a full length description of the attribute for displaying in the configuration interface	label			<String>				a short field label used in the user interface. If not specified, a label is constructed from the key.	default			<Object>				The default value for the attribute."
+"WACurrentExceptionHandler","I hold a reference to the current WAExceptionHandler. This may be needed when nesting exception handlers so that the look up of an exception handler from within an exception handler block still succeeds."
+"WAEmailAddress",""
+"WAScriptElement","The SCRIPT element places a script within a document. This element may appear any number of times in the HEAD of an HTML document.The script may be defined within the contents of the SCRIPT element or in an external file. If the src attribute is not set, user agents must interpret the contents of the element as the script. If the src has a URI value, user agents must ignore the element's contents and retrieve the script via the URI. Note that the charset attribute refers to the character encoding of the script designated by the src attribute; it does not concern the content of the SCRIPT element."
+"WAAttributeSearchContext","This class makes attribute searching more efficient by traversing the ancestry once and caching which Configurations hold the attribute. It is then passed through search functions which cache values for the attribute."
+"WAReducedConflictCounter","I am a fake implementation of RcCounter, which is a Gemstone Smalltalk class that provides a counter object with reduced transaction conflicts."
+"WAAllValuesCallback","WAAllValuesCallback is a special WAValueCallback that whos value is a sequenceable collection of values."
+"WAResponse","A WAResponse is an abstract HTTP response objects. It is independent of the used server adapter.Instance Variables	status:		<Integer> The HTTP status code.	message:	<String> The HTTP status message.	headers:	<WAHeaderFields> A dictionary with the header fields.	cookies:	<OrderedCollection> A collection of cookies."
+"WACacheConfiguration","I am the configuration of WAHashCache."
+"WARenderVisitor","A visitor that renders Painters. It creates an instance of the #rendererClass specified by each Painter it visits and passes it to the Painter with #renderContentOn:."
+"WAStringAttribute","WAStringAttribute represents a string attribute. It does the trivial conversion between text entered on the Seaside configuration page and a string."
+"WARequestContextNotFound","This exception is raised when trying to obtain the current request context when none is available."
+"WATextFileHandlerListing",""
+"WAOpeningConditionalComment","Opens a WAConditionalComment and encodes the condition."
+"WACacheKeyEntry","I am an entry in the table of WAHashCache.Besides keys and values I keep track of linked list entries so they can be removed without scanning the list. Internal Representation and Key Implementation Points.    Instance Variables	byAccessListEntry:		<WACacheListEntry>	byCreationListEntry:		<WACacheListEntry>	key:		<Object>	keyHash:		<Integer>	next:		<WACacheKeyEntry>	value:		<Object>"
+"WAExceptionFilter",""
+"WACallbackRegistry",""
+"WANullScriptGenerator","A script generator that does not support any load scripts. This results in cleaner HTML and should result in slightly faster page loads."
+"WABooleanAttribute","WABooleanAttribute  represents a boolean attribute. It converts between text entered on the configuration page and boolean values."
+"WACurrentRequestContext","A WACurrentRequestContext is a thread local variable that points to the current WARequestContext."
+"WAEncoder","I encode everything that is written to myself using #nextPut: and #nextPutAll: onto the wrapped stream."
+"WAMetaElement","The META element can be used to identify properties of a document (e.g., author, expiration date, a list of key words, etc.) and assign values to those properties. This specification does not define a normative set of properties.Each META element specifies a property/value pair. The name attribute identifies the property and the content attribute specifies the property's value.For example, the following declaration sets a value for the Author property:<META name=""Author"" content=""Dave Raggett"">The lang attribute can be used with META to specify the language for the value of the content attribute. This enables speech synthesizers to apply language dependent pronunciation rules.In this example, the author's name is declared to be French:htm meta	name: 'Author'; language: 'fr'; content: 'Arnaud Le Hors'	Note. The META element is a generic mechanism for specifying meta data. However, some HTML elements and attributes already handle certain pieces of meta data and may be used by authors instead of META to specify those pieces: the TITLE element, the ADDRESS element, the INS and DEL elements, the title attribute, and the cite attribute.Note. When a property specified by a META element takes a value that is a URI, some authors prefer to specify the meta data via the LINK element. Thus, the following meta data declaration:html meta      name: 'DC.identifier';      content: 'http://www.ietf.org/rfc/rfc1866.txt'might also be written:html link         relationship: 'DC.identifier';         type: 'text/plain';         url: 'http://www.ietf.org/rfc/rfc1866.txt'The http-equiv attribute can be used in place of the name attribute and has a special significance when documents are retrieved via the Hypertext Transfer Protocol (HTTP). HTTP servers may use the property name specified by the http-equiv attribute to create an [RFC822]-style header in the HTTP response. Please see the HTTP specification ([RFC2616]) for details on valid HTTP headers.The following sample META declaration:htttp meta         responseHeaderName: 'Expires';         content: 'Tue, 20 Aug 1996 14:25:27 GMT'will result in the HTTP header:Expires: Tue, 20 Aug 1996 14:25:27 GMTThis can be used by caches to determine when to fetch a fresh copy of the associated document.Note. Some user agents support the use of META to refresh the current page after a specified number of seconds, with the option of replacing it by a different URI. Authors should not use this technique to forward users to different pages, as this makes the page inaccessible to some users. Instead, automatic page forwarding should be done using server-side redirects.html meta         redirectAfter: 5 to: 'http://www.google.com/'"
+"WABuilder","This is a convenience class which provides a result of a rendering operation as a string. It is expected to be used like this:WAHtmlCanvas builder render: [ :html |	html anchor		url: 'htttp://www.seaside.st';		with: 'Seaside Homepage' ]See WABuilderCanvasTest for more examples."
+"WARenderContext","A WARenderContext provides all the state needed by a Renderer to do its work.It is a decoupling device between whatever is initiating rendering and the Renderer itself."
+"WAAllEmailsCallback",""
+"WABufferedResponse","A WABufferedResponse is a concrete implementation of a HTTP response. Its contentsStream is used to represent the body of the message.Instance Variables	contentsStream:		<WriteStream> The contents of this message."
+"WAExceptionFilterConfiguration",""
+"WAUpdateRootVisitor","A visitor which asks Painters to update a WARoot subclass using #updateRoot:.This is used to update the root of the Document stored on a WARenderContext."
+"WAUrlAttribute","WAUrlAttribute represents a URL attribute. It converts between text entered on the configuration page and WAUrl instances."
+"WAUnhandledNotificationError","Seaside has several Notifications that signal the desire to end the current attempt to process a request. These Notification must be handled as they are not resumable or continuable. If those Notifications are not handled, their default actions are to signal this error."
+"WAFileLibraryResource",""
+"WAOpeningRevealedConditionalComment","Opens a WARevealedConditionalComment and encodes the condition."
+"WACacheListEntry","I am a node in a sorted linked list in WAHashCache.    Instance Variables	cacheEntry:		<WACacheKeyEntry>	next:		<WACacheListEntry>	previous:		<WACacheListEntry>	time:		<Integer>time:	timestamp in seconds, could be the creation time or access time depending on with of the two linked lists it is"
+"WAProtectionFilter","The protection filter ensures that the wrapped request handler only accepts requests from the same IP. Do add this filter to a WASession for example to avoid session hijacking, do not add it to static request handlers such as WAApplication or WADispatcher as this might restrict access to the handler if your IP changes.Note that checking for IP addresses is not bullet proof and should never be used as the sole security measure for a web application as IP addresses can be easily spoofed."
+"WAClosingConditionalComment","Closes a WAConditionalComment."
+"WAServerAdaptor","A WAServer is the abstract base class for all servers. Actual servers do not have to subclass it but have to support the protocol: - #codec - #usesSmalltalkEncodingInstance Variables	codec:		<WACodec>codec	- the codec used for response conversion from characters to bytes"
+"WAListAttribute","WAListAttribute is an attribute that is restricted to a list of values. Instance Variables:	options	<Block>	A block returning a list of possible values for the attribute"
+"WAError",""
+"WATableBasedEncoder","I encode everything that is written to myself using #nextPut: and #nextPutAll: onto the wrapped stream. The specific encoding that is done is determined by my subclasses (the conversion of a single character is defined in the class-side method #encode:on:).To be efficient, each subclass uses a cached encoding table to transform the most used characters from the UTF Basic Multilingual Plane."
+"WAStyleElement","The style element allows style information to be embedded in documents."
+"WABulkReapingCacheEntry","I am a value in a WABulkReapingCache. It's important that my values are not concurrently updated in order to avoid commit conflicts on GemStone/S.accessTime:		only set by reapercreationTime:	immutable, set only oncevalue:			immutable, set only oncelastCount:		only set by reapercount:			updated concurrently but this is not an issue since we use a WAReducedConflictCounter    Instance Variables	count:			<WAReducedConflictCounter>	lastCount:		<Integer>	creationTime:	<Integer>	accessTime:		<Integer>	value:			<Object>"
+"WARenderer","A Renderer provides methods for rendering data (typically HTML) onto a Document. It gets all the information needed to do its work from a WARenderContext, which is passed in on initialization.Renderer are typically controlled by a Painter."
+"WAAllUrlsCallback",""
+"WAComboResponse","WAComboResponse is a combination of a buffered and a streaming response. By default, WAComboResponse will buffer the entire response to be sent at the end of the request processing cycle. If streaming is desired, the response can be flushed by sending it the #flush message. Flushing a response will sent all previously buffered data using chunked transfer-encoding (which preserves persistent connections). Clients can flush the response as often as they want at appropriate points in their response generation; everything buffered up to that point will be sent. For example, a search results page might use something like:renderContentOn: aCanvas	""Render the search page""	self renderSearchLabelOn: aCanvas.	aCanvas flush. ""flush before starting search to give immediate feedback""	self searchResultsDo:[:aResult|		self renderSearchResultOn: aCanvas.		aCanvas flush. ""flush after each search result""	].After a response has been flushed once, header modifications are no longer possible and will raise a WAIllegalStateException.Server adaptors need to be aware that a committed response must be closed, when complete. An uncommitted response should be handled as usual by the server adapter."
+"WAFileHandlerConfiguration",""
+"WAUpdateUrlVisitor","A visitor which asks Painters to update a WAUrl subclass using #updateRoot:.This is used to update the base URL stored on a WARenderContext."
+"WAAttributeExpression",""
+"WAUnregisteredHandlerError","This error is signaled by WARegistry whenever an attempt is made to find the key or URL for a handler that is not registered in its cache."
+"WAHandlerTrackingStrategy","I am a strategy of how request handlers should be tracked by a WARegistry or subclass.One important thing to remember a WARegistry can contain all kinds of request handlers. The most common case is a WAApplication that contains both WADocumentHandlers and WASessions. Some tracking methods may not be appropriate for some kinds of handlers (eg. a WADocumentHandler should never be tracked using a cookie). Some requests may have multiple keys (eg. a query field for a WADocumentHandler and a cookie for a WASession). It's the job of the strategy to take this into consideration.The 'public' protocol contains the methods that a tracking strategy must implement. The 'private' protocol contains some utility methods that may be helpful implementing these methods."
+"WAPainter","A Painter is an object that renders onto a Document using a Renderer (typically a subclass of WACanvas). The class of the Renderer is specified by #rendererClass.Subclasses should implement #renderContentOn: to do the actual rendering.Painters do not store or backtrack state and do not provide call/answer semantics or decorations. They are often created for each request, used, and then discarded. If you want any of the above features, you should use a subclass of WAPresenter or WAComponent.To cause a Painter to render itself, you should pass it to the #render: message of a Renderer. For example, from within a Component you could do the following:	renderContentOn: html		html render: MyPainterSubclass new"
+"WACallback",""
+"WATrailingSlashFilter","Enforces a trailing slash on the wrapped request handler."
+"WAClosingRevealedConditionalComment","Closes a WARevealedConditionalComment."
+"WAModeHaloPlugin","I control the rendering modes of the halo."
+"WADebugErrorHandler","I am like WAErrorHandler except that I open a debugger in the image for errors and warnings (not for internal errors)."
+"WADevelopmentFiles","CSS and images used by the web-based development tools.The icons are from the Tango Desktop Project (tango.freedesktop.org), they are licensed under the Creative Commons Attribution Share-Alike license."
+"WAInspectorHaloPlugin","I open an inspector on the component class."
+"WAToggleHalosToolPlugin","I toggle halos on and off."
+"WAWalkback","An abstract component that renders an exception stack with temporary variables. Platforms should implement a concrete subclass and register that subclass when it is loaded.By default this class renders only the top few stack frames, but offers the option to render all. It also offers the option to open a debugger in the image or to proceed with the execution and answers true and false, respectively."
+"WAClassnameHaloPlugin","I display the class name of the component class."
+"WATimingToolPlugin","I display render and callback times."
+"WAPluggableTool","A WAPluggableTool is a wrapper component around tools that can't be made subclasses of WATool. WATool is only really needed to provide the icon image.Instance Variables	component:		<WAComponent>component	- the component to render"
+"WAInspector","This is an abstract implementation of a web-based object inspector. Platforms should implement their own subclasses, specifying behaviour for all unimplemented methods.Note that #openNativeInspectorOn: on the class-side also needs to be implemented.Also subclasses probably want to implement #initialize and #unload on the class-side to call 'self select' and 'self unselect' respectively. This will ensure they are registered as the current implementation when they are loaded."
+"WAHaloPlugin","Abstract root class for all halo tools. They add functionality to the halo toolbar."
+"WATerminateToolPlugin","I try to terminate the process handling this session. This can work of you're at 100% CPU."
+"WADeprecation",""
+"WADevelopmentConfiguration",""
+"WANewSessionToolPlugin","I create a new session."
+"WATool","A WATool is the common base class for tools called from the development tool bar. Is doesn't do anything but including WADevelopmentFiles."
+"WAToolDecoration",""
+"WADeprecationToolPlugin","I display deprecation warnings."
+"WAViewer",""
+"WAHaloVisitor",""
+"WAConfigureToolPlugin","I display the configuration dialog for the currently active application"
+"WAHalo",""
+"WATimingToolFilter",""
+"WAToolPlugin","Abstract root class for all development tool bar tools."
+"WAPrettyPrintedDocument","This Document can be used in place of a WAHtmlDocument and will display a pretty version of the HTML source that would have been generated by the WAHtmlDocument.The technique here is that: - anything we are asked to output raw (i.e. #nextPut: and #nextPutAll:) we encode with entities - anything we are asked to entity encode (i.e. via #xmlEncoder) we double-encode, by wrapping the two WAXmlEncoders around each other - anything we want to output ourselves (i.e. prettiness) we do using a WAHtmlCanvas that we create ourselves"
+"WADeprecatedToolFilter",""
+"WAStylesHaloPlugin","I open the style editor on the component class."
+"WAWalkbackErrorHandler","I am the default development error handler that displays the stack frames and adds the option to display a debugger.I delegate the rendering to WAWalkback.This handler uses Components and depends on having a valid Session. If an error occurs outside of the Session scope it will simply use the superclass behaviour, which should be to open a debugger."
+"WAHtmlEmailBody","I am an HTML email body."
+"WAEmailMessage","I am a  general email message (single part)."
+"WAEmailConfiguration",""
+"WAEmailBody","I am the abstract superclass for email bodies."
+"WAStringEmailBody","I am a plain text email body."
+"WAMultiPartEmailMessage","I am a  multi part email message."
+"WAHtmlErrorHandler","This exception handler returns a simple HTML error message response for Warnings and Errors.It provides two methods to allow the easy creation of custom error responses:#titleForException:  - can be used to override the text displayed in the title#renderContentForException:  - can be used to fully customize the HTML output"
+"WAHtmlResponseGenerator","This subclass overrides certain generation methods to create prettier HTML responses, instead of plain text."
+"WAHtmlFileHandlerListing","I am a helper class to provide the web based listing of file libraries and included files."
+"WALegacyRedirectionHandler","I provide compatibility with old Seaside URLs that have Seaside in the path (eg. '/seaside/examples/counter') by simply removing it."
+"WAEnvironment","I am a utility class used to initialize and provide a default environment."
+"WACounter","A WACounter is component that displays a number. Additionally it has two links that allow the user to increase or decrease this number by 1. The lesson to learn here is how the Seaside callback mechanism is used, how anchors can be used to trigger actions.Instance Variables	count:		<Integer>count	- the number to display, default 0"
+"WAMultiCounter","A WAMultiCounter is a component that consists of several instances of WACounter. Be sure to understand WACounter.The lesson to learn here is how Seaside components can be composed of other components.Instance Variables	counters:		<Collection<WACounter>>counters	- a Collection of components (instances of WACounter) "
+"WAJQueryExampleComponent",""
+"WAExamplesLibrary",""
+"WAExampleComponent",""
+"WAExampleBrowser","I browse all the examples available in the system ie all the results of class side methods beginning with #exampleComponent... If you want to see these examples point your browser to localhost:xxx/examples/examplebrowser"
+"WATodo",""
+"WATodoItem",""
+"WAFileLibraryDemo",""
+"WAJsonParser","I am a parser for JSON. It is a bit more forgiving than the standard and allows any kind of top level element except numbers, not just {} and []. See http://www.json.org/ for details.I can be subclasses to create more sophisticated objects than just Arrays and Dictionaries. To do that, override the one or more methods in the creating protocol."
+"WAJsonArrayBrush",""
+"WAJsonObjectBrush",""
+"JSJsonParser","I'm purely for backwards compatibility with Seaside 3.0"
+"WAJsonElementBrush",""
+"WAJsonSyntaxError","A WAJsonSyntaxError signals invalid JSON input."
+"WAJsonDocument","I add the possibility to generate JSON."
+"WAJsonKeyValueBrush",""
+"WAJsonCanvas","I am a  specific canvas to render JSON output."
+"WAJsonBrush",""
+"WAJsonValueBrush",""
+"WAJsonEncoder","I am an encoder for JSON format."
+"WAPartialContinuation","I am a  partial continuation."
+"WAMarkerNotFound","I signal when a marker was not found during capturing of partial continuation."
+"WAMarkerRequest","I am the request for a marker for partial continuations."
+"WAContinuation","A WAContinuation is the Squeak implementation of a continuation. It serializes the whole stack into an arrayInstance Variables	values:		<Array<ContextPart>>values	- an Array of ContextPart and the values they store"
+"WAPharoXmlEncoder","I am a Pharo specific XML encoder."
+"WAPharoEncoder","I am  the common superclass for Pharo encoders."
+"WAPharoUrlEncoder","I am a Pharo specific URL encoder."
+"WAProfilerToolPlugin","I display the rendering profiler."
+"WARPackageBasedBrowser","I am an implementation of Browser using RPackage and reflection."
+"WAProfilerTool",""
+"WAPharoInspector","A Squeak-specific implementation of a web-based object inspector."
+"WADevelopment","A WADevelopment is a collection of convenience methods for dealing with Seaside development in Squeak. This code is not supposed to be ported."
+"WAPharoWalkback","A Squeak-specific implementation of WAWalkback."
+"WAProfilerFilter",""
+"WABrowserHaloPlugin","I open a browser on the component class."
+"WAMemoryItem","I am an item within the memory usage tool."
+"WABrowser","I am a  web based Smalltalk browser."
+"WAMemoryToolPlugin","I display the memory usage tool."
+"WAProfilerItem",""
+"WAMemory","I am  tool that renders memory usage."
+"WAEmailErrorHandler","A WAEmailErrorHandler is an error handler that sends out email messages with the stack strace. This is an abstract class that has to be subclassed. Subclasses must override #to and #from that return an instance of WAEmailAddress. It's also recommened to override #handleDefault: to generate a custom HTML response."
+"WAHtmlHaltAndErrorHandler","This exception handler also catches halts, in order to prevent Debugger windows from popping up and blocking server processes in deployed images.Subclass this to provide a customized response or more advanced handling (e.g. emailing of errors)."
+"WAPharoJsonEncoder","I am a Pharo specific JSON encoder."
+"WAServerAdapterToolbar","I am a spec based toolbar for the Pharo server adapter."
+"WAPharoServerAdapterSpecBrowser","WAPharoServerAdapterSpecBrowser example"
+"WAProcessStatus","A WAProcessStatus displays information about the Process instances in this image."
+"WAScreenshot","I am a utility to grab a screenshot over the web."
+"WAPharoStatusItem","A WAImageStatusItem is the abstract base class for other classes providing information about a specific aspect of this system."
+"WAJitStatus","A WAJitStatus displays information about the Just-In-Time native code compiler."
+"WASeasideVersionStatus","I provide an overview on the seaside package version(s)."
+"WAVMParameterEditor","A WAVMParameterEditor is an dialog that allows the user to edit a virtual machine parameter."
+"WAAllocatorStatus","A WAAllocatorStatus displays information about the memory allocator."
+"WAMemoryStatus","A WAMemoryStatus displays information about memory usage."
+"WASpaceStatus","I provide a space usage per class."
+"WAUpTimeTracker","WAUpTimeTracker is used to track the TimeStamp when the image last booted.Access the TimeStamp when the image booted as follows:	WAUpTimeTracker imageBootTime.Access the Duration how long ago the image booted as follows:	WAUpTimeTracker imageUpTime.At system startup the imageBootTime is (re)set automatically.This is a work around for Time millisecondClockValue wrapping around."
+"WAVNCController",""
+"WAGarbageCollectorStatus","A WAGarbageCollectorStatus displays information about the garbage collector."
+"WAOperatingSystemStatus","A WAOperatingSystemStatus displays information about the operating system the virtual machine of this image runs on."
+"WAVirtualMachineStatus","A WAVirtualMachineStatus displays information about the virtual machine that runs this image."
+"WAMemoryInput","A WAMemoryInput is a dialog that allows the user to enter an amount of memory.This is a Seaside internal class. Do not rely on it being present. If you need it, copy and paste it."
+"WAVersionUploader",""
+"WAImageStatus","A WAImageStatus displays information about the current Smalltalk image."
+"WARenderLoopContinuation",""
+"WAPluggableActionContinuation","This continuation executes an action (any class that implements #value or #value:). If possible, the renderContext is passed in as an argument. When the action is complete, if a response hasn't been returned, control is passed to a render continuation.'Instance Variables:	action	<BlockClosure | BlockContext | GRDelayedSend | MessageSend | WAContinuation | WAPartialContinuation>"
+"WACurrentCallbackProcessingActionContinuation",""
+"WAActionPhaseContinuation",""
+"WARenderPhaseContinuation",""
+"WACallbackProcessingActionContinuation",""
+"WAFlushingRenderPhaseContinuation",""
+"WAMissingResponseError","I signal a missing response - can be caused by an attempt to use #call: or a similar method while rendering."
+"WAInitialRenderLoopContinuation","I'm the initial continuation of a render loop. I just render the initial page. Subclasses may want to override #shouldRedirect and answer true so that a redirect happens before displaying the first page."
+"WARenderLoopConfiguration","WARenderLoopConfiguration defines attributes required by the Render Loop classes (see the Seaside-Core-RenderLoop category). Any application using these classes should include this configuration (this is done by default for new applications).See #addAttributes: for details on provided attributes."
+"WAInvisibleSessionTrackingStrategy","I am the abstract base class for classes that that use some request attribute that is present on every request for tracking sessions. For document handlers query fields are used."
+"WAMutualExclusionFilter",""
+"WAApplicationConfiguration","WAApplicationConfiguration defines attributes required by WAApplication. All applications should include this configuration (this is done by default for new applications).See #addAttributes: for details on provided attributes."
+"WACookieIfSupportedSessionTrackingStrategy","I use cookies to track sessions if the browser supports it and use query fields (?_s=key) otherwise. I keep adding the session cookie and the session query field until the session cookie shows up in the request. Then I stop adding the query field."
+"WAIPSessionTrackingStrategy","I track sessions using the remote address of a client. Usually you don't want to use this because it causes troubles when multiple users share the same IP (eg. several users from the same company). That's why I'm marked as abstract.There are some special cases like crawlers where it can work though."
+"WASession","I am a Seaside session. A new instance of me gets created when an user accesses an application for the first time and is persistent as long as the user is interacting with it.This class is intended to be subclasses by applications that need global state, like a user. Custom state can be added by creating instance variables and storing it there. The session can be retrieved by #session if inside a component or task or by evaluating: WACurrentRequestContext sessionIf the session has not been used for #defaultTimeoutSeconds, it is garbage collected by the system. To manually expire a session call #expire.A good way to clear all sessions is the following code:WARegistry clearAllHandlers.WAPlatform current garbageCollect"
+"WASessionTrackingStrategy","I am the abstract base class for tracking strategies that track sessions differently from other request handlers (mostly WADocumentHandlers).Concrete implementsions have to take care that expired document handlers don't expire sessions."
+"WAEnterpriseAuberginesStrategy","I implement a session tracking strategy that emulates common JavaEE application servers (Tomcat, WildFly AS). I am similar to WACookieIfSupportedSessionTrackingStrategy.I will do the following- add a cookie named JSESSIONID- add a path parameter named jsessionid until we see a cookie, eg. /;jsessionid=1234?_k=5678"
+"WASslSessionTrackingStrategy","I track sessions using the SSL session id. This has the advantage that the session id never shows up in the request as a parameter or cookie.Special server configuration to set the life time of an SSL session may be required.http://www.roseindia.net/javacertification/ibm-287/http_sessions.shtmlhttp://publib.boulder.ibm.com/infocenter/iseries/v5r4/index.jsp?topic=%2Frzatz%2F51%2Fprogram%2Fsesdeci.htmhttp://en.wikipedia.org/wiki/Session_fixation#Solution:_Utilize_SSL_.2F_TLS_Session_identifier"
+"WASessionContinuation","I represent a continuation as part of the flow of pages within a session. I am not a real continuation (as compared to those used in #call: and #answer:), I only represent a specific point in the session. I reference the root component and a memory snapshot of backtracked objects."
+"WACookieForBrowserIPForCrawlerTrackingStrategy","WACookieForBrowserIPForCrawlerTrackingStrategy uses cookie based session tracking for browsers and IPs for crawlers (they don't support cookies). This way there is never a session key in any URL.This is inspired by:http://www.tomcatexpert.com/blog/2011/05/18/crawler-session-manager-valve"
+"WACookieOnlySessionTrackingStrategy","I track sessions using cookies and everything else using query fields. This works fine as long as the client accepts cookies. This breaks for web crawlers (they don't accept cookies)."
+"WAApplication","WAApplication is the starting point for a Seaside application. When a WAComponent is registered as a top level component a WAApplication object is added to a WADispatcher. The dispatcher forwards all requests to the WAApplication, which in turn forwards them to the correct WASession object. WAApplication's parent class WARegistry maintains a list of all active sessions to the application. ""configuration"" contains a chain of WAConfituration classes that define attributes of the application. The attribute ""rootComponent"", for example, defines the top level WAComponent class for the application. The configuration chain includes WAUserConfiguration, WAGlobalConfiguration, WARenderLoopConfiguration and WASessionConfiguration. Other configurations can be added to the chain when the top level application is registered with a dispatcher. (See below)If you change the cache configuration  you need to send #initializeCache for the changes to take effect.""libraries"" is a collection of WALibrary classes, which are used to serve css, javascript and images used by the application. These may be in methods or in files. Sometimes these libraries are replaced by static files served by Apache. See WAFileLibrary class comment for more information.Registering an Application.	An application can be registered with a dispatcher by using the Seaside configuration page or via code. Below MyComponent is a subclass of WAComponent. The following registers the component as an application, gives some values to attributes (or preferences) and adds a library and a configuration. MyComponent class>>initialize	""self initialize""	| application |	application := self registerAsApplication: 'sample'.	application preferenceAt: #sessionClass put: Glorp.WAGlorpSession.	application addLibrary: SampleLibrary.	application configuration addAncestor: GlorpConfiguration new.	application preferenceAt: #glorpDatabasePlatform put: Glorp.PostgreSQLPlatform.	application preferenceAt: #databaseServer put: '127.0.0.1'.	application preferenceAt: #databaseConnectString put: 'glorptests'.MyComponent>>someInstanceMethod	""example of how to access attributes (preferences)""	self session application preferenceAt: #glorpDatabasePlatform"
+"WANullSessionContinuation",""
+"WACookieSessionTrackingStrategy","I am the abstract base class for tracking strategies that use cookies to track sessions and query fields to track everything else."
+"WAAbstractCanvasBrushTest",""
+"WAFormCharEncodingFromCodecTest","I test that the encoding of the codec on the request context overwrites the encoding on the application."
+"WARenderingTest",""
+"WAXmlCanvasTest",""
+"WAStubJsObject","I exsit so that script generator classes can be tested without loading the Javascript package."
+"WAAnchorTagTest",""
+"WAFormCharEncodingFromHandlerTest","I test that the encoding from the handler is taken if a handler is present but a codec is missing."
+"WAScriptGeneratorTest","Abstract base class for all script generator tests."
+"WAEmailAddressTest",""
+"WACanvasBrushTest",""
+"WAResourceBaseUrlTest",""
+"WADefaultScriptGeneratorTest",""
+"WAPredictableCache","A WAPredictableCache is a WACache that uses incrementing numbers as cache keys. This way the keys are predictable. This is useful for tests."
+"WAFormTagTest",""
+"WABuilderCanvasTest",""
+"WANullScriptGeneratorTest",""
+"WADecorationStub",""
+"WAComponentStub",""
+"WAComponentTest",""
+"WAMetaElementTest",""
+"WAUrlTest",""
+"WARedirectingRegistry","I revert to the old < 3.3.0 behavior which is easier for tests."
+"WAHashCacheTest",""
+"WAHtmlAttributesTest",""
+"WAHeaderFieldsTest",""
+"WARegistryKeyHandlingTest",""
+"WAServerManagerTest",""
+"WAFileHandlerListingTest",""
+"WANextUnconsumedPathElementRequestHandler",""
+"WAErrorHandlerTest",""
+"WAConfigurationTest",""
+"WAFileHandlerTest",""
+"WAAcceptTest",""
+"WAResponseTest",""
+"WABidirectionalCacheTest",""
+"WABufferedResponseTest",""
+"WAFileMetadataLibraryTest",""
+"WALocaleTest",""
+"WAPrecomputedKeyGenerator",""
+"WACookieTest",""
+"WACurrentRequestContextTest",""
+"WAUnidirectionalCacheTest",""
+"WARequestHandlerTest",""
+"WAObjectUnderstandingUnregistered",""
+"WARenderContextTest",""
+"WAForbiddenFileHandlerListingTest",""
+"WAFileTest",""
+"WATestNoopRequestHandler",""
+"WAContextTest","I am the base class for all tests that need a WARequestContext present."
+"WARegistryTest",""
+"WAExpiringCacheTest",""
+"WAComboResponseTest",""
+"WAMergedRequestFieldsTest",""
+"WAConfigurationMock",""
+"WAHandlerTrackingStrategyTest",""
+"WAObjectTest","I contain unit tests for WAObject."
+"WADocumentHandlerResponseTest",""
+"WADynamicVariableTest",""
+"WAMimeTypeTest",""
+"WACallbackTest",""
+"WATestingMetadataFileLibrary",""
+"WATestError","I am a  test error used to test WAExceptionHandler."
+"WADispatcherTest",""
+"WARequestContextTest",""
+"WABacktrackingTest",""
+"WATextFileHandlerListingTest",""
+"WATestNoopSessionHandler",""
+"WAHttpVersionTest",""
+"WAAbstractHtmlElementTest",""
+"WAResponseGeneratorTest",""
+"WABulkReapingCacheTest",""
+"WAStreamedResponseTest",""
+"WARequestFieldsTest",""
+"WAPathConsumerTest",""
+"WAMimeDocumentTest",""
+"WAQueryFieldHandlerTrackingStrategyTest",""
+"WAEncoderTest",""
+"WAExceptionHandlerTest",""
+"WAMutexTest",""
+"WACollectionMimeDocumentTest",""
+"WADocumentHandlerTest",""
+"WATestServerAdaptor","A WATestServerAdaptor is a stub of a server adaptor. It doesn't start an adaptor, it just pretends to allow testing of the server manager"
+"WATestingFiles",""
+"WARequestTest",""
+"WACacheTest",""
+"WAFileLibraryTest",""
+"WAKeyGeneratorTest",""
+"WAPlatformTest","I contain unit tests for Seaside class extensions on GRPlatform."
+"WAHtmlFileHandlerListingTest",""
+"WAEnvironmentDefaultHandlersTest","I contain unit test for default handlers of the environment."
+"WALegacyRedirectionHandlerTest",""
+"WAFlowConvenienceFunctionalTest",""
+"WAFlowFunctionalTest",""
+"WAFlowErrorFunctionalTest",""
+"WAFlowDelegationFunctionalTest",""
+"WAFlowRenderingCallFunctionalTest",""
+"WACallDuringRenderTestComponent",""
+"WAComponentCallTest",""
+"WAFlowDelegationTask",""
+"WAFlowClosureFunctionalTest",""
+"WAFlowPlatformTest",""
+"WAHomeFunctionalTest",""
+"WAParameterFunctionalTest","A WAParameterFunctionalTest tests whether GET and POST fields are merged in WARequest >> #fields."
+"WAValidationDecorationFunctionalTest",""
+"WADelegationTask",""
+"WADelayFunctionalTest",""
+"WAInputPostFunctionalTest",""
+"WASvgFunctionalTest",""
+"WACallbackSecurityFunctionalTest",""
+"WAHtml5MediaElementsTest",""
+"WAPhraseElementsFunctionalTest",""
+"WAValidationTestComponent",""
+"WATestsFunctionalPlatformTest",""
+"WAExceptionFunctionalTest",""
+"WAManyTasksFunctionalTest",""
+"WATreeFunctionalTest",""
+"WACookieFunctionalTest",""
+"WAIframeFunctionalTest",""
+"WARubyFunctionalTest","Examples taken directly from spec:http://www.w3.org/TR/2001/REC-ruby-20010531/"
+"WABatchFunctionalTest",""
+"WAHtml5ContentTest",""
+"WAParentFunctionalTest",""
+"WAInputElementContainer",""
+"WAEmptyTestTask",""
+"WADelegationFunctionalTest","http://code.google.com/p/seaside/issues/detail?id=71"
+"WAInputPostMultipartFunctionalTest",""
+"WATableReportFunctionalTest",""
+"WACanvasTableFunctionalTest",""
+"WAHtml5MultipleFileUploadTest",""
+"WAPopupFunctionalTest",""
+"WAExpirySession",""
+"WAExpiryFunctionalTest",""
+"WAMiniCalendarFunctionalTest",""
+"WAUploadFunctionalTest",""
+"WADateSelectorFunctionalTest",""
+"WAImageMapFunctionalTest",""
+"WASelectionDateTableFunctionalTest",""
+"WAButtonFunctionalTest",""
+"WAHtml5ElementsTest",""
+"WAPathFunctionalTest",""
+"WAPopupCloseTestComponent",""
+"WAFunctionalTaskTest",""
+"WADeprecationFunctionalTest",""
+"WAKeyGeneratorFunctionalTest",""
+"WATrailFunctionalTest",""
+"WACanvasTagTest",""
+"WAHtml5MultipleTextInputTest",""
+"WARequestFunctionalTest",""
+"WAAllFunctionalTests","If you want to see these examples:/config app:- add a new application named ""tests""- choose WAAllFunctionalTests as the root component"
+"WAFilterFunctionalTest",""
+"WAModelFunctionalTest",""
+"WAUrlEncodingFunctionalTest",""
+"WADateTimeFunctionalTest",""
+"WAInputGetFunctionalTest",""
+"WASourceSetTest",""
+"WACallbackFunctionalTest",""
+"WAHtml5InputTest",""
+"WAPerformanceFunctionalTest",""
+"WATrailTestComponent",""
+"WATaskErrorFunctionalTest",""
+"WAEncodingFunctionalTest","A WAEncodingFunctionalTest test whether Seaside correctly handles non-ASCII strings. Unfortunately due to differences in server setup and source code encodings this test requires manual interaction."
+"WALotsaLinksFunctionalTest",""
+"WATrailingSlashFunctionalTest",""
+"WAContextFunctionalTest",""
+"WAHtml5OrderedListTest",""
+"WARootFunctionalTest",""
+"WAFunctionalTest",""
+"WAPartialContinuationTest",""
+"WAContinuationTest",""
+"WAEncoderLatin1Test",""
+"WAPharoEncoderTest",""
+"WAPharoFileLibraryTest",""
+"WAPharoDocumentHandlerTest",""
+"WAEncoderUnicodeTest",""
+"WAGenericCodecTest",""
+"WAFormTestCase",""
+"WAPharoMimeDocumentTest",""
+"WAPharoFunctionalTestsDefaultHandlersTest",""
+"WAImageFunctionalTest",""
+"WARenderLoopContinuationTest",""
+"WASignalingErrorHandler",""
+"WASslSessionTrackingStrategyTest",""
+"WAInteractionTest","The purpose of WAInteractionTest is to provide a fully initialized WARequestContext all the necessary objects are are normally there in a Seaside application like request, response, dispatcher application, session and so forth."
+"WAIPSessionTrackingStrategyTest",""
+"WASessionCookieTest",""
+"WAInvisibleSessionTrackingStrategyTest",""
+"WAApplicationTest",""
+"WAEnterpriseAuberginesStrategyTest",""
+"WAApplicationEncodingFromCodecTest",""
+"WACookieOnlySessionTrackingStrategyTest",""
+"WAApplicationEncodingFallbackTest",""
+"WACookieIfSupportedSessionTrackingStrategyTest",""
+"WATestSession",""
+"WACookieSessionTrackingStrategyTest",""
+"WACanvasDocumentTest",""
+"WACookieForBrowserIPForCrawlerTrackingStrategyTest",""
+"WAApplicationKeyHandlingTest",""
+"WASessionTrackingStrategyTest",""
+"WAQueryFieldHandlerTrackingStrategySessionTest","I test all the session related behavior of WAQueryFieldHandlerTrackingStrategy that can't be tested in WAQueryFieldHandlerTrackingStrategyTest for dependency reasons."
+"WASessionTest",""
+"WARedirectingApplication","I revert to the old < 3.3.0 behavior which is easier for tests."
+"WAAdmin",""
+"WAOpenHandlerPlugin",""
+"WAFileLibraryEditor",""
+"WAHashCacheAttributeEditor",""
+"WADispatcherAddPage",""
+"WACopyHandlerPlugin","I make a copy of an application."
+"WAStringLibraryEditor",""
+"WABulkReapingCacheAttributeEditor",""
+"WADispatcherSubPage",""
+"WAClearDefaultHandlerPlugin",""
+"WAStatusItem",""
+"WAExpiringCacheAttributeEditor",""
+"WAConfigurationBrowser",""
+"WAAddHandlerPlugin",""
+"WAStatus","A WAStatus displays various information about state of this system."
+"WAConfigAttributeEditor",""
+"WADispatcherBrowser",""
+"WAConfigurationToolPlugin","Abstract root class for all plugins that add an action for an application to the dispatcher editor."
+"WARegistryEditor",""
+"WAAncestryAttributeEditor",""
+"WAConfigurationTool",""
+"WAPlugin","I am an abstract root class for all plugins. Plugins are an easy way to add or remove additional tools without changing the codebase. To add a new plugin make sure you choose the right superclass so that the tool can detect your code.The appearance of all plugins, such as icons, has to be configured using CSS."
+"WAFileHandlerEditor",""
+"WAAttributeEditor",""
+"WAClassBindingCollectionAttributeEditor",""
+"WADispatcherEditor",""
+"WAUserConfigurationEditorVisitor",""
+"WACollectionAttributeEditor",""
+"WAHandlerEditor",""
+"WASetDefaultHandlerPlugin",""
+"WAToolFiles",""
+"WAFilterAttributeEditor",""
+"WADispatcherEmptyPage",""
+"WARemoveHandlerPlugin","I remove an application."
+"WAUserConfigurationEditor",""
+"WAFileAttributeEditor",""
+"WADispatcherCopyPage",""
+"WAWelcomeBrowse",""
+"WAWelcomeExample",""
+"WAWelcomeGettingStarted",""
+"WAWelcomeFiles","A WAFileLibrary derived class for the WAWelcome* classes"
+"WAWelcomeComponentConfirmation",""
+"WAWelcomeExampleCounter",""
+"WAWelcomeUrlDialog",""
+"WAWelcome","An short introduction to Seaside"
+"WAWelcomeComponentNamePrompter",""
+"WAWelcomeExampleFlow",""
+"WAWelcomeAuthorNamePrompter",""
+"WAWelcomeConfigure",""
+"WAWelcomeExampleMultiCounter",""
+"WAWelcomeComponentCreator",""
+"WACanvasWidget","A common superclass for all widgets that want to use WAHtmlCanvas as their renderer."
+"WAWindowDecoration","WAWindowDecoration adds a simple title and close button in a bordered area at the top of the page. When closed button is selected nil is ""answer""ed. Useful for a quick & dirty dialog window. Used by WAPlugin and SCTestRunner.Instance Variables:	cssClass	<String>	String added to ""window-title "" to generate cssClass for the title	title	<String>	title of page"
+"WAChoiceDialog","WAChoiceDialog produces a form with select tag (dropdown menu) on a collection of options and ""Ok"" and ""Cancel"" buttons. Options can be any object. Returns actual object selected or nil if user select ""Cancel"". WAChoiceDialog is used to implement the chooseFrom:caption: convenience method in WAComponent.	| selection |	selection := WAChoiceDialog options: #('Smalltalk' 'Perl' 'Python' 'Ruby' 9).	result := self call: selection.	self inform: result printStringInstance Variables:	options	<Collection of Objects> objects in list	selection	<Object>	object selected by user or nil if user cancels"
+"WASelection","WASelection creates a selectable list. Items can be any object. If optional labelBlock is not given the string versions of the items are displayed to user, otherwise labelBlock is used to generate the text to display for each item. Returns the item selected by user, (not the index nor the text shown the user). 	| selection |	selection := WASelection new.	selection items: #(1 'cat' 'rat').	selection 		labelBlock: [:item | item = 1 ifTrue: ['First'] ifFalse: [item asUppercase]].	result := self call: selection.	self inform: result printStringInstance Variables:	items	<Array of Objects> 		labelBlock	<One arg Block>	"
+"WAReportColumn","WAReportColumn displays a column, one cell at a time, of a WAReportTable. Columns can be sorted, have a title, can have a total, and its element can be links. The valueBlock obtains the output (an object) to display for each row from the row's object.  The formatBlock is used to convert the valueBlock output to a string. If you need html markup to display the result, use the two argument form of valueBlock. However, columns with two argument valueBlock can not be sorted. See class methods for shortcut methods for setting the value block. For more information see:	WATableReportInstance Variables:	clickBlock	<BlockClosure [:rowObject | ]>	When clickBlock is set items in column will be anchors. clickBlock is called with the selected object when anchor is clicked on. Typically clickBlock calls a component which generates a new page.	formatBlock	<BlockClosure [:object | ]>	Should convert the result of the one-argument valueBlock to the string to be displayed. If formatBlock is nil then  ""displayString"" is sent to the result of valueBlock for the display string for this column.  	hasTotal	<Boolean>	If true the column will display the sum of all elements in the column, sum is displayed in the last row.	sortBlock	<BlockClosure [:a :b | ]>	Used to sort the element in the column. Arguments are the value from the one argument valueBlock	title	<String>	Column header 	valueBlock	<BlockClosure [:rowObject | ] or [:rowObject :aWARenderCanvas |] >			[:rowObject | ] this form results in an object that is to be displayed in a column cell, argument is the object for a given row (see WATableReport)		[:rowObject :aHtmlCanvas |] this form is to render the value for a column cell from rowObject directly on aWRenderCanvascssClass	title <String> CSS class	the CSS class assigned to the <td>-tag in this column "
+"WAValidationDecoration","A WAValidationDecoration validates its component form data when the component returns using ""answer"" or ""answer:"". A WAValidationDecoration can be added to component via the method ""validateWith:"" as below.	SampleLoginComponent>>intialize		form := WAFormDecoration new buttons: self buttons.		self addDecoration: form.		self validateWith: [:answerArgOrSelf | answerArgOrSelf validate].		self addMessage: 'Please enter the following information'.If component returns via ""answer:"" the answer: argument is passed to the validate block. If the component returns using ""answer"" the sender of ""answer"" is passed to the validate block.Instance Variables	exceptionClass:		<Notification>	message:		<String>	validationBlock:		<one arg block>exceptionClass	- Type of notication that is raised by validation code when validation fails. Default value is WAValidationNotificationmessage	- String message displayed on validation failure. Obtained from the notificationvalidationBlock	- One arg block, "
+"WAFormDialog","WAFormDialog is an empty html form. Used in WAComponent>>inform: to create a dialog component that displays text and an ""Ok"" button to close the component. See subclasses for sample usage & more functionality.Instance Variables:	form	<WAFormDecoration> Decorator that generates form tags	validationError	<String>	Text descriping invalid data entered by user. Displayed when not nil. Set to nil when user submits form."
+"WAPath","WAPath represents a path navigation (breadcrumbs) for a web page and displays standard breadcrumbs(xxx >> yyy >> zzz). WAPath maintains a stack of associations, one for each ""location"" or ""page"" in the path. The association key is the text that is displayed in the breadcrimb. The association value is an object of your choosing, which your code uses to restore that ""page"". To add to the path use the method WAPath>>pushSegment: anObject name: 'lulu'. The name: arguement is the association key, the segment: argument is the association value.The method WAPath>>currentSegment returns object associated with the current ""page"". Your code is not notified when the user clicks on a link in the WAPath object. So when you render a page call WAPath>>currentSegment to get the current object, and generate the page accordingly.See WAInspector for example use.Use WATrail to handle breadcrumbs for sequences of call: and answers:.Instance Variables:	stack	<Array of associations(String->Object) > History of the page. Keys -> display string, values -> object used in helping generating page."
+"WANavigationFiles","Provides CSS to render WANavigation using tabs."
+"WAMessageDecoration","I add a string message on top of the WAComponent I decorate. For example if change WACounter>>initialize as below the text ""Counter Example"" will appear on above the counter when rendered.WACounter>>initialize	super initialize.	self count: 0.	self addMessage: 'Counter Example'	""added line"""
+"WADateTimeSelector","WADateTimeSelector allows the user to select a date and time in a given range dropdown menus (html select). Actual work done by WADateSelector and WATimeSelector. Date range is default range of WADateSelector.See WADateSelectorFunctionalTest for sample of usage.Select ""Date Selector"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/seaside/tests/alltests)Instance Variables:	dateSelector	<WADateSelector>	presents date selection to user	timeSelector	<WATimeSelector>	presents time selection to user"
+"WANavigationBar","WANavigationBar provides navigation links for a component, the WANavigationBar's owner. WANavigationBar is vertical in that all items in the bar are rendered in a column. WANavigationBar's owner typically is a top level component that renders a number of children components, including the WANavigationBar. When a user selects an item in the WANavigationBar a message is sent to the owner, so it can change.The owner component needs to implement the method indicated by the instance variable ""actionsSelector"", the default value is ""actions"". This method returns a collections of symbols. The symbols become the list of items in the navigation bar. The first letter of the symbol is capitalized when displayed. If the symbol represents a 0-argument method it is rendered as a link. When the user clicks on the link the original symbol is send as a message to the owner component. If the symbol represents a 1-argument method it is rendered as a label followed by a text input box. The user has to know that they hit enter after filling the text box.Instance Variables:	actionsSelector	<ByteSymbol>	Symbol sent to owner to get a list of items to be listed in the navigation bar. Default value is ""actions"".	owner	<WAComponent>	This is the navigation bar for the component ""owner""."
+"WAValidationNotification","I am signaled to indicate that a validation has occurred.  See: WAFormDialog>>#validationError:, WAComponent>>validateWith: and WAValidationDecoration."
+"WAFormDecoration","A WAFormDecoration places its component inside an html form tag. The buttons inst var must be set. The component that a WAFormDecoration decorates must implement the method ""defaultButton"", which returns the string/symbol of the default button (one selected by default) of the form. Don't place any decorators between WAFormDecoration and its component otherwise ""defaultButton"" method fails. For each string/symbol in the buttons inst var the decorated component must implement a method of the same name, which is called when the button is selected.Instance Variables	buttons:		<Collection of strings or symbols>buttons	- list of strings or symbols, each string/symbol is the label (first letter capitalized) for a button and the name of the callback method on component when button is pressed, "
+"WASelectionDateTable","WASelectionDateTable renders a table containing dates and rows. A user can select a continuous block of cells in the table.  The table contains one column for each date from startDate to endDate. The top row of the table groups columns by month and labels each month (January 2008). The second row contains the date of each month  (1-30) in the date range. The table also contains ""rows size"" rows. The first column of these rows contains the contents of the instance variable ""rows"". Rest of the cells contents are given by ""cellBlock"". Instance Variables:	cellBlock	<BlockClosure [:rowIndex :date | ]>	returns text for the cell in row ""rowIndex"" and column for ""date""	dateSelectionEnd	<Date>	last selected date	dateSelectionStart	<Date>	first selected date	rowSelectionEnd	<Integer>	index of last selected row	rowSelectionStart	<Integer>	index of first selected row"
+"WASimpleNavigation","I'm a simple tab panel, that can be styled with stylesheets. New tabs can be added using #add:label:You may want to add the WANavigationFiles library to your application for some default CSS styling."
+"WADelayedAnswerDecoration","WADelayedAnswerDecoration adds a delay in displaying a component. See WADelayFunctionalTest for sample usage.Select 'Delay"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/tests/functional/WADelayFunctionalTest)Instance Variables:	delay	<Integer>	delay length in seconds "
+"WADateTable","WADateTable renders a table containing dates from startDate to endDate. The table contains one column for each date from startDate to endDate. The top row of the table groups columns by month and labels each month (January 2008). The second row contains the date of each month (1-31) in the date range. The table also contains ""rows size"" rows. The first column of these rows contains the contents of the instance variable ""rows"". Rest of the cells are empty.Basically this is an abstract superclass for WASelectionDateTableInstance Variables:	datesCache	<(SequenceableCollection of: Date>	contains a date object for each date in the range startDate-endDate	endDate	<Date>	end date of the range displayed in the table	rows	<SequenceableCollection>	labels of the rows	startDate	<Date>	start date of the range displayed in the table"
+"WANavigation",""
+"WAWidgetDecoration",""
+"WADateSelector","WADateSelector displays dropdown menus (html select) allowing a user to delect a date within a range. ""startYear"" and ""endYear"" define the range of selectable dates. Date displayed in month, day, year format. WADateSelector>>date returns date user selected as a Date object.See WADateSelectorFunctionalTest for sample of usage.Select ""Date Selector"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/seaside/tests/alltests)Instance Variables:	day	<Integer 1-31> selected day	endYear	<Integer>	end of range of dates user is allowed to select, not required to use 4 digits	month	<Integer 1-12>	selected month	startYear	<Integer>	 start of range of dates user is allowed to select, not required to use 4 digits	year	<Integer>	selected year"
+"WAMiniCalendar","WAMiniCalendar renders a monthly calendar. Users can navigate by month, year, or select a year and a month. Users can select a date in the calendar. Set canSelectBlock to control which dates a user can select. Use selectBlock to perform an action when a user selects a date. WAMiniCalendar>>date returns the selected date.Select ""Mini Calendar"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/tests/functional/WAMiniCalendarFunctionalTest)Instance Variables:	canSelectBlock		<BlockClosure with date argument>	return true if date argument should be rendered with a link, ie user can select that date	date				<WAValueHolder on a date>	Selected date	monthIndex			<WAValueHolder on an Integer>	Currently displayed month	year				<WAValueHolder on an Integer>	Currently displayed year	selectBlock			<BlockClosure with date argument> called when user selects a date"
+"WATree","WATree implements a tree menu, which supports nesting, collapsing and expanding. Prefixes items with ""+/-"" to indicate items that can be expanded/collapsed.See class methods for simple example.Instance Variables:	canSelectBlock	<BlockClosure [:nodeInTree | ]>	returns true if user can select the argument of the block, if true node is an anchor	childrenBlock	<BlockClosure [:nodeInTree | ]>	returns children (or subnodes) of the given node in the tree, sent to all nodes	expanded	<IdentitySet>	Collection of all nodes that are currently expanded	labelBlock	<[:nodeInTree | ]> returns text to display for given node	root	<Object>	root or top level node in tree, childrenBlock is used to determine roots subnodes	selectBlock	<BlockClosure [:selectedNode | ]>	called when an node is selected, put a callback to your code here	selected	<Object>	currently selected node"
+"WABatchedList","WABatchedList helps display a collection of items across multiple pages. WABatchedList organizes a collection into pages (or batches) of batchSize items each and renders navigation links for a user to moved between pages. WABatchedList>>batch returns the items to display in the current page or batch. Your code has to display the items.See WABatchSelection for example of usage.Instance Variables:	batchSize	<Integer>	number of items to display on a single page	currentPage	<Integer>	 index of current page, starts a 1	items	<SequenceableCollection of Objects>	objects organized into pages for display"
+"WAInputDialog","WAInputDialog generates a simple form with a text input field and a submit button. The instance variable ""value"" is used for initial value of the text field and hold the text entered by user. WAInputDialog answers with text entered by user (value of ""value""). See WAComponent>>request:label:default: for sample use and easy way to use WAInputDialog.Instance Variables:	label	<String>	label of submit button	value	<Object | String>	"
+"WATrail","WATrail implements breadcrumbs for pages generated using a sequence of WAComponent>>call: methods. Each component in the call sequence that is to appear in the breadcrumb must implement the method ""trailName"", which returns the text displayed in the breadcrumb. Instantiate (WATrail on: rootComponent) an WATrail object on the first component (root) of the breadcrumb. When the root component, or subsequent component, transfers control via ""self call:"" the WATrail object is automatically updated and will display the correct call sequence in the breadcrumb. When a user clicks on a link in the breadcrumb the call sequence is automatically updated.The breadcrumb is placed in a div with class ""trail"" and each crumb is separated with the character '>', which is inside a span of class ""separator"" to aid in using CSS to format the breadcrumbs.Instance Variables:	root	<WAComponent>	first component in the breadcrumb and in the call sequence."
+"WABatchSelection","WABatchSelection displays a list of objects. The list is show N (currently 8) items per page, with links to navigate to other pages if needed. Objects in the list must implement one method that returns text description of the item and one method that returns a name or label used as the link users click to select the item. The text description is displayed below the link.Example	items := OrderedCollection new.	1 to: 20 do: [:each | items add: (Contact new name: each; phoneNumber: '54321';yourself)].	selection := WABatchSelection items: items link: #name text: #phoneNumber.	result := self call: selection.	where the Contact class has methodsinstance vars ""phoneNumber"" and ""name"", with	setter & getter methods.Instance Variables:	batcher	<WABatchedList>	description of batcher	linkSelector	<Symbol>	method sent to items in list for link text	textSelector	<Symbol>	method sent to items in list for text description"
+"WAYesOrNoDialog","WAYesOrNoDialog displays a yes/no dialog. Returns boolean indicating user selection. See WAComponent>>confirm: for sample usage and easy way to use WAYesOrNoDialog."
+"WATimeSelector","WATimeSelector displays dropdown menus (html select) allowing a user to delect a time within a range. ""startHour"" and ""endHour"" define the range of selectable times. Time is displayed in 24 hour format. WATimeSelector>>time returns time user selected as a Time object.See WADateSelectorFunctionalTest for sample of usage.Select ""Date Selector"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/seaside/tests/alltests)Instance Variables:	endHour	<Integer 0-23>	end of time interval for selectable times	hour	<Integer 0-23>	selected hour	minute	<Integer 0-59>	selected minute	second	<Integer 0-59>	selected second	startHour	<Integer 0-23>	start of time interval for selectable times"
+"WAAlphabeticBatchedList","WAAlphabeticBatchedList organizes a collection of items into pages for display. A page contains all items whose string representation (item displayString) starts with the same character. WAAlphabeticBatchedList only displays the navigation (alphabet with links) for the list. Your code needs to display the current page.Use WAAlphabeticBatchedList>>items: to set the collections of items.Use WAAlphabeticBatchedList>>batch to get the items to display on the current pageSee WABatchFunctionalTest for example of usage.Select ""Batch"" tab of the Functional Seaside Test Suite to run an example  (http://127.0.0.1:xxxx/seaside/tests/alltests)Instance Variables:	currentPage	<Character>	the character of the curent page	items	<(Collection of: (Object ))> collection of the items managed by WAAlphabeticBatchedList. Collection is sorted before items are displayed."
+"WALabelledFormDialog","WALabelledFormDialog is an abstract class for generating html forms. Given a data model WALabelledFormDialog displays a label and input field for each instance variable of interest. User supplied data is placed in the data model.Subclasses need to implment the methods labelForSelector:, model, and rows. The ""model"" method just returns the object whose fields we wish to populate with date. The ""rows"" method returns a collections of symbols. One symbol for each row of data in the dialog. The symbol is used generate the accessor methods for the data in the model. The method ""labelForSelector:"" returns the labels for each row and each submit button in the form.A standard text input field is used for each row of data. To use other html widgets for input for = a datum implement the method renderXXXOn: where XXX is the symbol for the row. See ""renderNameOn:"" in example below.The default form has one button ""Ok"". Override the ""buttons"" method to change the text or number of submit buttons on the form. Override the ""defaultButton"" method to indicate which button is the default. For each button in the form the subclass needs a method with the same name as the button, which is called when the user clicks that button. See example below.LabelledFormDialogExample subclass of WALabelledFormDialog instance methods	initialize		super initialize.		contact := Contact new. ""contact is an inst var""		self addMessage: 'Please enter the followning information'.	model		^ contact	ok		self answer: contact	cancel		self answer	rows		^ #(name phoneNumber)	buttons		#(ok cancel)	labelForSelector: aSymbol		aSymbol == #name ifTrue: [^'Your Name'].		aSymbol == #phoneNumber ifTrue: [^'Phone Number'].		aSymbol == #ok ifTrue: [^'Ok'].		aSymbol == #cancel ifTrue: [^'Cancel'].		^ super labelForSelector: aSymbol	renderNameOn: html 		""Show how to specily special input instead of using simple text field.""		(html select)				list: #('Roger' 'Pete');				selected: 'Roger';				callback: [:v | contact name: v]Contact Class used above has instance variables name, phoneNumber with standard getter and setter methods"
+"WATableReport","WATableReport presents tabular data. A WATableReport contains a collections of objects, one per row, and a collection of WAReportColumns. The WAReportColumn objects are configured to produce the text for the table cell based on the each row object. Each column has a header and an optional column sum. The table can be sorted on a column by clicking its header, unless the column handles rendering on the canvas itself. A table can be given a set of html colors (rowColors), used to colors the rows to aid in viewing. For more information see:	Example - WATableReportFunctionalTest (initialization code below)	WATableReport Tutorial - http://www.cdshaffer.com/david/Seaside/WATableReport/index.htmlInstance Variables:	columns	<Collection of WAReportColumn>	Each WAReportColumn produces the text for each table cell in a column  	isReversed	<Boolean>	true if the current sort column is to be sorted in reverse order	rowColors	<Collection of String/Symbol>	Each element is a string for an html color, which is used as a background color for table rows	rowPeriod	<Integer>	Each color in rowColors is used for rowPeriod consectutive rows before using the next row color.	rows	<Collection of Object>	Each element of the collection provides the data for a row in the table.	sortColumn	<WAValueHolder on WAReportColumn>	Column used to sort the the table rowsExample:	WATableReport new		rows: WAComponent allSubclasses asArray;		columns: (OrderedCollection new			add: (WAReportColumn				selector: #fullName title: 'Name'				onClick: [ :each | self inform: each description ]);			add: ((WAReportColumn				selector: #canBeRoot title: 'Can Be Root')				sortBlock: [ :a :b | a ]);			add: (WAReportColumn				renderBlock: [ :each :html | html emphasis: each description ]				title: 'Description');			yourself);		rowColors: #(lightblue lightyellow);		rowPeriod: 1;		yourself"

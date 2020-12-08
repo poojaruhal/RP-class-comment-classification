@@ -1,0 +1,421 @@
+"class","comment"
+"PRBookTesterVisitor","I am a visitor specialized in visiting books and testing their code. Therefore, I only redefine visitCodeBlock: and specify it with the different parameters the codelock may have.I gather all results as PRBookTestResult s in allTestsResults.visitCodeblock: uses executeAndReport: creating a PRBookTestResult with the result of the evaluation of the codeblock.checkAndReportFileNamed: starts the visit in a given file.Every codeblock can be specified with the following parameters implying a specialized visit:- testcase: The codeblock is an example defined as follows, 				[[[testcase=true				(stimuli) >>> result				]]]	- methodDefinition: The codeblock is a method definition defined as follows,				[[[methodDefinition=true				ClassName >> methodName					method body				]]]	- classDefinition 				[[[classDefinition=true				Object subclass: #YourClass					instanceVariableNames: 'iv1 iv2'					classVariableNames: ''					package: 'YourPackage'				]]]	- evaluation				[[[testcase=true				(stimuli) >>> result				]]]"
+"PRRunAnnotation","I am an annotation used to run the tests of a given test class.I am used in a PRDocument in order test already defined tests methods in a given test class.My parameters are: - testClass : a test class you want to runI am used as follows in a document:	${run:testClass=ChapterTest}$	Note:	The visit of this annotation is performed by the PRBookTesterVisitor in charge of visiting the document and therefore there is not a PRRunAnnotationTransformer defined for a simple reason, this annotation does not transform anything."
+"PRCheckBookDocument",""
+"PRScreenshotTransformer","I am a transformer for the screenshot annotation.I know how to  visit a screenshot annotation and the way to transform it.I have two main purposes:- I create a PRFigure with the annotation parameters- I create a PNG file in the /figures subfolder (with the help of exportAsPNGForPillar)"
+"PRBookTestGenerator","This visitor generates tests based on the information in the >>> expression. "
+"PRScreenshotAnnotation","I am an annotation used to show a screenshot of a given class and method.I am used in a PRDocument to include a PRPicture and add a PNG file to the /figures chapter subfolder.My parameters are: - package: the targetted package- class: the targetted class- method: the targetted method- caption: the caption that will appear under my figure in the final book- width: PRFigure width (as would be used in a more classic figure inclusion with +caption .>file|width=50)- label: PRFigure label (as would be used in a more classic figure inclusion with +caption .>file|label=aa)I am used as follows in a document:	${screenshot:package=Kernel|class=Integer|method=+|caption='The Plus Method'|width=50|label=aa}$	Note:	Contrary to the loader or run annotations, there is a transformation going on here: a PRFigure is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRScreenshotTransformer."
+"PRCreateTestsDocument",""
+"PRShowClassTransformer","I am a transformer for the showClass annotation.I know how to  visit a showClass annotation and the way to transform it.I create a PRCodeblock with the class definition within it."
+"PRBookTestResult","I represent a pillar codeblock once it has been tested.I am composed of a text, a result and an explanation.The text shows the text of the codeblock I am linked to, the result is a boolean stating if the test has passed or not and the explanation is either 'Test passed', 'Test failed without raising an exception' or the exception raised by the test.For example:[[[ 3+4>>> 7]]]Given this codeblock, the associated PRBookTestResult's instance variable would be: text: ''3+4'result: true explanation: 'Test passed'The fragmentedText instance variable is used by method or test definitions in order to keep class and method names. For example:[[[methodDefinitionPlop >> plop1^ '1']]]text: 'Plop >> plop1		 ^ ''1'''fragmentedText: #('Plop' 'plop1' '^ ''1''')"
+"PRShowClassAnnotation","I am an annotation used to show a Class defined in our system.I am used in a PRDocument to include a PRCodeblock with the class description within it.My parameters are: - class: the class name I am used as follows in a document:	${showClass:class=MyClass}$	Note:	Contrary to the loader or run annotations, there is a transformation going on here: a PRCodeblock is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRShowClassTransformer."
+"PRCheckBookTarget","Looks like a little hack to be able to pass extra parameters during the documentFor: invocation?"
+"PRShowMethodTransformer","I am a transformer for the showMethod annotation.I know how to  visit a showMethod annotation and the way to transform it.I create a PRCodeblock with the method definition within it."
+"PRLoaderAnnotation","I am an annotation used to load a github project in a given state.I am used in a PRDocument in order to load a github project at a given tag.My parameters are: - account : github account name- project : github project name- tag : github commit tag I am used as follows in a document:	${loader:account=QDucasse|project=TestBook|tag=Chapter1}$	Note:	The visit of this annotation is performed by the PRBookTesterVisitor in charge of visiting the document and therefore there is not a PRLoaderAnnotationTransformer defined for a simple reason, this annotation does not transform anything."
+"PRShowMethodAnnotation","I am an annotation used to show a method defined in our system.I am used in a PRDocument to include a PRCodeblock with the method description within it.My parameters are: - class: the class name - method: the method nameI am used as follows in a document:	${showMethod:class=MyClass|method=myMethod}$	Note:	Contrary to the loader or run annotations, there is a transformation going on here: a PRCodeblock is created in the end, so there is a need here to use a PRNodeTransformer subclass, PRShowMethodTransformer."
+"PRCreateTestsTarget","Looks like a little hack to be able to pass extra parameters during the documentFor: invocation?"
+"ConfigurationForPillar","I'm a generated class that manages the conversion of configuration items written in STON format to Pharo objects. I'm used for example in Pillar to manage 'Pillar.conf' file.  I was generated by the ChrysalConfigurationBuilder based on a list of item descriptions (instances of subclasses of ChrysalItem).To help you remember from which configuration items I was generated from, I have a class side method which when executed in presence of the generating package will return a list of items. Note that such items only exist at compile time. Therefore executing this method with only the runtime does not make any sense.chrysalDescriptions ^ STON fromString: '[	StringConfigurationItem {		#propertyName : #title,		#default : 'my super cool book',		#noDefault : false	}, ... ]'Now to exist and be used I do not need the full Chrysal package, just the runtime containing the ChrysalConfiguration class. Note that I may inherit from one of its subclasses to support better customisation. 				Chrysal is hosted at: github.com/Ducasse/Chrysal					To generate me, a code snippet similar to the following one was executed: 				ChrysalConfigurationBuilder new 			configurationRootClass: ChrysalPillarishConfiguration;			defineConfigurationClassNamed: #ConfigurationForPillar packagedIn: Pillar-Chrysal; 			withDescriptionItems: ConfigurationDescriptionForXX itemDescriptionForXX "
+"ChrysalPillarConfigurationTest","Check ChrysalConfigurationBuilder >> #itemDescriptionForXX for the"
+"ChrysalPillarishConfiguration","I'm a pillar specific class to manage code not generated for the configuration class. Pillar code should not use me but my subclass."
+"CodeBlockDefaultLanguageItem","I'm a specific item for Pillar only configuration. I'm used to manage languages. Used for example this waylanguageForScript: aScript	^ aScript language isSpecified		ifTrue: [ aScript language ]		ifFalse: [ self configuration defaultScriptLanguage ]			scriptLanguages are defined that way in cocoondescriptionDefaultScriptLanguage	<magritteDescription>	^ PRMagritteScriptLanguageDescription new		priority: 100;		accessor: #defaultScriptLanguage;		label: 'Default language for scripts.';		cocoonDocumentation:				'Indicate the language in scripts when none is specified. This language is used for syntax highlighting. The currently supported languages are ', (PRRealScriptLanguage withAllConcreteClasses collect: #standardName) asCommaStringAnd, '.';		default: PRUnspecifiedScriptLanguage default;		cocoonDefaultDocumentation: 'An unspecified language';		yourself			PRRealScriptLanguage withAllConcreteClasses collect: #standardName >>> #('bash' 'css' 'html' 'http' 'json' 'javascript' 'pillar' 'sql' 'ston' 'shellcommands' 'smalltalk')PRUnspecifiedScriptLanguage default >>> ''"
+"ConfigurationDescriptionForPillar","I'm just holding some descriptions that are used to generate the configurationForPillar class.ChrysalConfigurationBuilder new 	configurationRootClass: ChrysalPillarishConfiguration;	defineConfigurationClassNamed: #ConfigurationForPillar 	packagedIn: 'Pillar-Chrysal'; 	withDescriptionItems: ConfigurationDescriptionForPillar itemDescriptionForPillar"
+"PRUpdateTemplateCommandLineHandler","I am a command line handler to update the template of the current project.I overwrite the current template in the support folder.I assume that the support folder is read only and the user did not modify it.Example of usage:./pillar updateTemplate book"
+"PRAbstractCommand","I'm an object managing configuration. I'm usually invoked from a command line but not only.My main entry point is 	createConfiguration: confFilename baseDirectory: baseDirectory argDictionary: argumentsWhen you type on the command line		./pharo-ui Pillar.image pillar export --to=""latex"" Chapters/Chapter1/chapter1.pillar	You can obtain the same doing; 	PRExportBuilder new 			createConfiguration: 'pillar.conf' 		baseDirectory:  FileSystem workingDirectory   		argDictionary: {				'inputFile'-> (FileSystem workingDirectory / 'Chapters/Chapter1/chapter1.pillar') .				'defaultExporters' -> {'latex'}				} asDictionary;		export		"
+"PRSubCommandLineHandler","I am the abstract super class of all sub commands for Pillar (export, export-all etc).I collaborate with a builder to which I pass the information: 	- configuration file	- base directory	- input file	and kick its execution. Subclasses should set the configurationInstaller"
+"PRFileDependencyCommandLineHandler","This pillar subcommand is about computing the dependent files of a given file. Usage: A typical example is 	./pharo-ui Pillar.image pillar fileDependencies  --configurationFile=pillar.conf Chapters/Chapter1/chapter1.pillar"
+"PRArchetypeConfigurationInstallerCommand","I'm responsible for handling and installing archetype related templates../pillar archetype --template=bookfor example. There should be a one to one mapping between the argument name and the github/pillar-language/pillar-archetypes folder."
+"PRArchetypeCommandLineHandler","I am a command line handler to create a pillar project in the current directory.The pillar project contains a basic template and skeleton pillar files following the archetype convention.Example of usage:./pillar archetype book"
+"PRImageDependencyCommandLineHandler","This pillar subcommand is about computing the dependent images of a given file. Usage: A typical example is 	./pharo-ui Pillar.image pillar imageDependencies  --configurationFile=pillar.conf Chapters/Chapter1/chapter1.pillar"
+"PRDependencyCommand","Given information from the command line I manage dependency analysis.I can be invoked as follow ./pharo-ui Pillar.image fileDependencies  --configurationFile=pillar.conf Chapters/Chapter1/chapter1.pillarbut also from ur lovely system asPRDependencyScripter new	createConfiguration: 'pillar.conf' 	baseDirectory:  FileSystem workingDirectory   	argDictionary: {			'inputFile'-> (FileSystem workingDirectory / 'Chapters/Chapter1/chapter1.pillar') } asDictionary;	printDependencies"
+"PRBuildCommandLineHandler","here is a typical example of the use of this command lineTo build a book pdf./pharo-ui Pillar.image pillar build pdfTo use a template./pharo-ui Pillar.image pillar build --templatable html"
+"PRServeCommandLineHandler","I am a command line handler to serve of the current project.Example of usage:./pillar serve -w"
+"PRCommandLineHandler","Pillar is a system to produce documents (latex, html, markdown....) from a wiki like syntax named pillar. More information in https://github.com/pillar-markup/pillar.Usage: A typical example is 	pillar archetype book 		to install an archetype	pillar build pdf	pillar build html 		to build document in pdf or html	"
+"PRWatcher","A class to watch served sites.Each 5 seconds, the website is regenerated"
+"PREvalCommandLineHandler",""
+"PRScriptEvaluationEnvironment","A script evaluator"
+"PREndEnvironmentAnnotation","I'm the beginning of annotation to represent an environment (as in LaTeX): typically ${end:card}$ in the following example.Here is for example an environment called card. It is composed of a begin and end environment annotations.${begin:card}$!! I'm CoolA paragraph about the card.I will be interpreted as part of the card.${end:card}$ See comment of PREnvironment. "
+"PRFigure","I'm a Figure, i can have a label in parameter. My alias (coming from the superclass) represents the figure caption"
+"PRError","General Pillar error"
+"PRUnsupportedScriptLanguage","An unsupported script language"
+"PRListItem","I am an item within a *PRList*. It means that my subclass should only be elements having a textual representation within Pillar (- -- #).If you need to extend Pillar to support new kind of item (for example bibitem) which do not havea pillar syntax support do not subclass from this class. "
+"PRVisitor","I am an abstract visitor. I provide a default implementation of all visit messages that does not descend automatically into children of the visited graph. Subclasses should override all my messages in appropriate ways to visit the nodes they need."
+"PRValidation","During construction of the parameters, just after parsing there is an obscure validation phase. And I'm the class holding a strategy of our this validation is handled."
+"PRFormat","A styling format "
+"PRInternalLink","I am an internal link pointing to a structure within the current kernel. I reference my owning structure to be able to lookup the referenced structure. The referenced structure is cached in the instance variable ==target==."
+"PRAbstractAnnotation","I am an abstract class to represent an open-ended syntax for special text. The syntax of the annotation is the following: 	${note:value=some text|value2=""some text""}$The name at the begining of each annote is called the tag (e.g., 'index', 'note', 'cite'). The tag is followed by a series of associations (key/value pairs).Each annotation has the possibility to define a default parameter that does not need to be explicitly tagged: 	 ${mock:Foo|number=5}$ means  ${mock:value=Foo|number=5}$ since mock defines defaultParameterName as 'value'.!! DescriptionI allow one to extend easily the syntax of Pillar. I am contained inside a PRDocumentGroup. I am define by a tag and I can have some parameters.!! Public API and Key Messages- #tag This class method define the tag of an annotation.- #parameters: aCollection   This class method is the constructor of an annotation. This method takes a dictionary of parameters.!!Internal Representation and Key Implementation Points. Instance Variables-	hadAllKeys:	I am a boolean. I  know if all the parameters written by the user had a key or if one didn't had a key. To export the document, this is useless except for the Pillar writer.-	parameters:	I  keep all the parameters of the annotation with a key and a value."
+"PRParameters",""
+"PRShoutingValidationStrategy",""
+"PRNoScriptLanguage","I'm here for authors to specify they don't want syntax highlighting in their scripts."
+"PRHeader","I represent a header within a document. My level is a natural number."
+"PRParameterValue","I'm a value of a key in a environment or tag. For example in ${begin:card|rank=33}$ 33 is represented by one of my instance. "
+"PRUndefinedAnnotation",""
+"PRLink","I am an abstract link built from an alias and a reference. The alias is the string representation that will be displayed to the user, whereas the reference is a string identifying the target. If there is no alias, the reference itself is displayed. Links can try to embed the referenced target into the containing document.!Examples=*Reference*=+Alias>Embedded Reference*"
+"PRInputFileError","An inclusion error during an inclusion of file."
+"PRDocumentItem","I am an abstract superclass for the document hierarchy. My subclasses include all the basic elements to represent a document.!! DescriptionMost of the time I will be used by a visitor that will visit me. Each of my subclasses can have its own visitor.I'm usually contained inside a PRDocumentGroup at the exception of PRDocument.!! Public API and Key Messages- #parser. This class method returns the default parser for this document model.!! Internal Representation and Key Implementation Points.-	counter:		I am a counter used by some document items. Maybe I can be improve because not all items need a counter."
+"PRParagraph","I'm a paragraph of text containing text, line breaks or annotations.I'm close to a latex or HTML paragraph. I do not contain complex structures such as lists, codeblocks. 		"
+"PRCascadingCounter","I can keep track of the count of nested structures so each structure as its own number. For exemple, 2 sections in Chapter 1 would have a counter of #(1 1) and #(1 2). The first number indicates the top-most structure (here a chapter), while the following numbers represent the nested structures. I can count up to a max level."
+"PRBasicObject","I'm a root of objects that are Pillar objects but not visitable per se. I could be replaced by Object. "
+"PRBoldFormat","Bold styling format"
+"PRSection","I'm a section. I'm here to add a structure to the document."
+"PREnvironmentAnnotation","I'm an annotation to represent an environment (as in LaTeX).Here is for example an environment called card. It is composed of a begin and end environment annotations.${begin:card}$!! I'm CoolA paragraph about the card.I will be interpreted as part of the card.${end:card}$ See comment of PREnvironment. "
+"PRPreformatted","I am preformatted text or source code. My children are instances of *PRText*."
+"PRSilentValidationStrategy",""
+"PRRealScriptLanguage","Superclass for existing real scripting languages"
+"PRList","I am an abstract list. I represent the abstraction over ordered, unordered HTML or latex list. My children are instances of *PRListItem*. If you need a container of elements better use of PRDocumentGroup."
+"PRText","I am a plain text. I am the most important leaf node of the document composite."
+"PRDocument","I am the root of a document composite."
+"PRExternalLink","I am an external link with an URL (Uniform Resource Locator) as reference."
+"PRPropertyError","A Pillar property error"
+"PRAnchor","I am an anchor within a document. I am used as a reference point within a large document."
+"PREmptyParagraph","An empty paragraph"
+"PRNotFoundCounter","I am a subclass used when a reference is not found.In this case no number can be returned so a Warning is raised, and a ? is displayed"
+"PRObject","I am a superclass of most objects within Pier. I hold a dictionary of properties, so that users can easily annotate me with new values. I am visitable."
+"PRItalicFormat","Italic styling format"
+"PRLineBreak","I am a line break. I only show up in the wiki format."
+"PRBeginEnvironmentAnnotation","I'm the beginning of annotation to represent an environment (as in LaTeX): typically ${begin:card}$ in the following example.Here is for example an environment called card. It is composed of a begin and end environment annotations.${begin:card}$!! I'm CoolA paragraph about the card.I will be interpreted as part of the card.${end:card}$ See comment of PREnvironment. "
+"PRReference","I'm a reference. I can be a Link or a Figure. Later i could be a video for example."
+"PREnvironmentMissedNamed",""
+"PRUnspecifiedScriptLanguage","An unspecified script language"
+"PROrderedList","I am an ordered list. I am typically used for numbered items."
+"PRCodeblock","An embedded script[[[language=smalltalk|caption=""addition""1 + 3 			]]]In addition scripts are also used to define structures[[[structure=city{   ""name""        : ""Bordeaux"",   ""latitude""    : 44.84, [...]}]]]We needed a way to have a JSON structure in a Pillar file without interpreting the JSON as Pillar syntax. To do this, we used environments whose contents is JSON:[[[structure=city{   ""name""        : ""Bordeaux"",   ""latitude""    : 44.84, [...]}]]]Environments are the only Pillar elements which keep their contents unparsed. This solution encapsulates new syntax within an existing one thus avoiding problems with existing documents."
+"PRTParametrizable","I'm a trait that proposes parameter-related methods."
+"PREnvironment","I represent an environment (as in LaTeX).I'm a PRDocumentGroup with a name and a parameter list. Syntactically I'm delimited by a start and an end annotation. I can be nested inside other environment. ${begin:card}$!! I'm CoolA paragraph about the card.I will be interpreted as part of the card.${end:card}$ "
+"PRMailLink","I am an external link pointing to a mail address. I encode my URL to prevent spam bots collecting the address."
+"PRSyntaxError","An error about syntax"
+"PRDocumentGroup","I am an abstract group of document items."
+"PRParameter","I represent a key and value pair. My key is instance of PRParameterKey and its associated vaue is an instance of PRParameterValue."
+"PRValidationStrategy",""
+"PRAbstractScriptLanguage","I represent a programming language that can be referenced from a PRScript to get syntax highlighting.Check the method  visitScript: for example on PRLatexWriter.  ...	(self languageForScript: aScript) isSyntaxHighlightingPossible		ifTrue: [ parameters add: 'language=' , (self languageForScript: aScript) printString ]...."
+"PRMonospaceFormat","Monospace styling"
+"PRParameterKey","I'm a key in a environment or tag. For example in ${begin:card|rank=33}$ rank is represented by one of my instance. "
+"PRAsciiDocCanvas","An AsciiDoc canvas that facilitates writing AsciiDoc to a stream. The main methods are #surround:with: and #precede:by: that allow you to write something like this:canvas surround:  [ ""some code that generates the string inside the bold"" ] with: '*'canvas precede: [ ""some code that generates the string which will be change by the label"" ]  by: '[label]' "
+"PRAsciiDocWriter","Write a Pillar document to an AsciiDoc document"
+"PRBeamerWriter","I'm a writer generating Beamer slides from a Pillar document. Beamer is a LaTeX package specialized in slide creation."
+"PRTarget",""
+"PRColumnsTransformer","I replace each ==columns== annotation with a structure of columns."
+"PRFootnoteTransformer","I replace each ==footnote== annotation with a structure of footnote."
+"PRDocumentListSorter","A class for representing a gloabl sorter for different kind of sorting"
+"PRExportCanvas","I am the place where the visitors will write stuff. I output everything to a stream. Eventhough I have some streaming capabilities (#nextPutAll:, #raw:, ...), my clients should use brushes as much as possible instead. This is because the brushes will take the responsibility to write correct text for the clients."
+"PRConfigurationError","I am the error raised when the configuration provided during the export is invalid."
+"PRLevelLetterPrinter",""
+"PRPrintingTransformer","I support the use of a printer to print title and sections related transformations."
+"PRStatus",""
+"PRAnchorOfSection","After each title I add an anchor with the title of the section.I'm used with the autoAnchor configuration parameter."
+"PRPhase","I am an abstract class to describe a Phase of an export. A Phase takes an input, transforms it and returns an output.A phase holds a configuration. This configuration is a  the configuration of the export.To create a new phase you have to define its prority as a class method then to define the action of the Phase with a method actionOn: anInput. This method will return an output. You can also add some transformations to the output like: transformerInputFileOn: aCollection	<pillarTransformer: 1> ""the parameter is the priority of the transformation""	aCollection		do: [ :each | 			PRFileInclusion new				configuration: self configuration;				start: each ]"
+"PRUpdateFileInclusionReference","I update all reference of figures and internal links for file inclusion "
+"PRDocumentChildrenTransformer","I'm an abstract class. I allows the transformation of a tree. I'll visit the children of a document a remplace them by a collection of newChildren.newChildren is a Collection where we stock the new children of PRDocument during the transformation."
+"PRBuildAllStrategy",""
+"PRScriptEvaluator","I replace each script with ==eval=true== with the result of its evaluation."
+"PRTransformersDocumentation","I am a class that will generate the documentation of the transformers in Pillar.I will use the 'pillarTransformer:key:documentation' pragma. I will display the keyword and the documentation of a transformer. The keyword is use to disable a transformer into a configuration.To use me you can execute :| stream |stream := '' writeStream.PRTransformersDocumentation on: stream.stream contents"
+"PRSectionTransformer","For each header, I add a section structure. This is useful in export formats (such as HTML5 and Docbook) where sub-sections are embedded in their parent section."
+"PRCompilationContext","S. Ducasse comment: It looks like this class is actually doing nothing since it just stores two values and returns value. Most of the time people write(PRCompilationContext 	withDocument: anInput	withConfiguration: 'ljkjlkjkl') input	(PRCompilationContext 	withDocument: 'jkljlkj'	withConfiguration: 'ljkjlkjkl') inputBut PRCheckPhase uses the configuration passed bt the context. executeOn: aPillarContext	self new		configuration: aPillarContext configuration;		start: aPillarContext input.	^ aPillarContext	"
+"PRWritingTarget",""
+"PRCustomTagTransformer",""
+"PRHeadingLevelOffsetTransformer","Convert from the level of a Pillar heading to the level of heading in the exported document. For example, a ==headingLevelOffset== of 3 converts a 1st level Pillar heading to an ==<h4>== in HTML."
+"PRDocumentListDateSorter","I am a class use for sorting files according their modifications dates.By default it is descending sorting.PRDocListDateSorter with: aCollectionOfReferences"
+"PROutputStream","I represent a very simple interface for writing text to a stream.I'm associated with a configuration which knows some details about the output stream (e.g., the line ending convention)"
+"PRExportError","I'm an exception class representing errors that happens while exporting a pillar document."
+"PRSlideTransformer","I replace each slide annotation with a slide structure."
+"PRLevelNumberPrinter",""
+"PRHeaderCapitalizationTransformer",""
+"PREnvironmentTransformer",""
+"PRFailure",""
+"PRCitationTransformer","I am a transformer which will replace the citation annotations  by a real citation structure."
+"PRBuildListStrategy",""
+"PRScriptFromFile","I replace each script with a ==fromFile== parameter with the content of the referenced file."
+"PRCreateSymLink","I allow to create a symbolic Link"
+"PROutputDocument","I represent a pillar output document.I contain the already written text (String) and the pillar document (ast) used to generate it. I'm useful in the post-processing steps of a pipeline, where a pipeline can choose to, for example:- apply a template to the already written text (using the document's metadata)- dump the text into a file"
+"PRCyclicFileInclusionError","I am an error announcing cyclic dependencies between pillar files."
+"PRTitlePrinter","I'm responsible for printing header level.I contain level descriptions.  "
+"PRNumeratingLinksVisitor","I'm created with an anchorsMapping and i give counters at each internal links of the document I visit."
+"PRDocumentListNameSorter","I am a class use for sorting files according their basename.By default it is ascending sorting.PRDocListNameSorter with: aCollectionOfReferences"
+"PRDocumentWriter","I'm the superclass of all classes supposed to output a pillar document to a text file. I have a canvas to which the subclasses can write to using dedicated brushes. I have a configuration which specifies some details about how to write text (e.g., end of line convention).I can either emit the raw text or converted text. By default I convert text. "
+"PRNoInputFileError","I am an error raised when no input file is specified while exporting a pier document"
+"PRTemplatedWriter","I am a pillar document writer that wraps a normal wrapper.When writing one element, I first check if there is a file in the current template that overrides the default writing. If so, I use that file to template the contents.Otherwise I simply delegate the writing to the wrapped one.I am carefully designed so if an element X is delegated to the wrapped writer, it should delegate the writing of X's children back to myself."
+"PRAbstractOutputDocument",""
+"PRRemoveHideableScripts","I visit a document and I hide scripts with ==hideable== parameter at ==true==."
+"PRLevelRomanPrinter","I'm a configuration that render myself as a Roman number."
+"PRFileInclusion","I replace each ==inputFile== annotation with the content of the referenced file."
+"PRSuccess",""
+"PRCleanAnnotationInParagraphTransformer","When a paragraph only contains an annotation, I remove the paragraph so the annotation becomes a top-level child of the document."
+"PRCopyPhase",""
+"PRScriptLineNumber","I add line numbers to each script with ==lineNumber=true==.[[[lineNumber=true					]]]S. Ducasse: String new writeStream is no correct because imagine that we are on mac and we want to produce document for windows... We should not output mac end of line. This is why PROutputStream should be used instead. "
+"ManifestPillarExporterCore","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"PRExportBrush","I'm the superclass of all brushes. A brush is something you can add on a canvas. For example, LaTeX command and environment brushes can be added to a LaTeX canvas; HTML tags can be added to an HTML canvas."
+"PRNumeratingVisitor","I add numbers to all titles, scripts, figures, and internal links."
+"PRTitlePrinterSpecification","I describe how a level should be printed. - My level is the level of the header I describe.- Numbering is a boolean.	 If numbering is false, the numerator will not take this level of header into account.	If size is at 0, i'll take this level of header into account for the numerator but i'll not render the counter. If my size is at 1 i'll only render the numer of my header level. If my size x i'll render the counter of my level and the counter of x-1 of my parents.- renderAs represents the kind of representation I want for my counter. It can be ""number"", ""roman"", ""letter"" or ""upperLetter"".If numbering is at false, the size need to be 0."
+"PRInputDocument",""
+"PRNodeTransformer","I'm an abstract class. I allow the transformation of a tree. I'll visit a tree and if a node needs to be transformed I'll replace the node by its transformation. replacement is a Stack with all the nodes of the branch of the node I'm visiting."
+"PRTocBuilderVisitor","I am a visitor in charge of extracting table of contents from the files by visiting headers and inputAnnotations.How to !?PRTocBuilderVisitor new 	documentSource: (FileSystem workingDirectory / 'file.pillar'); 	currentFile: 'file.pillar';  	inProcessFiles: (Array with: (FileSystem workingDirectory  / 'file.pillar' )); 	visit: (PRPillarParser parse: (FileSystem workingDirectory / 'file.pillar') asFileReference readStream)"
+"PRBuildStrategy",""
+"PRLevelUpperLetterPrinter",""
+"PRDeckJSWriter","I'm a writer generating Deck.js slides from a Pillar document. Deck.js is a javascript framework specialized in slide creation.To generate the internalLinks I use an anchorMapping to know the number of the slide where is the anchor."
+"PRAssociateAnchorToSlideNumber","On Deck.js the anchor doesn't work the same as HTML. At each slide deck.js create an anchor named ""slide-X"" where X is the number of the slide (we begin at 0). I am a visitor, I will visit a document and return a Dictionary with all the anchors of a document in key and the number of the slide where is the anchor as value.I work with the ""slideInTemplateForDeckJS"" configuration to know how many slides I have before the document in the template.currentSlide is the number of the current slide.anchorMapping is the dictionary of anchor/counter."
+"PREPubDocument","EPub document Version 3.1Specs: http://www.idpf.org/epub/31/spec/Helpful links: - validator: https://www.ebookit.com/tools/bp/Bo/eBookIt/epub-validator - validator: http://validator.idpf.org/application/validate - blog: http://www.hxa.name/articles/content/epub-guide_hxa7241_2007.html"
+"PREPubNavigationMenuWriter","I write a document as a navigation menu for ePub"
+"PREPubOutput",""
+"PREPubMenuWriter","I am an abstract  writer for menus for ePub"
+"PREPubTocMenuWriter","I write a document as a ToC menu for ePub table of content."
+"PREPubMenuJustHeaderTransformer","I am a transformer which Just keep headers with the hierarchy. I am useful for EPub Menus."
+"PRHTMLCanvas","An HTML canvas that facilitates writing HTML to a stream. The main method is #tag that allow you to write something like this:canvas tag        name: 'a';        parameterAt: 'href' put: href;        with: [ ""some code that generates the HTML inside the link"" ]"
+"PRHtmlDocument",""
+"PRDocumentListTransformer","I am a tranformer in charge of transforming docList annotations. I just replace that annotation by  a document group containing an abstract of each file.How To !!??doc = PRDocument new.((PRDocListTransformer withContext: (PRProject on: testingFileSystem)) start: doc)."
+"PRHTMLBrush","I'm an abstract brush dedicated to HTML documents. As of today, the only subclass is the tag brush but we can imagine others (e.g., to write HTML comments)."
+"PRXHtmlDocument",""
+"PRHTMLWriter","Writes a Pillar document as HTML."
+"PRHTMLEmptyTag","I'm a helper class to generate HTML code. For example, to generate:     <img href=""figure/test.png""/>you can write something like this:String streamContents: [ :stream | | canvas |	stream := PROutputStream on: stream.	canvas := PRHTMLCanvas on: stream.	canvas emptyTag 		name: 'img';		parameterAt: 'href' put: 'figure/test.png';		closeTag	 ]"
+"PRHtmlOutput",""
+"PRXHTMLWriter","I write a document as XHTML for ePub"
+"PRHTMLTag","I'm a helper class to generate HTML code.!! Example For example, to generate: [[[    <p>foo <a href=""url"">bar</a></b>]]]You can write something like this:[[[String streamContents: [ :stream | | canvas |	stream := PROutputStream on: stream.	canvas := PRHTMLCanvas on: stream.	canvas tag 		name: 'p'; 		with: [ canvas nextPutAll: 'foo '.			    canvas tag 	     		      name: 'a';	    			parameterAt: 'href' put: 'url';	                  with: 'bar' ]	 ]]]]!! About with: argument Pay attention there is a difference between a block and a string as argument of the with: message.Using a string	simply puts the string as body of the tag.[[[	canvas tag 			name: 'xx';		with: 'foo'.]]]While when the argument is a block the block result is not used, just executed. [[[ 	canvas tag 			name: 'xx';		with: [ self foo ] ]]]"
+"ManifestPillarExporterLaTeX","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"PRLaTeXEnvironment","A LaTeX environmentTo emit\begin{XXX}kjlkjkl\end{XXX}"
+"PRPdfOutput",""
+"PRLaTeXCanvas","A LaTeX canvas"
+"PRPDFDocument",""
+"PRLatexPathUpdateVisitor","I am a pillar visitor that updates all references to be latex compatible. I am particularly useful in windows platforms that use the \ delimiter, which is not correctly parsed by the latex compiler.Latex Paths have to use the / delimiter, even in windows. The following are examples of correct paths:/usr/lib/blaC:/Program Files/Something"
+"PRLaTeXBrush","A LaTeX brush"
+"PRLaTeXWriter","A LaTeX writer"
+"PRRelativeReferenceTransformer",""
+"PRLaTeXCommand","A LaTeX commandto emit \mycommand potentially with arguments and optionals. \mycommand[1]{#1}"
+"PRSBALaTeXWriter","Writes LaTeX code in the style expected by sbabook (https://github.com/cdlm/sbabook). sbabook is a special LaTeX book class for our technical books."
+"PRGithubMarkdownWriter","I am a writer for GitHub Flavored Markdownhttps://github.github.com/gfm/GFM is based on CommonMark and adds couple of extensions."
+"PRMarkdownCanvas","A Markdown canvas that facilitates writing Markdown to a stream. It essentially use to nesting the lists"
+"PRGitlabMarkdownWriter","I am a writer for GitLab Flavored Markdownhttps://docs.gitlab.com/ee/user/markdown.htmlNote that Gitlab Flavored Markdown is not an extension of CommonMark, however the syntax is similar for the most part."
+"PRMarkdownWriter","I am a writer for CommonMarkhttp://spec.commonmark.org/0.28/"
+"PRPillarWriter","I'm  a visitor of Pillar object entities that generates pillar file back. I collaborate with a PillarCanvas (which encodes the low level formatting). I start with start: anPillarEntity.Now I also propose some utilities to escape markup elements. "
+"PRPillarCanvas","A pillar canvasInstance Variables	lastIsNewLine:		<Object>lastIsNewLine	- xxxxx"
+"PRTextCanvas","A canvas for writing text"
+"PRTextDocument",""
+"PRTextWriter","A writer for text "
+"PRPrepareForGitBookCommandLineHandler",""
+"PRImageDependencies","I am a vistitor which visit the document and return all image dependencies of this document."
+"PRBashScriptLanguage","Bash scripting language"
+"PRFootnoteAnnotation","I am an annotation that mark a footnoteMy tag is 'footnote'My parameters are :- note=aString "
+"PRUnorderedList","I am an unordered list. I am typically used for unnumbered lists"
+"PRDataItem","Data in a list"
+"PRTable","I am a table. My children are instances of *PRTableRow*."
+"PRJSONScriptLanguage","JSON"
+"PRFootnote","I am a footnote, you can create me with :noted: aStringIt create a footnote with note specified in parameter."
+"PRTocAnnotation","I'm an annotation use to generate some Table of contents. My tag is: 'toc''.I have this form : ${toc:depthLevel=x|level=y|highlight=true}$The depthLevel is use to know the min level of title i need to use. I'll not print title lower than it.The level is use to know what i need to print. I stay on the section x-1 and I stop at the next y title.Highlight allow to highlight the current section (this might be vanish in the futur).Example:${toc:depthLevel=5|level=3|highlight=true}$"
+"PRSubscriptFormat","Style as subscript"
+"PRColumnAnnotation","I am an annotation that mark the beginning of a new column. My tag is: 'column'.[[[			${column:50}$		${column:width=50}$]]]I can have as parameter:- a width with the key ""width="" (required, you can write it without the key, take an integer between 0 and 100)!! Examples: Here is an example as used in Slides[[[${slide:title=First Exercise!}$${columns}$${column:width=50}$- Watch the """"original"""" Karate Kid first movie- Be geeky- Think about the exercises...${column:width=50}$+>file://figures/KarateKid.png|width=86+${endColumns}$]]]"
+"PRLinkWarning","I am a warning raised when a we have a problem with a link at the export."
+"PRSTONScriptLanguage","STON (Smalltalk Object Notation)"
+"PRColumn","I am a column."
+"PRCSSScriptLanguage","Cascading stylesheet language"
+"PRIndexAnnotation","Add a word to the document index."
+"PRCommentedLine","A commented line"
+"PRTermItem","A term (to be renamed) is the label part into definition list. It is delimited by ; i.e., blue and red below;blue.:color of the sky;red.:color of the firegeneratesblue.color of the skyred.color of the fire"
+"PRTableCell","I am a cell of a table."
+"PRJavaScriptScriptLanguage","JavaScript language"
+"PRDependencies","I'm a visitor used to compute file and image dependencies using a cache. I should be moved to a separate package. Probably together with the Command Line handlers that expose the functionalities to the command line. "
+"PRSuperscriptFormat","Style as superscript"
+"PRHorizontalRule","I am a horizontal rule."
+"PRDocumentListAnnotation","I am class representing a DocumentListAnnotation. I allow users to get abstracts of files located in a directory and specify a link to access these files.I can choose the number of files to take and the way to sort them.We can also choose they way abstracts will be represented by specifying templates. We ahave the possibility of giving multiple templates.Then abstracts will alternately change templates if you specified mutliple directories.When no template file is specified, abstracts are generated as DocumentGroup containing different files elements.With templates the annotation is remplaced by a Raw document in Html.For templates values, you can not specify directories, only .mustache files. You have to specify complete path starting from the project directory.Also for the path, the complete path from the project directory.${docList:path=blogs|limit=3|sort=date|templates=#('templates/docArticle.mustache' 'templates/template.mustache')}$${docList:path=wrongDirectory|limit=3|sort=date|templates=#('templates/docArticle.mustache' 'templates/template.mustache')}$ should raise an Error"
+"PRReferenceNotFound","I am a warning raised when a reference is not found during the resolution phase"
+"PRShellCommandsScriptLanguage","A PRBashScriptLanguage is xxxxxxxxx."
+"PRColumnEnvironment","I am a columns environment."
+"PRHTMLScriptLanguage","Hypertext markup language"
+"PRUnderlineFormat","Style as underline formatted"
+"PRRaw","I represent a text that is not parsed/analyzed at all. I can have a type to limit the kind of output with which I'm associated. For example, an instance of me with type 'html' will only be written to HTML documents.I'm particularly useful when the rest of Pillar can't represent something you *really* want in your output: for example, an equation. In this case, you can describe your equation in latex using an instance of me of type latex and a picture everywhere else."
+"PRInputFileAnnotation","I include a reference to a pillar file. With me we can add a transformation to remplace an annotation to a pillar file by his tree.My tag is: 'inputFile''.I can have in parameter:- a path to a file with the key ""value="" (required, you can write it without the key)Examples: ${inputFile:myFile.pillar}$${inputFile:value=directory/myFile.pillar}$"
+"PRBeginColumnsAnnotation","I am an annotation that mark the beginning of a columns environement.My tag is: 'columns''.Example: ${columns}$ in${columns}$   ${column:width=60}$      bla   ${column:40}$      bla${endColumns}$"
+"PRTableRow","I am a row of a table. My children are instances of *PRTableCell*."
+"PRPillarLanguage",""
+"PRFileDependencies","I am a vistitor which visit the document and return all file dependencies of this document."
+"PRToc","This class represents a toc. A Toc can have children. Then a Title is considered as a Toc without children"
+"PRAnnotatedParagraph","An annotated paragraph"
+"PREndColumnsAnnotation","I am an annotation that mark the end of a 'columns' environment.My tag is: 'endColumns'.Example: ${endColumns}$ in${columns}$   ${column:width=60}$      bla   ${column:40}$      bla${endColumns}$"
+"PRDefinitionList","I am an definition list. I am typically used for a keyword and a longer definition string."
+"PRSmalltalkScriptLanguage","Smalltalk "
+"PRSlide","I am a slide. I am here to structure a document that will be export as a Slide prensentation. (PRBeamerExporter, PRDeckJSExporter...).title is the title of the slide.the label is a way to create a link to this slinde on the slider."
+"PRHTTPScriptLanguage","General HTTP script language"
+"PRSlideTitleAnnotation","I'm an annotation use to create a new Slide for a Slider exporter. My tag is: 'slide''.I can have as parameter:- a title with the key ""title="" (required, you can write it without the key)- a label if you want to create a reference to this slide (optional)!! Examples: [[[${slide:Introduction|label=sld:intro}$${slide:title=Presentation}$${slide:title=Conclusion|label=sld:ccl}$]]]"
+"PRStrikethroughFormat","Strikethrough format"
+"PRCitation","I am a citation."
+"PRCitationAnnotation","I am an annotation that represents a bibliographic citation.		${cite:ref=Duca99a}$	My tag is: 'cite'.- a ref with the key ""ref="" (required take a reference in the LaTeX bib format)Examples: 	${cite:ref=Duca99a}$"
+"PRWarning","A Pillar warning"
+"PRSQLScriptLanguage","SQL"
+"PRParserUtility",""
+"ManifestPillarPetitPillar","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"PRPillarParser","I am a parser for a Pillar syntax. I use the PRPillarGrammar and I build a PRDocument."
+"PRPillarParserMain","I'm responsible for starting the parsing process of a Pillar document. If possible, I will use a compiled version of PRPillarParser. I will also use the STON reader to read potentital metadata at the begining of the stream."
+"PRParseWarning","I am a warning for the parse of a Pillar file."
+"PRPillarGrammar","I am a grammar to parse Pillar files with PetitParser"
+"PRPillarGrammarOld","I am a grammar to parse Pillar files with PetitParser."
+"PRPillarParserOld","I am a parser for a Pillar syntax. I use the PRPillarGrammar and I build a PRDocument."
+"PRPillarParserMainOld","I'm responsible for starting the parsing process of a Pillar document. If possible, I will use a compiled version of PRPillarParser. I will also use the STON reader to read potentital metadata at the begining of the stream."
+"GTNoteHighlightingCommand",""
+"GTOldCodeSnippet","This is a utility parser that identifies old style of code formatting (= at the beginning of the line) and transforms it into the new format ([[[ ... ]]])"
+"GTPillarHighlighterTextDecorator",""
+"GTCommentHighlightingCommand",""
+"GTPillarCodeHighlightingCommand",""
+"GTPillarFileTextLink",""
+"PRToolIconSelector","An item selector for SpotterInstance Variables	icon:		<Object>icon	- xxxxx"
+"GTHeadingHighlightingCommand",""
+"GTPillarFileHighlightingCommand",""
+"PRToolLabelSelector","A visitor to display the correct label in spotterInstance Variables	label:		<String>label	- xxxxx"
+"GTMonospaceFormatHighlightingCommand",""
+"PRToolIcons","An icon cache"
+"GTPillarHighlighter","This parser specializes the basic Pillar grammar for producing highlighting commands that are later used by the Rubric text editor."
+"GTHighlightingCommand","These are commands that are applicable on a file."
+"PRProject","(PRCompilationPipeline buildPipe: PRPillarConfiguration new).projectDirectory := '../test' asFileReference.projectDirectory ensureDeleteAll.projectDirectory ensureCreateDirectory.project := PRProject on: projectDirectory.project wipeout.project archetype: 'welcome'.project build: PRHtmlOutput new.projectDirectory := '../test' asFileReference.projectDirectory ensureDeleteAll.projectDirectory ensureCreateDirectory.project := PRProject on: projectDirectory.project wipeout.project archetype: 'presentation'.project build: PRHtmlOutput new.project build: PRPdfOutput new.projectDirectory := '../test' asFileReference.projectDirectory ensureDeleteAll.projectDirectory ensureCreateDirectory.project := PRProject on: projectDirectory.project wipeout.project archetype: 'book'.project build: PRHtmlOutput new.project build: PRPdfOutput new.projectDirectory := '../test' asFileReference.projectDirectory ensureDeleteAll.projectDirectory ensureCreateDirectory.project := PRProject on: projectDirectory.project wipeout.project archetype: 'basic-latex'.project build: PRHtmlOutput new.project build: PRPdfOutput new."
+"PRFileCopyVisitor",""
+"ManifestPillarProject","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"PRArchetype",""
+"PRTransformerEnvironmentTest","On my class side I define pillarAnnotationsContentsForTest and pillarAnnotationsFileNameForTest methods that are used by the tests to work in memory (and not to generate files on the disc)."
+"PRBookTestEnvironmentTest","I contain on my class side some definition so that tests can run in memory."
+"PRShowMethodAnnotationTest",""
+"PRBookTestDummyRunAnnotationTest",""
+"PRShowClassAnnotationTest",""
+"PRBookTestDummyMethodDefinitionTest",""
+"PRScreenshotAnnotationTest",""
+"PRBookTestDummyClassCreationTest",""
+"PRRunAnnotationTest",""
+"PRBookTestDummyClassTest","I am a Class used by any of the Pillar-BookTester package. Tests made in this package can test method/class definitions here. PRBookTesterVisitor may need to create classes or methods and they should all be subclasses of PRBookTestDummyClass in a way.On the other hand, the package Pillar-BookTesterResults should only be used by PillarTestGenerator.Pillar-BookTesterResults splits in two packages: 	- TestResults used by PRBookTestGenerator tests 	- Books when using the command createTests on a book"
+"PRLoaderAnnotationTest",""
+"PRCodeblockTest",""
+"PRBookTesterVisitorRunAnnotationTest",""
+"PRShowMethodTransformerTest",""
+"PRBookTesterVisitorMethodDefinitionTest",""
+"PRShowClassTransformerTest",""
+"PRBookTesterVisitorTest",""
+"PRScreenshotTransformerTest",""
+"PRBookTestGeneratorTest","Tests"
+"PRSubCommandLineHandlerTest",""
+"PREmptyParagraphTest",""
+"PRBasicObjectTest",""
+"PRBeginEnvironmentAnnotationTest",""
+"PRAnnotatedParagraphTest",""
+"PROrderedListTest",""
+"PRSectionTest",""
+"PRObjectTest","Tests for expectations that must be valid on all pillar objects"
+"PREndEnvironmentAnnotationTest",""
+"PRDocumentTest",""
+"PRUnorderedListTest",""
+"PRParametersTest",""
+"PRDocumentItemTest","Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points"
+"PRAnchorTest",""
+"PRFormatTest",""
+"PRParagraphTest",""
+"PRAbstractAnnotationTest","Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points"
+"PRDocumentGroupTest",""
+"PRListTest",""
+"PRAsciiDocWriterTest",""
+"PRBeamerWriterTest",""
+"PRScriptLineNumberTest",""
+"PRLevelRomanPrinterTest",""
+"PRColumnsTransformerTest",""
+"PRScriptFromFileTest",""
+"PRLevelNumberPrinterTest",""
+"PRCleanAnnotationInParagraphTransfomerTest",""
+"PRScriptEvaluatorTest",""
+"PRLevelLetterPrinterTest",""
+"PRCitationTransformerTest",""
+"PRRemoveHideableScriptsTest",""
+"PRTitlePrinterTest",""
+"PRAnchorOfSectionTest",""
+"PRHeadingLevelOffsetTest",""
+"PRCascadingCounterTest","I test the PRCascadingCounter class."
+"ManifestPillarTestsExporterCore","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"PRNodeTransformerTest","Abstract class that should be subclassed for all subclasses of PRNodeTransformer."
+"PRHeaderCapitalizationTransformerTest",""
+"PRTSliderWriterTest","I am a class of trait used to test different exporter of slide. (e.g. Beamer exporter, DeckJS exporter etc...)"
+"PRUpdateFileInclusionReferenceTest",""
+"PRDocumentWriterTest2",""
+"PRFootnoteTransformerTest",""
+"PRTocBuilderVisitorTest",""
+"PRManualNumberingWriterTest",""
+"PREnvironmentTransformerTest",""
+"PRSlideTransformerTest",""
+"PRDocumentWriterTest","I provide abstract tests and helper methods to test the subclasses of PRDocumentWriter."
+"PRDocumentListTransformerTest","Test class for docList Transformer"
+"PRSectionTransformerTest",""
+"PRLevelUpperLetterPrinterTest",""
+"PRCustomTagTransformerTest",""
+"PRDeckJSWriterTest",""
+"PREPubMenuJustHeaderTransformerTest2",""
+"PREPubTocMenuWriterTest",""
+"PRXHTMLWriterTest",""
+"PREPubNavigationMenuWriterTest",""
+"PRHTMLWriterTest",""
+"PRHtmlDocumentTest","For testing the menu in an HtmlDocument"
+"PRLaTeXWriterTest",""
+"PRSBALaTeXWriterTest",""
+"PRGithubMarkdownWriterTest",""
+"PRGitlabMarkdownWriterTest",""
+"PRMarkdownWriterTest",""
+"PRPillarWriterTest",""
+"PRTemplatedWriterTest",""
+"PRTextWriterTest",""
+"PRParameterizableTestCase","I am a parameterizable test case. My tests can receive arguments.>> testX: x y: y  ...Parameters are automatically deduced from argument names. That is, for argument #x, I search all selectors on the instance side that are prefixed by the string 'x'. For example,  on a parameter named #output I'll search all methods named  #output[Other] in the current hierarchy.Once deduced the argument selectors from the argument names, I create a test case instance for each of the permutations of selectors.My instances contain then: - the test selector to execute - an array with a permutation of selctors corresponding each to each argument nameMy #performTest method is defined  to obtain all test arguments using the argument selectors and then perform the test selector providing those arguments.I am not used so far because I don't work in SmalltalkCI"
+"PRIntegrationTest",""
+"PRSubscriptFormatTest",""
+"PRFileDependenciesTest",""
+"PRBashScriptLanguageTest",""
+"PRRawTest",""
+"PRIndexAnnotationTest",""
+"PRMailLinkTest",""
+"PRUnspecifiedScriptLanguageTest",""
+"PRDefinitionDataTest",""
+"PRHeaderTest",""
+"PRJSONScriptLanguageTest",""
+"PRItalicFormatTest",""
+"PRTocAnnotationTest",""
+"PRTableRowTest",""
+"PRLineBreakTest",""
+"PRColumnsAnnotationTest",""
+"PRFigureTest",""
+"PRSTONScriptLanguageTest",""
+"PRSuperscriptFormatTest",""
+"PRImageDependenciesTest",""
+"PRCSSScriptLanguageTest",""
+"PRScriptTest","A PRRawTest is xxxxxxxxx."
+"PRInputFileAnnotationTest",""
+"PRInternalLinkTest",""
+"PRUnsupportedScriptLanguageTest",""
+"PRMockForParameters","I'm a Mock needed in order to test PRTParametrizable"
+"PRDefinitionTermTest",""
+"PRListItemTest",""
+"PRJavaScriptScriptLanguageTest",""
+"PRMonospaceFormatTest",""
+"PRVisitorTest",""
+"PRTableTest",""
+"PRTextTest",""
+"PRDocumentListAnnotationTest",""
+"PRLinkTest",""
+"PRShellCommandsScriptLanguageTest",""
+"PRUnderlineFormatTest",""
+"PRColumnTest",""
+"PRHTMLScriptLanguageTest",""
+"PRTocTest","Test hash properties"
+"PRMockAnnotationTest",""
+"PRSlideTest",""
+"PRCycleTest",""
+"PRCitationTest",""
+"PRCitationAnnotationTest",""
+"PRPreformattedTest",""
+"PRNoScriptLanguageTest",""
+"PRStrikethroughFormatTest",""
+"PRAssociateAnchorToSlideNumberTest",""
+"PRAbstractScriptLanguageTest","Please comment me using the following template inspired by Class Responsibility Collaborator (CRC) design:For the Class part:  State the name of the class with one line description: For example, I'm xxx the root of the hierarchy of visitor objects.For the Responsibility part: Three sentences about my main responsibility, what I'm doing, what services do I offer.For the Collaborators Part: State my main collaborators and one line about how I interact with them. Public API and Key Messages- message one   - message two - what is the way to create instances is a plus.   One simple example is simply gorgeous. Internal Representation and Key Implementation Points.    Implementation Points"
+"PRCommentedLineTest",""
+"PREndColumnsAnnotationTest",""
+"PRExternalLinkTest",""
+"PRSmalltalkScriptLanguageTest",""
+"PRMockAnnotation","I am a Mock to test the annotations."
+"PRColumnsTest",""
+"PRHTTPScriptLanguageTest",""
+"PRBoldFormatTest",""
+"PRSlideTitleAnnotationTest",""
+"PRTableCellTest",""
+"PRScriptLanguageTest",""
+"PRHorizontalRuleTest",""
+"PRColumnAnnotationTest",""
+"PRReferenceTest",""
+"PRSQLScriptLanguageTest",""
+"PRPillarParserTest",""
+"PRPillarGrammarTest",""
+"PRPillarGrammarOldTest",""
+"PRPillarParserOldTest",""
+"PRBuilderMappingTest",""

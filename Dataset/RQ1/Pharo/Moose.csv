@@ -1,0 +1,1284 @@
+"class","comment"
+"FMMetaMetaModel","Description--------------------I am a model containing the description of the Fame meta-model. I contain instances of FM3Element describing the FM3Elements.I am using a Singleton design pattern since I should only have one instance at a time in the image. (All meta-models should have the same meta-meta-model)I am my own meta-model.For example, in the Smalltalk metamodel of Famix, if we want to represent the Point class we will have:- A FMModel containing an instance of FamixStClass representing the Point class.- A FMMetaModel containing instances of FM3Elements describing FamixStClass.- A FMMetaMetaModel containing instances of FM3Element describing FM3 meta model (Package, Class and Property).Examples--------------------	FMMetaMetaModel default.		FMMetaMetaModel testMetaMetaModel. ""This one will return a new instance if you wish to do some testing."""
+"FMMultiMultivalueLink","A FMMultiMultivalueLink is an implementation for relationships that updates the opposite linkin a many to many way.LIBPerson>>initialize	...	books := FMMultiMultivalueLink on: self opposite: #authors.	LIBPerson>>books: aBookCollection	books value: aBookwill maintain the link when the books collection changesLIBBook>>initialize	...	authors := FMMultiMultivalueLink on: self opposite: #books.	LIBBook>>authors: persons	authors value: persons"
+"FM3NullClass","Description--------------------A null class is a class description that can be used by metamodels in case an entity does not define a descriptions.I follow the nil design pattern.Examples--------------------	FM3NullClass new"
+"FMMetaModel","Description--------------------I am a model containing meta-description of a FMModel. I contain instances of FM3Element.For example, in the Smalltalk metamodel of Famix, if we want to represent the Point class we will have:- A FMModel containing an instance of FamixStClass representing the Point class.- A FMMetaModel containing instances of FM3Elements describing FamixStClass.- A FMMetaMetaModel containing instances of FM3Element describing FM3 meta model (Package, Class and Property).I will probably not be created by hand but either via:- A FMMetaModelBuilder that will use pragmas and slots from real Pharo classes to build the meta model.- An import of a serialized meta model.Examples--------------------	FMMetaModel fromString: FMMSEParserTest famix30mse.		FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}. Internal Representation and Key Implementation Points.--------------------	I am using some caches to speed up the way to find a description of a class.    Instance Variables	classDict:		<aDictionary>		I am a cache linking a real class to its description.	nameDict:			<aDictionary>		I am a cache linking an element name to its description."
+"FMMultivalueLink","A FMMultivalueLink is an implementation for relationships that upate the backlink andupdates the opposite link in a one to many way.Imagine that we want to have a Book with SectionsBook    sectionsBook>>initialize	...	sections := FMMultivalueLink on: self opposite: #book: means that sections is a kind of Collection in which when a new element is addedthe message book: with self is sent.This means each time a new element is added the backlink is managed automatically.Now when the book of a Section is changed, Section>>book: aBook	book := FMMultivalueLink on: self					update: #sections					from: self book					to: aBook					This message make sure that if a book is changed, the sectionsthat refers to it are updated accordingly."
+"FM3String","Description--------------------I am representing the String primitive type of Fame.Examples--------------------	FM3String instance"
+"FMModel","Description--------------------I am a model used in the scope of Fame.I contains real instances of a class representing a concept in the current metamodel. This class is described by an entity of my meta-model. I have a meta-model containing descriptions of my content. A FMModel has a FMMetaModel as meta-model which has a FMMetaMetaModel has metamodel. For example, in the Smalltalk metamodel of Famix, if we want to represent the Point class we will have:- A FMModel containing an instance of FamixStClass representing the Point class.- A FMMetaModel containing instances of FM3Elements describing FamixStClass.- A FMMetaMetaModel containing instances of FM3Element describing FM3 meta model (Package, Class and Property).I include a system of caches in case my users want to store informations to speed up an application.I will initialize myself with a new FMMetaModel but this one can be replaced by an existing one.Public API and Key Messages--------------------- #metaDescriptionOn: 		Allows one to get the meta-description of an element.Examples--------------------		| model |	model := FMModel new.	model metamodel importString: FMHeinekenExample metamodelMSE.	model.	model := (FMModel withMetamodel: (FMMetaModel fromString: FMHeinekenExample metamodelMSE)). Internal Representation and Key Implementation Points.--------------------    Instance Variables	additionalProperties:		<aDictionary>		A cache used to store some informations about the model.	elements:						<aCollection>		All the entities of the model.	metamodel:					<aFMMetaModel>		The meta-model describing my entities."
+"FMOne","Description--------------------I am a relation slot representing a property containing only one element.Examples--------------------	Trait named: #FamixTMethod		slots: { #parentType => FMOne type: #FamixTWithMethods opposite: #methods }		package: 'Famix-Traits-Method'"
+"FM3Number","Description--------------------I am representing the Number primitive type of Fame.Examples--------------------	FM3Number instance"
+"FMMetamodelFactory","Description--------------------I am a general factory that is used to create meta-model entities independently on a particular meta-model.I take as parameter a fm3Package and will look for the entities into it.NOTE: (Cyril) This factory was done based on a FM3Package but maybe it should instead be based on a FMMetaModel? What if we have a composed MM and we need an entity from another package?"
+"FMMany","Description--------------------I am a relation slot representing a multivalued property.Examples--------------------	Trait named: #FamixTWithMethods		uses: {}		slots: { #methods => FMMany type: #FamixTMethod opposite: #parentType }		package: 'Famix-Traits-Method'"
+"FM3Boolean","Description--------------------I am representing the Boolean primitive type of Fame.Examples--------------------	FM3Boolean instance"
+"FMMetaModelBuilder","Description--------------------The most common way to create a meta-model is to have real Pharo classes using pragmas and slots to describe the package, classes and properties of Fame.I have the responsibility to process those classes and to build a FMMetaModel from those.I will process slots such has:- FMMany : This slot allows one to define one side of a relation that will contain multiple elements.- FMOne : This slot allows on to define one side of a relation that will contain one element.- Maybe FMProperty in the futureTo define the FM3Packages and FM3Class, the class can have a method with those pragmas:- #FMClass:super: 	Used to define a FM3Class.- #package: 		Used to define FM3Packages.- #abstract: 	Used to define that a FM3Class is abstract.	To define a property you can use a slot but also a pragma such has:- #FMProperty:type:opposite: 	Used to define one side of a relation.- #FMProperty:type: 				Same as above but for relations without opposite.Once a property is declared via a slot or a pragma, the method related can use other pragma to configure the relation.- #container 		Used to define that this side of a relation define a container.- #target 			Used to define that this side of a relation is the target of an association.- #source 			Used to define that this side of a relation is the source of an association.- #derived 			Used to define that this side of a relation can be computed and thus flushed.- #multivalued 		Used to define that this side of a relation contains a collection of objects and not one object.- #package: 			Used to define that a property is an extension present in the package given as parameter.			Once a meta-model is built, I will run a validator on it. If you do not wish for the meta-model to go through the validation (might happen when you prototype your MM), you can disable it calling #withoutValidation.Public API and Key Messages--------------------- #metamodelFrom: 	aCollectionOfClasses 		This class side method takes a collection of classes as parameter and will process them to return a metamodel.- #metamodelFromPackages: aCollection 		This class side method takes a collection of packages as parameter and will process the classes contained in them to return a metamodel.Examples--------------------	FMMetaModelBuilder metamodelFrom: {RPGDragon . RPGTreasure . RPGHero}.		FMMetaModelBuilder metamodelFromPackages: {'Fame-Core' asPackage}. Internal Representation and Key Implementation Points.--------------------    Instance Variables	classDict:					<aDictionary>			A dictionary mapping real classes with their generated FM3Class.	elements:						<aCollection>			A collection of all the fame elements already created.	implementingPackages:		<aCollection>			A collection containing all the packages to process.	metaDict:						<aDictionary>			A dictionary mapping fame elements full names to their real fame element.	mmClassDict:					<aDictionary>			A dictionary mapping properties with their FM3Class.	oppositeDict:				<aDictionary>			A dictionary mapping properties with the name of their opposite.	packDict:						<aDictionary>			A dictionary mapping fame packages with all the fame entites they contains.	queue:							<aCollection>			A collection of all the classes that are yet to be processed.	superclassDict:				<aDictionary>			A dictionary mapping classes with their superclass.	traitsDict:					<aDictionary>			A dictionary mapping classes with their trait.	typeDict:						<aDictionary>			A dictionary mapping properties with their type.	validator:					<aFMMMValidator>		A validator class to use to validate that the meta-model to be generated is right.									I do not resolve everything while processing the pragmas and slots since the processor does not care about the processing order.	Instead I am keeping a maximum of information and I do the resolution at the end.	This is the reason I have so many dictionaries."
+"FMRelationSlot","Description--------------------I am an abstract slot used to declare fame properties for a class.The declared properties with my subclasses must have an opposite.A relation slot will have:- A name which is the name of the property- A type which is the type of the property - An inverse name which is the name of the opposite property.My sublasses will define everything related to the cardinality of the relation side. Internal Representation and Key Implementation Points.--------------------    Instance Variables	inverseName:		<aString>		The name of the opposite slot.	inverseSlot:		<aSlot>	targetClass:		<aClass>"
+"FM3Primitive","Description--------------------I am an abstract class representing primitive constants.Primitives types are the most basic data types Fame metamodels can have.In the current implementation of Fame this can only be:- A string- A number- A booleanPublic API and Key Messages--------------------- #isPrimitive 			Return true if the FM3Class is a primitive type."
+"FMNilMetamodelValidator","Description--------------------I am a validator that will not validate anything. I am part of the Null Object Pattern."
+"FMProperty","Description--------------------I am a simple slot unique to Fame.For now, I do nothing specific except annotationg the variable with the fact that the variable is a Fame property.Examples--------------------	Trait named: #FamixTMethod	 	slots: { #isAbstract => FMProperty. #isClassSide => FMProperty. #kind => FMProperty }		package: 'Famix-Traits-Method'"
+"FM3Object","Description--------------------I am an constant representing the root superclass of all FM3Class.Public API and Key Messages--------------------- #isRoot 			Return true if the FM3Class is the root class.Examples--------------------	FM3Object instance"
+"FMMetamodelValidator","Description--------------------I am a concrete validator that runs multiple checks on a FMMetaModelBuilder."
+"FMRuntimeElement","A FMRuntimeElement is a placeHolder to represent arbitrary class descriptions with arbitrary slots.Instance Variables	description:		<FM3Element>	slots:		Dictionary of FM3PropertyDescription "
+"FM3Constant","Description--------------------I am an abstract class representing a constant class. A contant class is a class that will have an unique instance in all Fame metamodels. In the current implementation I allow 4 constants:- Object: A constant representing the root superclass of all FM3Class.- String- Number- BooleanEach of my concrete subclass are holding one of their instance as a singleton.I also provide some utilities on my class side.	Public API and Key Messages--------------------- class>>#instance 		Each of my concrete subclasses can return their unique instance via this method.Examples--------------------	FM3Constant constants.		FM3Constant constantsDo: [ :const | const name traceCr ].	Internal Representation and Key Implementation Points.--------------------	I am using a Singletong design pattern. In order to do that I have a `uniqueInstance` class instance variable.		It is really important that this variable is a class instance variable and not a class variable because each of my subclasses should have their own unique instance."
+"FMAbstractMetamodelValidator","Description--------------------I am an abstract class whose responsibility is to validate a meta-model generated by a FMMetaModelBuilder.In order to do that I know a builder and will do some validation on it.I follow a Strategy design pattern and I will be used by FMMetaModelBuilder.Public API and Key Messages--------------------- #validate 		Launch the validation of the metamodel builder. Internal Representation and Key Implementation Points.--------------------    Instance Variables	metaModelBuilder:		<aFMMataModelBuilder> 	The meta-model builder I need to validate."
+"FMGenericModelVisitor","Description--------------------I am a generic visitor adding a generic visit element method compared to my superclass."
+"FM3Class","Description--------------------I represent class in a fame meta-model.I should be contained in a FM3Package and I can be stored in a FMMetaModel.I contain instances of FM3Property which might be package extensions or not.I can have a superclass, subclasses and traits which are all FM3Class instances. While doing the lookup of my properties, I will take my superclasses and traits into account.Some Fame classes are constants that will be used in all metamodels. You can find more informations about them in FM3Constant.Public API and Key Messages--------------------- #properties 			Return the local properties of the class.- #allProperties 		Return all the properties of the class. This includes the properties of my superclasses and my traits.	Internal Representation and Key Implementation Points.--------------------    Instance Variables	implementingClass:		<anObject>			Real class I am describing. This can either be a real object or a FMRuntimeElement in case we do not know my real entity.	isAbstract:				<aBoolean>			Define if the class is abstract or not.	package:					<aFM3Package>		FM3Package containing the class.	properties:				<aCollection>		A collection of the FM3Properties defined locally in the class. (Does not includes the properties of traits and superclasses)	subclasses:				<aCollection>		A collection of my subclasses which are intances of FM3Class.	superclass:				<aFM3Class>			My FM3Class superclass. In case there is no superclass to define, I'll point to the FM3Object default instance representing the root of all classes.	traits:					<aCollection>		A collection of FM3Class representing the traits I am using."
+"FM3Property","Description--------------------I represent property in a fame meta-model.I am a property of a FM3Class and I can be stored in a FMMetaModel.If I am an extension property, I will also be contained in a FM3Package.I know the type of my content. This type can be a constant such as a FM3Number, FM3String or FM3Boolean, but is can also be any FM3Class.I can have an opposite property that will be my miror.I have multiple options (See in the API section for details):- #isContainer- #	isSource- #isTarget- #isDerived- #isMultivaluedPublic API and Key Messages--------------------- #isContainer 		Define if I represent a containment link in the containment DAG of the meta-model.- #isSource 			Define if I am the source of an association in the meta-model.- #isTarget 			Define if I am the target of an association in the meta-model.- #isDerived 		If this property is set to true, it means the property can be computed from the non-derived properties. This mean that we can flush the content of the property or we can not export it during serialization.- #isMultivalued 	A multivalued property is a property containing a collection as a content. In this case, the type of the property is the type of the content of the collection.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	class:							<aFM3Class>			The class holding the property.	implementingSelector:		<aSymbol>				The selector of the method returning my content.	isContainer:					<aBoolean>			If true, means that I represent a containment link in the containment DAG of the meta-model.	isDerived:					<aBoolean>			If true, means that my content can be computed form non-derived properties and can be flushed.	isMultivalued:				<aBoolean>			If true, means that my content is a collection.	isSource:						<aBoolean>			If true, means that I represent the source of an association.	isTarget:						<aBoolean>			If true, means that I represent the target of an association.	opposite:						<aFM3Property>		(Optional) A property that is my opposite. This link should be bijectif (1-1 link in miror).	package:						<aFM3Package>		(Optional) If I am an extension, represent the package containing me.	type:							<aFM3Class>			The type of my content."
+"FMModelVisitor","Description--------------------I am an abstract visitor able to visit a FMModel, FM3Package, FM3Class or FM3Propery."
+"FM3Element","Description--------------------I am an abstract class representing elementary elements of a metamodel.The instances of my subclasses are stored inside a FMMetaModel.My instances have a name, a fullName and an owner that is either a FM3Class or FM3Package.Public API and Key Messages--------------------- #name 			Return the name of the element.- #fullName 		Return a name of the element containing the full name of its owner.- #owner 			Return the owner of the element. Can be nil for root packages.Internal Representation and Key Implementation Points.--------------------    Instance Variables	name:		<aString>		Name of the element."
+"FMSlotMultivalueLink","Description--------------------I am a class meant to be used as an internal of a FMMany slot.I'll be wrapped by the slot and manage the content of the many slot."
+"FM3Package","Description--------------------I represent a package in a Fame meta-model.I can be stored in a FMMetaModel.I can contain Fame classes and Fame properties that are extensions.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	classes:			<aCollectionOfFM3Class> 			All the fame classes I contains.	extensions:		<aCollectionOfFM3Property>		All the properties that are extensions and directly inside me."
+"FMFutureAttribute",""
+"FMPragmaProcessor",""
+"FMRepository",""
+"FMFutureElement",""
+"ManifestFameDeprecated",""
+"FM3PackageDescription",""
+"FMMetaRepository",""
+"FM3MetaDescription",""
+"FMMetaMetaRepository",""
+"FM3PropertyDescription",""
+"FM3NullDescription",""
+"FMNullMultivalueLink","Description--------------------I am a MultiValueLink use when the content of the link was not yet initialized.I appeared because a lot of relations are not initialized in Moose and we were loosing too much memory.I am tranformed into a FMMultivalueLink when my content is set.Cyril: Maybe this should be removed now that we have a new Moose version where each metamodel should contain only what the parser is able to give?"
+"RPGTreasure",""
+"EQEquation",""
+"EQSimple",""
+"EQOperator",""
+"LIBPerson",""
+"EQEquationSystem",""
+"EQNumerical",""
+"LIBRoot",""
+"RPGDragon",""
+"EQExpression",""
+"EQVariable",""
+"LIBBook",""
+"RPGHero",""
+"EQCompound",""
+"EQIdentifier",""
+"LIBLibrary",""
+"FMImporterFilter","Description--------------------I am a decoration of a FMImporter that will allow one to filter the kind of entities to import. Internal Representation and Key Implementation Points.--------------------    Instance Variables	filter:				<aCollection>		A collection of the elements to filter out.	importer:				<aFMImporter>		The importer I am wrapping.	shouldSkip:			<aBoolean>			If true, I'll skip the current element."
+"FMAbstractCodeGenerator",""
+"FMImporter","Description--------------------I am responsible for the creation and resolutions of entities during the import of a model.I'll be used by a parser such as a FMMSEParser.While everything is not resolved, I'll create ""Future"" elements to replace them.Examples--------------------	(FMImporter model: (FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))'))		fromString: '((FM3.Class (name ''Employee'') (package (ref: Office))))';		run;		model			""Or via a model:""	(FMMetaModel fromString: '((FM3.Package (id: 1) (name ''Office'')))') Internal Representation and Key Implementation Points.--------------------    Instance Variables	entities:								<aCollection>				The collection of all created entities.	ensureNoDandlingReferences:		<aBoolean>					If true, at the end of the import we ensure that every entity was resolved and that we have no dangling reference left.	model:									<aModel>						The model to which we should add all the entities.	numberOfDanglingReferences:		<anInteger>					The number of dangling references created and unresolved yet. Used to validate that everything is resolved at the end.	reminderDict:						<aDictionary>				A dictionary mapping a serial to the dangling references pointing to it.	serialDict:							<aDictionary>				A dictionary mapping serials to the real entity they represent.	stack:									<aStack>						A stack of the entities been resolved.	stream:								<aStream>						The stream to parse in order to import the model.	translationUnit:					<aFMTranslationUnit>		A translation unit used to map the names from the MSE to different entities during the import, in case of renaming for example."
+"FMUnresolvedDanglingReferences","Description--------------------I am an exception raised during the import of a model if the model still has dangling references.The validation is not mandatory and is ignored in some cases."
+"FMFutureProperty","Description--------------------I represent a property of the object currently been imported while it is not yet imported.I will be useful until all my values are resolved. Each time a value is resolved I'll check if I can be resolved. In that case, I'll push my values in real property. Internal Representation and Key Implementation Points.--------------------    Instance Variables	parentClass:		<aFMFutureEntity>		The entity owning the property.	values:			<aCollection>			The values of the property. Those values can contain dangling references while everything is not imported yet."
+"FMSyntaxError","Description--------------------I am an error raised when a model been imported contains a syntax error."
+"FMFutureEntity","Description--------------------I am a repersentation of a future object of the model been imported.I am used by FMImporter while the real object is not yet created. Internal Representation and Key Implementation Points.--------------------    Instance Variables	currentProperty:		<aFMFutureProperty> 	The current property been imported that is owned by the class I represent.	importer:					<aFMImporter>			The importer importing the class I represent.	instance:					<anObject>				The real object been imported."
+"FMNullTranslationUnit","Description--------------------I am a translation unit doing nothing. I follow a Null Design Pattern."
+"FMTImportExportStructure",""
+"FMFuture","Description--------------------I represent a future element of a model. My subclasses will be used by FMImporter during the import of a model.Futures knows their meta-description and will use that to create and inject information into the real entities.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	metaDescription:		<aFM3Element>		The meta-description of the entity represented by this future."
+"FMDictionaryTranslationUnit","Description--------------------I am a translation unit using a dictionary to map incoming names with their translation.Examples--------------------	FMDictionaryTranslationUnit new		dictionary: { 'hello' -> 'olleh' . 'famix' -> 'ximaf' } asDictionary;		translate: 'hello'. ""olleh"" Internal Representation and Key Implementation Points.--------------------    Instance Variables	dictionary:		<aDictionary> 		A dictionary containing all the names to translate with their translations."
+"FMXMLPrinter","Description--------------------I am responsible of printing the XML format markup during a model export.Examples--------------------	| printer |	printer := FMXMLPrinter onString.	FMMetaMetaModel default exportWithPrinter: printer.	printer stream contents"
+"FMCopyReplaceTranslationUnit","Description--------------------I am a translation unit using a rewrite rule to translate the names of the entities to import.Examples--------------------	FMCopyReplaceTranslationUnit new		replacing: 'mix' with: 'Famix';		replacing: 'Famix' with: 'ximaFh';		replacing: 'h' with: '@';		translate: 'hello'. ""@ello"" Internal Representation and Key Implementation Points.--------------------    Instance Variables	rules:		<aCollection>		A collection of the rewrite rules to apply to the incomming names."
+"FMMSEPrinter","Description--------------------I am responsible of printing the MSE format markup during a model export.Examples--------------------	| printer |	printer := FMMSEPrinter onString.	FMMetaMetaModel default exportWithPrinter: printer.	printer stream contents"
+"FMTranslationUnit","Description--------------------My subclasses provides ways to translate the names of entities been imported by a FMImporter.It might happen that we want to translate the names of entities previously exported while we import them back.For example, if the model changed the name of the classes but a parser was not updated, we can use translation units to match the names."
+"FMDataStructurePrinter","Description--------------------During the export of a model, multiple data structure can be used. (MSE, XML, JSON...)I am an abstract class responsible of the printing of the data structure of the model export.I'll not export the entities, but I'll export the markup around them.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	indent:		<anInteger>		The current indentation of the export.	stream:		<aStream>			The stream on which I need to print the markup structure."
+"FMModelExporter","Description--------------------I am an exporter of fame model.I can be used to export a model or a metamodel in different formats. The format will be delegated to a FMDataStructurePrinter via a strategy design pattern.For performance reasons we use a hash table instead of a dictionary to keep the indexes.Examples--------------------	| metamodel printer |	printer := FMMSEPrinter onString.	metamodel := FMMetaModelBuilder metamodelFrom: {LIBLibrary . LIBBook . LIBPerson}.	FMModelExporter new		model: metamodel;		printer: printer;		run.			printer stream contents Internal Representation and Key Implementation Points.--------------------    Instance Variables	indexMap:							<aDictionary>						Dictionary mapping elements to export with their index.	lastUpdate:						<anInteger>							Number a millisecords since we last updated the progress bar. This is used to not update the progress bar too much.	numberOfExportedElements:	<anInteger>							Number of elements exported. This is used by the progress bar.	printer:							<aFMDataStructurePrinter>		Printer used to print the data structure of the export.	progressBar:						<aProgressBar>						Progress bar to update during the export.	model:								<aFMModel>							Model to export."
+"FMDanglingReference","Description--------------------During the import of a model, each entity has an index.References are made via the indexes in the export format.During the loading, in case we have, in the values of a property, a reference to a class that is not yet loaded, I am instantiated to serve has a temporary reference until I am resolved. Internal Representation and Key Implementation Points.--------------------    Instance Variables	parentProperty			<aFMFutureProperty>	The property whose values contain the entity I replace..	position:					<anInteger>				My position among the values contained by my parent property."
+"FMMSEParser","Description--------------------I am a parser responsible of the MSE syntax parsing. I do not manage the creation of the entities, this part is delegated to a FMImporter. Internal Representation and Key Implementation Points.--------------------    Instance Variables	buffer:				<aBuffer>				Buffer used to keep a record of the previously read characters during the parsing.	characterSet:		<aCharacterSet>		A character set cached to speed up the reading of the MSE.	chararacter:			<aCharacter>			The last character read on the stream.	importer:				<aFMImporter>		The FMImporter responsible of the management of the entities to be imported.	lastUpdate:			<anInteger>			Time in millisecond since the last progress bar update.	progBar:				<aProgressBar>		A progress bar to display the parsing progress.	stream:				<aStream>				The stream containing the MSE to be read."
+"FMDefaultCodeGenerator",""
+"FameNameConventionBetweenFM3AndSmalltalkRule","Check (for a class metadescribed with FM3 pragmas) if the FM3 class generated respect the convention between FM3 and Smalltalk:A FM3 class should be named PACKAGE.CLASSNAME whereas the smalltalk class associated should  be named PACKAGECLASSNAME. It is also an error to declare a FM3 meta-description without a package."
+"FameSuperclassMetaDescribedExistRule","Check if a superclass defined in a FM3MetaDescription (generated by a class anoted with fm3 pragmas) exist and has the good declaration (name, package)"
+"FameOppositeAttributeShouldPointBackRule","Check if an opposite attribute declared in a pragma #MSEProperty:type:opposite: also define a pragma pointing back to the initial class and the initial attribute."
+"FameOppositeClassNotExistRule","Check if the opposite class declared in a pragma #MSEProperty:type:opposite: is defined."
+"FMMSEParserTest",""
+"FMDebugImporter",""
+"FM3ClassTest",""
+"FMLibraryExample",""
+"FMTranslationUnitTests",""
+"FM3ElementTest",""
+"FMImporterTest",""
+"FMMultivalueLinkTest",""
+"FM3StringTest",""
+"FMHeinekenExample",""
+"FMMetaModelTest",""
+"FM3ObjectTest",""
+"FMExporterTest",""
+"FMModelTest",""
+"FM3NumberTest",""
+"FMEquationSystemExample",""
+"FMModelBuilderTest",""
+"FM3BooleanTest",""
+"ManifestFameTestsCore","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"FMDungeonExample",""
+"FMMetamodelScripterTest",""
+"FM3ConstantTest",""
+"FMMetamodelScripter",""
+"FMCodeGenerationTest",""
+"FMMetaModelBuilderTest",""
+"FMModelScripter",""
+"FM3PropertyTest",""
+"FMMetaMetaModelTest",""
+"FMMetaModelBuilderTestDummy",""
+"FM3PackageTest",""
+"FamixFileBasedLanguageGenerator",""
+"FamixBasicInfrastructureGenerator",""
+"FAMIXInheritance",""
+"FAMIXParameterizableClass",""
+"FAMIXImplicitVariable",""
+"FAMIXEntity",""
+"FAMIXUnknownSourceLanguage",""
+"FAMIXScopingEntity",""
+"FAMIXFolder",""
+"FAMIXSourceTextAnchor",""
+"FAMIXTraitUsage",""
+"FAMIXPrimitiveType",""
+"FAMIXPreprocessorStatement",""
+"FAMIXThrownException",""
+"FAMIXAssociation",""
+"FAMIXType",""
+"FAMIXAnnotationTypeAttribute",""
+"FAMIXCustomSourceLanguage",""
+"FAMIXBehaviouralEntity",""
+"FAMIXCFile",""
+"FAMIXIndexedFileAnchor",""
+"FAMIXInvocation",""
+"FAMIXEnum",""
+"FAMIXLocalVariable",""
+"FAMIXException",""
+"FAMIXSourcedEntity",""
+"FAMIXModule",""
+"FAMIXLeafEntity",""
+"FAMIXSourceLanguage",""
+"FAMIXComment",""
+"FAMIXTrait",""
+"FAMIXPreprocessorDefine",""
+"FAMIXSourceAnchor",""
+"FAMIXAccess",""
+"FAMIXAnnotationType",""
+"FAMIXEnumValue",""
+"FAMIXJavaSourceLanguage",""
+"FAMIXFunction",""
+"FAMIXCompilationUnit",""
+"FAMIXMultipleFileAnchor",""
+"FAMIXDereferencedInvocation",""
+"FAMIXParameterType",""
+"FAMIXParameter",""
+"FAMIXCaughtException",""
+"FAMIXAnnotationInstance",""
+"FAMIXNamespace",""
+"FAMIXStructuralEntity",""
+"FAMIXCSourceLanguage",""
+"FAMIXNamedEntity",""
+"FAMIXTypeAlias",""
+"FAMIXPreprocessorIfdef",""
+"FAMIXAbstractFileAnchor",""
+"FAMIXInclude",""
+"FAMIXClass",""
+"FAMIXGlobalVariable",""
+"FAMIXModel",""
+"FAMIXSmalltalkSourceLanguage",""
+"FAMIXMethod",""
+"FAMIXHeader",""
+"FAMIXPharoAnchor",""
+"FAMIXReference",""
+"FAMIXParameterizedType",""
+"FAMIXUnknownVariable",""
+"FAMIXDeclaredException",""
+"FAMIXAnnotationInstanceAttribute",""
+"FAMIXPackage",""
+"FAMIXAttribute",""
+"FAMIXCppSourceLanguage",""
+"FAMIXContainerEntity",""
+"FAMIXFile",""
+"FAMIXFileAnchor",""
+"FamixCompatibilityGenerator","g := FamixCompatibilityGenerator  new.g builder traitsFlattening: true.g generateWithoutCleaning.FamixCompatibilityGenerator resetMetamodel."
+"ManifestFamixCompatibilityGenerator","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"FAMIXCImportingTest",""
+"FAMIXCompilationUnitTest",""
+"FAMIXCImporting2Test",""
+"FAMIXCSourceLanguageTest",""
+"FAMIXModuleTest",""
+"FAMIXAnnotationTypeTest",""
+"FAMIXEntityTest","I am the generic class for all the tests for famix entities"
+"FAMIXTypeTest",""
+"FAMIXSourcedEntityTest","I am an abstract test class for the tests of FAMIXSourcedEntity's subclasses"
+"FAMIXSourceLanguageTest",""
+"FAMIXNamespaceTest",""
+"FAMIXReferenceTest",""
+"SmalltalkCompatibilityMetamodelFactory",""
+"FAMIXCommentTest",""
+"FAMIXMethodTest",""
+"FAMIXNamedEntityTest",""
+"FAMIXInvocationTest",""
+"FAMIXAnnotationTypeAttributeTest",""
+"FAMIXAnnotationInstanceTest",""
+"FAMIXImplicitVariableTest",""
+"FAMIXGlobalVariableTest",""
+"FAMIXMetricTest",""
+"FAMIXInheritanceTest",""
+"FAMIXAccessTest",""
+"FAMIXFunctionTest",""
+"FAMIXModelQueriesTest",""
+"FAMIXUnknownSourceLanguageTest",""
+"FAMIXAssociationTest","I am an abstract test class for the tests of FAMIXAssociation's subclasses"
+"FAMIXTypeAliasTest",""
+"FAMIXTraitTest",""
+"FAMIXClassTest",""
+"FAMIXAnnotationInstanceAttributeTest",""
+"FamixStMooseModel",""
+"FamixTestComposed1MooseModel",""
+"FamixTestComposedComposedMooseModel",""
+"MoosePragmaProcessor",""
+"FamixJavaMooseModel",""
+"ManifestFamixDeprecated","I contain all the deprecated code of Famix and Fame."
+"FamixTest4MooseModel",""
+"FamixTestComposedMooseModel",""
+"MSEImporter",""
+"FamixTest3MooseModel",""
+"FamixTest2MooseModel",""
+"FAMIXNavigationPluginTestsResource",""
+"FamixTest1MooseModel",""
+"FAMIXMooseModel",""
+"FamixTestComposed3MooseModel",""
+"FamixTestComposed2MooseModel",""
+"FAMIXInvocationGroup",""
+"FAMIXTypeGroup","FAMIXTypeGroup is a MooseGroup containing only FAMIX enities of type FAMIXType."
+"FAMIXFileGroup",""
+"FAMIXMethodGroup","FAMIXMethodGroup is a MooseGroup containing only FAMIX enities of type FAMIXMethod."
+"FAMIXClassGroup","FAMIXClassGroup is a MooseGroup containing only FAMIX enities of type FAMIXClass."
+"ManifestFamixGroups",""
+"FAMIXFolderGroup",""
+"FAMIXNamespaceGroup","FAMIXNamespaceGroup is a MooseGroup containing only FAMIX enities of type FAMIXNamespace."
+"FAMIXFileAnchorReader",""
+"FAMIXAnnotationInstanceGroup","FAMIXAnnotationInstanceGroup is a MooseGroup containing only FAMIX enities of type FAMIXAnnotationInstance."
+"FAMIXGlobalVariableGroup","FAMIXGlobalVariableGroup is a MooseGroup containing only FAMIX enities of type FAMIXGlobalVariable."
+"FAMIXPackageGroup","FAMIXPackageGroup is a MooseGroup containing only FAMIX enities of type FAMIXPackage."
+"FAMIXAnnotationTypeGroup","FAMIXAnnotationTypeGroup is a MooseGroup containing only FAMIX enities of type FAMIXAnnotationType."
+"FAMIXInvocationGroupTest","A FAMIXInvocationGroupTest is a test class for testing the behavior of FAMIXInvocationGroup"
+"FamixJavaSourceTextAnchor",""
+"FamixJavaNamespace",""
+"FamixJavaTStructuralEntity",""
+"FamixJavaDeclaredException",""
+"FamixJavaComment",""
+"FamixJavaFile",""
+"FamixJavaAnnotationInstance",""
+"FamixJavaClass",""
+"FamixJavaFileAnchor",""
+"FamixJavaContainerEntity",""
+"FamixJavaLocalVariable",""
+"FamixJavaEntity","file :=  'ArgoUML-0.34.mse' asFileReference readStream.dictionary := Dictionary newFrom: (	FamixJavaEntity withAllSubclasses collect: [ :c | 		cn := c name withoutPrefix: #FamixJava.		('FAMIX.', cn) -> ('FamixJava-Entities.', cn) ]).dictionary at: 'FAMIX.JavaSourceLanguage' put: 'FamixJava-Entities.SourceLanguage'.repo := MooseModel importFrom: file withMetamodel: FamixJavaGenerator metamodel translationDictionary: dictionary.model := MooseModel new.	model silentlyAddAll: repo elements.	model entityStorage forRuntime.model."
+"FamixJavaInheritance",""
+"FamixJavaParameterizedType",""
+"FamixJavaSourceLanguage",""
+"FamixJavaPackage",""
+"FamixJavaThrownException",""
+"FamixJavaNamedEntity",""
+"FamixJavaFolder",""
+"FamixJavaAnnotationInstanceAttribute",""
+"FamixJavaParameterizableClass",""
+"FamixJavaIndexedFileAnchor",""
+"FamixJavaMethod",""
+"FamixJavaModel",""
+"FamixJavaParameter",""
+"FamixJavaException",""
+"FamixJavaInvocation",""
+"FamixJavaPrimitiveType",""
+"FamixJavaUnknownSourceLanguage",""
+"FamixJavaType",""
+"FamixJavaSourceAnchor",""
+"FamixJavaAttribute",""
+"FamixJavaGlobalVariable",""
+"FamixJavaAssociation",""
+"FamixJavaEnum",""
+"FamixJavaMultipleFileAnchor",""
+"FamixJavaScopingEntity",""
+"FamixJavaImportingContext",""
+"FamixJavaUnknownVariable",""
+"FamixJavaCaughtException",""
+"FamixJavaReference",""
+"FamixJavaEnumValue",""
+"FamixJavaSourcedEntity",""
+"FamixJavaAnnotationType",""
+"FamixJavaAbstractFileAnchor",""
+"FamixJavaAnnotationTypeAttribute",""
+"FamixJavaImplicitVariable",""
+"FamixJavaAccess",""
+"FamixJavaParameterType",""
+"FamixJavaGenerator",""
+"FamixJavaEnumTest",""
+"FamixJavaMethodTest",""
+"FamixJavaParameterizedTypeTest",""
+"FamixJavaSourceLanguageTest",""
+"FamixJavaClassTest",""
+"FamixJavaEnumValueTest",""
+"FamixJavaParameterizableClassTest",""
+"FamixJavaQueryTest",""
+"FamixJavaTest",""
+"FmxLazyClassChange","Description--------------------I am an abstract class representing changes that will need to impact a class during the generation.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	className:		<aSymbol>		Name of the class to impact.	isClassSide:		<aBoolean>	A boolean to determine if the impact will be on the instance or the class side of the class to update."
+"FmxMBRelation","FamixMetamodelBuilderRelation"
+"FamixMetamodelGeneratorNoCleaningStrategy","Description--------------------I am a cleaning strategy that cleans nothing (Null design patter)"
+"FmxMBProperty",""
+"FmxMBTraitsGeneralizationError",""
+"FmxMethodRemovals","Description--------------------I represent a change that would remove methods of a class during a Famix generation.Examples--------------------	FmxMethodRemovals className: FmxMethodRemovals isClassSide: true selectors: {#apply} Internal Representation and Key Implementation Points.--------------------    Instance Variables	selectors:		<aCollectionOfSelectors>		The list of selectors to remove from the class."
+"FmxMBStandardRelationSideGenerationStrategy",""
+"FmxCodeChange","Description--------------------I am an abstract class representing a code changes.I am used by the Famix Generator to represent a change the generator need to apply during a generation and I can be applied.I am useful because the generator will be able to create the list of changes to apply and apply them. Doing the separation allows us to implement new features such as a method to know if a generator would have impact if we need to regenerate. Public API and Key Messages--------------------- #apply 		Will apply the change to the current system"
+"FmxMBRingEnvironment",""
+"FmxMBBehavior",""
+"FmxMBPrintVisitor","I'm a visitor for instances of #FamixMetamodelGenerator and subclasses.I just visit each node in the builder, and print it on the Transcript.see FmxMBVisitor to see how to use me."
+"FmxClassCommentUpdate","Description--------------------I represent a change that would update a class comment during a Famix generation.Examples--------------------	FmxClassCommentUpdate className: FmxClassCommentUpdate comment: 'This is the new comment of my class.' Internal Representation and Key Implementation Points.--------------------    Instance Variables	comment:		<aString>		The new comment of the class."
+"FmxMBRelationSideGenerationStrategy",""
+"FamixMetamodelGeneratorTotalCleaningStrategy","Description--------------------I am a hard cleaning strategy. I'll just delete the package generated by the generator."
+"FmxMBRelationSide",""
+"FmxPackageAddition","Description--------------------I represent a change that would create a package during a Famix generation.Examples--------------------	FmxPackageAddition named: 'Famix-Example-Entities' Internal Representation and Key Implementation Points.--------------------    Instance Variables	packageName:		<aString>		Name of the package to create."
+"FmxMBVisitor","I am a visitor for instances of #FamixMetamodelGenerator and subclasses.I offer methods to which will be called by visited class that accept me.My methods are empty to serve as base implementation if you want to only override specific methods.My methods do NOT take care of accepting me on their childrens. See #FmxMBVisitorWalker if you want that property.A minimum builder needs to subclass FamixMetamodelGenerator, and override the class side method #packageuse the #FmxMBPrintVisitor class for a working example.general case:b := aFamixMetamodelGeneratorClass builderWithDefinitions.v := aFmxMBVisitorClass new.b acceptVisitor: v."
+"FmxClassAddition","Description--------------------I represent a change that would create a class during a Famix generation.Examples--------------------	FmxClassAddition definition: 'MooseModel subclass: #FmxStMooseModel	instanceVariableNames: ''''	classVariableNames: ''''	package: ''Famix-Smalltalk-Entities''' Internal Representation and Key Implementation Points.--------------------    Instance Variables	definition:		<aString>		The definition of the class to create."
+"FmxMBRealRingEnvironment",""
+"FmxMBRelationSideTrait",""
+"FmxMBClass",""
+"FmxMBEntityAlreadyExists",""
+"FmxMethodAdditions","Description--------------------I represent a change that would create add methods to a class during a Famix generation.Examples--------------------	method := RGMethod new		sourceCode: 'initialize		<generated>		super initialize.		self toto: true;		protocol: #initialization;		name: #initialize;		yourself.	FmxMethodAdditions className: FmxMethodAddition isClassSide: false rgMethods: {method}	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	rgMethods:		<aCollectionOfRGMethods>		A collection of ring methods to add to a class."
+"FmxMBNonRemoteRelationSideGenerationStrategy",""
+"FamixMetamodelBuilder","builder := FamixMetamodelBuilder new.builder 	prefix: 'FamixTest';	packageName: 'FamixTest'.comment := builder newClassNamed: #Comment.method := builder newClassNamed: #Method.package := builder newClassNamed: #Package.(package <>- comment)	from	builder := FamixMetamodelBuilder new.rel := builder newRelation 	between: #TAccess and: #TWithAccesses;	fromOne: #accessor toMany: #accesses.		rel := builder newRelation 	between: #TAccess and: #TWithAccesses;	fromOne: #accessor toMany: #accesses.	rel := builder newRelation	from: [ :side |		side name: #accessor;			traitName: #TAccess;			container;			comment: 'some comment';			one	 ];	to: [ :opposite |		opposite 	name: #accesses;			traitName: #TWithAccesses;			comment: 'ohter comment';			many ].			"
+"FmxMBTypedProperty",""
+"FmxMBConfiguration","settings for the FamixMetamodelBuilder"
+"FmxMBPlantTextVisitor","I implement a Metamodel generator visitor, aiming to give a UML code usable with plantUML (http://plantuml.com).I accumulate in a stream the content you'll have to put in a file and run through plantUml.subclass #MetamodelGenerator , and try me! (print the last line)b :=  aMetamodelGeneratorSubClass builderWithDefinitions.v :=  FmxMBPlantTextVisitor new.b acceptVisitor: v.v contents"
+"FmxClassRemoval","Description--------------------I represent a change that would remove a class during a Famix generation.Examples--------------------	FmxClassRemoval class: FmxClassRemoval Internal Representation and Key Implementation Points.--------------------    Instance Variables	class:		<aClass>		The instance of the class to remove from the system."
+"FmxMBNavigationGroup",""
+"FamixAbstractMetamodelGeneratorCleaningStrategy","Description--------------------I am an abstract class to define the API of cleaning strategies.Cleaning strategies are used by a MM generator to know how to regenerate a MM."
+"FmxMBTrait",""
+"FmxMBIncompletePropertyDefiniton","FamixMetamodelBuilderIncompletePropertyDefiniton"
+"FmxMethodUpdates","Description--------------------I represent a change that would update methods of a class during a Famix generation.Examples--------------------	method := RGMethod new		sourceCode: 'initialize		<generated>		super initialize.		self toto: true;		protocol: #initialization;		name: #initialize;		yourself.	FmxMethodUpdates className: FmxMethodAddition isClassSide: false rgMethods: {method}	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	rgMethods:		<aCollectionOfRGMethods>		A collection of ring methods to update in a class."
+"FmxMBRemoteRelationSideGenerationStrategy",""
+"FamixMetamodelGenerator","Use me to create a Moose model.You should extend me and then redefine the methods: (see documentation https://github.com/SquareBracketAssociates/Booklet-FamixNG)- defineClasses: to define the entities (can be instanciate)- defineHierarchy: to define the hierarchy of class- defineProperties: to define the properties (fields) of an Entity- defineTraits: to define the Traits (can't be instanciate)- defineRelations: to define the relations between entities.	- oneToOne:	-* oneToMany:	*- manyToOne:	*-* manyToMany:	<>- containsOne:	<>-* containsMany:	-<> oneBelongsTo:	*-<> manyBelongTo:Once the metamodel is defined, use:	MyModelGenerator generate.You can also redefine #submetamodels to use entities from another generator"
+"FmxMBEnvironment","FamixMetamodelBuilderEnvironment"
+"FmxMBEntity",""
+"FmxMBWalkerVisitor","I implement a simple visitor walk of the tree starting in aBuilder.Use me if you don't want to think about the order the builder should be walked in, by calling my methods whenever you want a node to visit his children.Example: visitClass: aClass	aClass doStuff.	super visitClass: aClass. ""call accepts on the children of the class""	aclass doMoreStuff."
+"FmxMBClassTest",""
+"FmxMBNavigationGroupTest",""
+"FamixMetamodelCleaningStrategiesTestGenerator",""
+"FmxMBBehaviorTest",""
+"FmxMBImportingContextTest",""
+"FamixGenerateRemoteAccessorTestResource","Description--------------------I am a test resource used when someone needs the composed MM GenerateRemoteAccessor. I'll generate the MM and remove it once all tests of the class are finished.	 Internal Representation and Key Implementation Points.--------------------    Instance Variables	entityA:		First entity of the model	entityB:		Second entity of the model"
+"FmxMBTestCase",""
+"FmxMBGeneratorTest",""
+"FmxMBTestingMethodsTest",""
+"FmxMBGeneratorRemoteAccessorTest",""
+"FmxMBGeneratorCleaningStrategyTest",""
+"FmxMBRelationsGenerationTest",""
+"FamixTestExternalTraits",""
+"FmxMBConfigurationTest",""
+"FmxMBRelationSidesCombinationsTests",""
+"FmxMBClassGeneralizationsTest",""
+"FmxMBTypedPropertyTest",""
+"FmxMBBuilderTest","coverage:blacklistClasses := { FamixMetamodelBuilderRealEnvironment. FamixMetamodelGenerator }.methods := 'Famix-MetamodelBuilder-Core' asPackage methods copyWithoutAll: (blacklistClasses flatCollect: #localMethods).testRunner := TestRunner new.testRunner instVarNamed: #packagesSelected put: #('Famix-MetamodelBuilder-Tests').testRunner selectSubclasses.testRunner collectCoverageFor: (methods collect: #asRingDefinition)"
+"FmxMBRelationTest",""
+"FamixMetamodelGenerateRemoteAccessorTestGeneratorB",""
+"FmxMBBuilderRelationTest",""
+"FmxMBRelationSideTest",""
+"FamixMetamodelGenerateRemoteAccessorTestGeneratorAB",""
+"FmxMBTraitTest",""
+"FmxMBPropertyTest",""
+"FamixMetamodelGenerateRemoteAccessorTestGeneratorA",""
+"FamixMooseQueryGenerator",""
+"FamixGenerator","| g |g := FamixGenerator new.g generateWithoutCleaning.FamixCompatibilityGenerator resetMetamodel. "
+"FamixStSourceLanguage",""
+"FamixStReference",""
+"FamixStScopingEntity",""
+"FamixStSourceTextAnchor",""
+"FamixStInvocation",""
+"FamixStMethod",""
+"FamixStSourceAnchor",""
+"FamixStImportingContext",""
+"FamixStInheritance",""
+"FamixStClass",""
+"FamixStEntity",""
+"FamixStUnknownVariable",""
+"FamixStAccess",""
+"FamixStAnnotationType",""
+"ManifestFamixPharoSmalltalkEntities","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"FamixStParameter",""
+"FamixStAssociation",""
+"FamixStContainerEntity",""
+"FamixStModel",""
+"FamixStLocalVariable",""
+"FamixStAnnotationInstanceAttribute",""
+"FamixStAnnotationTypeAttribute",""
+"FamixStImplicitVariable",""
+"FamixStAnnotationInstance",""
+"FamixStAttribute",""
+"FamixStGlobalVariable",""
+"FamixStSourcedEntity",""
+"FamixStNamedEntity",""
+"FamixStPackage",""
+"FamixStUnknownSourceLanguage",""
+"FamixStComment",""
+"FamixStNamespace",""
+"FamixPharoSmalltalkGenerator",""
+"FamixMetricsTest",""
+"FamixSmalltalkMethodTest",""
+"KGBForMetricsTestResource","I am a test resource building a FamixStModel with some of KGB packages used for metrics tests."
+"PackageBlueprintTestResource","I am a test resource building a FamixStModel with the package blueprint test resource entities."
+"FamixPharoSmalltalkSourceLanguageTest",""
+"FamixStQueryTest",""
+"LCOMTestResource","I am a test resource building a FamixStModel with the LCOM test resource entities."
+"FamixSmalltalkNameResolver",""
+"RBVisitorForFAMIXMetrics","VisualWorksParseTreeMetricCalculator is a visitor computing AST based metrics. It also computes LOC. Right now only Number of MessageSends is computed in a correct manner.Instance Variables:	extendsSuper	<Boolean>	description of extendsSuper	methodComplexity	<ArithmeticValue | CPointer>	description of methodComplexity	numberOfLinesOfCode	<Magnitude | WindowSpec>	description of numberOfLinesOfCode	numberOfMessageSends	<ArithmeticValue | CPointer>	description of numberOfMessageSends	numberOfStatements	<ArithmeticValue | CPointer>	description of numberOfStatements	parameterComplexityMultiplier	<Object>	description of parameterComplexityMultiplier"
+"FamixSmalltalkNameResolverTest",""
+"MooseNamingTest",""
+"FamixTest1UnknownSourceLanguage",""
+"FamixTest1Method",""
+"FamixTest1SourceLanguage",""
+"FamixTest1Folder",""
+"FamixTest1SourceTextAnchor",""
+"FamixTest1File",""
+"FamixTest1MultipleFileAnchor",""
+"FamixTest1Class",""
+"FamixTest1IndexedFileAnchor",""
+"FamixTest1Attribute",""
+"FamixTest1FileAnchor",""
+"FamixTest1NamedEntity",""
+"FamixTest1AbstractFileAnchor",""
+"FamixTest1Comment",""
+"FamixTest1SourceAnchor",""
+"FamixTest1Association",""
+"FamixTest1Entity",""
+"FamixTest1SourcedEntity",""
+"FamixTest1Model",""
+"FamixFileAnchorTest",""
+"MooseAbstractGroupWithTest1ModelTest",""
+"FamixAbstractFileAnchorTest",""
+"FamixWithSourceLanguageTest",""
+"FamixSourceAnchorTest",""
+"FamixWithSourceAnchorTest",""
+"FamixNamedEntityTest",""
+"FamixWithMethodsTest",""
+"TEntityMetaLevelDependencyTest",""
+"FamixMethodTest",""
+"FamixWithImmediateSourceTest",""
+"OldFamixTest1TestIssue28",""
+"FamixClassTest",""
+"FamixWithCommentsTest",""
+"OldFamixTest1TestIssue22",""
+"FamixAssociationTest",""
+"FamixSourceLanguageTest",""
+"OldFamixTest1TestIssue20",""
+"FamixFolderTest",""
+"FamixMultipleFileAnchorTest",""
+"OldFamixTest1TestIssue19",""
+"FamixFileTest",""
+"FamixIndexedFileAnchorTest",""
+"MooseEntityWithTest1ModelTest",""
+"FamixAbstractFileTest",""
+"FamixTest2SourcedEntity",""
+"FamixTest2NamedEntity",""
+"FamixTest2SourceTextAnchor",""
+"FamixTest2Association",""
+"FamixTest2Class",""
+"FamixTest2SourceLanguage",""
+"FamixTest2Inheritance",""
+"FamixTest2Model",""
+"FamixTest2Entity",""
+"FamixTest2UnknownSourceLanguage",""
+"FamixTest2Comment",""
+"FamixTest2SourceAnchor",""
+"FamixTest2Test",""
+"FamixTest3Entity",""
+"FamixTest3NamedEntity",""
+"FamixTest3Association",""
+"FamixTest3PrimitiveType",""
+"FamixTest3Invocation",""
+"FamixTest3Method",""
+"FamixTest3SourceAnchor",""
+"FamixTest3SourcedEntity",""
+"FamixTest3Reference",""
+"FamixTest3Type",""
+"FamixTest3SourceTextAnchor",""
+"FamixTest3UnknownSourceLanguage",""
+"FamixTest3Model",""
+"FamixTest3SourceLanguage",""
+"FamixTest3Class",""
+"FamixTest3Comment",""
+"FamixTest3Test",""
+"FamixTest4Entity",""
+"FamixTest4Student",""
+"FamixTest4Classroom",""
+"FamixTest4Book",""
+"FamixTest4Teacher",""
+"FamixTest4School",""
+"FamixTest4Person",""
+"FamixTest4Room",""
+"FamixTest4Model",""
+"FamixTest4Principal",""
+"FamixTest4Cafeteria",""
+"FamixTest4Test",""
+"FamixTestComposed3Model",""
+"FamixTestComposedComposedModel",""
+"FamixTestComposedComposedMetamodels",""
+"FamixTestComposedMetamodelsWithMooseQuery",""
+"FamixTestComposedMetamodels","Test relation types between remote and nonremote entities is composed metamodels"
+"FamixTestComposedMetamodelsBuilding",""
+"FamixTestComposedCustomEntity1",""
+"FamixTestComposedCustomEntity3",""
+"FamixTestComposedEntity",""
+"FamixTestComposedModel",""
+"FamixTestComposedCustomEntity2",""
+"FamixTestComposedCustomEntity4",""
+"FamixTestComposedAssociation",""
+"FamixTestComposed1CustomEntity2",""
+"FamixTestComposed1SourceAnchor",""
+"FamixTestComposed1SourcedEntity",""
+"FamixTestComposed1Class",""
+"FamixTestComposed1CustomEntity3",""
+"FamixTestComposed1SourceTextAnchor",""
+"FamixTestComposed1Association",""
+"FamixTestComposed1Method",""
+"FamixTestComposed1Entity",""
+"FamixTestComposed1CustomEntity4",""
+"FamixTestComposed1SourceLanguage",""
+"FamixTestComposed1Comment",""
+"FamixTestComposed1Model",""
+"FamixTestComposed1CustomEntity1",""
+"FamixTestComposed1CustomEntity5",""
+"FamixTestComposed1UnknownSourceLanguage",""
+"FamixTestComposed1NamedEntity",""
+"FamixTestComposed2Entity",""
+"FamixTestComposed2CustomEntity4",""
+"FamixTestComposed2SourceLanguage",""
+"FamixTestComposed2Comment",""
+"FamixTestComposed2Model",""
+"FamixTestComposed2CustomEntity1",""
+"FamixTestComposed2CustomEntity5",""
+"FamixTestComposed2UnknownSourceLanguage",""
+"FamixTestComposed2NamedEntity",""
+"FamixTestComposed2CustomEntity2",""
+"FamixTestComposed2SourceAnchor",""
+"FamixTestComposed2SourcedEntity",""
+"FamixTestComposed2Class",""
+"FamixTestComposed2CustomEntity3",""
+"FamixTestComposed2SourceTextAnchor",""
+"FamixTestComposed2Association",""
+"FamixTestComposed2Method",""
+"FamixTest1Generator","""FamixSandboxGenerator new generate.""| model c c2 m m2 sa1 | model := MooseModel new.c := FamixSandClass named: 'Class1'.c2 := FamixSandClass named: 'Class2'.m := FamixSandMethod named: 'method1'.m2 := FamixSandMethod named: 'method2'.""sa1 := FamixSandSourceTextAnchor new source: 'method1 source' .""sa1 := FamixSandIndexedFileAnchor new fileName: '/tmp/s/source.txt'.sa1 startPos: 3.sa1 endPos: 10.model addAll: { c. c2. m. m2. sa1 }.m parentType: c.m2 parentType: c2.m sourceAnchor: sa1.model."
+"FamixTestComposed3Generator",""
+"FamixTestComposedGenerator",""
+"FamixTest3Generator",""
+"FamixTestComposedSubmetamodel2Generator",""
+"FamixTest4Generator",""
+"FamixTestComposedComposedGenerator",""
+"FamixTest2Generator",""
+"FamixTestComposedSubmetamodel1Generator",""
+"FamixTDeclaredExceptionTest",""
+"FamixTInvocationTest",""
+"FamixTTemplateTest",""
+"TFamixTWithPackagesTest",""
+"TFamixTWithCaughtExceptionsTest",""
+"TFamixTSourceLanguageTest",""
+"FamixTWithDeclaredExceptionsTest",""
+"TFamixTInvocationsReceiverTest",""
+"FamixTWithSignatureTest",""
+"FamixTAnnotationInstanceAttributeTest",""
+"TFamixTAnnotationInstanceTest",""
+"FamixTFolderTest",""
+"FamixTPackageableTest",""
+"FamixTTypedStructureTest",""
+"TFamixTWithReferencesTest",""
+"TFamixTWithDereferencedInvocationsTest",""
+"TFamixTTraitTest",""
+"TFamixTMultipleFileAnchorTest",""
+"FamixTWithInvocationsTest",""
+"TFamixTFileNavigationTest",""
+"FamixTDefinedInModuleTest",""
+"TFamixTAttributeTest",""
+"FamixTInvocationsReceiverTest",""
+"FamixTTemplateUserTest",""
+"FamixTWithDereferencedInvocationsTest",""
+"TFamixTWithTemplatesTest",""
+"TFamixTWithFilesTest",""
+"TFamixTTypeTest",""
+"FamixTWithSourceAnchorTest",""
+"TFamixTFunctionTest",""
+"TFamixTPackageTest",""
+"FamixTAnnotationInstanceTest",""
+"FamixTFunctionTest",""
+"TFamixTExceptionTest",""
+"TFamixTCompilationUnitTest",""
+"FamixTParameterTest",""
+"FamixTWithAccessesTest",""
+"FamixTWithMethodsTest",""
+"TFamixTWithTypedStructuresTest",""
+"TFamixTWithImplicitVariablesTest",""
+"TFamixTWithAccessesTest",""
+"TFamixTParameterizedTypeUserTest",""
+"TFamixTImplicitVariableTest",""
+"FamixTDereferencedInvocationTest",""
+"FamixTLocalVariableTest",""
+"FamixTThrownExceptionTest",""
+"FamixTWithEnumValuesTest",""
+"FamixTWithSourceLanguageTest",""
+"FamixTAnnotationTypeAttributeTest",""
+"TFamixTWithNamespacesTest",""
+"TFamixTWithAttributesTest",""
+"TFamixTSourceAnchorTest",""
+"TFamixTInvocationTest",""
+"FamixTGlobalVariableScopeTest",""
+"FamixTParameterizedTypeTest",""
+"TFamixTAnnotationInstanceAttributeTest",""
+"FamixTWithAnnotationInstanceAttributesTest",""
+"FamixTWithModifiersTest",""
+"FamixTEnumValueTest",""
+"TFamixTWithParametersTest",""
+"TFamixTWithDeclaredExceptionsTest",""
+"TFamixTThrownExceptionTest",""
+"TFamixTModuleTest",""
+"TFamixTFileIncludeTest",""
+"FamixTMethodTest",""
+"FamixTTraitTest",""
+"TFamixTAssociationTest",""
+"FamixTWithExceptionsTest",""
+"FamixTWithTemplatesTest",""
+"FamixTAnnotationTypeTest",""
+"FamixTGlobalVariableTest",""
+"TFamixTWithSourceLanguageTest",""
+"TFamixTWithFileIncludesTest",""
+"TFamixTTypeAliasTest",""
+"TFamixTNamespaceTest",""
+"TFamixTFolderTest",""
+"FamixTParameterizedTypeUserTest",""
+"FamixTWithAnnotationInstancesTest",""
+"TFamixTCommentTest",""
+"FamixTWithNamespacesTest",""
+"FamixTExceptionTest",""
+"FamixTModuleTest",""
+"TFamixTWithTypeAliasesTest",""
+"TFamixTWithImmediateSourceTest",""
+"TFamixTTypedStructureTest",""
+"TFamixTParameterizedTypeTest",""
+"FamixTTraitUsageTest",""
+"TFamixTHeaderTest",""
+"FamixTWithFileIncludesTest",""
+"FamixTWithThrownExceptionsTest",""
+"FamixTAssociationTest",""
+"FamixTHeaderTest",""
+"FamixTReferenceTest",""
+"TFamixTWithModifiersTest",""
+"TFamixTWithAnnotationTypesTest",""
+"TFamixTScopingEntityTest",""
+"FamixTWithAnnotationTypesTest",""
+"TFamixTInvocableTest",""
+"FamixTWithPackagesTest",""
+"TFamixTDefinedInModuleTest",""
+"TFamixTAccessibleTest",""
+"FamixTFileAnchorTest",""
+"FamixTMultipleFileAnchorTest",""
+"FamixTTraitUserTest",""
+"TFamixTDereferencedInvocationTest",""
+"TFamixTWithParameterizedTypesTest",""
+"TFamixTWithCompilationUnitTest",""
+"TFamixTTemplateUserTest",""
+"TFamixTMethodTest",""
+"TFamixTFileAnchorTest",""
+"FamixTWithFilesTest",""
+"FamixTWithTraitsTest",""
+"FamixTAttributeTest",""
+"TFamixTAnnotationTypeTest",""
+"FamixTImplicitVariableTest",""
+"FamixTReferenceableTest",""
+"FamixTWithAttributesTest",""
+"TFamixTWithSourceAnchorTest",""
+"TFamixTWithExceptionsTest",""
+"TFamixTTraitUserTest",""
+"FamixTWithParameterizedTypeUsersTest",""
+"TFamixTFileTest",""
+"TFamixTNamespaceEntityTest",""
+"FamixTFileIncludeTest",""
+"FamixTNamedTest",""
+"TFamixTest",""
+"FamixTTypeAliasTest",""
+"FamixTWithFunctionsTest",""
+"TFamixTWithTraitsTest",""
+"TFamixTWithHeaderTest",""
+"TFamixTTypedAnnotationInstanceTest",""
+"TFamixTParameterTest",""
+"TFamixTGlobalVariableTest",""
+"FamixTCaughtExceptionTest",""
+"FamixTWithTypeAliasesTest",""
+"FamixTIndexedFileNavigationTest",""
+"FamixTScopingEntityTest",""
+"FamixTWithCaughtExceptionsTest",""
+"FamixTWithParameterizedTypesTest",""
+"TFamixWithMSEExportTestCase","Description--------------------I am a trait that can be applied to TestCase subclasses. The test case should fill a model in the setUp method. I will run each tests two times. The first with the filled model. The second with the model I get from exporting and reimporting the model to a MSE file."
+"TFamixTWithMethodsTest",""
+"TFamixTWithAnnotationInstancesTest",""
+"TFamixTReferenceableTest",""
+"TFamixTInheritanceTest",""
+"FamixTFileNavigationTest",""
+"FamixTNamespaceEntityTest",""
+"TFamixTDeclaredExceptionTest",""
+"TFamixTAccessTest",""
+"FamixTTypeTest",""
+"TFamixTEnumValueTest",""
+"FamixTWithHeaderTest",""
+"FamixTWithTypedStructuresTest",""
+"FamixTCommentTest",""
+"TFamixTWithParameterizedTypeUsersTest",""
+"TFamixTWithCommentsTest",""
+"TFamixTTemplateTest",""
+"TFamixTLocalVariableTest",""
+"FamixTInheritanceTest",""
+"FamixTSourceAnchorTest",""
+"TFamixTAnnotationTypeAttributeTest",""
+"FamixTWithCommentsTest",""
+"FamixTWithParametersTest",""
+"FamixTAccessTest",""
+"FamixTFileSystemEntityTest",""
+"TFamixTWithSignatureTest",""
+"TFamixTWithEnumValuesTest",""
+"TFamixTTraitUsageTest",""
+"TFamixTNamedTest",""
+"FamixTNamespaceTest",""
+"TFamixTFileSystemEntityTest",""
+"FamixTTypedAnnotationInstanceAttributeTest",""
+"TFamixTCaughtExceptionTest",""
+"FamixTWithImmediateSourceTest",""
+"FamixTWithTypesTest",""
+"FamixTCompilationUnitTest",""
+"FamixTInvocableTest",""
+"TFamixTWithThrownExceptionsTest",""
+"TFamixTWithFunctionsTest",""
+"TFamixTTypedAnnotationInstanceAttributeTest",""
+"TFamixTPackageableTest",""
+"TFamixTGlobalVariableScopeTest",""
+"FamixTSourceLanguageTest",""
+"FamixTWithCompilationUnitTest",""
+"FamixTWithReferencesTest",""
+"FamixTAccessibleTest",""
+"FamixTFileTest",""
+"FamixTPackageTest",""
+"TFamixTWithTypesTest",""
+"TFamixTWithInvocationsTest",""
+"TFamixTWithAnnotationInstanceAttributesTest",""
+"TFamixTReferenceTest",""
+"FamixTTypedAnnotationInstanceTest",""
+"TFamixTIndexedFileNavigationTest",""
+"FamixTWithImplicitVariablesTest",""
+"FamixTWithPackages",""
+"FamixTNamespaceEntity",""
+"FamixTWithImplicitVariables",""
+"FamixTInvocation","FAMIXInvocation represents the invocation of a message (signature) on a receiver by a behavioural entity. FAMIXInvocation has:   (i)  sender: the behavioral entity that sends the message;   (ii) receiver: the structural entity (variable) that receives the message;   (iii) candidates: the list of potential behavioral entities that are actually being invoked. This is particularly useful for dynamic languages.In an invocation, From is the sender of the message and To is the list of candidates. For each invocation in the source code, there is one famix invocation created even if it is from the same behavioral entity towards the same variable and the same message. For example in smalltalk, the following codeanObject aSelector.will produce one invocation association from current method to a variable anObject with candidate aSelector. The list of candidates will also contain all the methods defining a similar signature as aSelector. "
+"FamixTWithEnumValues",""
+"FamixTTypedAnnotationInstanceAttribute",""
+"FamixTWithThrownExceptions",""
+"FamixTWithCaughtExceptions",""
+"FamixTTemplateUser",""
+"FamixTFileInclude",""
+"FamixTPreprocessorIfdef","Represent a preprocessor #ifdef/#ifndef statementKnows the name of the macro tested and whether it is ""negated"" (#ifndef) or not (#ifdef)"
+"FamixTCompilationUnit","I represent a compilation unit file. Typically a .c or .cpp file"
+"FamixTAccessible",""
+"FamixTWithSignature",""
+"FamixTWithModifiers",""
+"FamixTNamed",""
+"FamixTWithHeader",""
+"FamixTClass","FAMIXClass represents an entity which can build new instances. A FAMIXClass is a FAMIXType, therefore it is involved in super/sub types relationships (depending on the language) and it holds attributes, methods.FAMIX does not model explicitly interfaces, but a FAMIXClass can represent a Java interface by setting the isInterface property.A class is typically scoped in a namespace. To model nested or anonymous classes, extractors can set the container of classes to classes or methods, respectively."
+"FamixTWithDeclaredExceptions",""
+"FamixTInheritance",""
+"FamixTTypeAlias","This entity models a typedef in C.Instance Variables:	aliasedType	<ProtoObject | PseudoContext>"
+"FamixTWithAnnotationTypes",""
+"FamixTSourceLanguage","FAMIXSourceLanguage represents the programming language in which an entity is written. It is used for dispatching entity actions for specific languages. For example, formatting a source text will be performed according to the language. A project may have multiple languages. A source language has a name and entities that are written in this language. One can create a default source language for a project by not associating any entities to it. In this case, all entities that do not have specific source langauge, belong to the default source language. One can attach entities to a sourceLanguage using addSourceEntity:."
+"FamixTException","This is the abstract representation of an Exception. It is specific to Java. It points to an exceptionClass. The class of a FAMIXException is a normal FAMIXClass."
+"FamixTWithStatements",""
+"FamixTParameterizedTypeUser",""
+"FamixTClassHierarchyNavigation",""
+"FamixTAnnotationInstanceAttribute","This models the actual value of an attribute in an AnnotationInstance.In the following AnnotationInstance of Java, timeout is an annotation instance attribute :@Test(timeout = 500)Instance Variables:	parentAnnotationInstance	<FAMIXAnnotationInstance>	annotationTypeAttribute	<FAMIXAnnotationTypeAttribute>	value	<Object>"
+"FamixTWithParameters",""
+"FamixTWithLocalVariables",""
+"FamixTModule","FAMIXModule represents a that basically provides a simple scoping abstraction for a .C/.CPP/.H files."
+"FamixTWithFiles",""
+"FamixTAttribute","FAMIXAttribute represents a field of a class. It is an attribute of the parent type."
+"FamixTWithTypedStructures",""
+"FamixTWithComments",""
+"FamixTTraitUsage",""
+"FamixTFile","It represents a file in the file system."
+"FamixTWithAnnotationInstanceAttributes",""
+"FamixTScopingEntity","FAMIXScopingEntity represents an entity defining a scope at a global level. Packages and Namespaces are two different concept in terms of scoping entity. Namespaces have semantic meaning in the language so they influence the unique name of the entity, while Packages are physical entities for packaging. In Smalltalk the two are explicitly different. In C++ we have explicit Namespaces, but not so explicit Packages. In Java, we have both Namespace (what you define in your Java source), and Package (the folder structure), but they happen to overlap in naming (although one is with . and the other one is with /) so people tend to see them as packages only."
+"FamixTDereferencedInvocation","Represents an invocation which function is contained in a pointer.The function itself is typically unknown (referenced by the pointer).It has a referencer which is the pointer variable"
+"FamixTHeader","I represent a header file. Typically a .h or .hpp"
+"FamixTParameterType","ParameterType represents the symbolic type used in parameterizable classes. This is a FAMIXType.Example:public class AClass<A,B,C> {...}Where AClass is a ParameterizableClass. A, B and C are ParameterType of AClass."
+"FamixTAssociation","FAMIXAssociation is an abstract superclass for relationships between Famix named entities. It defines a polymorphic API refined by subclasses: essentially from, to, next and previous.From and To properties are abstract at this level, but specific implementations can have multiple ends and properties. For example, FAMIXInheritance has:	(i) From mapped to the subclass;	(ii) To mapped to the superclass.	To adapt your code to MooseQuery, you have also to add the <source> and <target> pragmas in the selectors definition for each class inheriting FAMIXAssociationNext and Previous properties provide an order of the appearence of these associations in code. The order is calculated within a particular relationship for example, method invocation order within a calling method (from).For example in java, the following code method a() { b(); c(); }will produce two invocation associations first from method a to method b, and second from method a to method c. These associations are bound together and can be navigated with previous and next."
+"FamixTAnnotationInstance","AnnotationInstance is an instance of an AnnotationType. It links an AnnotationType to an actual entity.For example, the following is an annotation instance in Smalltalk.<primitive: 'primAnyBitFromTo' module:'LargeIntegers'>.And the following is an AnnotationInstance in Java:@Test(timeout = 500)Instance Variables:	annotatedEntity	<FAMIXEntity>	annotationType		<FAMIXAnnotationType>"
+"FamixTGlobalVariable","FAMIXGlobalVariable represents a global variable in the source code."
+"FamixTFolder","It represents a folder in the file system. It can contain other files or folders."
+"FamixTSourceEntity","FAMIXSourcedEntity models any fact in a program source and it is the superclass (root class) of all source code entities and their relationships. It is a FAMIXEntity and it can hold comments, a source anchor and a source language."
+"FamixTWithParameterizedTypeUsers",""
+"FamixTPackage","FAMIXPackage represents a package in the source language, meaning that it provides a means to group entities without any baring on lexical scoping. Java extractors map Java packages to FAMIXNamespaces. They can also mirror the same information in terms of FAMIXPackage instances."
+"FamixTWithInheritances",""
+"FamixTImplicitVariable","FAMIXImplicitVariable represents a variable defined by the compiler in a context, such as self, super, thisContext."
+"FamixTInvocationsReceiver",""
+"FamixTWithExceptions",""
+"FamixTTypedStructure",""
+"FamixTFunction","FAMIXFunction represents a behavioural entity in a procedural language."
+"FamixTWithClassScope",""
+"FamixTThrownException","This is an exception explicitly thrown by a method."
+"FamixTWithTraits",""
+"FamixTUnknownSourceLanguage",""
+"FamixTReference","A FAMIXReference entity is created whenever one manipulates a class name as a variable. For example:(i) if the class is passed as a parameter to a method, or(ii) if a static method is invoked on a class.For example, in the following Java codemethod a(){B bObject = new B();  B.aStaticMethod(); }There is only one reference which is created when the static method aStaticMethod is invoked on class variable B. In the declaration of B objects, the class B is the type of variable b but not a FAMIXReference. And instantiation new B() is an invocation of the default constructor, and not a FAMIXReference.Note that FAMIXReference was defined between two FAMIXContainerEntity entities. So, it used to represent dependencies between container entities that are computed from the dependencies of contained entities. For example, references between two packages can be computed from dependencies between classes of the packages."
+"FamixTDeclaredException","This is an exception explicitly declared as being thrown by a method."
+"FamixTFileNavigation",""
+"FamixTAnnotationType","FAMIXAnnotationType represents the type of an annotation. In some languages, Java and C#, an annotation as an explicit type. An AnnotationType can have a container in which it resides.Instance Variables:	instances	<(FMMultivalueLink of: FAMIXAnnotationInstance)>	container	<FAMIXContainerEntity>"
+"FamixTLocalVariable","FAMIXLocalVariable represents a local variable in the scope of a behavioural entity."
+"FamixTWithTypes",""
+"FamixTWithSourceAnchor",""
+"FamixTWithNamespaces",""
+"FamixTParameter","FAMIXParameter represents one parameter in a method declaration."
+"FamixTNamespace","FAMIXNamespace represents a namespace from the source language. Namespaces have semantic meaning in the language so they influence the unique name of the entity.A namespace denotes an entity that has meaning from a language point of view. For example, in C++, there exist a concept with the same name that has no other responsibility beside providing a lexical scope for the contained classes and funcions.When an entity is placed inside a namespace, the fully qualified name (mooseName) is affected."
+"FamixTWithImmediateSource",""
+"FamixTInvocable",""
+"FamixTWithDereferencedInvocations",""
+"FamixTTypedAnnotationInstance",""
+"FamixTWithTemplates",""
+"FamixTWithAttributes",""
+"FamixTTemplate",""
+"FamixTFileAnchor","This offers a source anchor that connects a sourced entity to a file through a relative path stored in the fileName. In addition, the source can be further specified with a startLine and an endLine number in the file."
+"FamixTPreprocessorDefine","Represent a preprocessor #define statementKnows the name of the macro defined"
+"FamixTComment","FAMIXComment represents one instance of a comment (in the sense of programming language comments) for any Famix sourced entity. The commented sourced entity is called the container in the FAMIX model."
+"FamixTAccess","FAMIXAccess represents an access to a variable by a behavioural entity (for example, a function or a method). For example if the method foo accesses the instance variable x, there is an access with the following information:	(i) From: aFAMIXMethod (foo)	(ii) To: aFAMIXAttribute (x)	aFAMIXMethod (foo) can be accessed using the message accessor (and from)aFAMIXAttribute (x) can be accessed using the message variable (and to). Furthermore it can be tagged as read or write using isWrite: aBoolean.For each access in the source code, there is one famix access created even if it is from the same behavioral entity towards the same variable."
+"FamixTWithReferences",""
+"FamixTWithMethods",""
+"FamixTMultipleFileAnchor",""
+"FamixTWithFunctions",""
+"FamixTType","FAMIXType is a generic class representing a type. It has several specializations for specific kinds of types, the typical one being FAMIXClass.A type is defined in a container (instance of FAMIXContainer). The container is typically a namespace (instance of FAMIXNamespace), but may also be a class (in the case of nested classes), or a method (in the case of anonymous classes).A type can have multiple subtypes or supertypes. These are modelled by means of FAMIXInheritance instances."
+"FamixTWithCompilationUnit",""
+"FamixTTraitUser",""
+"FamixTIndexedFileNavigation",""
+"FamixTWithAnnotationInstances",""
+"FamixTSourceAnchor","FAMIXSourceAnchor is an abstract class representing a pointer to a source. The source can be identified in multiple ways as specified by the subclasses.  The famix entity that this class is a source pointer for, is accessible via element property."
+"FamixTEnumValue","It models the values defined in an FAMIXEnum. These are attributes of enums with default values.For example, the following Java code defines an Enum with seven EnumValues.public enum Day {    SUNDAY, MONDAY, TUESDAY, WEDNESDAY,     THURSDAY, FRIDAY, SATURDAY }Instance Variables:	parentEnum	<(MultivalueLink of: FAMIXEnum)>"
+"FamixTParameterizedType","FAMIXParameterizedType represents a type with arguments. So, it is an instantiation for the use of FAMIXParameterizableClass. It can appear as a type of an attribute, a type of a local variable, a parameter of a method, a return of a method, etc.Example:...public Map<String,Collection> anAttribute;...Where Map<String,Collection> is the FAMIXParameterizedType of anAttribute. String and Collection are arguments. Map is the parameterizableClass."
+"FamixTCaughtException","This is an exception that is explicitly handled by a method. For example, in Java it is an exception that appears in a catch statement."
+"FamixTMethod","FAMIXMethod represents a behaviour in an object-oriented language.A FAMIXMethod is always contained in a parentType."
+"FamixTWithParameterizedTypes",""
+"FamixTCohesionCouplingMetrics",""
+"FamixTWithInvocations",""
+"FamixTLCOMMetrics",""
+"FamixTWithFileIncludes",""
+"FamixTStructuralEntity","FAMIXStructuralEntity is the abstract superclass for basic data structure in the source code. A structural entity has a declaredType that points to the type of the variable."
+"FamixTGlobalVariableScope",""
+"FamixTWithClasses",""
+"FamixTWithTypeAliases",""
+"FamixTFileSystemEntity",""
+"FamixTWithAccesses",""
+"FamixTReferenceable",""
+"FamixTTrait","FAMIXTrait models a trait as it can be found in Pharo or PHP."
+"FamixTDefinedInModule",""
+"FamixTPackageable",""
+"FamixTAnnotationTypeAttribute","This models the attribute defined in a Java AnnotationType. In Java, annotation type attributes have specific syntax and use.For example, in Java the following AnnotationType has four AnnotationTypeAttributes (id, synopsis, engineer and date are attributes).public @interface MyAnno {    int    id();    String synopsis();     String engineer() default ""[unassigned]"";     String date()    default ""[unimplemented]"";}When using an annotation, an annotation instance is created that points back to the annotation type. The annotation instance has attributes that are annontation instance attributes and point back to their annotation type attributes.Instance Variables:	parentAnnotationType	<FAMIXAnnotationType>	annotationAttributeInstances	<(FMMultivalueLink of: FAMIXAnnotationInstanceAttribute)>"
+"FamixModel",""
+"FamixTWithSourceLanguage",""
+"VerveineJTestResource",""
+"VerveineJModelTest",""
+"FamixTestGenerator",""
+"FamixComposingTestTraitsGenerator",""
+"FamixTestAndTraitGenerator","This class enables to generate tests for FamixTrait based on slots.How to use it:fttg := FamixTestAndTraitGenerator   new.fttg runForAllClassesWith: FamixGenerator . ""the parameter is a generator"""
+"MalDendrogramNode","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalSeriationEngine","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalCorrelationSquare","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalClusteringVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalDendrogram","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalTimeWarpingEngine","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalVectorItem","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalValueItem","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalDendrogramLeaf","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalClusteringData","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalSimilarityItem","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalFeatureCollection","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalClusterEngine","I am the cluster engine. I do hierarchical clustering. I allow one to compute the dendrogram.One can configure myself to change the way I compute distance between clusters. For example, #singleLinkage message sets myself to use the minimum distance between 2 points belonging to 2 clusters for which one need to compute the distance.To try you can run:[[[	MalClusterEngine with: vectorsOfData using: blockComputingDistanceBetweenTwoVectors]]]By default, I use squared euclidean distance.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalDistanceSquare","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalCorrelationVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalGanterAlgorithm",""
+"MalFormalConcept",""
+"MalFormalContext","MalFormalContext mammals2 computeConcepts"
+"MalFCAElement",""
+"MalLongestPath","A MalLongestPath is the implementation of the longest path algo.This is working only on graph not weighted and without circuitsSee tests for more informations"
+"MalDisjointSetsNextNode",""
+"MalCyclesCoverage",""
+"MalDijkstraNode",""
+"MalHits",""
+"MalDijkstraEdge",""
+"MalSccNodeDecomposition",""
+"MalHalNode",""
+"MalGraphAlgorithm","I'm the common superclass for all graphs related algorithms.I store edges and nodes and provides convenience methods to add, access and find nodes or edges.Once configured, send the run message to execute the algorithm."
+"MalWeightedHitsNode",""
+"MalTopologicalSorting","From wikipedia:A topological sort (sometimes abbreviated topsort or toposort) or topological ordering of a directed graph is a linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering. For instance, the vertices of the graph may represent tasks to be performed, and the edges may represent constraints that one task must be performed before another; in this application, a topological ordering is just a valid sequence for the tasks. A topological ordering is possible if and only if the graph has no directed cycles, that is, if it is a directed acyclic graph (DAG). Any DAG has at least one topological ordering, and algorithms are known for constructing a topological ordering of any DAG in linear time."
+"MalNodeWithPreviousAndNext","A basic node able to host the model and to represent edges with no additional class.Edges are navigable in both way through the nextNodes and prevousNodes instances variables."
+"MalDijkstra","Dijkstra's algorithm is an algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks. It was conceived by computer scientist Edsger W. Dijkstra in 1956 and published in 1959. The algorithm exists in many variants; Dijkstra's original variant found the shortest path between two nodes, but a more common variant fixes a single node as the ""source"" node and finds shortest paths from the source to all other nodes in the graph, producing a shortest path tree. (source: Wikipedia)"
+"MalSccExtractor","A utility class to easily get circuits, i.e. SCC with more than one node."
+"MalGraphNode","Default representation of a graph vertice (node)."
+"MalTEdgeNode",""
+"MalKruskal","Kruskal's algorithm is a greedy algorithm in graph theory that finds a minimum spanning tree for a connected weighted graph. This means it finds a subset of the edges that forms a tree that includes every vertex, where the total weight of all the edges in the tree is minimized. If the graph is not connected, then it finds a minimum spanning forest (a minimum spanning tree for each connected component).See https://en.wikipedia.org/wiki/Kruskal%27s_algorithm"
+"MalDisjointSetNode",""
+"MalGraphStructure",""
+"MalCseEdge",""
+"MalSndNode",""
+"MalDominance",""
+"MalTarjan","I implement the well known Tarjan's algorithm. My purpose is to find the strongly connected components (aka circuits /cycles) of a graph in O(m+n).See https://en.wikipedia.org/wiki/Tarjan%27s_strongly_connected_components_algorithm for more details."
+"MalHitsNode",""
+"MalBreadthFirstSearchPath","Breadth-first search (BFS) is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a `search key') and explores the neighbor nodes first, before moving to the next level neighbours. (source: Wikipedia)"
+"MalCircuitSpanningEdges",""
+"MalDominanceNode",""
+"MalWeightedHits",""
+"MalWeightedEdge","I represent a weighted edge in a graph. Public API and Key Messages- weight Instance Variables	weight: <Number>"
+"MalTarjanNode","Node type used by the MalTarjan algorithm.Edges are not representated as full objects. We just keep a list of next nodes (following described directed edges)."
+"MalBfsNode",""
+"MalGraphReducer","The reduced graph of G is the graph G where each strongly connected components was merged into one vertice / node.circuitsNodes instance variable will collect all nodes created by merging nodes in a circuit."
+"MalGraphEdge","I represent an edge in a graph.  I'm part of the edges of a MalGraphAlgorithm and I link two MalNode together.Public API and Key Messages- from- to - model  Instance Variables	from: <MalNode>	to: <MalNode>	model: <Object>"
+"MalSccEdgeDecomposition",""
+"MalReducedGraphNode","Node used by the MalReducedGraph algorithm.It has an additional instance variable to track merged nodes."
+"MalDisjointSets",""
+"MalHal",""
+"MalNodeWithNext","A basic node able to host the model and to represent edges with no additional class.Edges are navigable in one way through the nextNodes instance variable."
+"MalTNormalize",""
+"MalAtlasGraphGenerator","I'm able to build graphs described in the Atlas of Graphs.See ""An Atlas of Graphs"" by Ronald C. Read and Robin J. Wilson,Oxford University Press, 1998."
+"MalGrid3DGenerator","I'm building rectangular 2D grid with von Neumann or Moore neighborhood."
+"MalWaltzStrogatzGraphGenerator",""
+"MalErdosRenyiGNMGraphGenerator",""
+"MalHexagonalLatticeGenerator",""
+"Mal2DGridNode","Nodes with a 2D position in a grid with x and y."
+"MalErdosRenyiGNPGraphGenerator",""
+"MalKleinbergGraphGenerator","A navigable small-world graph is a directed grid with additional long-range connections that are chosen randomly. We use the algorithm defined by Kleinberg: https://www.cs.cornell.edu/home/kleinber/swn.pdfBegin with a set of nodes that are identified with the set of lattice points in an n×nn×n square, (i,j):i∈1,2,…,n,j∈1,2,…,n(i,j):i∈1,2,…,n,j∈1,2,…,n and define the lattice distance between two nodes (i,j)(i,j) and (k,l)(k,l) to be the number of “lattice steps” separating them: d((i,j),(k,l))=|k−i|+|l−j|d((i,j),(k,l))=|k−i|+|l−j|.For a universal constant p, the node u has a directed edge to every other node within lattice distance p (local contacts) .For universal constants q≥>= 0 and r >= 0 construct directed edges from u to q other nodes (long-range contacts) using independent random trials; the i’th directed edge from uu has endpoint v with probability proportional to d(u,v)^-r.- n: integer - the size of 2D grid (n * n)- p: integer - the number of local contacts for each nodes- q: integer - the number of long-range links for each nodes- r: float - Exponent for decaying probability of connections. The probability of connecting to a node at lattice distance d is 1/d^r.We follow more or less the implementation of NetworkX : https://networkx.readthedocs.io/en/stable/_modules/networkx/generators/geometric.html#navigable_small_world_graphShould be verify !"
+"MalAlbertBarabasiGraphGenerator",""
+"MalGrid2DGenerator","I'm building rectangular 2D grid with von Neumann or Moore neighborhood."
+"MalTriangularLatticeGenerator","The triangular lattice graph is a two-dimensional grid graph in which each square unit has a diagonal edge (each grid unit has a chord).- n: integer - number of rows in the lattice- m: integer - number of columns int the latticeThe returned graph has m rows and n columns of triangles. Rows and columns include both triangles pointing up and down. Rows form a strip of constant height. Columns form a series of diamond shapes, staggered with the columns on either side. Another way to state the size is that the nodes form a grid of m+1 rows and (n + 1) // 2 columns. The odd row nodes are shifted horizontally relative to the even rows."
+"MalHgPropagatedEdge","A MalHgPropagatedEdge is an edge that represents another edge, propagated up in hierarchyInstance Variables"
+"MalHierarchicalGraph","A MalHierarchicalGraph is composed of a collection of nodes situated in a hierarchy and two types of edges: edges between the base nodes and edges that are propagated up in the hierarchy.Instance Variables	levels:		<Dictionary>levels	- dict keys: level, values: all nodes on that level as a Collection."
+"MalHgNode","A MalHgNode is a node inside a hierarchical graph. It knows the graph it belongs to, its children and its parent, on which level in the graph it resides and its outgoing ind incoming edges. One can also store arbitrary informaition as attributes to a node.Instance Variables	attributes:		<Dictionary>	children:		<OrderedCollection>	hiGraph:		<MalHierarchicalGraph>	incoming:		<OrderedCollection>	level:		      <Number>	outgoing:		<OrderedCollection>	parent:		      <MalHgNode>attributes	- Dictionary to attach arbitrary information to a nodechildren	- This nodes children. Empty collection if the node is a leaf in the hierarchy.hiGraph	- The MalHierarchicalGraph this node belongs to.incoming	- All incoming edges to this node.level	- The level this node is on in the hierachy where 0 is the top level (root nodes). The larger the number, the deeper down in the hierarchy the node is located.outgoing	- All outgoing edges from this node.parent	- This nodes parent"
+"MalStemmer","Stemmer reduces words to their morphological root.example: string	^PorterStemmer new stem: stringCopyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalNullStemmer","NullStemmer does not stem words, ie null-operation.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalEndOfStream","Signalled when ReadStream>>next encounters a premature end."
+"MalAbstractStemmer","AbstractStemmer is an abstract superclass for Porter-like stemmers.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalTermScanner","TermScanner breaks an input stream into tokens. example: stream	| scanner |	scanner := TermScanner new.	scanner onStream: stream.	[ scanner atEnd ] 		whileFalse: 			[ scanner next ]		Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalStopwords","Stopwords subclasses Collection to store stopwords, ie words to be removed from Terms.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalCorpus","Corpus maps document (which may be any kind of object) to Terms.For convenience, there is special support for file documents.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalGermanStemmer","GermanStemmer stems German words.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalCamelcaseScanner","CamelcaseScanner breaks an input stream into tokens, with respect to camel case.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalLogLikelihoodRatio","Compares term bags.Copyright (c), 2009 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalPorterStemmer","PorterStemmer stems English words.Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalTerms","Terms subclasses Bag with support for handling stopwords etc.example: string	| terms |	terms := Terms new.	terms addString: string using: CamelCaseScanner new.	terms withCoundDo: [ :term :count |		term -> count ].Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalKontractor","I'm a word compacting class. I remove the most used letters from a word to compact it to a given size. 	(MalKontractor reduce: 'Hello' upTo: 3) 		'Hlo'			You can also remove some  elements using cut:		(MalKontractor new 			wordsToBeRemoved: #( 'Sea' 'WA' ) ;			upTo: 3)			reduce: 'WASeaSideba'				returns 'idb'"
+"MalLatticePatterns","The class implements the identification of patterns in FCA lattices. We can detect like horizontal decomposition with the algos in the class.| data fca context lattice |	data := #(#(#Cat #(#fourlegs #hair)) #(#Dog #(#smart #fourlegs #hair)) #(#Dolphin #(#smart #marine)) #(#Gibbon #(#hair #smart #thumbed)) #(#Man #(#smart #thumbed)) #(#Whale #(#smart #marine))).	fca := MalFormalContext new.	context := fca with: data using: #first using: #last.	(MalLatticePatterns on: (MalLattice on: context)) reportPatternsFor moose models	|fca model treillis context|model := (MooseModel root allModels) second.fca := MalFormalContext new.context := fca with: (model allModelClasses) using: #yourself using: [:cl | cl methods collect: [:m | m name]].treillis := (MalLattice on: context).Transcript clear.(MalLatticePatterns on: treillis) reportPatterns.(MalLattice new viewLattice: treillis).Smalltalk collection class hierarchy:|fca model treillis context|treillis := (MalLattice on: MalFormalContext classHierarchyCollection).(MalLatticePatterns on: treillis) reportModules."
+"MalLattice","MalLattice on: MalFormalContext mammals2.MalLattice new viewLattice: (MalLattice on: MalFormalContext mammals2)| data fca context lattice |	data := #(#(#Cat #(#fourlegs #hair)) #(#Dog #(#smart #fourlegs #hair)) #(#Dolphin #(#smart #marine)) #(#Gibbon #(#hair #smart #thumbed)) #(#Man #(#smart #thumbed)) #(#Whale #(#smart #marine))).	fca := MalFormalContext new.	context := fca with: data using: #first using: #last.	MalLatticePatterns on: (MalLattice new viewLattice: (MalLattice on: context)) "
+"ModuleIdentification","The class serves the purpose of module identification. To see the definition of a module, see the following paper:M. Habib, M. Huchard and J. Spinrad. A linear algorithm to decompose inheritance graphs into modules. Algorithmica, 13:573-591, Springer-Verlag, 1995.The algorithm implemented by the class has been tested on simple and complex lattices (see tests) and it works. The algo has a start phase, a middle phase, and an en phase.-> In the start phase, the algorithm is started on each node.-> In the middle phase, it is seen if the descendants of the top node make up candidates to be included in the module.-> In the end phase, it is seen that the descendants of the top node are converging to a bottom node.If the three phases succeed, the module pattern is detected.The class has some associated tests.Instance Variables:	moduleNodes	<Collection>	lattice	<MalLattice>	aCandidate	<Collection>	nodesToConsider	<(Collection of: MalLatticeNode)>		To test module pattern run the following code in the workspace.| data fca context lattice |	data := #(#(#a #()) #(#b #(#1)) #(#c #(#1 #2)) #(#d #(#1 # 2 #3)) #(#e #(#1 #2 #4)) #(#f #(#1 #2 #3 #4)) #(#g #(#1 #2 #4 #5)) #(#h #(#1 #2 #4 #6)) #(#i #(#1 #2 #3 #4 #5 #6)) #(#j #(#1 #8)) #(#k #(#1 #9)) #(#l #(#1 #8 #9))).	fca := MalFormalContext new.	context := fca with: data using: #first using: #last.	lattice := (MalLattice on: context).	""(MalLattice new viewLattice: lattice).""	(MalLatticePatterns on: lattice) reportPatterns.	"
+"MalLatticeNode",""
+"MalSparseRowMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalArrayVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalRowMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalAccumulator","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalUnboundedMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalSmartMapping","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMappedVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMatrixView","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalNumberMapping","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalVectorDecorator","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMappedMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalNameMapping","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalVectorCoercion","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMatrixDecorator","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMapping","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalUnlimited",""
+"MalSparseVector","SparseVector has not been commented.  The comment should state the purpose of the class and also explain any unobvious aspects of the implementation.Instance Variables:	contents	<(ArrayList of: (Association | Attribute | CodeComponentProperty | DeferredBinding | IndexedVariable | KeyedElement | LabelAndValue | NamedVariable | SetElement | SourceMapEntry | VariableBinding)) | (OrderedCollection of: (Association | Attribute | CodeComponentProperty | DeferredBinding | IndexedVariable | KeyedElement | LabelAndValue | NamedVariable | SetElement | SourceMapEntry | VariableBinding))>	description of contents	size	<ArithmeticValue | CPointer | Matrix | Rectangle | String | Vector>	description of size"
+"MalMatrixCoercion","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalMedianAccumulator",""
+"MalMatrixPath","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalSparseColumnMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalDiagonalMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalFloatVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalColumnMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalSymetricMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalBooleanVector","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MalArrayMatrix","Copyright (c), 2004-2007 Adrian Kuhn. This class is part of Hapax. Hapax is distributed under BSD License, see package comment."
+"MooseConfiguration",""
+"MooseDevelopmentState","I am a state that can be use to improve development efficiency. I keep the properties and the queries caches in two dictionary. Thus the user can easily flush only one kind of cache during development."
+"MooseEntityAdded",""
+"MooseGroupSetupStorage",""
+"MooseIcons",""
+"MooseEntityState","I represent the state of an entity.My main methods are:	"
+"MooseEntityAnnouncement",""
+"MooseGroupRuntimeStorage","I am storing the items of the group during the standard usage of moose entities.I store the entites for fast access byName and byType. I also contains the all the entities in elements which is not sorted. I am used by MooseAbstractGroup subclasses.Public API and Key MessagesI am managed like a collection and my caches are autoupdated when an entity is added or removed. Internal Representation and Key Implementation Points.    Instance Variables	byName:		Dictionnary (key: mooseName)	byType:		Dictionnary of OrderedCollection (key: FAMIXType)  - the orderedCollection is sorted on access	elements:		OrderedCollection	sortedCollectionList:		Dictionnary (key: FAMIXType, value: boolean)Implementation Points- On access by type, OrderedCollections in byType dictionary are sorted by MooseName to find its type faster. This sort is stored in sortedCollectionList and is invalidated on addition of a new element in the collection"
+"MooseGroupStorage",""
+"MooseMinimalState","Is a kind of NullPattern"
+"MooseModel","MooseModel is a special group that is used for manipulating an entire model."
+"MooseFileOperator","MooseOperator is a task that will act on a model. Additionally to the MooseOperator, a directory, from where data can be imported, can be set. See class side for the API. rootFolder has to be used to access the file during the basicRun execution.The method the subclasses should implement is basicRun."
+"MooseAllWithTypeOnTrait",""
+"MooseQueryTypeDeclarationAssociation","MooseQueryInstanciationAssociation is a fake FamixAssociation to handle Instanciations between FamixStructuralEntities and their FamixType in MooseQuery (MooseIncoming/OutgoingQueryResult)Instance Variables:	from	the Famixentity that is typed	to	      the FamixType"
+"MooseOperator","MooseOperator is a task that will act on a model. As any other task, its subclasses will specify their main execution entry point in the method basicRun."
+"MooseGroup","MooseGroup adds on top of an abstract group the ability to change the type of a group when we change the entities inside. This is determined via class names.For example, a XYZGroup handles a group of XYZ entities. Thus, ""MooseGroup with: XYZ new"" will return a XYZGroup. The type changing behavior also works at runtime. Thus, ""MooseGroup new add: XYZ"" will also return a XYZGroup.The goal of this abstraction is to provide a home for behavior that is specific to groups of entities. For example, a visualization that makes sense for a group of XYZ entities will become a method in the XYZGroup class."
+"MooseModelRoot","Moose model root is a simple singleton container. We use this third class for holding a MooseModel instance because we want **all** the instances (and subinstances) of MooseModel to be registered in there."
+"MooseAllUsingOnClass",""
+"MooseCustomTask","MooseCustomTask is a task perform some computation specified as a block.The main API is then	with: aBlock description: aDescription length: aNumber"
+"MooseImage","This is a utility class that holds information related to the origin of the Moose image. It is typically instantiated at image creation time and the information is stored following the singleton pattern."
+"ManifestMooseCore",""
+"MooseAbstractGroup","AbstractGroup is an entity that offers the basic mechanism for managing multiple entities. It is also the superclass of MooseModel.It stores the contained entities in a storage variable that points to a MooseGroupStorage strategy."
+"MooseTask","MooseTask is an abstract class that define the basic protocol for a Task. Basically a task should define how to run by specifying it in its run method.It can also specify setUp and tearDown actions"
+"MooseEntity","MooseEntity is an abstract entity. Entities should subclass this class.Any moose entity should answer its mooseID, its mooseName and its mooseModel.!!Extension mechanismThe state instance variable provides a mechanism for extending the state of entities. This is achieved through MooseEntityState. Using this mechanism, a package can extend an entity to add more state. This extension will only be visible when the package is loaded. This is an important mechanism to enable extensibility and modularity. For example, if you have YourEntity that subclasses MooseEntity, you can extend it with:YourEntity>>yourExtendingAttribute	^ self privateState attributeAt: #yourExtendingAttributeYourEntity>>yourExtendingAttribute: aValue	^ self privateState attributeAt: #yourExtendingAttribute put: aValue(see MooseEntityState for more information)!!Meta descriptionsEntities should also be meta-described in terms of Fame. This is achieved by means of pragmas:- First, on the class side, you should have a method . For example, YourEntity could haveYourEntity class>>annotation	<MSEClass: #YourEntity super: #MooseEntity>	<package: 'YourPackage'>	<MSEComment: 'The YourEntity Smalltalk class has a correspondent YourEntity meta entity in the Fame world'>- The pragma <MSEProperty:type:> must be placed in the getter method to denote a Fame property. For example:YourEntity>>yourExtendingAttribute	<MSEProperty: #yourExtendingAttribute type: #YourType>	<MSEComment: 'This is an attribute extended in a different package'>	^ self privateState attributeAt: #yourExtendingAttribute		!!Important API- mooseID is an Integer that uniquely identifies this entity within the entire Moose environment. 	It should not change nor be nil. It is generated automatically during the creation of the MooseEntity.- mooseModel of an entity is must be an instance of MooseModel. It may be nil if the entity is not part of a model.		Each entity belongs to one and only one model, if an entity has not yet been added to a model or if an entity has been removed from a model the mooseModel is undefined, that is it may be nil.- mooseDescription - returns the corresponding FM3MetaDescription instance- mooseName - returns a symbol that should qualify the current entity. It does not have to be unique"
+"MoosePropertyGroup","MoosePropertyGroup is a selection over a group. The selection is specify via a predicate expressed as a symbol or a block. The original group is available using the message originalGroup.Instance Variables:	originalGroup	<MooseGroup>	propertySymbolOrBlock"
+"FAMIXMetaModelClassesShouldNotOverrideRule",""
+"FmxImportingContext","basic class for generated importing contexts"
+"FAMIXMetaModelClassesNotDeclaredInFameRule","Check if a metamodel class is properly declared using a <MSEClass:super:> pragma.Additionally, this pragma should be in a #annotation class-side method, although this is not enforced. Default Moose tools are resilient with respect to metamodel descriptions, and accept as metamodel classes any subclass of MooseEntity. This rule enforces that all such classes are properly described in Fame, ensuring proper use by strict tools."
+"MooseEntityRenamed",""
+"MooseMemoryEfficientState","I am a state keeping properties and queries cache in the same dictionary. The downside is that we cannot flush only one kind of cache.The upside is that I use less memory. Since each MooseEntity have a state, it has a real impact in the end. "
+"MooseEntityRemoved",""
+"MooseGroupTeardownStorage",""
+"LinkedTabGroupMorph","This class represent a tabGroupMorph 'linked' to a ListOrTextFielfPart: when the selected page change, it also update the selected page of the listOrTextFieldPart "
+"DistributionMapExample",""
+"DistributionMapNumberPropertyInfo",""
+"OpenDistributionMapWizard",""
+"AbstractDistributionMap",""
+"DistributionMapPropertyInfo",""
+"DistributionMapStringPropertyInfo",""
+"OpenDistributionMapBasedOnElementsWizard",""
+"DistributionMap","DistributionMap is a nice visualization to render container and their elements based on properties. See Stéphane Ducasse, Tudor Gîrba and Adrian Kuhn, Distribution Map, Proceedings of 22nd IEEE International Conference on Software Maintenance (ICSM '06), 203–212, IEEE Computer Society, 2006, 28%, PDF, DOI.The title of a distribution map can be changed as well as the colors used. There are different ways to specific the parts and their containers. Here we define the containers and how the elements are omputed based on such containers.	|dm |	dm := self			onContainers: Collection withAllSubclasses  			elements: #allInstVarNames 			properties: [:element | element size > 5].	dm title: 'Collection subclasses and their instance variables'.	dm render. 	dm open.The default colors can be changed to. However, the colors: message should be send before the element description.Here is a non executable illustration. 	| dm |	dm := DistributionMap new.	dm colors: {(Color r: 0.6 g: 0.0 b: 0.0). (Color r: 0.0 g: 0.0 b: 0.6). (Color r: 1.0 g: 0.6 b: 0.0). (Color r: 0.0 g: 1.0 b: 1.0). (Color r: 0.0 g: 1.0 b: 0.0). (Color r: 1.0 g: 0.753 b: 0.796). (Color r: 0.6 g: 0.2 b: 0.0). (Color r: 0.4 g: 0.0 b: 0.6). (Color r: 1.0 g: 1.0 b: 0.0). (Color r: 0.8 g: 0.8 b: 0.8)}.	dm	onContainers: (model allModelPackages) 		elements: #classes 		properties: [ :cl | (cl authors sortedCounts) ifNotEmpty: [ (cl authors sortedCounts) first value name]].	dm title: 'Authors Map of ', model name.	dm render.	dm open."
+"DistributionMapBooleanPropertyInfo",""
+"DistributionMapUnknownPropertyInfo",""
+"OpenDistributionMapBasedOnPartsWizard",""
+"LinearDistributionMap","LinearDistributionMap displays the elements based on linear shades of color. "
+"DistributionMapCollectionPropertyInfo",""
+"LinkedTabSelectorMorph","This class represent a tabSelectorMorph 'linked' to a ListOrTextFielfPart: when the selected page change, it also update the selected page of the listOrTextFieldPart "
+"MooseEasyFamixMaker","I am a facade to create FAMIX MSE files easily in Pharo Moose.I rely on LibC, which allows me to work on all platforms. "
+"MooseEasyUtility","I am a collection of functions useful for dealing with LibC in the context of creating MSE files."
+"MooseEasyUtilityTest",""
+"MooseEasyFamixMakerTest","A GMMSEGeneratorWizardTest is a test class for testing the behavior of GMMSEGeneratorWizard"
+"MooseBrowsers","This class holds a collection of browsers useable on Moose objects."
+"MooseClassMethodsBrowser",""
+"MooseFileSourceAnchorViewer","This browser simply provides the possibility to open a sourceAnchor with the text of the sourceAnchor interval selected. It is a helper browser used in the Finder."
+"FamixTraitGroupVisualizationBrowser","Description--------------------I am a browser to visualize current traits from famix."
+"MooseClassHierarchyBrowser","self openOn: MooseModel root allModels last"
+"MooseFileFinder","self openOn: FileSystem disk root"
+"MoosePlaygroundCommand",""
+"MoosePlayground","self open"
+"MooseFileExplorer","self openOn: FileSystem disk root"
+"MooseNavigationPresentation",""
+"MPImportMSECommand",""
+"MooseDependencyBrowser",""
+"MooseFinder","self new openOn: MooseModel root"
+"MPImportFileStructureCommand",""
+"MooseCustomizableSystemComplexityBrowser","| browser |browser := self new browser.browser openOn: ( 	MooseModel root allModels last allModelClasses ->	(FAMIXClass new mooseDescriptionsOfNumberProperties collect: #implementingSelector )).(browser pane port: #heightToSelect) value: #numberOfMethods.(browser pane port: #widthToSelect) value: #numberOfAttributes.(browser pane port: #colorToSelect) value: #numberOfLinesOfCode."
+"MooseAccumulatingFinder","MooseAccumulatingFinder new openOn: MooseModel root allModels first"
+"MPImportCommand",""
+"MooseSystemComplexityLocator","self openOn: MooseModel root allModels last allModelClasses"
+"MooseCodeNavigator",""
+"MooseSendersBrowser","self openOn: (MooseModel root allModels last allMethods detect: [:each | each clientMethods size > 10])"
+"MPHelp",""
+"MooseVisualLocator","The MooseVisualLocator is a simple template that offers a list of classes on the left hand side and some presentation on the right hand side. It is meant to be subclassed."
+"MoosePackagesCodeBrowser","This browser shows packages and the containing classes.self openOn: MooseModel root allModels first allPackages"
+"MoosePanel","self open"
+"MoosePanelCommand",""
+"MooseNamespacesCodeBrowser","This browser shows namespaces and the containing classes.self openOn: MooseModel root allModels last allNamespaces"
+"MooseMetaExplorer",""
+"MooseContextFrame","A ContextFrame is the frame that is open by the MooseImportInterface when the user click on the 'detailContextbutton'. It is composed by a set of checkboxes corresponding the context of import for an importer.Instance Variables	builder:		<StandardWindow>	checkboxes:		<OrderedCollection>	contextSelected:		<SortedCollection> 	dialogWindow:		<PluggableDialogWindow>builder	- the main window in which we plugg the dialogcheckboxes	- contains all checkboxes objects (CheckboxMorph) present in this frame. contextSelected	- contains items selected when the ok button is clicked by the user.dialogWindow	- in which we position all the morph elements"
+"MooseCodeBrowser","This is the abstract browser for browsing the source code of a FAMIX model. Look at the subclasses for the actual browsers."
+"MooseMetaBrowser","self open"
+"AllMooseMetamodelImportingContext",""
+"MooseImportingContext","I represent the context of import (reification level) for an importer: been it a fact extractor (only for Smalltalk in this version of Moose), or an MSE or other format importing. The idea is that given a graph dependencies between metamodel entities, I help to decide whether certain information should be extracted or kept in a model.For example, since to get inheritance, classes are needed (such dependency is expressed on my class side), then when we model inheritance, my instance encapsulate that fact extractor or importers should also consider classes. Similar dependencies exist between an access and a instance variable and a method. My main API is		- importXXX to declare what we want.		importClass		importInheritance	- shouldImportXXXX to query what we should do.		shouldImportAccess		shouldImportInheritance	- mergeClassAndMetaclass, and other helper.  My class side implements a semantically coherent graph of dependency."
+"FamixFileBasedLanguageMetamodelFactory",""
+"MooseAbstractImporter","I'm the root for the new importer.This way my subclasses share error logging and importerContext"
+"MooseAbstractImportingContext","This class represent a context retrieved from a metaModel (for exemple FAMIX). A context is a set of elements of the metamodel for which we tell if they have to be imported or not. For exemple, using the FAMIX MetaModel , we have elements such as 'FAMIXClass', 'FAMIXInvocation'. 'FAMIXInheritance' , .....This class is building a dependency-tree according the dependencies present in  the MetaDescriptions of the metamodel classes. For example, when you choose to import methods (represented by FAMIXMethod) you will need to import classes too (represented by FAMIXClass). As several MetaModel can be used in Moose, this 'importingContext' should not be hardcoded but either retrieved from the metaModel used. Instance Variables"
+"FAMIXStandardImportingContext",""
+"FamixBasicInfrastructureMetamodelFactory",""
+"MooseFileStructureImporter",""
+"MooseFileStructureImporterTest",""
+"MooseHelp",""
+"MooseAbstractMenuEntry",""
+"MooseFASTToolEntry",""
+"MooseSmaCCToolEntry",""
+"MooseAbstractInstallToolEntry",""
+"MooseAlgoToolEntry",""
+"MoosePlantUMLGizmoEntry",""
+"MooseASTEntry",""
+"MooseParserEntry",""
+"MooseAbstractToolEntry",""
+"MooseFASTJavaToolEntry",""
+"MoosePetitParserToolEntry",""
+"MooseOutgoingQueryResult","Description--------------------Result of a navigation query for the outgoing associations of an entity."
+"MooseQueryOutgoingDirectionStrategy","Description--------------------I am a strategy managing the behavior of the Moose Queries depending on directions in the case where the query require the outgoing associations."
+"TDependencyQueryResult","TDependencyQueryResult is a Trait that provides some common MooseQuery selectors to several MooseQueryResult.For more informations: https://moosequery.ferlicot.fr/"
+"MooseQueryResult","MooseQueryResult is the abstract class for holding the result of all Moose-Query queries.By default MooseQueryResults are assumed to contain a collection of associations between the entity in receiver and all the element in storage at the exception of  MooseObjectQueryResult.For more informations: https://moosequery.ferlicot.fr/Instance Variables:	storage	the elements resulting of the queries	receiver	the receiver of the query, necessary for example when we want to do a withoutSelfLoop"
+"ManifestMooseQuery","I store metadata for this package. These meta data are used by other tools such as the SmalllintManifestChecker and the critics Browser"
+"MooseQueryCalculator","Description-------------------I am an object reponsible for the computation of a query. I am here to hide the implementations of queries to the entities. For more informations: https://moosequery.ferlicot.fr/Examples-------------------		(MooseQueryCalculator direction: #in) query: FAMIXInvocation for: aMethod.		(MooseQueryCalculator strategy: MooseQueryOutgoingDirectionStrategy) queryAllLocalFor: aMethod.		(MooseQueryCalculator strategy: MooseQueryIncomingDirectionStrategy) query: FAMIXInvocation for: aMethod. Internal Representation and Key Implementation Points.-------------------    Instance Variables	strategy:		<aMooseQueryDirectionStrategy> 		A strategy responsible of the behavior depending on the direction of the association"
+"TEntityMetaLevelDependency","This trait provides a common, paradigm agnostic vocabulary to query dependencies of named entities at meta level.For more informations: https://moosequery.ferlicot.fr/"
+"MooseIncomingQueryResult","Description--------------------Result of a navigation query for the incoming associations of an entity."
+"TAssociationMetaLevelDependency","This trait provides a common, paradigm agnostic vocabulary to query dependencies of association entities at meta level.For more informations: https://moosequery.ferlicot.fr/"
+"TMooseGroupDependencyQueries","This trait provides a common, paradigm agnostic vocabulary to query dependencies of software entities stored in a MooseAbstractGroup.For more informations: https://moosequery.ferlicot.fr/"
+"MooseQueryAbstractDirectionStrategy","Description--------------------I am an abstract class part of a Design Pattern Strategy. With my subclasses we manage the direction of the MooseQueries and everything related to direction in the queries.I am able to return the right strategy to use in a query with the method #fromSymbol. This method takes a symbol representing a direction as parameter and return the right strategy. Example-------------------	MooseQueryAbstractDirectionStrategy fromSymbol: #in"
+"MooseObjectQueryResult","MooseObjectQueryResult hold the result of queries that return objects (e.g. opposite) as opposed by associations"
+"MooseQueryIncomingDirectionStrategy","Description--------------------I am a strategy managing the behavior of the Moose Queries depending on directions in the case where the query require the incomings associations."
+"TDependencyQueries","Description--------------------This trait provides a common, paradigm agnostic vocabulary to query dependencies of software entities.It includes some generic way to query an entity via its associations. The API offer the possibility to query an entity with three parameters:- The direction of the navigation (Incoming/Outgoing -- in/out)- The kind of association (FAMIXAcces, FAMIXReference, all...)- The scope of the query (The receiver, the receiver and its children)The actual core of the algorithms are in MooseQueryCalculator class.Most  of the generic methods takes a symbol to describe the direction. This symbol will be used to find a MooseQueryAbstactDirectionStrategy to configure a MooseQueryCalculator.For more informations: https://moosequery.ferlicot.fr/Public API and Key Messages--------------------- #query: aSymbol with: aFAMIXAssociation 				Looks for the associations of the kind aFAMIXAssociation in the direction described by the symbol in the receiver and its children.- #queryLocal: aSymbol with: aFAMIXAssociation 		Looks for the associations of the kind aFAMIXAssociation in the direction described by the symbol in the receiver.- #queryAll: aSymbol 									Looks for the associations in the direction described by the symbol in the receiver and its children.There is a lot of other generic queries. You can find all of them in the ""moose-queries-generic"" protocol.Examples--------------------	aFAMIXClass query: #in with: FAMIXInheritance.		--> Will return a MooseIncomingQueryResult containing the FAMIXInheritance associations having aFAMIXClass or its children as target				aFAMIXMethod query: #out with: FAMIXAccess.		--> Will return a MooseOutgoingQueryResult containing the FAMIXAccess associations having aFAMIXMethod or its children as source			aFAMIXClass queryLocal: #in with: FAMIXInheritance.		--> Will return a MooseIncomingQueryResult containing the FAMIXInheritance associations having aFAMIXClass as target		aFAMIXMethod queryLocal: #out with: FAMIXAccess.		--> Will return a MooseOutgoingQueryResult containing the FAMIXAccess associations having aFAMIXMethod as source							aFAMIXClass queryAll: #in.		--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass or its children as target		aFAMIXMethod queryAll: #out.		--> Will return a MooseOutgoingQueryResult containing the FAMIXAssociation having aFAMIXMethod or its children as source				aFAMIXClass queryAllLocal: #in.		--> Will return a MooseIncomingQueryResult containing the FAMIXAssociation having aFAMIXClass as target		aFAMIXMethod queryAllLocal: #out.		--> Will return a MooseOutgoingQueryResult containing the FAMIXAssociation having aFAMIXMethod as source"
+"TOODependencyQueries","A TOODependencyQueries defines a vocabulary to compute dependencies of object-oriented entities.For more informations: https://moosequery.ferlicot.fr/"
+"MooseQueryMockSpecializedInvocation","Description--------------------A Mock invocation for MooseQuery's tests"
+"MooseIncomingQueryResultTest",""
+"MooseOutgoingQueryResultTest",""
+"MooseQueryComparedToMooseQueryTest",""
+"MooseQueryResultTest","A MooseQueryResultTest is a test class for testing the behavior of MooseQueryResult"
+"MooseObjectQueryResultTest",""
+"MooseQueryTest",""
+"MooseQueryOnMooseGroupTest",""
+"FAMIXSystemNestingMap","This class encapsulates the logic of constructing a Roassal view with a class blueprint. It is applicable for one class."
+"OverviewPyramid",""
+"PyramidRectangle",""
+"FAMIXSystemAttraction","This class encapsulates the logic of the system attraction view. It is applicable to a set of famix types."
+"MooseFameView","self new open"
+"OverviewPyramidMetrics",""
+"FAMIXNamespaceGroupPaintingTest",""
+"FAMIXClassBlueprint","This class encapsulates the logic of the class blueprint view. It is applicable to a set of famix types."
+"CandidateListOperatorNotAcceptingAnyReceiver","a CandidateListOperatorNotAcceptingAnyReceiver doesn't compute any possible type."
+"SmalltalkMethodVisitor",""
+"MooseImportingTask","MooseImportingTask defines tasks whose goal is to populate models.Instance Variables:	importingContext	<ProtoObject | PseudoContext>	importerClass	<Behavior>"
+"SmalltalkImporter","I'm responsible for creating Famix model out of Smalltalk code.I'm mainly invoked by the MooseImportClassesTask"
+"CandidateListOperatorAcceptingAnyKindOfReceiver","a CandidateListOperatorAcceptingAnyKindOfReceiver compute a list of possible type for a FamixInvocation's receiver when:	- the receiver is a Class (so its type is then evident :))- the receiver is 'self'- the receiver is 'super'- the receiver is a FAMIXAttributeshould normally accept any kind of receiver, but all type are not yet supported or implemented."
+"InstallElementsOperator","InstallElementsOperator's' responsibility is to add famix entities (probably collected by other tasks such MooseCompositeImporterTask) into a model.InstallElementsOperator>>with: runOn: populates a Moose model with elements.Instance Variables	container:		<Object>container	- contains (MOOSE model -) elements"
+"AbstractSmalltalkMetamodelFactory",""
+"MooseCompositeImporterTask","A MooseCompositeImporterTask is an abstract class which defines the logical steps and the glue between these steps to import entities from a specification (list of packages, classes or categories). MooseCompositeImporterTask collects Smalltalk classes, ask the MooseImportClassesTask to create entities and the InstallElementsOperator to populate the moose model. The MooseImportClassesTask will then pass entities to the InstallElementsOperator which will populate the model.My subclasses specify specific way to identify the Smalltalk classes that should be represented in a model."
+"CandidateListOperatorAcceptingBasicAndVariableReceivers","a CandidateListOperatorAcceptingBasicAndVariableReceivers  compute a list of possible type for a FamixInvocation's receiver when:	- the receiver is a Class (so its type is then evident :))- the receiver is 'self'- the receiver is 'super'- the receiver is a FAMIXAttribute"
+"AbstractSmalltalkMethodVisitor",""
+"SmalltalkMetamodelFactory",""
+"MoosePharoImporterTask","This class specifies that the Smalltalk classes are identified using packages.Implementation notes.	Should check packageFrom: because it may be useless and has to be fixed anyway	packageFrom: and namesString do not have a sender. -> get rid of them"
+"AbstractCandidateListOperator",""
+"CandidateListOperatorAcceptingSimpleKindsOfReceiver","a CandidateListOperatorAcceptingSimpleKindsOfReceiver compute a list of possible type for a FamixInvocation's receiver when:	- the receiver is a Class (so its type is then evident :))- the receiver is 'self'- the receiver is 'super'"
+"MonticelloMethodVisitor",""
+"SmalltalkScope",""
+"MooseImportClassesTask","A MooseImportClassesTask is an elementary importing action which is called by the MooseCompositeImporterTask.Normally you should not call it directly. The results of MooseImportClassesTask is a list of entitie which are not yet installed in a model.MooseImportClassesTask pays attention to import classes and their extensions nicely.A MooseImportClassesTask does not deal directly with a model. It just creates entities that will be installed in a model. The installation is trigged by the MooseCompositeImporterTask and implemented by InstallElementsOperator."
+"CandidateListOperator","a CandidateListOperator compute a list of possible type for a FamixInvocation's receiver when:	- the receiver is a Class (so its type is then evident :))- the receiver is 'self'- the receiver is 'super'"
+"M5P10C17FullReferencerInSide",""
+"M5P10C18FullRefereeInSideOutSide",""
+"M6P11C19FullRefereeOutSide",""
+"M6P12C20FullReferencerOutSide",""
+"M7P13C21FullReferencerOutSide",""
+"M7P14C22FullRefereeOutSide",""
+"M1P1C1FullReferencerOutSide",""
+"M1P2C4FullRefereeInSide",""
+"M1P2C3ReferencerInSideRefereeOutSide",""
+"M1P2C2ReferencerOutSideRefereeInSide",""
+"M1P3C8FullReferencerInSide",""
+"M1P3C5ReferencerInSideRefereeInSide",""
+"M1P3C7FullRefereeInSide",""
+"M1P3C6FullReferencerInSideOutSide",""
+"M2P4C10FullReferencerInSide",""
+"M2P4C9FullRefereeInSide",""
+"M2P5C11FullRefereeOutSide",""
+"M2P6C12FullReferencerInSide",""
+"M2P6C13FullRefereeInSideOutSide",""
+"M3P7C14ReferencerOutSideRefereeOutSide",""
+"M4P8C15FullReferencerOutSide",""
+"M5P9C16FullReferencerOutSideInSide",""
+"LANInterface","LAN Interface comments for testing purposes.Instance Variables:	addressee	<ValueHolder>	description of addressee	contents	<ValueHolder>	description of contents	deviceNameMenu	<ValueModel>	description of deviceNameMenu	nextNode	<ValueHolder>	description of nextNode	nodeList	<SelectionInList>	description of nodeList	nodeName	<ValueHolder>	description of nodeName	originator	<ValueHolder>	description of originator"
+"LANOutputServer",""
+"TLANInterface",""
+"LANPacket",""
+"LANFileServer",""
+"LANAbstractDestinationAddress",""
+"LANPool",""
+"LANPrintServer",""
+"LANSingleDestinationAddress",""
+"LANNode",""
+"LANWorkStation",""
+"ClassA",""
+"ClassC",""
+"ClassF1",""
+"ClassB",""
+"ClassD",""
+"ClassG",""
+"ClassB1",""
+"ClassE",""
+"ClassB2",""
+"ClassF",""
+"A1",""
+"C1",""
+"E1",""
+"G1",""
+"I1",""
+"B1",""
+"D1",""
+"F1",""
+"H1",""
+"A2",""
+"B2",""
+"A3",""
+"B3",""
+"C3",""
+"A4",""
+"B4",""
+"TheRoot",""
+"SubRootLevelOne",""
+"ExternalReferenceClass","Description--------------------I am a class that should not be in the model for test. I should be a stub."
+"SubRootModelTwo",""
+"SubRootModelThree",""
+"FamixTest",""
+"FamixTest3ModelTest","I am test runed on FamixTest3 model to be able to tests features were you need a real model."
+"MooseMSEImporterTest",""
+"MooseTaskTest",""
+"MooseAbstractGroupTest",""
+"MooseEntityTest",""
+"MooseModelDescriptionTest",""
+"MooseModelRootTests",""
+"MooseGroupTest",""
+"MooseGroupSetOperationsTest",""
+"MooseObjectExtensionsTest",""
+"MooseModelTestResource",""
+"FAMIXLintRuleTest",""
+"MooseModelTest","Just a test about mooseModel root and so on."
+"MooseIntegerIdGeneratorTest",""
+"MoosePropertyGroupTest",""
+"MooseSampleData",""
+"MooseModelDistributionMapExtensionsTest",""
+"MooseModelDistributionMapRenderingTest",""
+"DistributionMapExampleTest",""
+"MooseFinderForSimpleClassesTest",""
+"MooseFinderForSimpleNamespacesTest",""
+"VerveineJMooseFinderTest",""
+"MooseFinderTest",""
+"MooseFinderForSimpleMethodsTest",""
+"MooseFinderForSimplePackagesTest",""
+"MooseModelFinderExtensionsTest",""
+"MooseGroupPaintingTest",""
+"MooseModelRoassalPaintingsExtensionsTest",""
+"MooseFameViewTest",""
+"OverviewPyramidTest","An OverviewPyramidTest is a test class for testing the behavior of OverviewPyramid"
+"MooseSmalltalkImporterSubclassesTest",""
+"FamixReferenceModelNamespaceTestResource",""
+"FamixReferenceModelImporterTest",""
+"MooseScriptsTest",""
+"ClassesExtensionTestResource",""
+"FamixReferenceModelMergingClassAndMetaclassImporterTest",""
+"MooseSmalltalkImporterFamixClassTest",""
+"SmalltalkModelTestResource",""
+"ImportingContextTest",""
+"MooseSmalltalkImporterRoelTyperTest",""
+"FamixReferenceModelNamespaceMergingClassAndMetaclassTestResource",""
+"MooseScripts",""
+"MoosePharoImporterTaskTest",""
+"AbstractFAMIXNavigationTest",""
+"FAMIXMethodNavigationChefTest",""
+"FAMIXPropertiesTest",""
+"FAMIXSelfLoopScopeTest",""
+"FAMIXObjectQueriesSelfLoopTest",""
+"FAMIXClassNavigationChefTest",""
+"FAMIXMetricsTest",""
+"FAMIXPackageNavigationChefTest",""
+"FamixStNavigationTestResource",""
+"FAMIXClassNavigationTest",""
+"FAMIXNamespaceNavigationChefTest",""
+"FAMIXPackageNavigationTest",""
+"FAMIXInvocationNavigationTest",""
+"FAMIXNamespaceNavigationTest",""
+"LANImporterTest",""
+"LANMooseModelTest",""
+"LANPackageTestResource",""
+"FamixModelExtractionTest",""
+"MooseMorphicTestResource",""
+"LANSmalltalkAccessTest",""
+"LANAbstractImportTest",""
+"LANMooseGroupTest",""
+"FamixInvocationsTest",""
+"FamixPropertiesTest",""
+"MooseSqueakClassPackageImporterTest",""
+"FAMIXStepwiseImporterTest",""
+"MPImportSTCommand",""
+"MooseImportFromMseWizard",""
+"PackageCommitWizard",""
+"MooseImportingContextPart","A MooseImportingContextPart is the part concerning the context to import in the second 'page' of the moose wizard. Instance Variables	centralCheckbox:		<Object>	contextFrame:		<Object>	detailContextButton:		<Object>centralCheckbox	- xxxxxcontextFrame	- xxxxxdetailContextButton	- xxxxx"
+"MooseImportFromSmalltalkImageWizard","A MooseWizardControl is the Wizard control of the moose wizard. It subclass the generic class WizardControl to make a specific action when the terminate button is pressed: open the moose finder. This class initialize itself its components (WizarPanes and WizardPart). Therefore, to use the moose wizard you just have to evaluate: 'MooseWizardControl new openFirstFrame'.Instance Variables"
+"ProjectVersionWizard",""
+"MooseImportingContextAllCheckboxesDisplayedPart",""
+"MooseMetacelloWizard",""
+"MooseContextCheckboxesPart",""
+"MooseMetacelloRadioButtonsPart",""
+"MooseVersionWizard",""
