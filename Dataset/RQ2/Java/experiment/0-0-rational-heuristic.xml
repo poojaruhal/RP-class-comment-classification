@@ -84,7 +84,7 @@
       </object>
    </object>
    <object class="javax.swing.DefaultListModel" name="datasets">
-      <object class="java.io.File" name="0">/home/pr17l190@campus.unibe.ch/data/java/experiment/0-0-rational-heuristic.arff</object>
+      <object class="java.io.File" name="0">/home/file_path/data/java/experiment/0-0-rational-heuristic.arff</object>
    </object>
    <object class="int" name="runUpper" primitive="yes">1</object>
    <object class="weka.experiment.CrossValidationResultProducer" name="resultProducer">
@@ -137,7 +137,7 @@
          <object class="java.lang.String" name="0">-O</object>
             <object class="java.lang.String" name="1">results.csv</object>
       </object>
-      <object class="java.io.File" name="outputFile">/home/pr17l190@campus.unibe.ch/data/java/experiment/0-0-rational-heuristic-results.csv</object>
+      <object class="java.io.File" name="outputFile">/home/file_path/data/java/experiment/0-0-rational-heuristic-results.csv</object>
    </object>
    <object class="boolean" name="advanceDataSetFirst" primitive="yes">true</object>
    <object class="int" name="runLower" primitive="yes">1</object>
