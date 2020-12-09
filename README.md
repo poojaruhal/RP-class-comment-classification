@@ -179,5 +179,5 @@ Results/
         - `Taxonomies-mapping.xlsx` -  Systematic mapping of the taxonomies available from previous works.
 
     - **RQ2/**
-        - `All-steps-results.sqlite` - Stores all the results of intermediate steps and final results in the machine learning pipeline.
+        - `All-steps-results.sqlite` - Stores all results of the intermediate steps and the final step of the machine learning pipeline.
         - `Cross-validation-10-results.xlsx` - Results of the cross validation strategy on three languages Java, Python, and Pharo.
