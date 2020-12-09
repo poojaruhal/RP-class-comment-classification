@@ -1,5 +1,5 @@
 # RP-class-comment-classification
-This project contains the necessary material to replicate the project. It also contains supplementary data to give better insights into the results.
+This project contains all the necessary material to replicate the experiments. It also contains supplementary data to give better insights into the results.
 
 ## Structure
 ```
