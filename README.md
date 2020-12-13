@@ -34,6 +34,8 @@ Contains the extracted class comments from the selected projects of each languag
     
     - [Parser_Details.md](/Dataset/RQ1/Java/Parser_Details.md) - Details of the parser used to parse class comments of Java [ Projects](https://doi.org/10.5281/zenodo.4311839)
 
+    - [java-projects-distribution.pdf](Dataset/RQ1/Java/java-projects-distribution.pdf) - distribution of above given Java projects.
+
 - #### Pharo/
      Contains the extracted class comments of seven Pharo projects.     
     - [GToolkit.csv](/Dataset/RQ1/Pharo/GToolkit.csv) - Extracted class comments from the GToolkit project. The version of the project referred to extract class comments is available as [Raw Dataset](https://doi.org/10.5281/zenodo.4311839) on Zenodo.  
@@ -51,6 +53,8 @@ Contains the extracted class comments from the selected projects of each languag
     - [Seaside.csv](/Dataset/RQ1/Pharo/Seaside.csv) - Extracted class comments from the Seaside project. The version of the project referred to extract class comments is available as [Raw Dataset](https://doi.org/10.5281/zenodo.4311839) on Zenodo.
     
     - [Parser_Details.md](/Dataset/RQ1/Pharo/Parser_Details.csv) - Details of the parser used to parse class comments of Pharo [ Projects](https://doi.org/10.5281/zenodo.4311839)
+
+    - [pharo-projects-distribution.pdf](Dataset/RQ1/Pharo/pharo-projects-distribution.pdf) - Distribution of above given Pharo projects.
 
 - #### Python/
      Contains the extracted class comments of seven Python projects. 
@@ -70,6 +74,7 @@ Contains the extracted class comments from the selected projects of each languag
         
     - [Parser_Details.md](/Dataset/RQ1/Python/Parser_Details.csv) - Details of the parser used to parse class comments of Java [ Projects](https://doi.org/10.5281/zenodo.4311839)
 
+    - [python-projects-distribution.pdf](Dataset/RQ1/Python/python-projects-distribution.pdf) - Distribution of above given Python projects.
 
  ### RQ2/ 
 Contains the input dataset and configuration files to run various machine learning classifiers for the categories presented in CCTM.
@@ -170,4 +175,6 @@ We present the details of our results for each research question.
  ### RQ2/
 Results related to Research question 2.
 - [All-steps-results.sqlite](/Results/RQ2/All-steps-results.sqlite) - Stores all results of the intermediate steps and the final step of the machine learning pipeline.
-- [Cross-validation-10-results.xlsx](/Results/RQ2/Cross-validation-10-results.xlsx) - Results of the cross validation strategy on three languages Java, Python, and Pharo.
+- [CV-10-results.xlsx](/Results/RQ2/CV-10-results.xlsx) - Results of the cross validation strategy on three languages Java, Python, and Pharo.
+ #### Statistical-analysis/ 
+ Contains the script and data used to perform the statistical tests mentioned in the paper.
