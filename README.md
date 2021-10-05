@@ -52,7 +52,7 @@ Contains the extracted class comments from the selected projects of each languag
     
     - [Seaside.csv](/Dataset/RQ1/Pharo/Seaside.csv) - Extracted class comments from the Seaside project. The version of the project referred to extract class comments is available as [Raw Dataset](https://doi.org/10.5281/zenodo.4311839) on Zenodo.
     
-    - [Parser_Details.md](/Dataset/RQ1/Pharo/Parser_Details.csv) - Details of the parser used to parse class comments of Pharo [ Projects](https://doi.org/10.5281/zenodo.4311839)
+    - [Parser_Details.md](/Dataset/RQ1/Pharo/Parser_Details.md) - Details of the parser used to parse class comments of Pharo [ Projects](https://doi.org/10.5281/zenodo.4311839)
 
     - [pharo-projects-distribution.pdf](Dataset/RQ1/Pharo/pharo-projects-distribution.pdf) - Distribution of above given Pharo projects.
 
@@ -72,7 +72,7 @@ Contains the extracted class comments from the selected projects of each languag
         
     - [Requests.csv](/Dataset/RQ1/Python/Requests.csv) -  Extracted class comments from the Requests project. The version of the project referred to extract class comments is available as [Raw Dataset](https://doi.org/10.5281/zenodo.4311839) on Zenodo. More detail about the project is available on GitHub [Requests](https://github.com/psf/requests/)
         
-    - [Parser_Details.md](/Dataset/RQ1/Python/Parser_Details.csv) - Details of the parser used to parse class comments of Java [ Projects](https://doi.org/10.5281/zenodo.4311839)
+    - [Parser_Details.md](/Dataset/RQ1/Python/Parser_Details.md) - Details of the parser used to parse class comments of Python [ Projects](https://doi.org/10.5281/zenodo.4311839)
 
     - [python-projects-distribution.pdf](Dataset/RQ1/Python/python-projects-distribution.pdf) - Distribution of above given Python projects.
 
