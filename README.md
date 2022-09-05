@@ -1,5 +1,5 @@
 # RP-class-comment-classification
-This project contains all the necessary material to replicate the experiments. It also contains supplementary data to give better insights into the results.
+This project contains all the necessary material to replicate the experiments performed in the paper [How to identify class comment types? A multi-language approach for class comment classification](https://doi.org/10.1016/j.jss.2021.111047). It also contains supplementary data to give better insights into the results.
 
 
 ## Content of the Replication Package
