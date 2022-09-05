@@ -177,4 +177,4 @@ Results related to Research question 2.
 - [All-steps-results.sqlite](/Results/RQ2/All-steps-results.sqlite) - Stores all results of the intermediate steps and the final step of the machine learning pipeline.
 - [CV-10-results.xlsx](/Results/RQ2/CV-10-results.xlsx) - Results of the cross validation strategy on three languages Java, Python, and Pharo.
  #### Statistical-analysis/ 
- Contains the script and data used to perform the statistical tests mentioned in the paper.
+ Contains the script and data used to perform the statistical tests performed in the paper in the context of RQ2.
